@@ -109,7 +109,13 @@
       const dots = Array.from(gallery.querySelectorAll(".gallery-dot"));
       const prev = gallery.querySelector(".gallery-nav.prev");
       const next = gallery.querySelector(".gallery-nav.next");
+      const jumpScope = gallery.closest("[data-segment-panel]") || gallery.closest(".slide") || gallery;
+      const jumpButtons = Array.from(jumpScope.querySelectorAll("[data-gallery-jump]"));
       let galleryIndex = 0;
+
+      if (!panels.length) {
+        return;
+      }
 
       function renderGallery(index) {
         galleryIndex = (index + panels.length) % panels.length;
@@ -119,6 +125,10 @@
         dots.forEach((dot, dotIndex) => {
           dot.classList.toggle("active", dotIndex === galleryIndex);
         });
+        jumpButtons.forEach((button) => {
+          const targetIndex = Number.parseInt(button.dataset.galleryJump || "", 10);
+          button.classList.toggle("active", Number.isInteger(targetIndex) && targetIndex === galleryIndex);
+        });
       }
 
       prev?.addEventListener("click", () => renderGallery(galleryIndex - 1));
@@ -126,8 +136,47 @@
       dots.forEach((dot, dotIndex) => {
         dot.addEventListener("click", () => renderGallery(dotIndex));
       });
+      jumpButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const targetIndex = Number.parseInt(button.dataset.galleryJump || "", 10);
+          if (!Number.isInteger(targetIndex)) {
+            return;
+          }
+          renderGallery(targetIndex);
+        });
+      });
 
       renderGallery(0);
+    }
+
+    function initSegmented(container) {
+      const buttons = Array.from(container.querySelectorAll("[data-segment-btn]"));
+      const panels = Array.from(container.querySelectorAll("[data-segment-panel]"));
+      if (!buttons.length || !panels.length) {
+        return;
+      }
+
+      function renderSegment(key) {
+        buttons.forEach((button) => {
+          const active = button.dataset.segmentBtn === key;
+          button.classList.toggle("active", active);
+          button.setAttribute("aria-selected", String(active));
+          button.tabIndex = active ? 0 : -1;
+        });
+
+        panels.forEach((panel) => {
+          panel.hidden = panel.dataset.segmentPanel !== key;
+        });
+      }
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderSegment(button.dataset.segmentBtn);
+        });
+      });
+
+      const defaultButton = buttons.find((button) => button.hasAttribute("data-default")) || buttons[0];
+      renderSegment(defaultButton.dataset.segmentBtn);
     }
 
     function renderLightbox() {
@@ -287,6 +336,7 @@
     });
 
     galleries.forEach(initGallery);
+    Array.from(document.querySelectorAll("[data-segmented]")).forEach(initSegmented);
     Array.from(document.querySelectorAll("figure img")).forEach((image) => {
       image.addEventListener("click", () => openLightbox(image));
     });

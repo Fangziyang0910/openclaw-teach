@@ -2,7 +2,7 @@
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块二 · 本地部署</p>
-            <h2>部署前要记住的原则</h2>
+            <h2>部署前先了解的几件事</h2>
           </div>
         </div>
         <div class="slide-body split-tight">
@@ -122,7 +122,7 @@
           <div class="title-stack">
             <p class="eyebrow">模块二 · 本地部署</p>
             <h2>两种系统安装策略：一键部署与分布安装</h2>
-            <p>先给一键安装命令，如果因为网络问题失败，再切到手动安装。</p>
+            <p>一键安装更省事；如果遇到网络、权限或依赖问题，再切到手动安装会更容易定位原因。</p>
           </div>
         </div>
         <div class="slide-body compare">
@@ -147,99 +147,104 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
             <h2>手动配置</h2>
           </div>
         </div>
-        <div class="slide-body grid-2">
-          <div class="card">
-            <h3>macOS 路线</h3>
-            <ul>
-              <li>安装 Node.js 官方 pkg，版本选 v22.22.0（LTS）。</li>
-              <li>使用 Homebrew 安装 Git。</li>
-              <li>执行 `git --version` 验证成功。</li>
-            </ul>
-            <div class="gallery gallery-compact" data-gallery style="margin-top:14px;">
-              <div class="gallery-stage">
-                <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-                <figure class="gallery-panel">
-                  <img src="images/2.png" alt="下载 Node.js 安装包" />
-                  <figcaption>先下载 macOS 版 Node.js 安装包。</figcaption>
-                </figure>
-                <figure class="gallery-panel">
-                  <img src="images/3.png" alt="打开终端并准备安装 Homebrew" />
-                  <figcaption>先打开终端，准备安装 Homebrew。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/4.png" alt="验证 git 安装" />
-                  <figcaption>再通过 `git --version` 验证 Git 安装成功。</figcaption>
-                </figure>
-                <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-              </div>
-              <div class="gallery-dots">
-                <button class="gallery-dot" type="button">1 安装 Node</button>
-                <button class="gallery-dot" type="button">2 打开终端</button>
-                <button class="gallery-dot" type="button">3 验证 Git</button>
+        <div class="slide-body">
+          <div class="manual-install-layout" data-segmented>
+            <div class="manual-install-top">
+              <p>手动安装的好处在于每一步都能自己确认，环境里缺了什么、卡在什么地方，会看得更清楚。</p>
+              <div class="segmented-nav" role="tablist" aria-label="操作系统切换">
+                <button class="segmented-btn active" type="button" role="tab" aria-selected="true" data-segment-btn="mac" data-default>macOS</button>
+                <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="windows">Windows</button>
               </div>
             </div>
-          </div>
-          <div class="card">
-            <h3>Windows 路线</h3>
-            <ul>
-              <li>安装 Node.js、Git。</li>
-              <li>额外安装 Visual Studio，并勾选 C++ 桌面开发和 Windows SDK。</li>
-              <li>依次执行 `node -v`、`npm -v`、`git -v` 验证环境。</li>
-              <li>再执行 `npm install -g openclaw@latest` 与 `openclaw --version`。</li>
-            </ul>
-            <div class="gallery gallery-compact" data-gallery style="margin-top:14px;">
-              <div class="gallery-stage">
-                <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-                <figure class="gallery-panel">
-                  <img src="images/5.png" alt="Windows 下载 Node.js 安装包" />
-                  <figcaption>先下载 Windows 版 Node.js 安装包。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/6.png" alt="下载 Git 安装包" />
-                  <figcaption>再下载 Git 安装包。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/7.png" alt="Git 安装向导" />
-                  <figcaption>Git 安装一路默认 Next 即可。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/8.png" alt="Visual Studio 下载页面" />
-                  <figcaption>Windows 侧还需要安装 Visual Studio。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/9.png" alt="勾选 C++ 桌面开发和 Windows SDK" />
-                  <figcaption>记得勾选 C++ 桌面开发和 Windows SDK。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/10.png" alt="以管理员身份打开终端" />
-                  <figcaption>以管理员身份打开终端。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/11.png" alt="管理员终端界面" />
-                  <figcaption>确认已进入管理员终端环境。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/12.png" alt="Windows 环境验证" />
-                  <figcaption>先验证 Node / npm / Git 是否都正常。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/13.png" alt="验证 OpenClaw 版本" />
-                  <figcaption>再验证 OpenClaw 是否安装成功。</figcaption>
-                </figure>
-                <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+
+            <section class="segmented-panel" data-segment-panel="mac" role="tabpanel">
+              <div class="manual-install-stage">
+                <aside class="manual-route">
+                  <h3>macOS 路线</h3>
+                  <ol class="manual-step-list">
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 下载 Node.js 安装包</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 打开终端并安装 Homebrew</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 执行 `git --version` 验证</button></li>
+                  </ol>
+                </aside>
+                <div class="gallery manual-gallery" data-gallery>
+                  <div class="gallery-stage">
+                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                    <figure class="gallery-panel">
+                      <img src="images/2.png" alt="下载 Node.js 安装包" />
+                      <figcaption>先下载 macOS 版 Node.js 安装包。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/3.png" alt="打开终端并准备安装 Homebrew" />
+                      <figcaption>先打开终端，准备安装 Homebrew。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/4.png" alt="验证 git 安装" />
+                      <figcaption>再通过 `git --version` 验证 Git 安装成功。</figcaption>
+                    </figure>
+                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  </div>
+                </div>
               </div>
-              <div class="gallery-dots">
-                <button class="gallery-dot" type="button">1 下载 Node</button>
-                <button class="gallery-dot" type="button">2 下载 Git</button>
-                <button class="gallery-dot" type="button">3 安装 Git</button>
-                <button class="gallery-dot" type="button">4 下载 VS</button>
-                <button class="gallery-dot" type="button">5 勾选组件</button>
-                <button class="gallery-dot" type="button">6 管理员终端</button>
-                <button class="gallery-dot" type="button">7 终端确认</button>
-                <button class="gallery-dot" type="button">8 环境验证</button>
-                <button class="gallery-dot" type="button">9 验证版本</button>
+            </section>
+
+            <section class="segmented-panel" data-segment-panel="windows" role="tabpanel" hidden>
+              <div class="manual-install-stage">
+                <aside class="manual-route">
+                  <h3>Windows 路线</h3>
+                  <ol class="manual-step-list">
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 下载 Node.js 安装包</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 下载并安装 Git</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="3">3. 安装 Visual Studio</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="4">4. 勾选 C++ 与 Windows SDK</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="6">5. 管理员终端验证环境</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="8">6. 验证 OpenClaw 版本</button></li>
+                  </ol>
+                </aside>
+                <div class="gallery manual-gallery" data-gallery>
+                  <div class="gallery-stage">
+                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                    <figure class="gallery-panel">
+                      <img src="images/5.png" alt="Windows 下载 Node.js 安装包" />
+                      <figcaption>先下载 Windows 版 Node.js 安装包。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/6.png" alt="下载 Git 安装包" />
+                      <figcaption>再下载 Git 安装包。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/7.png" alt="Git 安装向导" />
+                      <figcaption>Git 安装一路默认 Next 即可。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/8.png" alt="Visual Studio 下载页面" />
+                      <figcaption>Windows 侧还需要安装 Visual Studio。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/9.png" alt="勾选 C++ 桌面开发和 Windows SDK" />
+                      <figcaption>记得勾选 C++ 桌面开发和 Windows SDK。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/10.png" alt="以管理员身份打开终端" />
+                      <figcaption>以管理员身份打开终端。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/11.png" alt="管理员终端界面" />
+                      <figcaption>确认已进入管理员终端环境。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/12.png" alt="Windows 环境验证" />
+                      <figcaption>先验证 Node / npm / Git 是否都正常。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/13.png" alt="验证 OpenClaw 版本" />
+                      <figcaption>再验证 OpenClaw 是否安装成功。</figcaption>
+                    </figure>
+                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  </div>
+                </div>
               </div>
-            </div>
+            </section>
           </div>
         </div>
       </section>
@@ -249,112 +254,162 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
           <div class="title-stack">
             <p class="eyebrow">模块二 · 本地部署</p>
             <h2>关键初始化参数选择</h2>
-            <p>这一步的本质是初始化 OpenClaw，并把网关注册成系统后台服务。</p>
+            <p>这一步是在初始化 OpenClaw，并把网关注册成系统后台服务，后面它才会稳定地在本地持续运行。</p>
           </div>
         </div>
-        <div class="slide-body split-tight">
-          <div>
-            <div class="code-block">openclaw onboard --install-daemon</div>
-            <div class="steps-list">
-              <div class="step-row"><strong>Step 1</strong>
-                <p>选择 Yes，忽略安全警告。</p>
-              </div>
-              <div class="step-row"><strong>Step 2</strong>
-                <p>直接选择 Quick start，让 OpenClaw 先用推荐参数完成首轮配置。</p>
-              </div>
-              <div class="step-row"><strong>Step 3</strong>
-                <p>选择 AI 提供商，并填写对应的 API 凭证。</p>
-              </div>
-              <div class="step-row"><strong>Step 4</strong>
-                <p>先跳过 channel 配置，后面通过 Web Dashboard 使用即可。</p>
-              </div>
-              <div class="step-row"><strong>Step 5</strong>
-                <p>Skills 先选 No，hooks 可选，最后本地部署优先选 Web UI。</p>
+        <div class="slide-body">
+          <div class="manual-install-layout" data-segmented>
+            <div class="manual-install-top">
+              <div class="code-block" style="margin-top:0;">openclaw onboard --install-daemon</div>
+              <div class="segmented-nav" role="tablist" aria-label="配置阶段切换">
+                <button class="segmented-btn active" type="button" role="tab" aria-selected="true" data-segment-btn="basic" data-default>① 基础配置</button>
+                <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="api-qwen">② API (Qwen)</button>
+                <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="api-minimax">③ API (Minimax)</button>
+                <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="finish">④ 完成设置</button>
               </div>
             </div>
-          </div>
-          <div class="gallery" data-gallery>
-            <div class="gallery-stage">
-              <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-              <figure class="gallery-panel">
-                <img src="images/14.png" alt="忽略安全警告" />
-                <figcaption>第 1 步：先选择 Yes，忽略安全警告。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/15.png" alt="Quick start 选项" />
-                <figcaption>第 2 步：直接选 Quick start，用默认推荐参数先跑通第一版环境。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/16.png" alt="获取 Qwen API Key 页面" />
-                <figcaption>短期使用时，可以先获取 API Key。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/17.png" alt="填写 API 配置第一步" />
-                <figcaption>填写 API 相关配置。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/18.png" alt="填写 API 配置第二步" />
-                <figcaption>继续补全 API 相关配置。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/19.png" alt="填写 API 配置第三步" />
-                <figcaption>确认 API 配置完成。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/minimax-0.png" alt="Minimax Coding Plan 订阅页面" />
-                <figcaption>长期使用时，也可以开通 Minimax Token Plan。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/minimax-3.png" alt="获取 Minimax Token Plan Key" />
-                <figcaption>再获取对应的 Token Plan API Key。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/minimax-1.png" alt="填写 Minimax 配置第一步" />
-                <figcaption>填写 Minimax 相关配置。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/minimax-2.png" alt="填写 Minimax 配置第二步" />
-                <figcaption>确认 Minimax 配置完成。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/20.png" alt="暂时跳过通道" />
-                <figcaption>第 3 步：通道配置先跳过，后面通过 Web Dashboard 使用即可。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/21.png" alt="继续跳过后续通道设置" />
-                <figcaption>继续确认暂时跳过通道设置。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/22.png" alt="Skills 选择 No" />
-                <figcaption>Skills 配置这一步先选 No。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/23.png" alt="hooks 配置" />
-                <figcaption>hooks 属于可选项，按需处理。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/24.png" alt="选择对话方式" />
-                <figcaption>第 4 步：本地部署优先选 Web UI，后续演示也更友好。</figcaption>
-              </figure>
-              <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-            </div>
-            <div class="gallery-dots">
-              <button class="gallery-dot" type="button">1 安全警告</button>
-              <button class="gallery-dot" type="button">2 Quick start</button>
-              <button class="gallery-dot" type="button">3 API Key 页面</button>
-              <button class="gallery-dot" type="button">4 API 配置 1</button>
-              <button class="gallery-dot" type="button">5 API 配置 2</button>
-              <button class="gallery-dot" type="button">6 API 配置 3</button>
-              <button class="gallery-dot" type="button">7 Plan 页面</button>
-              <button class="gallery-dot" type="button">8 Plan Key</button>
-              <button class="gallery-dot" type="button">9 Minimax 配置 1</button>
-              <button class="gallery-dot" type="button">10 Minimax 配置 2</button>
-              <button class="gallery-dot" type="button">11 跳过通道</button>
-              <button class="gallery-dot" type="button">12 确认跳过</button>
-              <button class="gallery-dot" type="button">13 Skills</button>
-              <button class="gallery-dot" type="button">14 hooks</button>
-              <button class="gallery-dot" type="button">15 Web UI</button>
-            </div>
+
+            <section class="segmented-panel" data-segment-panel="basic" role="tabpanel">
+              <div class="manual-install-stage">
+                <aside class="manual-route">
+                  <h3>基础配置</h3>
+                  <ol class="manual-step-list">
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 选择 Yes，忽略安全警告</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 选择 Quick start</button></li>
+                  </ol>
+                </aside>
+                <div class="gallery manual-gallery" data-gallery>
+                  <div class="gallery-stage">
+                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                    <figure class="gallery-panel">
+                      <img src="images/14.png" alt="忽略安全警告" />
+                      <figcaption>第 1 步：先选择 Yes，忽略安全警告。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/15.png" alt="Quick start 选项" />
+                      <figcaption>第 2 步：直接选 Quick start，用默认推荐参数先跑通第一版环境。</figcaption>
+                    </figure>
+                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="segmented-panel" data-segment-panel="api-qwen" role="tabpanel" hidden>
+              <div class="manual-install-stage">
+                <aside class="manual-route">
+                  <h3>API 配置 (Qwen)</h3>
+                  <p>先获取 API Key，再填写配置。</p>
+                  <ol class="manual-step-list">
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 获取 API Key 页面</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 填写 API 配置 ①</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 填写 API 配置 ②</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 确认 API 配置</button></li>
+                  </ol>
+                </aside>
+                <div class="gallery manual-gallery" data-gallery>
+                  <div class="gallery-stage">
+                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                    <figure class="gallery-panel">
+                      <img src="images/16.png" alt="获取 Qwen API Key 页面" />
+                      <figcaption>短期使用时，可以先获取 API Key。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/17.png" alt="填写 API 配置第一步" />
+                      <figcaption>填写 API 相关配置。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/18.png" alt="填写 API 配置第二步" />
+                      <figcaption>继续补全 API 相关配置。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/19.png" alt="填写 API 配置第三步" />
+                      <figcaption>确认 API 配置完成。</figcaption>
+                    </figure>
+                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="segmented-panel" data-segment-panel="api-minimax" role="tabpanel" hidden>
+              <div class="manual-install-stage">
+                <aside class="manual-route">
+                  <h3>API 配置 (Minimax)</h3>
+                  <p>长期使用时，可以开通 Minimax Token Plan。</p>
+                  <ol class="manual-step-list">
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 开通 Token Plan</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 获取 API Key</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 填写 Minimax 配置 ①</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 填写 Minimax 配置 ②</button></li>
+                  </ol>
+                </aside>
+                <div class="gallery manual-gallery" data-gallery>
+                  <div class="gallery-stage">
+                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                    <figure class="gallery-panel">
+                      <img src="images/minimax-0.png" alt="Minimax Coding Plan 订阅页面" />
+                      <figcaption>长期使用时，也可以开通 Minimax Token Plan。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/minimax-3.png" alt="获取 Minimax Token Plan Key" />
+                      <figcaption>再获取对应的 Token Plan API Key。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/minimax-1.png" alt="填写 Minimax 配置第一步" />
+                      <figcaption>填写 Minimax 相关配置。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/minimax-2.png" alt="填写 Minimax 配置第二步" />
+                      <figcaption>确认 Minimax 配置完成。</figcaption>
+                    </figure>
+                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="segmented-panel" data-segment-panel="finish" role="tabpanel" hidden>
+              <div class="manual-install-stage">
+                <aside class="manual-route">
+                  <h3>完成设置</h3>
+                  <p>通道先跳过，Skills 选 No，本地部署选 Web UI。</p>
+                  <ol class="manual-step-list">
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 跳过通道配置</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 确认跳过</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. Skills 选 No</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. hooks 可选</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="4">5. 选择 Web UI</button></li>
+                  </ol>
+                </aside>
+                <div class="gallery manual-gallery" data-gallery>
+                  <div class="gallery-stage">
+                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                    <figure class="gallery-panel">
+                      <img src="images/20.png" alt="暂时跳过通道" />
+                      <figcaption>通道配置先跳过，后面通过 Web Dashboard 使用即可。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/21.png" alt="继续跳过后续通道设置" />
+                      <figcaption>继续确认暂时跳过通道设置。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/22.png" alt="Skills 选择 No" />
+                      <figcaption>Skills 配置这一步先选 No。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/23.png" alt="hooks 配置" />
+                      <figcaption>hooks 属于可选项，按需处理。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/24.png" alt="选择对话方式" />
+                      <figcaption>本地部署优先选 Web UI，后续演示也更友好。</figcaption>
+                    </figure>
+                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
         </div>
       </section>
@@ -380,7 +435,7 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
             <p>直接用官方默认选项跑完流程。与其一开始就在高级设置里卡死报错，不如干净利落地拿到能跑的基础版。</p>
             <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(124, 45, 18, 0.08);">
               <span class="pill demo-cue" style="margin-bottom: 8px;">最终收益</span>
-              <p style="margin-top: 0; font-weight: 600; color: var(--text);">先让整体跑通建立信心。只要主流程没问题，细节参数以后随时能调。</p>
+              <p style="margin-top: 0; font-weight: 600; color: var(--text);">第一次配置时，先把主流程跑顺，系统能够稳定运行，再回头细调这些参数，排查起来会轻松很多。</p>
             </div>
           </div>
           <div class="card teal-card">
@@ -438,7 +493,7 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
           </div>
           <div class="grid-2" style="margin-top:18px;">
             <div class="card accent-card">
-              <h3>可以这样理解</h3>
+              <h3>两种计费方式的区别</h3>
               <p>API Key 更像是"先充值少量话费试用"。</p>
               <p>Token Plan 更像是"开套餐，准备长期稳定使用"。</p>
             </div>
@@ -456,8 +511,8 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块二 · 本地部署</p>
-            <h2>终端与浏览器交互方案对比</h2>
-            <p>第一次安装时，最容易犹豫的就是该选 Web UI 还是 TUI。</p>
+            <h2>Web UI 与 TUI 的使用场景</h2>
+            <p>两者管理的是同一套本地网关，差别主要在操作入口、查看方式和日常维护习惯。</p>
           </div>
         </div>
         <div class="slide-body">
@@ -465,59 +520,46 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
             <table>
               <thead>
                 <tr>
-                  <th>对比项</th>
+                  <th>项目</th>
                   <th>Web UI</th>
                   <th>TUI</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>交互方式</td>
-                  <td>浏览器图形界面</td>
-                  <td>终端文字界面</td>
+                  <td>进入方式</td>
+                  <td>在浏览器里打开管理页面</td>
+                  <td>直接在终端里进入交互界面</td>
                 </tr>
                 <tr>
-                  <td>上手难度</td>
-                  <td>更低，对第一次接触的人更友好</td>
-                  <td>稍高，更适合熟悉命令行的人</td>
+                  <td>信息查看</td>
+                  <td>页面层次更清楚，状态、配置和会话更容易一起看</td>
+                  <td>信息集中在终端里，切换速度快，连续操作更直接</td>
                 </tr>
                 <tr>
-                  <td>视觉效果</td>
-                  <td>信息更直观，按钮和页面更清晰</td>
-                  <td>更轻量，但信息密度更高</td>
+                  <td>操作习惯</td>
+                  <td>更接近后台管理页面，适合边看边点边调</td>
+                  <td>更接近命令行工作流，适合长期维护和远程操作</td>
                 </tr>
                 <tr>
-                  <td>使用体验</td>
-                  <td>像在操作后台管理面板</td>
-                  <td>像在控制台里直接管理服务</td>
+                  <td>部署环境</td>
+                  <td>本地电脑、带桌面的 macOS / Windows 环境</td>
+                  <td>Linux 主机、云服务器、长期 SSH 维护环境</td>
                 </tr>
                 <tr>
-                  <td>适合环境</td>
-                  <td>本地电脑、带桌面的系统</td>
-                  <td>远程服务器、SSH 登录环境</td>
+                  <td>更常见的使用者</td>
+                  <td>刚开始接触的人，或者平时更习惯图形界面的人</td>
+                  <td>已经习惯命令行、希望尽量轻量维护的人</td>
                 </tr>
                 <tr>
-                  <td>典型优势</td>
-                  <td>好理解、好查看、好演示</td>
-                  <td>稳定、轻量、远程操作方便</td>
+                  <td>更常见的选择</td>
+                  <td>本地部署时通常优先选它，查看和排查都更直观</td>
+                  <td>远程部署时通常更顺手，不需要图形桌面也能完整维护</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <div class="grid-2" style="margin-top:18px;">
-            <div class="card accent-card">
-              <h3>可以把两者理解成</h3>
-              <p>Web UI 偏"可视化控制台"。</p>
-              <p>TUI 偏"终端运维面板"。</p>
-            </div>
-            <div class="card">
-              <h3>怎么选最省事</h3>
-              <p>如果是在自己的 Mac 或 Windows 闲置电脑上部署，并且平时会打开浏览器来管理，选 Web UI；如果部署在云服务器、Linux 主机，平时主要靠终端和 SSH 维护，选
-                TUI。
-              </p>
-            </div>
-          </div>
-          <div class="callout">本地部署优先选 Web UI；云服务器、无桌面环境、纯远程运维，优先选 TUI。</div>
+          <div class="callout">本地电脑部署时，Web UI 在查看状态、改配置和演示时会更顺手；远程主机或长期 SSH 维护环境里，TUI 往往更省事。</div>
         </div>
       </section>
 
@@ -529,15 +571,14 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
             <p>最直观的验收方式，就是打开本地管理面板。</p>
           </div>
         </div>
-        <div class="slide-body stack-gallery">
+        <div class="slide-body split-tight">
           <div class="card accent-card">
             <h3>验收命令</h3>
             <div class="code-block">openclaw dashboard</div>
             <p>输入上面的命令后，会自动使用系统默认浏览器打开 Web UI；如果没有自动打开，就复制终端给出的完整 URL 到浏览器。</p>
             <div class="callout">如果页面能正常打开，说明本地网关基本已经可用了，后面配置渠道和调试会轻松很多。</div>
           </div>
-
-          <div class="gallery gallery-wide" data-gallery>
+          <div class="gallery" data-gallery>
             <div class="gallery-stage">
               <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
               <figure class="gallery-panel">
@@ -554,7 +595,6 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
               <button class="gallery-dot" type="button">1 执行命令</button>
               <button class="gallery-dot" type="button">2 看页面</button>
             </div>
-            <div class="gallery-hint">点击截图可放大</div>
           </div>
         </div>
       </section>

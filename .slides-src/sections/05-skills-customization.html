@@ -3,7 +3,7 @@
           <div class="module-intro-copy">
             <p class="eyebrow">模块四</p>
             <h2>扩展能力与个性化</h2>
-            <p>前面解决的是"能不能跑起来、能不能接进飞书"，这一部分解决的是"能力够不够、像不像你的助手"。</p>
+            <p>Skills 决定它以后能做哪些事，三件套决定它会以什么风格回应你，以及在工作里遵循什么样的规则。</p>
             <div class="deck-meta">
               <span class="pill">Skills 决定能力边界</span>
               <span class="pill">三件套决定人格与工作方式</span>
@@ -32,7 +32,7 @@
                 <p>配置改完后，记得重启网关。</p>
               </div>
             </div>
-            <div class="intro-note">装完 OpenClaw 只是开始，真正让它"像你的助手"靠的是持续配置。</div>
+            <div class="intro-note">这些配置写得越细，后面用起来越容易形成稳定的配合感。</div>
           </div>
         </div>
       </section>
@@ -48,7 +48,7 @@
         <div class="slide-body split-tight">
           <div class="card accent-card">
             <h3>ClawHub 是做什么的</h3>
-            <p>ClawHub 是查找、安装、更新第三方 Skills 的最佳方法。</p>
+            <p>ClawHub 管的是 Skills 的查找、安装和更新，很多扩展能力都是从这里进入 OpenClaw 的。</p>
             <div class="code-block">npm i -g clawhub
 
 clawhub search "postgres backups"
@@ -71,48 +71,49 @@ clawhub uninstall 技能名称</div>
             <p>可以先从几类常用技能入手，用 `weather` 跑通最小示例。</p>
           </div>
         </div>
-        <div class="slide-body grid-2">
-          <div class="card">
-            <h3>推荐先装的 Skills</h3>
-            <ul>
-              <li>self-improving-agent：把学习成果和错误记录到 Markdown 文件中。</li>
-              <li>skill-vetter：安装未知工具前先做安全扫描。</li>
-              <li>tavily-search：联网搜索模块，适合时效性任务。</li>
-              <li>weather：适合跑通配置流程、测试环境联通性。</li>
-            </ul>
-          </div>
-          <div class="card accent-card">
-            <h3>weather 安装示例</h3>
-            <div class="code-block">npm i -g clawhub
+        <div class="slide-body split-tight">
+          <div>
+            <div class="card" style="margin-bottom:14px;">
+              <h3>推荐先装的 Skills</h3>
+              <ul>
+                <li>self-improving-agent：把学习成果和错误记录到 Markdown 文件中。</li>
+                <li>skill-vetter：安装未知工具前先做安全扫描。</li>
+                <li>tavily-search：联网搜索模块，适合时效性任务。</li>
+                <li>weather：适合跑通配置流程、测试环境联通性。</li>
+              </ul>
+            </div>
+            <div class="card accent-card">
+              <h3>weather 安装示例</h3>
+              <div class="code-block">npm i -g clawhub
 
 clawhub install weather</div>
-            <p>如果网络遇到问题，可以切换国内镜像：</p>
-            <div class="code-block">npm config set registry https://registry.npmmirror.com
+              <p>如果网络遇到问题，可以切换国内镜像：</p>
+              <div class="code-block">npm config set registry https://registry.npmmirror.com
 npx clawhub@latest install weather --force</div>
-            <p>如果还是麻烦，也可以直接让"小龙虾"帮你完成安装。</p>
+            </div>
           </div>
-        </div>
-        <div class="gallery" data-gallery style="margin-top:18px;">
-          <div class="gallery-stage">
-            <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-            <figure class="gallery-panel">
-              <img src="images/61.png" alt="安装 clawhub" />
-              <figcaption>第 1 步：先安装 ClawHub。</figcaption>
-            </figure>
-            <figure class="gallery-panel" hidden>
-              <img src="images/63.png" alt="安装 weather skill" />
-              <figcaption>第 2 步：安装 `weather` Skill。</figcaption>
-            </figure>
-            <figure class="gallery-panel" hidden>
-              <img src="images/64.png" alt="让 OpenClaw 帮你安装" />
-              <figcaption>如果嫌命令麻烦，也可以直接让 OpenClaw 帮你安装。</figcaption>
-            </figure>
-            <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-          </div>
-          <div class="gallery-dots">
-            <button class="gallery-dot" type="button">1 装 ClawHub</button>
-            <button class="gallery-dot" type="button">2 装 weather</button>
-            <button class="gallery-dot" type="button">3 让它代装</button>
+          <div class="gallery" data-gallery>
+            <div class="gallery-stage">
+              <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+              <figure class="gallery-panel">
+                <img src="images/61.png" alt="安装 clawhub" />
+                <figcaption>第 1 步：先安装 ClawHub。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/63.png" alt="安装 weather skill" />
+                <figcaption>第 2 步：安装 `weather` Skill。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/64.png" alt="让 OpenClaw 帮你安装" />
+                <figcaption>如果嫌命令麻烦，也可以直接让 OpenClaw 帮你安装。</figcaption>
+              </figure>
+              <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+            </div>
+            <div class="gallery-dots">
+              <button class="gallery-dot" type="button">1 装 ClawHub</button>
+              <button class="gallery-dot" type="button">2 装 weather</button>
+              <button class="gallery-dot" type="button">3 让它代装</button>
+            </div>
           </div>
         </div>
       </section>
@@ -122,16 +123,16 @@ npx clawhub@latest install weather --force</div>
           <div class="title-stack">
             <p class="eyebrow">模块四 · 三件套</p>
             <h2>为什么装完还像普通 AI？</h2>
-            <p>很多人装完后仍觉得它像普通 AI，问题往往不在 Skills，而在"三件套"没有写好。</p>
+            <p>OpenClaw 装好以后，能不能形成稳定的配合感，很大程度上取决于下面这几个文件有没有写清楚。</p>
           </div>
         </div>
         <div class="slide-body split-tight">
           <div class="card warning">
-            <p>很多人 OpenClaw 部署完，用起来依然"礼貌且生硬"，回答处处透着模板化。</p>
+            <p>不少人在部署完成以后，会发现它虽然能回答问题，但语气、习惯和处理方式都还比较模板化。</p>
             <p>实际上，小龙虾是需要养的，而且怎么养很重要。除了各式各样的 Skills，有三个配置文件非常重要。</p>
           </div>
           <div class="card accent-card">
-            <h3>这三个文件就是</h3>
+            <h3>三个文件的分工</h3>
             <div class="stats-strip">
               <div class="stat"><strong>SOUL</strong><span>定义性格、口吻、边界</span></div>
               <div class="stat"><strong>USER</strong><span>定义你是谁、偏好什么</span></div>
@@ -146,7 +147,7 @@ npx clawhub@latest install weather --force</div>
           <div class="title-stack">
             <p class="eyebrow">模块四 · 三件套</p>
             <h2>系统角色配置架构</h2>
-            <p>很多人配置了，但效果不明显，根本原因常常不是写得不够多，而是写错了地方。</p>
+            <p>有些人也写了不少内容，但改完以后感觉变化不大。很多时候，问题出在信息放错了文件，于是该生效的地方没有明显变化。</p>
           </div>
         </div>
         <div class="slide-body">
@@ -182,7 +183,7 @@ npx clawhub@latest install weather --force</div>
               </tbody>
             </table>
           </div>
-          <div class="callout">记忆法：想让它说话更有个性，改 SOUL.md；想让它更了解你，改 USER.md；想让它执行任务更靠谱，改 AGENTS.md。</div>
+          <div class="callout">SOUL.md 决定它说话像什么样的人，USER.md 提供与你有关的背景信息，AGENTS.md 约束它做事时遵循的流程和边界。</div>
         </div>
       </section>
 
@@ -191,7 +192,7 @@ npx clawhub@latest install weather --force</div>
           <div class="title-stack">
             <p class="eyebrow">模块四 · 三件套</p>
             <h2>三种配置方式</h2>
-            <p>不用把长提示词整段念完，知道可以低门槛完成个性化就够了。</p>
+            <p>常见的配置路径大体分成三类：自己改文件、直接让它帮你写，或者让它通过问答把三份文件一步步整理出来。</p>
           </div>
         </div>
         <div class="slide-body grid-3">
@@ -210,7 +211,7 @@ MacOS:
           </div>
           <div class="card">
             <h3>方式三：让小龙虾帮你定制</h3>
-            <p>把长提示词发给它，让它像贴心采访者一样一步步提问，最后自动生成三份配置文件。</p>
+            <p>把提示词发给它，让它边问边整理，最后把三份配置文件一起生成出来。</p>
           </div>
         </div>
       </section>
@@ -220,7 +221,7 @@ MacOS:
           <div class="title-stack">
             <p class="eyebrow">模块四 · 三件套</p>
             <h2>SOUL.md 应该写什么</h2>
-            <p>这里放了一个完整示例，方便快速理解"灵魂"应该怎么写。</p>
+            <p>SOUL.md 里最常见的内容，基本都落在角色关系、性格、表达方式和行为边界这四类里。</p>
           </div>
         </div>
         <div class="slide-body grid-4">
@@ -279,7 +280,7 @@ MacOS:
           <div class="title-stack">
             <p class="eyebrow">模块四 · 三件套</p>
             <h2>通过灵魂向导定制化配置</h2>
-            <p>这种设计很适合第一次配置的人：每次只问一个问题，轻松自然，不像填问卷。</p>
+            <p>如果是第一次配这三份文件，用这种方式会轻松一些。它会一边问，一边把内容慢慢整理出来，不需要你一开始就把所有设定想得很完整。</p>
           </div>
         </div>
         <div class="slide-body split-tight">
@@ -318,7 +319,7 @@ MacOS:
           <div class="title-stack">
             <p class="eyebrow">模块四 · 三件套</p>
             <h2>灵魂配置向导完整提示词</h2>
-            <p>这一页专门放完整提示词，方便直接复制给 OpenClaw 使用。</p>
+            <p>这段提示词会把原本要自己慢慢整理的三份文件，改造成一段循序渐进的问答过程。</p>
           </div>
         </div>
         <div class="slide-body">

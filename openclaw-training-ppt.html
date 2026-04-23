@@ -686,6 +686,8 @@
 
     figure {
       margin: 0;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
       border-radius: 24px;
       overflow: hidden;
       background: rgba(255, 255, 255, 0.88);
@@ -696,14 +698,15 @@
     figure img {
       display: block;
       width: 100%;
-      height: 290px;
+      height: auto;
+      max-height: clamp(210px, 42vh, 500px);
       object-fit: contain;
-      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-      padding: 8px;
+      background: transparent;
+      padding: 0;
     }
 
     figure.tall img {
-      height: 370px;
+      max-height: clamp(260px, 54vh, 620px);
     }
 
     figure figcaption {
@@ -721,7 +724,7 @@
     }
 
     .slide.history-clean-visual figure img {
-      height: 390px;
+      max-height: clamp(290px, 58vh, 680px);
       padding: 0;
       background: transparent;
       border-radius: 24px;
@@ -1088,6 +1091,139 @@
       flex-direction: column;
     }
 
+    /* === SEGMENTED SWITCHER (single-slide tab view) === */
+    .manual-install-layout {
+      display: grid;
+      gap: 14px;
+      padding: 16px 18px;
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(124, 45, 18, 0.1);
+      box-shadow: 0 14px 34px rgba(72, 45, 16, 0.08);
+    }
+
+    .manual-install-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .manual-install-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: var(--size-sm);
+      line-height: 1.6;
+    }
+
+    .segmented-nav {
+      display: inline-flex;
+      gap: 8px;
+      align-self: flex-start;
+      padding: 6px;
+      border-radius: 999px;
+      background: rgba(124, 45, 18, 0.08);
+      border: 1px solid rgba(124, 45, 18, 0.12);
+    }
+
+    .segmented-btn {
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      font-size: var(--size-sm);
+      font-weight: 800;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .segmented-btn.active {
+      color: var(--accent-deep);
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 8px 18px rgba(72, 45, 16, 0.08);
+    }
+
+    .segmented-panel {
+      display: grid;
+      gap: 12px;
+      min-height: 0;
+    }
+
+    .segmented-panel[hidden] {
+      display: none !important;
+    }
+
+    .manual-install-stage {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.9fr) minmax(0, 1.5fr);
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .manual-route {
+      border-radius: 20px;
+      padding: 14px;
+      background: linear-gradient(180deg, rgba(255, 251, 245, 0.96), rgba(255, 255, 255, 0.92));
+      border: 1px solid rgba(124, 45, 18, 0.1);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.36);
+    }
+
+    .manual-route h3 {
+      margin: 0 0 8px;
+      font-size: clamp(18px, 2vw, 24px);
+    }
+
+    .manual-step-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .manual-step-btn {
+      width: 100%;
+      text-align: left;
+      border: 1px solid rgba(124, 45, 18, 0.14);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text);
+      font-size: clamp(13px, 1.25vw, 15px);
+      line-height: 1.45;
+      font-weight: 700;
+      padding: 10px 12px;
+      cursor: pointer;
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    }
+
+    .manual-step-btn:hover {
+      transform: translateX(1px);
+      border-color: rgba(180, 83, 9, 0.24);
+      box-shadow: 0 8px 20px rgba(72, 45, 16, 0.08);
+    }
+
+    .manual-step-btn.active {
+      background: rgba(255, 247, 237, 0.96);
+      border-color: rgba(180, 83, 9, 0.28);
+      color: var(--accent-deep);
+    }
+
+    .slide[data-title="手动安装验证"] .manual-gallery {
+      gap: 10px;
+    }
+
+    .slide[data-title="手动安装验证"] .manual-gallery .gallery-stage {
+      min-height: clamp(260px, 44vh, 500px);
+      --gallery-img-max-h: clamp(220px, 40vh, 420px);
+    }
+
+    .slide[data-title="手动安装验证"] .manual-gallery .gallery-hint {
+      text-align: left;
+      margin-top: 0;
+    }
+
     /* === GALLERY COMPONENT === */
     .stack-gallery {
       display: grid;
@@ -1095,30 +1231,31 @@
     }
 
     .gallery {
+      --gallery-img-max-h: clamp(240px, 45vh, 540px);
       display: grid;
       gap: 14px;
     }
 
     .gallery-stage {
       position: relative;
-      padding: 12px 46px 12px;
+      padding: clamp(8px, 1.2vw, 16px) clamp(44px, 4vw, 56px) clamp(10px, 1.2vw, 16px);
       border-radius: 26px;
       background: rgba(255, 255, 255, 0.84);
       border: 1px solid rgba(124, 45, 18, 0.12);
       box-shadow: 0 12px 30px rgba(72, 45, 16, 0.07);
-      min-height: 400px;
-      display: flex;
-      align-items: center;
+      min-height: clamp(260px, 46vh, 560px);
+      display: grid;
+      align-content: center;
     }
 
     .gallery-compact .gallery-stage {
-      min-height: 320px;
-      padding: 14px 48px 14px;
+      min-height: clamp(220px, 34vh, 390px);
+      --gallery-img-max-h: clamp(170px, 31vh, 300px);
     }
 
     .gallery-wide .gallery-stage {
-      min-height: 520px;
-      padding: 10px 54px 12px;
+      min-height: clamp(300px, 56vh, 700px);
+      --gallery-img-max-h: clamp(260px, 60vh, 760px);
     }
 
     .gallery-panel {
@@ -1128,6 +1265,10 @@
       box-shadow: none;
       background: transparent;
       overflow: visible;
+      display: grid;
+      justify-items: center;
+      align-content: center;
+      gap: 10px;
     }
 
     .gallery-panel[hidden] {
@@ -1135,23 +1276,20 @@
     }
 
     .gallery-panel img {
-      width: 100%;
-      height: 360px;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: var(--gallery-img-max-h);
       object-fit: contain;
-      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-      padding: 2px;
+      background: transparent;
+      padding: 0;
       border-radius: 22px;
-      border: 1px solid rgba(124, 45, 18, 0.06);
-      box-shadow: 0 10px 24px rgba(72, 45, 16, 0.04);
+      border: 0;
+      box-shadow: 0 12px 28px rgba(72, 45, 16, 0.12);
       cursor: zoom-in;
     }
 
-    .gallery-compact .gallery-panel img {
-      height: 245px;
-    }
-
     .gallery-wide .gallery-panel img {
-      height: 500px;
       padding: 0;
       border: 0;
       box-shadow: none;
@@ -1222,6 +1360,52 @@
       font-weight: 700;
       text-align: right;
       margin-top: -4px;
+    }
+
+    /* Single-image focus slides: remove nested frames and maximize visual area */
+    .slide.image-focus-slide {
+      padding-block: clamp(16px, 2vw, 28px);
+    }
+
+    .slide.image-focus-slide .slide-body {
+      height: 100%;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      gap: 14px;
+    }
+
+    .figure-plain {
+      width: min(100%, 1240px);
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      overflow: visible;
+      justify-items: center;
+    }
+
+    .figure-plain img {
+      width: auto;
+      max-width: 100%;
+      max-height: clamp(280px, 72vh, 820px);
+      height: auto;
+      padding: 0;
+      background: transparent;
+      border-radius: 16px;
+      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.16);
+    }
+
+    .figure-plain figcaption {
+      padding: 12px 4px 0;
+      text-align: center;
+      font-size: clamp(15px, 1.5vw, 21px);
+      color: var(--text);
+      line-height: 1.7;
+      max-width: min(100%, 1100px);
+    }
+
+    .figure-soft-top {
+      margin-top: 12px;
     }
 
     /* === LISTS === */
@@ -1656,6 +1840,15 @@
       .slide-header {
         margin-bottom: 10px;
       }
+      .gallery {
+        --gallery-img-max-h: clamp(200px, 38vh, 420px);
+      }
+      .gallery-wide {
+        --gallery-img-max-h: clamp(220px, 45vh, 520px);
+      }
+      .figure-plain img {
+        max-height: clamp(220px, 62vh, 640px);
+      }
     }
 
     @media (max-height: 600px) {
@@ -1687,6 +1880,18 @@
         height: calc(100dvh - 90px);
         border-radius: 20px;
       }
+      .gallery-stage {
+        min-height: clamp(180px, 36vh, 300px);
+      }
+      .gallery {
+        --gallery-img-max-h: clamp(150px, 31vh, 260px);
+      }
+      .gallery-wide {
+        --gallery-img-max-h: clamp(180px, 40vh, 340px);
+      }
+      .figure-plain img {
+        max-height: clamp(180px, 56vh, 520px);
+      }
     }
 
     @media (max-height: 500px) {
@@ -1707,6 +1912,19 @@
         height: calc(100vh - 70px);
         height: calc(100dvh - 70px);
         border-radius: 14px;
+      }
+      .gallery-stage {
+        padding-inline: 40px;
+        min-height: clamp(150px, 32vh, 220px);
+      }
+      .gallery {
+        --gallery-img-max-h: clamp(120px, 26vh, 200px);
+      }
+      .gallery-wide {
+        --gallery-img-max-h: clamp(140px, 30vh, 240px);
+      }
+      .figure-plain img {
+        max-height: clamp(140px, 50vh, 360px);
       }
       .sidebar {
         display: none;
@@ -1761,12 +1979,21 @@
       .compare,
       .resource-grid,
       .split-tight,
+      .manual-install-stage,
       .cover,
       .modules-grid,
       .module-intro,
       .image-grid.two,
       .image-grid.three {
         grid-template-columns: 1fr;
+      }
+
+      .manual-install-top {
+        align-items: flex-start;
+      }
+
+      .manual-install-layout {
+        padding: 14px;
       }
 
       .topbar {
@@ -2690,7 +2917,7 @@
               </div>
               <div class="item"><b>5</b>
                 <div><strong>实战案例与 FAQ</strong>
-                  <p>日报生成、深度调研、知识库搭建、常见问题、龙虾终极形态。</p>
+                  <p>日报生成、深度调研、知识库搭建、常见问题，以及围绕 OpenClaw 的后续演化方向。</p>
                 </div>
               </div>
             </div>
@@ -2717,7 +2944,7 @@
               </div>
               <div class="module-box">
                 <span><i data-lucide="zap" style="width:13px;height:13px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>四大能力特征</span>
-                <p style="margin:0;font-size:15px;color:var(--muted);line-height:1.7;">一句话执行、24h 驻守、Skills 扩展、多端嵌入。</p>
+                <p style="margin:0;font-size:15px;color:var(--muted);line-height:1.7;">任务拆解执行、后台常驻、Skills 扩展、多端嵌入。</p>
               </div>
               <div class="module-box">
                 <span><i data-lucide="trending-up" style="width:13px;height:13px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>爆发增长与生态</span>
@@ -2775,23 +3002,23 @@
         </div>
       </section>
 
-<section class="slide" data-module="开场" data-title="核心定位与问题解决">
+<section class="slide" data-module="开场" data-title="OpenClaw 是什么，它能做哪些事">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块一 · 认识 OpenClaw</p>
-            <h2>核心定位与问题解决</h2>
-            <p>一页看懂 OpenClaw 是什么，以及它在办公场景里能直接帮你解决哪些问题。</p>
+            <h2>OpenClaw 是什么，它能做哪些事</h2>
+            <p>OpenClaw 在真实工作场景里，通常承担的是消息入口、模型能力和执行动作之间的连接角色。</p>
           </div>
         </div>
         <div class="slide-body split-tight">
           <div class="card accent-card">
-            <h3>它的核心定位</h3>
+            <h3>把它放在整个流程里看</h3>
             <ul class="list-clean">
               <li>它是运行在你电脑或服务器上的 <strong>本地 AI 网关</strong>，把聊天工具和模型能力连接起来。</li>
-              <li>你在飞书或其他渠道发一句话，它会自动拆解任务、调用能力并交付结果。</li>
+              <li>你在飞书或其他渠道把需求交给它，它会自己拆解任务、调用能力，再把结果送回来。</li>
               <li>优势是 <strong>一次部署，多端可用，数据更可控</strong>。</li>
             </ul>
-            <div class="callout" style="margin-top: 14px;">一句话记忆：它不是多一个聊天窗口，而是把 AI 放进你的实际工作流。</div>
+            <div class="callout" style="margin-top: 14px;">它的价值不只在于“能聊天”，而在于把消息、工具和任务都接到同一套链路里，让原本分散的动作能连续地跑起来。</div>
           </div>
           <div class="card teal-card">
             <h3>它能解决什么问题</h3>
@@ -2800,7 +3027,7 @@
                 <p><strong>信息汇总太耗时：</strong>自动抓取和整合多源信息，输出结构化摘要与日报。</p>
               </div>
               <div class="item"><b>2</b>
-                <p><strong>调研检索门槛高：</strong>一句话触发多轮搜索，自动筛选与交叉验证形成结论。</p>
+                <p><strong>调研检索门槛高：</strong>把研究主题交给它后，它会自己去搜集资料、补充缺口、整理成可以直接阅读的内容。</p>
               </div>
               <div class="item"><b>3</b>
                 <p><strong>重复操作太多：</strong>批量通知、定时任务、跨平台同步可自动执行，减少手工反复劳动。</p>
@@ -2895,7 +3122,7 @@
               <p>结构化结果通过原 Channel 回传到飞书群，用户直接看到</p>
             </div>
           </div>
-          <div class="callout" style="margin-top:clamp(8px,1.5vw,14px);">整个过程从消息发出到结果返回，通常只需 <strong>5-15 秒</strong>。你不需要打开任何新工具，在飞书群里一句话就搞定了。</div>
+          <div class="callout" style="margin-top:clamp(8px,1.5vw,14px);">大多数情况下，从消息发出到结果返回，也就是几秒到十几秒的事。对使用的人来说，感觉上还是在原来的飞书群里工作，只是背后多了一套会自己处理事情的系统。</div>
         </div>
       </section>
 
@@ -2908,32 +3135,32 @@
         </div>
         <div class="slide-body grid-4">
           <div class="card accent-card">
-            <h3><i data-lucide="rocket" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;"></i>一句话搞定一整件事</h3>
-            <p>你说一句自然语言指令，OpenClaw 自动拆解为多步骤任务并顺序执行，最终交付结果。</p>
+            <h3><i data-lucide="rocket" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;"></i>把需求交给它，它会自己往下做</h3>
+            <p>你用自然语言把事情说清楚，OpenClaw 会把任务拆成多个步骤，按顺序处理，再把结果交回来。</p>
             <ul>
               <li>"整理会议记录，提炼 Action Items，发到项目群"</li>
             </ul>
             <div class="mini-flow-tag">输入指令 <span class="mini-flow-arrow">&#10140;</span> 拆解任务 <span class="mini-flow-arrow">&#10140;</span> 逐步执行 <span class="mini-flow-arrow">&#10140;</span> 交付结果</div>
           </div>
           <div class="card">
-            <h3><i data-lucide="alarm-clock" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;"></i>7 x 24 小时驻守后台</h3>
-            <p>常驻进程，持续监听消息、执行定时任务。无需手动启动，开箱即"在线"。</p>
+            <h3><i data-lucide="alarm-clock" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;"></i>可以一直在后台运行</h3>
+            <p>它可以常驻监听消息，也可以按设定时间执行任务。你不用每次都先把它打开，它会自己在后台等着。</p>
             <ul>
               <li>每天 8 点自动抓取新闻，生成摘要推送</li>
             </ul>
             <div class="mini-flow-tag">设定定时 <span class="mini-flow-arrow">&#10140;</span> 触发执行 <span class="mini-flow-arrow">&#10140;</span> 结果推送 <span class="mini-flow-arrow">&#10140;</span> 全自动</div>
           </div>
           <div class="card teal-card">
-            <h3><i data-lucide="puzzle" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;"></i>能力随装随扩展</h3>
-            <p>ClawHub 已有 5000+ 社区 Skills，也能自己开发私有 Skill。</p>
+            <h3><i data-lucide="puzzle" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;"></i>需要什么能力，就往里加什么能力</h3>
+            <p>ClawHub 里已经有很多社区 Skills；如果现成的还不够，也可以继续补自己的私有 Skill。</p>
             <ul>
-              <li>装一个"股票查询"Skill，立刻能查实时行情</li>
+              <li>装一个"股票查询"Skill，之后它就能查实时行情</li>
             </ul>
             <div class="mini-flow-tag">浏览 ClawHub <span class="mini-flow-arrow">&#10140;</span> 一键安装 <span class="mini-flow-arrow">&#10140;</span> 即刻使用</div>
           </div>
           <div class="card">
-            <h3><i data-lucide="plug" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;"></i>不换工具，嵌入日常</h3>
-            <p>网关架构接入飞书、Telegram、Discord 等。你在哪聊，AI 就在哪帮你干活。</p>
+            <h3><i data-lucide="plug" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;"></i>可以直接接进你平时在用的工具</h3>
+            <p>借助网关架构，它能接进飞书、Telegram、Discord 等环境里。你平时在哪沟通，它就能在哪跟着一起工作。</p>
             <ul>
               <li>同事在飞书群 @AI 助手，它直接在群里回复</li>
             </ul>
@@ -3009,7 +3236,7 @@
               </tbody>
             </table>
           </div>
-          <div class="callout" style="margin-top:clamp(8px,1.2vw,14px);">总结：<strong>想要隐私可控 + 多平台 + 免费开源</strong>，OpenClaw 是当前最佳选择。Coze 适合快速原型，LangChain 适合深度定制。</div>
+          <div class="callout" style="margin-top:clamp(8px,1.2vw,14px);">OpenClaw 更强调本地部署、多平台接入和后续扩展；Coze 更偏向快速试验想法；LangChain 更适合从底层把整套能力自己搭起来。</div>
         </div>
       </section>
 
@@ -3031,8 +3258,8 @@
               </div>
               <div class="scenario-after">
                 <div class="scenario-label scenario-label--after"><i data-lucide="check-circle" style="width:12px;height:12px;"></i> 现在</div>
-                <h5>一句话生成简报</h5>
-                <p>每天 8 点自动抓取、提炼、推送到飞书群。全程 0 操作。</p>
+                <h5>自动整理并推送简报</h5>
+                <p>每天 8 点自动抓取、提炼、推送到飞书群，不需要再手工整理。</p>
               </div>
             </div>
             <div class="scenario-card">
@@ -3044,7 +3271,7 @@
               <div class="scenario-after">
                 <div class="scenario-label scenario-label--after"><i data-lucide="check-circle" style="width:12px;height:12px;"></i> 现在</div>
                 <h5>多轮迭代调研</h5>
-                <p>一句话触发，Agent 自动搜索、交叉验证，30 分钟出结构化报告。</p>
+                <p>把调研主题交给它后，Agent 会自动搜索、交叉验证，半小时左右整理出一份结构化报告。</p>
               </div>
             </div>
             <div class="scenario-card">
@@ -3080,7 +3307,7 @@
           <div class="title-stack">
             <p class="eyebrow">模块一 · 认识 OpenClaw</p>
             <h2>爆发增长与养虾文化</h2>
-            <p>一页看懂：OpenClaw 如何迅速破圈，以及背后的社区文化与生态势能。</p>
+            <p>OpenClaw 在很短时间里迅速走红，背后既有产品能力本身的原因，也有社区文化和生态扩张的推动。</p>
           </div>
         </div>
         <div class="slide-body">
@@ -3175,7 +3402,7 @@
                 <p>在浏览器可用。</p>
               </div>
             </div>
-            <div class="intro-note">这一段的目标是跑通本地环境。</div>
+            <div class="intro-note">本地环境跑通以后，后面的模型接入、飞书联动和技能配置才有稳定的基础。</div>
           </div>
         </div>
       </section>
@@ -3204,7 +3431,7 @@
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块二 · 本地部署</p>
-            <h2>部署前要记住的原则</h2>
+            <h2>部署前先了解的几件事</h2>
           </div>
         </div>
         <div class="slide-body split-tight">
@@ -3324,7 +3551,7 @@
           <div class="title-stack">
             <p class="eyebrow">模块二 · 本地部署</p>
             <h2>两种系统安装策略：一键部署与分布安装</h2>
-            <p>先给一键安装命令，如果因为网络问题失败，再切到手动安装。</p>
+            <p>一键安装更省事；如果遇到网络、权限或依赖问题，再切到手动安装会更容易定位原因。</p>
           </div>
         </div>
         <div class="slide-body compare">
@@ -3349,99 +3576,104 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
             <h2>手动配置</h2>
           </div>
         </div>
-        <div class="slide-body grid-2">
-          <div class="card">
-            <h3>macOS 路线</h3>
-            <ul>
-              <li>安装 Node.js 官方 pkg，版本选 v22.22.0（LTS）。</li>
-              <li>使用 Homebrew 安装 Git。</li>
-              <li>执行 `git --version` 验证成功。</li>
-            </ul>
-            <div class="gallery gallery-compact" data-gallery style="margin-top:14px;">
-              <div class="gallery-stage">
-                <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-                <figure class="gallery-panel">
-                  <img src="images/2.png" alt="下载 Node.js 安装包" />
-                  <figcaption>先下载 macOS 版 Node.js 安装包。</figcaption>
-                </figure>
-                <figure class="gallery-panel">
-                  <img src="images/3.png" alt="打开终端并准备安装 Homebrew" />
-                  <figcaption>先打开终端，准备安装 Homebrew。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/4.png" alt="验证 git 安装" />
-                  <figcaption>再通过 `git --version` 验证 Git 安装成功。</figcaption>
-                </figure>
-                <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-              </div>
-              <div class="gallery-dots">
-                <button class="gallery-dot" type="button">1 安装 Node</button>
-                <button class="gallery-dot" type="button">2 打开终端</button>
-                <button class="gallery-dot" type="button">3 验证 Git</button>
+        <div class="slide-body">
+          <div class="manual-install-layout" data-segmented>
+            <div class="manual-install-top">
+              <p>手动安装的好处在于每一步都能自己确认，环境里缺了什么、卡在什么地方，会看得更清楚。</p>
+              <div class="segmented-nav" role="tablist" aria-label="操作系统切换">
+                <button class="segmented-btn active" type="button" role="tab" aria-selected="true" data-segment-btn="mac" data-default>macOS</button>
+                <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="windows">Windows</button>
               </div>
             </div>
-          </div>
-          <div class="card">
-            <h3>Windows 路线</h3>
-            <ul>
-              <li>安装 Node.js、Git。</li>
-              <li>额外安装 Visual Studio，并勾选 C++ 桌面开发和 Windows SDK。</li>
-              <li>依次执行 `node -v`、`npm -v`、`git -v` 验证环境。</li>
-              <li>再执行 `npm install -g openclaw@latest` 与 `openclaw --version`。</li>
-            </ul>
-            <div class="gallery gallery-compact" data-gallery style="margin-top:14px;">
-              <div class="gallery-stage">
-                <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-                <figure class="gallery-panel">
-                  <img src="images/5.png" alt="Windows 下载 Node.js 安装包" />
-                  <figcaption>先下载 Windows 版 Node.js 安装包。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/6.png" alt="下载 Git 安装包" />
-                  <figcaption>再下载 Git 安装包。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/7.png" alt="Git 安装向导" />
-                  <figcaption>Git 安装一路默认 Next 即可。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/8.png" alt="Visual Studio 下载页面" />
-                  <figcaption>Windows 侧还需要安装 Visual Studio。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/9.png" alt="勾选 C++ 桌面开发和 Windows SDK" />
-                  <figcaption>记得勾选 C++ 桌面开发和 Windows SDK。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/10.png" alt="以管理员身份打开终端" />
-                  <figcaption>以管理员身份打开终端。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/11.png" alt="管理员终端界面" />
-                  <figcaption>确认已进入管理员终端环境。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/12.png" alt="Windows 环境验证" />
-                  <figcaption>先验证 Node / npm / Git 是否都正常。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/13.png" alt="验证 OpenClaw 版本" />
-                  <figcaption>再验证 OpenClaw 是否安装成功。</figcaption>
-                </figure>
-                <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+
+            <section class="segmented-panel" data-segment-panel="mac" role="tabpanel">
+              <div class="manual-install-stage">
+                <aside class="manual-route">
+                  <h3>macOS 路线</h3>
+                  <ol class="manual-step-list">
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 下载 Node.js 安装包</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 打开终端并安装 Homebrew</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 执行 `git --version` 验证</button></li>
+                  </ol>
+                </aside>
+                <div class="gallery manual-gallery" data-gallery>
+                  <div class="gallery-stage">
+                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                    <figure class="gallery-panel">
+                      <img src="images/2.png" alt="下载 Node.js 安装包" />
+                      <figcaption>先下载 macOS 版 Node.js 安装包。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/3.png" alt="打开终端并准备安装 Homebrew" />
+                      <figcaption>先打开终端，准备安装 Homebrew。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/4.png" alt="验证 git 安装" />
+                      <figcaption>再通过 `git --version` 验证 Git 安装成功。</figcaption>
+                    </figure>
+                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  </div>
+                </div>
               </div>
-              <div class="gallery-dots">
-                <button class="gallery-dot" type="button">1 下载 Node</button>
-                <button class="gallery-dot" type="button">2 下载 Git</button>
-                <button class="gallery-dot" type="button">3 安装 Git</button>
-                <button class="gallery-dot" type="button">4 下载 VS</button>
-                <button class="gallery-dot" type="button">5 勾选组件</button>
-                <button class="gallery-dot" type="button">6 管理员终端</button>
-                <button class="gallery-dot" type="button">7 终端确认</button>
-                <button class="gallery-dot" type="button">8 环境验证</button>
-                <button class="gallery-dot" type="button">9 验证版本</button>
+            </section>
+
+            <section class="segmented-panel" data-segment-panel="windows" role="tabpanel" hidden>
+              <div class="manual-install-stage">
+                <aside class="manual-route">
+                  <h3>Windows 路线</h3>
+                  <ol class="manual-step-list">
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 下载 Node.js 安装包</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 下载并安装 Git</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="3">3. 安装 Visual Studio</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="4">4. 勾选 C++ 与 Windows SDK</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="6">5. 管理员终端验证环境</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="8">6. 验证 OpenClaw 版本</button></li>
+                  </ol>
+                </aside>
+                <div class="gallery manual-gallery" data-gallery>
+                  <div class="gallery-stage">
+                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                    <figure class="gallery-panel">
+                      <img src="images/5.png" alt="Windows 下载 Node.js 安装包" />
+                      <figcaption>先下载 Windows 版 Node.js 安装包。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/6.png" alt="下载 Git 安装包" />
+                      <figcaption>再下载 Git 安装包。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/7.png" alt="Git 安装向导" />
+                      <figcaption>Git 安装一路默认 Next 即可。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/8.png" alt="Visual Studio 下载页面" />
+                      <figcaption>Windows 侧还需要安装 Visual Studio。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/9.png" alt="勾选 C++ 桌面开发和 Windows SDK" />
+                      <figcaption>记得勾选 C++ 桌面开发和 Windows SDK。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/10.png" alt="以管理员身份打开终端" />
+                      <figcaption>以管理员身份打开终端。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/11.png" alt="管理员终端界面" />
+                      <figcaption>确认已进入管理员终端环境。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/12.png" alt="Windows 环境验证" />
+                      <figcaption>先验证 Node / npm / Git 是否都正常。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/13.png" alt="验证 OpenClaw 版本" />
+                      <figcaption>再验证 OpenClaw 是否安装成功。</figcaption>
+                    </figure>
+                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  </div>
+                </div>
               </div>
-            </div>
+            </section>
           </div>
         </div>
       </section>
@@ -3451,112 +3683,162 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
           <div class="title-stack">
             <p class="eyebrow">模块二 · 本地部署</p>
             <h2>关键初始化参数选择</h2>
-            <p>这一步的本质是初始化 OpenClaw，并把网关注册成系统后台服务。</p>
+            <p>这一步是在初始化 OpenClaw，并把网关注册成系统后台服务，后面它才会稳定地在本地持续运行。</p>
           </div>
         </div>
-        <div class="slide-body split-tight">
-          <div>
-            <div class="code-block">openclaw onboard --install-daemon</div>
-            <div class="steps-list">
-              <div class="step-row"><strong>Step 1</strong>
-                <p>选择 Yes，忽略安全警告。</p>
-              </div>
-              <div class="step-row"><strong>Step 2</strong>
-                <p>直接选择 Quick start，让 OpenClaw 先用推荐参数完成首轮配置。</p>
-              </div>
-              <div class="step-row"><strong>Step 3</strong>
-                <p>选择 AI 提供商，并填写对应的 API 凭证。</p>
-              </div>
-              <div class="step-row"><strong>Step 4</strong>
-                <p>先跳过 channel 配置，后面通过 Web Dashboard 使用即可。</p>
-              </div>
-              <div class="step-row"><strong>Step 5</strong>
-                <p>Skills 先选 No，hooks 可选，最后本地部署优先选 Web UI。</p>
+        <div class="slide-body">
+          <div class="manual-install-layout" data-segmented>
+            <div class="manual-install-top">
+              <div class="code-block" style="margin-top:0;">openclaw onboard --install-daemon</div>
+              <div class="segmented-nav" role="tablist" aria-label="配置阶段切换">
+                <button class="segmented-btn active" type="button" role="tab" aria-selected="true" data-segment-btn="basic" data-default>① 基础配置</button>
+                <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="api-qwen">② API (Qwen)</button>
+                <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="api-minimax">③ API (Minimax)</button>
+                <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="finish">④ 完成设置</button>
               </div>
             </div>
-          </div>
-          <div class="gallery" data-gallery>
-            <div class="gallery-stage">
-              <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-              <figure class="gallery-panel">
-                <img src="images/14.png" alt="忽略安全警告" />
-                <figcaption>第 1 步：先选择 Yes，忽略安全警告。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/15.png" alt="Quick start 选项" />
-                <figcaption>第 2 步：直接选 Quick start，用默认推荐参数先跑通第一版环境。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/16.png" alt="获取 Qwen API Key 页面" />
-                <figcaption>短期使用时，可以先获取 API Key。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/17.png" alt="填写 API 配置第一步" />
-                <figcaption>填写 API 相关配置。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/18.png" alt="填写 API 配置第二步" />
-                <figcaption>继续补全 API 相关配置。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/19.png" alt="填写 API 配置第三步" />
-                <figcaption>确认 API 配置完成。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/minimax-0.png" alt="Minimax Coding Plan 订阅页面" />
-                <figcaption>长期使用时，也可以开通 Minimax Token Plan。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/minimax-3.png" alt="获取 Minimax Token Plan Key" />
-                <figcaption>再获取对应的 Token Plan API Key。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/minimax-1.png" alt="填写 Minimax 配置第一步" />
-                <figcaption>填写 Minimax 相关配置。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/minimax-2.png" alt="填写 Minimax 配置第二步" />
-                <figcaption>确认 Minimax 配置完成。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/20.png" alt="暂时跳过通道" />
-                <figcaption>第 3 步：通道配置先跳过，后面通过 Web Dashboard 使用即可。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/21.png" alt="继续跳过后续通道设置" />
-                <figcaption>继续确认暂时跳过通道设置。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/22.png" alt="Skills 选择 No" />
-                <figcaption>Skills 配置这一步先选 No。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/23.png" alt="hooks 配置" />
-                <figcaption>hooks 属于可选项，按需处理。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/24.png" alt="选择对话方式" />
-                <figcaption>第 4 步：本地部署优先选 Web UI，后续演示也更友好。</figcaption>
-              </figure>
-              <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-            </div>
-            <div class="gallery-dots">
-              <button class="gallery-dot" type="button">1 安全警告</button>
-              <button class="gallery-dot" type="button">2 Quick start</button>
-              <button class="gallery-dot" type="button">3 API Key 页面</button>
-              <button class="gallery-dot" type="button">4 API 配置 1</button>
-              <button class="gallery-dot" type="button">5 API 配置 2</button>
-              <button class="gallery-dot" type="button">6 API 配置 3</button>
-              <button class="gallery-dot" type="button">7 Plan 页面</button>
-              <button class="gallery-dot" type="button">8 Plan Key</button>
-              <button class="gallery-dot" type="button">9 Minimax 配置 1</button>
-              <button class="gallery-dot" type="button">10 Minimax 配置 2</button>
-              <button class="gallery-dot" type="button">11 跳过通道</button>
-              <button class="gallery-dot" type="button">12 确认跳过</button>
-              <button class="gallery-dot" type="button">13 Skills</button>
-              <button class="gallery-dot" type="button">14 hooks</button>
-              <button class="gallery-dot" type="button">15 Web UI</button>
-            </div>
+
+            <section class="segmented-panel" data-segment-panel="basic" role="tabpanel">
+              <div class="manual-install-stage">
+                <aside class="manual-route">
+                  <h3>基础配置</h3>
+                  <ol class="manual-step-list">
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 选择 Yes，忽略安全警告</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 选择 Quick start</button></li>
+                  </ol>
+                </aside>
+                <div class="gallery manual-gallery" data-gallery>
+                  <div class="gallery-stage">
+                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                    <figure class="gallery-panel">
+                      <img src="images/14.png" alt="忽略安全警告" />
+                      <figcaption>第 1 步：先选择 Yes，忽略安全警告。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/15.png" alt="Quick start 选项" />
+                      <figcaption>第 2 步：直接选 Quick start，用默认推荐参数先跑通第一版环境。</figcaption>
+                    </figure>
+                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="segmented-panel" data-segment-panel="api-qwen" role="tabpanel" hidden>
+              <div class="manual-install-stage">
+                <aside class="manual-route">
+                  <h3>API 配置 (Qwen)</h3>
+                  <p>先获取 API Key，再填写配置。</p>
+                  <ol class="manual-step-list">
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 获取 API Key 页面</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 填写 API 配置 ①</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 填写 API 配置 ②</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 确认 API 配置</button></li>
+                  </ol>
+                </aside>
+                <div class="gallery manual-gallery" data-gallery>
+                  <div class="gallery-stage">
+                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                    <figure class="gallery-panel">
+                      <img src="images/16.png" alt="获取 Qwen API Key 页面" />
+                      <figcaption>短期使用时，可以先获取 API Key。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/17.png" alt="填写 API 配置第一步" />
+                      <figcaption>填写 API 相关配置。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/18.png" alt="填写 API 配置第二步" />
+                      <figcaption>继续补全 API 相关配置。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/19.png" alt="填写 API 配置第三步" />
+                      <figcaption>确认 API 配置完成。</figcaption>
+                    </figure>
+                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="segmented-panel" data-segment-panel="api-minimax" role="tabpanel" hidden>
+              <div class="manual-install-stage">
+                <aside class="manual-route">
+                  <h3>API 配置 (Minimax)</h3>
+                  <p>长期使用时，可以开通 Minimax Token Plan。</p>
+                  <ol class="manual-step-list">
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 开通 Token Plan</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 获取 API Key</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 填写 Minimax 配置 ①</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 填写 Minimax 配置 ②</button></li>
+                  </ol>
+                </aside>
+                <div class="gallery manual-gallery" data-gallery>
+                  <div class="gallery-stage">
+                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                    <figure class="gallery-panel">
+                      <img src="images/minimax-0.png" alt="Minimax Coding Plan 订阅页面" />
+                      <figcaption>长期使用时，也可以开通 Minimax Token Plan。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/minimax-3.png" alt="获取 Minimax Token Plan Key" />
+                      <figcaption>再获取对应的 Token Plan API Key。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/minimax-1.png" alt="填写 Minimax 配置第一步" />
+                      <figcaption>填写 Minimax 相关配置。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/minimax-2.png" alt="填写 Minimax 配置第二步" />
+                      <figcaption>确认 Minimax 配置完成。</figcaption>
+                    </figure>
+                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="segmented-panel" data-segment-panel="finish" role="tabpanel" hidden>
+              <div class="manual-install-stage">
+                <aside class="manual-route">
+                  <h3>完成设置</h3>
+                  <p>通道先跳过，Skills 选 No，本地部署选 Web UI。</p>
+                  <ol class="manual-step-list">
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 跳过通道配置</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 确认跳过</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. Skills 选 No</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. hooks 可选</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="4">5. 选择 Web UI</button></li>
+                  </ol>
+                </aside>
+                <div class="gallery manual-gallery" data-gallery>
+                  <div class="gallery-stage">
+                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                    <figure class="gallery-panel">
+                      <img src="images/20.png" alt="暂时跳过通道" />
+                      <figcaption>通道配置先跳过，后面通过 Web Dashboard 使用即可。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/21.png" alt="继续跳过后续通道设置" />
+                      <figcaption>继续确认暂时跳过通道设置。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/22.png" alt="Skills 选择 No" />
+                      <figcaption>Skills 配置这一步先选 No。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/23.png" alt="hooks 配置" />
+                      <figcaption>hooks 属于可选项，按需处理。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/24.png" alt="选择对话方式" />
+                      <figcaption>本地部署优先选 Web UI，后续演示也更友好。</figcaption>
+                    </figure>
+                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
         </div>
       </section>
@@ -3582,7 +3864,7 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
             <p>直接用官方默认选项跑完流程。与其一开始就在高级设置里卡死报错，不如干净利落地拿到能跑的基础版。</p>
             <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(124, 45, 18, 0.08);">
               <span class="pill demo-cue" style="margin-bottom: 8px;">最终收益</span>
-              <p style="margin-top: 0; font-weight: 600; color: var(--text);">先让整体跑通建立信心。只要主流程没问题，细节参数以后随时能调。</p>
+              <p style="margin-top: 0; font-weight: 600; color: var(--text);">第一次配置时，先把主流程跑顺，系统能够稳定运行，再回头细调这些参数，排查起来会轻松很多。</p>
             </div>
           </div>
           <div class="card teal-card">
@@ -3640,7 +3922,7 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
           </div>
           <div class="grid-2" style="margin-top:18px;">
             <div class="card accent-card">
-              <h3>可以这样理解</h3>
+              <h3>两种计费方式的区别</h3>
               <p>API Key 更像是"先充值少量话费试用"。</p>
               <p>Token Plan 更像是"开套餐，准备长期稳定使用"。</p>
             </div>
@@ -3658,8 +3940,8 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块二 · 本地部署</p>
-            <h2>终端与浏览器交互方案对比</h2>
-            <p>第一次安装时，最容易犹豫的就是该选 Web UI 还是 TUI。</p>
+            <h2>Web UI 与 TUI 的使用场景</h2>
+            <p>两者管理的是同一套本地网关，差别主要在操作入口、查看方式和日常维护习惯。</p>
           </div>
         </div>
         <div class="slide-body">
@@ -3667,59 +3949,46 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
             <table>
               <thead>
                 <tr>
-                  <th>对比项</th>
+                  <th>项目</th>
                   <th>Web UI</th>
                   <th>TUI</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>交互方式</td>
-                  <td>浏览器图形界面</td>
-                  <td>终端文字界面</td>
+                  <td>进入方式</td>
+                  <td>在浏览器里打开管理页面</td>
+                  <td>直接在终端里进入交互界面</td>
                 </tr>
                 <tr>
-                  <td>上手难度</td>
-                  <td>更低，对第一次接触的人更友好</td>
-                  <td>稍高，更适合熟悉命令行的人</td>
+                  <td>信息查看</td>
+                  <td>页面层次更清楚，状态、配置和会话更容易一起看</td>
+                  <td>信息集中在终端里，切换速度快，连续操作更直接</td>
                 </tr>
                 <tr>
-                  <td>视觉效果</td>
-                  <td>信息更直观，按钮和页面更清晰</td>
-                  <td>更轻量，但信息密度更高</td>
+                  <td>操作习惯</td>
+                  <td>更接近后台管理页面，适合边看边点边调</td>
+                  <td>更接近命令行工作流，适合长期维护和远程操作</td>
                 </tr>
                 <tr>
-                  <td>使用体验</td>
-                  <td>像在操作后台管理面板</td>
-                  <td>像在控制台里直接管理服务</td>
+                  <td>部署环境</td>
+                  <td>本地电脑、带桌面的 macOS / Windows 环境</td>
+                  <td>Linux 主机、云服务器、长期 SSH 维护环境</td>
                 </tr>
                 <tr>
-                  <td>适合环境</td>
-                  <td>本地电脑、带桌面的系统</td>
-                  <td>远程服务器、SSH 登录环境</td>
+                  <td>更常见的使用者</td>
+                  <td>刚开始接触的人，或者平时更习惯图形界面的人</td>
+                  <td>已经习惯命令行、希望尽量轻量维护的人</td>
                 </tr>
                 <tr>
-                  <td>典型优势</td>
-                  <td>好理解、好查看、好演示</td>
-                  <td>稳定、轻量、远程操作方便</td>
+                  <td>更常见的选择</td>
+                  <td>本地部署时通常优先选它，查看和排查都更直观</td>
+                  <td>远程部署时通常更顺手，不需要图形桌面也能完整维护</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <div class="grid-2" style="margin-top:18px;">
-            <div class="card accent-card">
-              <h3>可以把两者理解成</h3>
-              <p>Web UI 偏"可视化控制台"。</p>
-              <p>TUI 偏"终端运维面板"。</p>
-            </div>
-            <div class="card">
-              <h3>怎么选最省事</h3>
-              <p>如果是在自己的 Mac 或 Windows 闲置电脑上部署，并且平时会打开浏览器来管理，选 Web UI；如果部署在云服务器、Linux 主机，平时主要靠终端和 SSH 维护，选
-                TUI。
-              </p>
-            </div>
-          </div>
-          <div class="callout">本地部署优先选 Web UI；云服务器、无桌面环境、纯远程运维，优先选 TUI。</div>
+          <div class="callout">本地电脑部署时，Web UI 在查看状态、改配置和演示时会更顺手；远程主机或长期 SSH 维护环境里，TUI 往往更省事。</div>
         </div>
       </section>
 
@@ -3731,15 +4000,14 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
             <p>最直观的验收方式，就是打开本地管理面板。</p>
           </div>
         </div>
-        <div class="slide-body stack-gallery">
+        <div class="slide-body split-tight">
           <div class="card accent-card">
             <h3>验收命令</h3>
             <div class="code-block">openclaw dashboard</div>
             <p>输入上面的命令后，会自动使用系统默认浏览器打开 Web UI；如果没有自动打开，就复制终端给出的完整 URL 到浏览器。</p>
             <div class="callout">如果页面能正常打开，说明本地网关基本已经可用了，后面配置渠道和调试会轻松很多。</div>
           </div>
-
-          <div class="gallery gallery-wide" data-gallery>
+          <div class="gallery" data-gallery>
             <div class="gallery-stage">
               <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
               <figure class="gallery-panel">
@@ -3756,7 +4024,6 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
               <button class="gallery-dot" type="button">1 执行命令</button>
               <button class="gallery-dot" type="button">2 看页面</button>
             </div>
-            <div class="gallery-hint">点击截图可放大</div>
           </div>
         </div>
       </section>
@@ -3789,7 +4056,7 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
               <div class="module-box">
                 <span>Part 4</span>
                 <h3>发布与配对</h3>
-                <p>真正让机器人在私聊和群聊里可用。</p>
+                <p>完成发布和配对后，机器人就能在私聊和群聊里正常工作。</p>
               </div>
             </div>
           </div>
@@ -3834,12 +4101,12 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
           <div class="title-stack">
             <p class="eyebrow">模块三 · 飞书接入</p>
             <h2>创建应用、获取凭证、添加机器人</h2>
-            <p>这一页把 OpenClaw 接飞书之前，在飞书后台要做的三件事合成一页讲清楚。</p>
+            <p>飞书后台这三步分别对应应用主体、调用凭证和机器人能力，少了任何一项，后面的接入都会卡住。</p>
           </div>
         </div>
-        <div class="slide-body stack-gallery">
+        <div class="slide-body split-tight">
           <div class="card accent-card">
-            <h3>先把飞书侧准备好</h3>
+            <h3>飞书后台要完成的三项准备</h3>
             <div class="steps-list">
               <div class="step-row"><strong>Step 1</strong>
                 <p>进入飞书开发者后台，创建企业自建应用。</p>
@@ -3851,9 +4118,9 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
                 <p>在"添加应用能力"里把机器人能力加上。</p>
               </div>
             </div>
-            <div class="callout">这三步都发生在飞书后台，作用是先准备出一个能被 OpenClaw 绑定的应用。</div>
+            <div class="callout">应用创建完成以后，OpenClaw 侧才能拿着 AppID、AppSecret 和机器人能力去完成后续绑定。</div>
           </div>
-          <div class="gallery gallery-wide" data-gallery>
+          <div class="gallery" data-gallery>
             <div class="gallery-stage">
               <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
               <figure class="gallery-panel">
@@ -3866,7 +4133,7 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
               </figure>
               <figure class="gallery-panel" hidden>
                 <img src="images/28.png" alt="添加机器人能力" />
-                <figcaption>第 3 步：把机器人能力真正加到应用里。</figcaption>
+                <figcaption>第 3 步：把机器人能力添加到应用里。</figcaption>
               </figure>
               <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
             </div>
@@ -3875,7 +4142,6 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
               <button class="gallery-dot" type="button">2 获取凭证</button>
               <button class="gallery-dot" type="button">3 添加机器人</button>
             </div>
-            <div class="gallery-hint">点击截图可放大</div>
           </div>
         </div>
       </section>
@@ -3885,10 +4151,10 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
           <div class="title-stack">
             <p class="eyebrow">模块三 · 飞书接入</p>
             <h2>插件安装与启用</h2>
-            <p>这一段抓三个命令就够了：查、装、启用。</p>
+            <p>插件状态要能走到 `loaded`，后面的渠道注册和消息收发才会正常。</p>
           </div>
         </div>
-        <div class="slide-body stack-gallery">
+        <div class="slide-body split-tight">
           <div class="card accent-card">
             <h3>关键命令</h3>
             <div class="code-block">openclaw plugins list
@@ -3896,9 +4162,9 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
 openclaw plugins install @openclaw/feishu
 
 openclaw plugins enable feishu</div>
-            <p>先看列表里有没有 Feishu 插件；如果没有，就安装；如果状态是 disabled，就启用。</p>
+            <p>先确认 Feishu 插件是否已经存在，再看它是不是处于可用状态；没有就安装，未启用就打开。</p>
           </div>
-          <div class="gallery gallery-wide" data-gallery>
+          <div class="gallery" data-gallery>
             <div class="gallery-stage">
               <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
               <figure class="gallery-panel">
@@ -3920,7 +4186,6 @@ openclaw plugins enable feishu</div>
               <button class="gallery-dot" type="button">2 启用插件</button>
               <button class="gallery-dot" type="button">3 看 loaded</button>
             </div>
-            <div class="gallery-hint">点击截图可放大</div>
           </div>
         </div>
       </section>
@@ -3930,10 +4195,10 @@ openclaw plugins enable feishu</div>
           <div class="title-stack">
             <p class="eyebrow">模块三 · 飞书接入</p>
             <h2>渠道配置关键选项</h2>
-            <p>这一步才是真正把飞书应用和 OpenClaw 连起来。</p>
+            <p>飞书应用完成注册后，会成为正式的消息入口，并和具体的 Agent 建立绑定关系。</p>
           </div>
         </div>
-        <div class="slide-body stack-gallery">
+        <div class="slide-body split-tight">
           <div>
             <div class="code-block">openclaw channels add</div>
             <div class="steps-list">
@@ -3946,32 +4211,18 @@ openclaw plugins enable feishu</div>
               <div class="step-row"><strong>域名</strong>
                 <p>国内版飞书选 `feishu.cn`。</p>
               </div>
-              <div class="step-row"><strong>群聊策略</strong>
-                <p>群聊一般选 `Open`，只有 @ 机器人时才回复。</p>
+              <div class="step-row"><strong>群聊</strong>
+                <p>群聊策略一般选 `Open`，只有 @ 机器人时才回复。</p>
               </div>
-              <div class="step-row"><strong>私聊策略</strong>
-                <p>这里先知道有几种模式可选，下一页单独解释区别。</p>
+              <div class="step-row"><strong>私聊</strong>
+                <p>私聊策略有几种模式可选，下一页单独解释区别。</p>
               </div>
-              <div class="step-row"><strong>绑定 Agent</strong>
+              <div class="step-row"><strong>绑定</strong>
                 <p>把飞书机器人与默认 AI Agent 绑定。</p>
               </div>
             </div>
-            <div class="grid-3" style="margin-top:18px;">
-              <div class="card">
-                <h3>这一步是什么</h3>
-                <p>把"飞书"正式注册成 OpenClaw 的一个消息入口。</p>
-              </div>
-              <div class="card accent-card">
-                <h3>为什么要做</h3>
-                <p>前面装插件只是把能力装进来，这一步才是真正把你的飞书应用和 OpenClaw 连起来。</p>
-              </div>
-              <div class="card teal-card">
-                <h3>做完效果</h3>
-                <p>配置完成后，OpenClaw 才知道该用哪个飞书应用去接收消息、回复消息、绑定对应的 Agent。</p>
-              </div>
-            </div>
           </div>
-          <div class="gallery gallery-wide" data-gallery>
+          <div class="gallery" data-gallery>
             <div class="gallery-stage">
               <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
               <figure class="gallery-panel">
@@ -4012,9 +4263,7 @@ openclaw plugins enable feishu</div>
               <button class="gallery-dot" type="button">5 群聊策略</button>
               <button class="gallery-dot" type="button">6 群聊完成</button>
               <button class="gallery-dot" type="button">7 私聊确认</button>
-              <button class="gallery-dot" type="button">8 进入私聊</button>
             </div>
-            <div class="gallery-hint">点击截图可放大</div>
           </div>
         </div>
       </section>
@@ -4024,7 +4273,7 @@ openclaw plugins enable feishu</div>
           <div class="title-stack">
             <p class="eyebrow">模块三 · 飞书接入</p>
             <h2>访问控制方案详解</h2>
-            <p>这里重点不是命令本身，而是理解四种模式分别适合什么场景。</p>
+            <p>这四种模式决定的是谁能说话、谁能触发任务、谁能拿到结果；不同团队和群聊环境，适合的模式也不一样。</p>
           </div>
         </div>
         <div class="slide-body split-tight">
@@ -4036,7 +4285,7 @@ openclaw plugins enable feishu</div>
               <li><strong>allowlist：</strong>白名单模式，只有在配置文件的"允许列表"里的用户才能私聊机器人。</li>
               <li><strong>disabled：</strong>禁用模式，完全关闭机器人的私聊功能，无法在任何私聊中使用。</li>
             </ul>
-            <div class="callout">如果你希望先稳一点，`pairing` 往往是最合适的起点：先验证配对，再开放使用。</div>
+            <div class="callout">`pairing` 模式会更稳一些：先完成配对，再逐步开放使用范围，排查问题也更容易。</div>
           </div>
           <div class="gallery gallery-wide" data-gallery>
             <div class="gallery-stage">
@@ -4055,7 +4304,6 @@ openclaw plugins enable feishu</div>
               <button class="gallery-dot" type="button">1 私聊策略</button>
               <button class="gallery-dot" type="button">2 绑定 Agent</button>
             </div>
-            <div class="gallery-hint">点击截图可放大</div>
           </div>
         </div>
       </section>
@@ -4068,95 +4316,117 @@ openclaw plugins enable feishu</div>
             <p>这是最容易因为漏步骤而卡住的地方，必须按顺序讲。</p>
           </div>
         </div>
-        <div class="slide-body grid-3">
-          <div class="card accent-card">
-            <h3>事件配置</h3>
-            <p><strong>这一步是什么：</strong> 告诉飞书"哪些消息和事件要推送给 OpenClaw"，以及机器人要监听哪些变化。</p>
-            <p>在"事件与订阅"里，选择"使用长连接接收事件"，再勾选接收消息、消息已读、消息撤回、机器人进群、机器人被移出群等事件。</p>
-            <div class="gallery gallery-compact" data-gallery style="margin-top:14px;">
-              <div class="gallery-stage">
-                <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-                <figure class="gallery-panel">
-                  <img src="images/42.png" alt="长连接接收事件" />
-                  <figcaption>先选择长连接方式。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/43.png" alt="添加事件按钮" />
-                  <figcaption>然后点击"添加事件"。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/44.png" alt="事件配置第一部分" />
-                  <figcaption>勾选消息与群组相关事件。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/45.png" alt="事件配置第二部分" />
-                  <figcaption>继续勾选需要监听的事件。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/46.png" alt="事件配置第三部分" />
-                  <figcaption>确认事件配置完整。</figcaption>
-                </figure>
-                <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-              </div>
-              <div class="gallery-dots">
-                <button class="gallery-dot" type="button">1 长连接</button>
-                <button class="gallery-dot" type="button">2 加事件</button>
-                <button class="gallery-dot" type="button">3 事件 1</button>
-                <button class="gallery-dot" type="button">4 事件 2</button>
-                <button class="gallery-dot" type="button">5 事件 3</button>
+        <div class="slide-body">
+          <div class="manual-install-layout" data-segmented>
+            <div class="manual-install-top">
+              <p>按顺序完成这三项配置，缺一不可。</p>
+              <div class="segmented-nav" role="tablist" aria-label="配置步骤切换">
+                <button class="segmented-btn active" type="button" role="tab" aria-selected="true" data-segment-btn="events" data-default>① 事件配置</button>
+                <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="permissions">② 权限配置</button>
+                <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="publish">③ 发布版本</button>
               </div>
             </div>
-          </div>
-          <div class="card teal-card">
-            <h3>权限配置</h3>
-            <p><strong>这一步是什么：</strong> 给飞书机器人补齐它在飞书生态里允许执行的能力范围。</p>
-            <p><strong>为什么要做：</strong> 事件配置解决的是"能不能收到"，权限配置解决的是"收到以后能不能做、能不能回"。</p>
-            <p><strong>做完效果：</strong> 权限生效后，机器人才能正常读消息、发消息，以及使用相关接口能力，不然很容易出现能连上但不能正常工作的情况。</p>
-            <div class="gallery gallery-compact" data-gallery style="margin-top:14px;">
-              <div class="gallery-stage">
-                <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-                <figure class="gallery-panel">
-                  <img src="images/47.png" alt="批量导入权限入口" />
-                  <figcaption>先进入权限管理并打开批量导入入口。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/48.png" alt="批量导入权限" />
-                  <figcaption>这里有完整 JSON，可直接复制导入。</figcaption>
-                </figure>
-                <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+
+            <section class="segmented-panel" data-segment-panel="events" role="tabpanel">
+              <div class="manual-install-stage">
+                <aside class="manual-route">
+                  <h3>事件配置</h3>
+                  <p>告诉飞书哪些消息和事件要推送给 OpenClaw。</p>
+                  <ol class="manual-step-list">
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 选择长连接接收事件</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 点击"添加事件"</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 勾选消息与群组事件</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 继续勾选监听事件</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="4">5. 确认事件配置完整</button></li>
+                  </ol>
+                </aside>
+                <div class="gallery manual-gallery" data-gallery>
+                  <div class="gallery-stage">
+                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                    <figure class="gallery-panel">
+                      <img src="images/42.png" alt="长连接接收事件" />
+                      <figcaption>先选择长连接方式。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/43.png" alt="添加事件按钮" />
+                      <figcaption>然后点击"添加事件"。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/44.png" alt="事件配置第一部分" />
+                      <figcaption>勾选消息与群组相关事件。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/45.png" alt="事件配置第二部分" />
+                      <figcaption>继续勾选需要监听的事件。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/46.png" alt="事件配置第三部分" />
+                      <figcaption>确认事件配置完整。</figcaption>
+                    </figure>
+                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  </div>
+                </div>
               </div>
-              <div class="gallery-dots">
-                <button class="gallery-dot" type="button">1 导入入口</button>
-                <button class="gallery-dot" type="button">2 导入 JSON</button>
+            </section>
+
+            <section class="segmented-panel" data-segment-panel="permissions" role="tabpanel" hidden>
+              <div class="manual-install-stage">
+                <aside class="manual-route">
+                  <h3>权限配置</h3>
+                  <p>事件配置决定消息能不能送进来，权限配置决定消息进来后能不能正常处理和回复。</p>
+                  <ol class="manual-step-list">
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 进入权限管理</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 批量导入权限 JSON</button></li>
+                  </ol>
+                </aside>
+                <div class="gallery manual-gallery" data-gallery>
+                  <div class="gallery-stage">
+                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                    <figure class="gallery-panel">
+                      <img src="images/47.png" alt="批量导入权限入口" />
+                      <figcaption>先进入权限管理并打开批量导入入口。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/48.png" alt="批量导入权限" />
+                      <figcaption>这里有完整 JSON，可直接复制导入。</figcaption>
+                    </figure>
+                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="card">
-            <h3>发布版本</h3>
-            <p>进入"版本管理与发布"，创建版本，填写版本号和更新说明，再确认发布。</p>
-            <div class="gallery gallery-compact" data-gallery style="margin-top:14px;">
-              <div class="gallery-stage">
-                <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-                <figure class="gallery-panel">
-                  <img src="images/49.png" alt="创建版本入口" />
-                  <figcaption>先进入版本管理并点击创建版本。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/50.png" alt="创建版本并发布" />
-                  <figcaption>填写版本信息并发布。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/51.png" alt="版本发布完成" />
-                  <figcaption>发布完成后配置才会真正生效。</figcaption>
-                </figure>
-                <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+            </section>
+
+            <section class="segmented-panel" data-segment-panel="publish" role="tabpanel" hidden>
+              <div class="manual-install-stage">
+                <aside class="manual-route">
+                  <h3>发布版本</h3>
+                  <p>进入"版本管理与发布"，创建版本并发布。发布完成后，配置才会生效。</p>
+                  <ol class="manual-step-list">
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 创建版本</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 填写信息并发布</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 确认发布完成</button></li>
+                  </ol>
+                </aside>
+                <div class="gallery manual-gallery" data-gallery>
+                  <div class="gallery-stage">
+                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                    <figure class="gallery-panel">
+                      <img src="images/49.png" alt="创建版本入口" />
+                      <figcaption>先进入版本管理并点击创建版本。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/50.png" alt="创建版本并发布" />
+                      <figcaption>填写版本信息并发布。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/51.png" alt="版本发布完成" />
+                      <figcaption>发布完成后，这里的配置才会开始生效。</figcaption>
+                    </figure>
+                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  </div>
+                </div>
               </div>
-              <div class="gallery-dots">
-                <button class="gallery-dot" type="button">1 创建版本</button>
-                <button class="gallery-dot" type="button">2 发布</button>
-                <button class="gallery-dot" type="button">3 完成</button>
-              </div>
-            </div>
+            </section>
           </div>
         </div>
       </section>
@@ -4169,59 +4439,70 @@ openclaw plugins enable feishu</div>
             <p>这是飞书接入模块的结果页，要明确看到"终于真的能聊了"。</p>
           </div>
         </div>
-        <div class="slide-body grid-2">
-          <div class="card accent-card">
-            <h3>私聊配对</h3>
-            <ul>
-              <li>在飞书里搜索刚创建的应用名称。</li>
-              <li>机器人会回复一个配对信息。</li>
-              <li>复制其中的命令回到终端执行。</li>
-              <li>执行后再回到飞书窗口，就能正常回复了。</li>
-            </ul>
-            <div class="gallery gallery-compact" data-gallery>
-              <div class="gallery-stage">
-                <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-                <figure class="gallery-panel">
-                  <img src="images/52.png" alt="飞书收到配对信息" />
-                  <figcaption>首次私聊会收到配对信息。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/54.png" alt="复制命令到终端执行" />
-                  <figcaption>把命令复制到终端执行后，私聊就能正常使用。</figcaption>
-                </figure>
-                <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-              </div>
-              <div class="gallery-dots">
-                <button class="gallery-dot" type="button">1 收到配对码</button>
-                <button class="gallery-dot" type="button">2 执行配对</button>
+        <div class="slide-body">
+          <div class="manual-install-layout" data-segmented>
+            <div class="manual-install-top">
+              <p>完成配对后，机器人就能在私聊和群聊里正常工作。</p>
+              <div class="segmented-nav" role="tablist" aria-label="测试方式切换">
+                <button class="segmented-btn active" type="button" role="tab" aria-selected="true" data-segment-btn="dm" data-default>私聊配对</button>
+                <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="group">群聊使用</button>
               </div>
             </div>
-          </div>
-          <div class="card teal-card">
-            <h3>群聊使用</h3>
-            <ul>
-              <li>在飞书客户端把机器人添加到群聊。</li>
-              <li>必须是内部组织群聊。</li>
-              <li>添加成功后，在群里 @ 它，就可以响应需求。</li>
-            </ul>
-            <div class="gallery gallery-compact" data-gallery>
-              <div class="gallery-stage">
-                <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-                <figure class="gallery-panel">
-                  <img src="images/57.png" alt="把机器人加入群聊" />
-                  <figcaption>把机器人加入已有群聊。</figcaption>
-                </figure>
-                <figure class="gallery-panel" hidden>
-                  <img src="images/59.png" alt="群聊里 @ 机器人" />
-                  <figcaption>群里 @ 它，就能开始交互。</figcaption>
-                </figure>
-                <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+
+            <section class="segmented-panel" data-segment-panel="dm" role="tabpanel">
+              <div class="manual-install-stage">
+                <aside class="manual-route">
+                  <h3>私聊配对步骤</h3>
+                  <ol class="manual-step-list">
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 在飞书搜索应用名称</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="0">2. 机器人回复配对信息</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">3. 复制命令到终端执行</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">4. 回到飞书即可正常聊天</button></li>
+                  </ol>
+                </aside>
+                <div class="gallery manual-gallery" data-gallery>
+                  <div class="gallery-stage">
+                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                    <figure class="gallery-panel">
+                      <img src="images/52.png" alt="飞书收到配对信息" />
+                      <figcaption>首次私聊会收到配对信息。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/54.png" alt="复制命令到终端执行" />
+                      <figcaption>把命令复制到终端执行后，私聊就能正常使用。</figcaption>
+                    </figure>
+                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  </div>
+                </div>
               </div>
-              <div class="gallery-dots">
-                <button class="gallery-dot" type="button">1 加进群聊</button>
-                <button class="gallery-dot" type="button">2 群里 @ 它</button>
+            </section>
+
+            <section class="segmented-panel" data-segment-panel="group" role="tabpanel" hidden>
+              <div class="manual-install-stage">
+                <aside class="manual-route">
+                  <h3>群聊使用步骤</h3>
+                  <ol class="manual-step-list">
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 把机器人添加到群聊</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 在群里 @ 机器人交互</button></li>
+                  </ol>
+                  <div class="callout" style="margin-top:14px;">必须是内部组织群聊。</div>
+                </aside>
+                <div class="gallery manual-gallery" data-gallery>
+                  <div class="gallery-stage">
+                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                    <figure class="gallery-panel">
+                      <img src="images/57.png" alt="把机器人加入群聊" />
+                      <figcaption>把机器人加入已有群聊。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/59.png" alt="群聊里 @ 机器人" />
+                      <figcaption>群里 @ 它，就能开始交互。</figcaption>
+                    </figure>
+                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  </div>
+                </div>
               </div>
-            </div>
+            </section>
           </div>
         </div>
       </section>
@@ -4232,7 +4513,7 @@ openclaw plugins enable feishu</div>
           <div class="module-intro-copy">
             <p class="eyebrow">模块四</p>
             <h2>扩展能力与个性化</h2>
-            <p>前面解决的是"能不能跑起来、能不能接进飞书"，这一部分解决的是"能力够不够、像不像你的助手"。</p>
+            <p>Skills 决定它以后能做哪些事，三件套决定它会以什么风格回应你，以及在工作里遵循什么样的规则。</p>
             <div class="deck-meta">
               <span class="pill">Skills 决定能力边界</span>
               <span class="pill">三件套决定人格与工作方式</span>
@@ -4261,7 +4542,7 @@ openclaw plugins enable feishu</div>
                 <p>配置改完后，记得重启网关。</p>
               </div>
             </div>
-            <div class="intro-note">装完 OpenClaw 只是开始，真正让它"像你的助手"靠的是持续配置。</div>
+            <div class="intro-note">这些配置写得越细，后面用起来越容易形成稳定的配合感。</div>
           </div>
         </div>
       </section>
@@ -4277,7 +4558,7 @@ openclaw plugins enable feishu</div>
         <div class="slide-body split-tight">
           <div class="card accent-card">
             <h3>ClawHub 是做什么的</h3>
-            <p>ClawHub 是查找、安装、更新第三方 Skills 的最佳方法。</p>
+            <p>ClawHub 管的是 Skills 的查找、安装和更新，很多扩展能力都是从这里进入 OpenClaw 的。</p>
             <div class="code-block">npm i -g clawhub
 
 clawhub search "postgres backups"
@@ -4300,48 +4581,49 @@ clawhub uninstall 技能名称</div>
             <p>可以先从几类常用技能入手，用 `weather` 跑通最小示例。</p>
           </div>
         </div>
-        <div class="slide-body grid-2">
-          <div class="card">
-            <h3>推荐先装的 Skills</h3>
-            <ul>
-              <li>self-improving-agent：把学习成果和错误记录到 Markdown 文件中。</li>
-              <li>skill-vetter：安装未知工具前先做安全扫描。</li>
-              <li>tavily-search：联网搜索模块，适合时效性任务。</li>
-              <li>weather：适合跑通配置流程、测试环境联通性。</li>
-            </ul>
-          </div>
-          <div class="card accent-card">
-            <h3>weather 安装示例</h3>
-            <div class="code-block">npm i -g clawhub
+        <div class="slide-body split-tight">
+          <div>
+            <div class="card" style="margin-bottom:14px;">
+              <h3>推荐先装的 Skills</h3>
+              <ul>
+                <li>self-improving-agent：把学习成果和错误记录到 Markdown 文件中。</li>
+                <li>skill-vetter：安装未知工具前先做安全扫描。</li>
+                <li>tavily-search：联网搜索模块，适合时效性任务。</li>
+                <li>weather：适合跑通配置流程、测试环境联通性。</li>
+              </ul>
+            </div>
+            <div class="card accent-card">
+              <h3>weather 安装示例</h3>
+              <div class="code-block">npm i -g clawhub
 
 clawhub install weather</div>
-            <p>如果网络遇到问题，可以切换国内镜像：</p>
-            <div class="code-block">npm config set registry https://registry.npmmirror.com
+              <p>如果网络遇到问题，可以切换国内镜像：</p>
+              <div class="code-block">npm config set registry https://registry.npmmirror.com
 npx clawhub@latest install weather --force</div>
-            <p>如果还是麻烦，也可以直接让"小龙虾"帮你完成安装。</p>
+            </div>
           </div>
-        </div>
-        <div class="gallery" data-gallery style="margin-top:18px;">
-          <div class="gallery-stage">
-            <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-            <figure class="gallery-panel">
-              <img src="images/61.png" alt="安装 clawhub" />
-              <figcaption>第 1 步：先安装 ClawHub。</figcaption>
-            </figure>
-            <figure class="gallery-panel" hidden>
-              <img src="images/63.png" alt="安装 weather skill" />
-              <figcaption>第 2 步：安装 `weather` Skill。</figcaption>
-            </figure>
-            <figure class="gallery-panel" hidden>
-              <img src="images/64.png" alt="让 OpenClaw 帮你安装" />
-              <figcaption>如果嫌命令麻烦，也可以直接让 OpenClaw 帮你安装。</figcaption>
-            </figure>
-            <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-          </div>
-          <div class="gallery-dots">
-            <button class="gallery-dot" type="button">1 装 ClawHub</button>
-            <button class="gallery-dot" type="button">2 装 weather</button>
-            <button class="gallery-dot" type="button">3 让它代装</button>
+          <div class="gallery" data-gallery>
+            <div class="gallery-stage">
+              <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+              <figure class="gallery-panel">
+                <img src="images/61.png" alt="安装 clawhub" />
+                <figcaption>第 1 步：先安装 ClawHub。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/63.png" alt="安装 weather skill" />
+                <figcaption>第 2 步：安装 `weather` Skill。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/64.png" alt="让 OpenClaw 帮你安装" />
+                <figcaption>如果嫌命令麻烦，也可以直接让 OpenClaw 帮你安装。</figcaption>
+              </figure>
+              <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+            </div>
+            <div class="gallery-dots">
+              <button class="gallery-dot" type="button">1 装 ClawHub</button>
+              <button class="gallery-dot" type="button">2 装 weather</button>
+              <button class="gallery-dot" type="button">3 让它代装</button>
+            </div>
           </div>
         </div>
       </section>
@@ -4351,16 +4633,16 @@ npx clawhub@latest install weather --force</div>
           <div class="title-stack">
             <p class="eyebrow">模块四 · 三件套</p>
             <h2>为什么装完还像普通 AI？</h2>
-            <p>很多人装完后仍觉得它像普通 AI，问题往往不在 Skills，而在"三件套"没有写好。</p>
+            <p>OpenClaw 装好以后，能不能形成稳定的配合感，很大程度上取决于下面这几个文件有没有写清楚。</p>
           </div>
         </div>
         <div class="slide-body split-tight">
           <div class="card warning">
-            <p>很多人 OpenClaw 部署完，用起来依然"礼貌且生硬"，回答处处透着模板化。</p>
+            <p>不少人在部署完成以后，会发现它虽然能回答问题，但语气、习惯和处理方式都还比较模板化。</p>
             <p>实际上，小龙虾是需要养的，而且怎么养很重要。除了各式各样的 Skills，有三个配置文件非常重要。</p>
           </div>
           <div class="card accent-card">
-            <h3>这三个文件就是</h3>
+            <h3>三个文件的分工</h3>
             <div class="stats-strip">
               <div class="stat"><strong>SOUL</strong><span>定义性格、口吻、边界</span></div>
               <div class="stat"><strong>USER</strong><span>定义你是谁、偏好什么</span></div>
@@ -4375,7 +4657,7 @@ npx clawhub@latest install weather --force</div>
           <div class="title-stack">
             <p class="eyebrow">模块四 · 三件套</p>
             <h2>系统角色配置架构</h2>
-            <p>很多人配置了，但效果不明显，根本原因常常不是写得不够多，而是写错了地方。</p>
+            <p>有些人也写了不少内容，但改完以后感觉变化不大。很多时候，问题出在信息放错了文件，于是该生效的地方没有明显变化。</p>
           </div>
         </div>
         <div class="slide-body">
@@ -4411,7 +4693,7 @@ npx clawhub@latest install weather --force</div>
               </tbody>
             </table>
           </div>
-          <div class="callout">记忆法：想让它说话更有个性，改 SOUL.md；想让它更了解你，改 USER.md；想让它执行任务更靠谱，改 AGENTS.md。</div>
+          <div class="callout">SOUL.md 决定它说话像什么样的人，USER.md 提供与你有关的背景信息，AGENTS.md 约束它做事时遵循的流程和边界。</div>
         </div>
       </section>
 
@@ -4420,7 +4702,7 @@ npx clawhub@latest install weather --force</div>
           <div class="title-stack">
             <p class="eyebrow">模块四 · 三件套</p>
             <h2>三种配置方式</h2>
-            <p>不用把长提示词整段念完，知道可以低门槛完成个性化就够了。</p>
+            <p>常见的配置路径大体分成三类：自己改文件、直接让它帮你写，或者让它通过问答把三份文件一步步整理出来。</p>
           </div>
         </div>
         <div class="slide-body grid-3">
@@ -4439,7 +4721,7 @@ MacOS:
           </div>
           <div class="card">
             <h3>方式三：让小龙虾帮你定制</h3>
-            <p>把长提示词发给它，让它像贴心采访者一样一步步提问，最后自动生成三份配置文件。</p>
+            <p>把提示词发给它，让它边问边整理，最后把三份配置文件一起生成出来。</p>
           </div>
         </div>
       </section>
@@ -4449,7 +4731,7 @@ MacOS:
           <div class="title-stack">
             <p class="eyebrow">模块四 · 三件套</p>
             <h2>SOUL.md 应该写什么</h2>
-            <p>这里放了一个完整示例，方便快速理解"灵魂"应该怎么写。</p>
+            <p>SOUL.md 里最常见的内容，基本都落在角色关系、性格、表达方式和行为边界这四类里。</p>
           </div>
         </div>
         <div class="slide-body grid-4">
@@ -4508,7 +4790,7 @@ MacOS:
           <div class="title-stack">
             <p class="eyebrow">模块四 · 三件套</p>
             <h2>通过灵魂向导定制化配置</h2>
-            <p>这种设计很适合第一次配置的人：每次只问一个问题，轻松自然，不像填问卷。</p>
+            <p>如果是第一次配这三份文件，用这种方式会轻松一些。它会一边问，一边把内容慢慢整理出来，不需要你一开始就把所有设定想得很完整。</p>
           </div>
         </div>
         <div class="slide-body split-tight">
@@ -4547,7 +4829,7 @@ MacOS:
           <div class="title-stack">
             <p class="eyebrow">模块四 · 三件套</p>
             <h2>灵魂配置向导完整提示词</h2>
-            <p>这一页专门放完整提示词，方便直接复制给 OpenClaw 使用。</p>
+            <p>这段提示词会把原本要自己慢慢整理的三份文件，改造成一段循序渐进的问答过程。</p>
           </div>
         </div>
         <div class="slide-body">
@@ -4632,7 +4914,7 @@ MacOS:
               </div>
               <div class="module-box">
                 <span>FAQ</span>
-                <h3>扫清卡点</h3>
+                <h3>常见问题</h3>
                 <p>git 报错、权限配置、卸载路径。</p>
               </div>
             </div>
@@ -4645,7 +4927,7 @@ MacOS:
           <div class="title-stack">
             <p class="eyebrow">模块五 · 案例一</p>
             <h2>案例一：多源科技新闻摘要</h2>
-            <p>这个案例最能体现 OpenClaw 的"自动收集 + 自动整理 + 自动输出"能力。</p>
+            <p>这个案例里，信息源很多、步骤也多，但最后会收敛成一份固定格式的日报，很适合用来观察整条自动流程是怎么运转起来的。</p>
           </div>
         </div>
         <div class="slide-body split-tight">
@@ -4673,9 +4955,8 @@ MacOS:
 - 阅读原文（跳转链接）</div>
           </div>
           <figure class="tall">
-            <img src="images/69.png" alt="科技日报内容细节"
-              style="max-height: 60vh; width:auto; border-radius:8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
-            <figcaption style="margin-top:auto;">案例效果：在飞书中接收结构化、带评分过滤的技术日报。</figcaption>
+            <img src="images/69.png" alt="科技日报内容细节" />
+            <figcaption>案例效果：在飞书中接收结构化、带评分过滤的技术日报。</figcaption>
           </figure>
         </div>
       </section>
@@ -4698,7 +4979,7 @@ MacOS:
           </div>
           <div class="card teal-card">
             <h3>3. 判别与去重</h3>
-            <p>真正展现了 Agent 核心价值：依靠大模型的语义判定机制合并同一新闻的不同说法，再根据信息密度、重要程度过滤。</p>
+            <p>Agent 会先把不同来源里实际上在讲同一件事的内容归并起来，再根据信息量和重要程度往下筛，最后只保留值得进入日报的部分。</p>
           </div>
           <div class="card">
             <h3>4. 结构化投递</h3>
@@ -4707,15 +4988,11 @@ MacOS:
         </div>
       </section>
 
-<section class="slide" data-module="案例与 FAQ" data-title="未来职场的 AI 助理形态">
-        <div class="slide-body"
-          style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100%;">
-          <figure style="margin: 0; padding: 0; display:flex; flex-direction:column; align-items:center; width:80%;">
-            <img src="images/case1-overview.png" alt="真实办公场景：喝咖啡读飞书科技日报"
-              style="width:100%; height:auto; max-height:75vh; object-fit: cover; border-radius: 16px; box-shadow: 0 12px 35px rgba(0,0,0,0.15);" />
-            <figcaption
-              style="text-align:center; font-size: 1.3em; font-weight: 500; color: var(--text-1); margin-top: 20px;">
-              早晨端杯咖啡，在飞书里阅读小龙虾跨网精准萃取的独立简报，这才是私人龙虾应有的体感。</figcaption>
+<section class="slide image-focus-slide" data-module="案例与 FAQ" data-title="未来职场的 AI 助理形态">
+        <div class="slide-body">
+          <figure class="figure-plain">
+            <img src="images/case1-overview.png" alt="真实办公场景：喝咖啡读飞书科技日报" />
+            <figcaption>早晨打开飞书，就能直接看到整理好的简报。对使用者来说，最直观的变化，就是原来分散在各处的信息被收拢成了一份可直接阅读的内容。</figcaption>
           </figure>
         </div>
       </section>
@@ -4725,10 +5002,10 @@ MacOS:
           <div class="title-stack">
             <p class="eyebrow">模块五 · 案例二</p>
             <h2>案例二：深度调研</h2>
-            <p>这个案例更像"自动执行深度研究"，适用于投资研究、行业分析、竞品调研、技术调研等多步骤信息收集场景。</p>
+            <p>这个案例里的重点，不在于搜索本身，而在于它会自己补资料、补结构、补逻辑，最后把零散信息整理成一份能交付的研究结果。</p>
           </div>
         </div>
-        <div class="slide-body stack-gallery">
+        <div class="slide-body split-tight">
           <div class="card accent-card">
             <h3>设置方式</h3>
             <div class="code-block">帮我安装一下这个skill openclaw skills install feishu-deep-research</div>
@@ -4745,7 +5022,7 @@ MacOS:
               </div>
             </div>
           </div>
-          <div class="gallery gallery-wide" data-gallery>
+          <div class="gallery" data-gallery>
             <div class="gallery-stage">
               <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
               <figure class="gallery-panel">
@@ -4758,7 +5035,7 @@ MacOS:
               </figure>
               <figure class="gallery-panel" hidden>
                 <img src="images/75.png" alt="深度调研效果" />
-                <figcaption>最后得到结构化调研报告。</figcaption>
+                <figcaption>最后会整理出一份结构化调研报告。</figcaption>
               </figure>
               <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
             </div>
@@ -4767,7 +5044,6 @@ MacOS:
               <button class="gallery-dot" type="button">2 补 API Key</button>
               <button class="gallery-dot" type="button">3 看结果</button>
             </div>
-            <div class="gallery-hint">点击截图可放大</div>
           </div>
         </div>
       </section>
@@ -4807,10 +5083,10 @@ MacOS:
           <div class="title-stack">
             <p class="eyebrow">模块五 · 案例三</p>
             <h2>案例三：个人知识库（RAG）</h2>
-            <p>如果你总是找不到上周看过的文章、推文、视频，这个案例能立刻体现知识库的价值。</p>
+            <p>知识库这一类能力，解决的并不是"能不能保存"，而是"保存以后还找不找得到、问的时候能不能把相关内容重新调出来"。</p>
           </div>
         </div>
-        <div class="slide-body stack-gallery">
+        <div class="slide-body split-tight">
           <div class="card accent-card">
             <h3>这个案例能做什么</h3>
             <ul>
@@ -4821,7 +5097,7 @@ MacOS:
             <div class="code-block">帮我安装 knowledge-base 这个skill</div>
             <div class="code-block">把 https://blog.csdn.net/peraglobal/article/details/159737008 存入知识库</div>
           </div>
-          <div class="gallery gallery-wide" data-gallery>
+          <div class="gallery" data-gallery>
             <div class="gallery-stage">
               <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
               <figure class="gallery-panel">
@@ -4848,7 +5124,6 @@ MacOS:
               <button class="gallery-dot" type="button">3 存链接</button>
               <button class="gallery-dot" type="button">4 语义搜索</button>
             </div>
-            <div class="gallery-hint">点击截图可放大</div>
           </div>
         </div>
       </section>
@@ -4881,14 +5156,14 @@ MacOS:
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块五 · FAQ</p>
-            <h2>常见问题：最后扫清三个高频卡点</h2>
-            <p>FAQ 不求一次性讲得很深，但要把最常见的排查方向和关键命令留下来。</p>
+            <h2>常见问题与排查思路</h2>
+            <p>这几个问题覆盖了安装和接入阶段最常见的卡点，后面遇到类似情况时，可以直接按对应命令和配置项往下排查。</p>
           </div>
         </div>
         <div class="slide-body grid-3">
           <div class="faq-card accent-card">
             <h3>1. 安装过程出现 git 报错</h3>
-            <figure style="margin-top:12px;">
+            <figure class="figure-soft-top">
               <img src="images/65.png" alt="git 报错示意" />
               <figcaption>建议把 Git 全局切到 HTTPS。</figcaption>
             </figure>
@@ -4922,12 +5197,12 @@ npm rm -g openclaw</div>
         </div>
       </section>
 
-<section class="slide layout-contrast-dense" data-module="案例与 FAQ" data-title="龙虾养好的四种终极形态">
+<section class="slide layout-contrast-dense" data-module="案例与 FAQ" data-title="龙虾养好以后，可能出现的几种形态">
         <div class="slide-header">
           <div class="title-stack">
-            <p class="eyebrow">终极展望</p>
-            <h2>龙虾"养好了"的四种终极形态</h2>
-            <p>从简单的问答工具，进化为具备自主性与社会性的数字个体。</p>
+            <p class="eyebrow">延展讨论</p>
+            <h2>龙虾养好以后，可能出现的几种形态</h2>
+            <p>围绕 OpenClaw 这类系统，社区已经把它往完全不同的方向推进了。有些方向偏个人效率，有些已经开始接近持续运行的数字角色。</p>
           </div>
         </div>
         <div class="slide-body grid-4">
@@ -4946,21 +5221,17 @@ npm rm -g openclaw</div>
           </div>
           <div class="card">
             <h3>4. 高阶全时的企业 AI 员工</h3>
-            <p>与飞书、微信、钉钉融为一体。只需挂载几百份企业 PDF 及业务 SOP 就能即刻化身资深客服对接客户。更是能够充当数据中枢，在无人值守的深夜自行拉取数据产出专业的分析报表。</p>
+            <p>与飞书、微信、钉钉融为一体。挂上企业里的 PDF、SOP 和业务资料以后，它可以去承担客服、问答、信息汇总、报表整理这一类持续性的工作。</p>
           </div>
         </div>
-        <div class="callout">它的终极上限不再是一个好用的效率软件，而是一个"低成本的数字人类"。</div>
+        <div class="callout">从这些形态能看出来，OpenClaw 后面怎么长，很大程度上取决于你给它接入什么工具、灌进什么资料、又给了它什么样的规则和身份。</div>
       </section>
 
-<section class="slide" style="padding: 1rem 2rem;" data-module="案例与 FAQ" data-title="龙虾最终形态：视觉呈现">
-        <div class="slide-body"
-          style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100%; padding:0;">
-          <figure
-            style="margin: 0; padding: 0; display:flex; flex-direction:column; align-items:center; width:90%; height:90%;">
-            <img src="images/龙虾最终形态.png" alt="小龙虾最终形态：数字生命与企业员工"
-              style="width:100%; height:auto; max-height:85vh; object-fit: contain; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);" />
-            <figcaption style="text-align:center; font-size: 1.2em; color: var(--text-2); margin-top: 20px;">OpenClaw
-              的进化终点：从提效的助手，变为具备独立人格或业务深度的数字实体。</figcaption>
+<section class="slide image-focus-slide" data-module="案例与 FAQ" data-title="龙虾最终形态：视觉呈现">
+        <div class="slide-body">
+          <figure class="figure-plain">
+            <img src="images/龙虾最终形态.png" alt="小龙虾最终形态：数字生命与企业员工" />
+            <figcaption>当能力、记忆、角色设定和工作流不断叠加以后，OpenClaw 呈现出来的形态，往往已经不只是一个简单的聊天助手了。</figcaption>
           </figure>
         </div>
       </section>
@@ -4970,28 +5241,28 @@ npm rm -g openclaw</div>
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">结束</p>
-            <h2>今天至少记住这 5 件事</h2>
+            <h2>课程回顾</h2>
           </div>
         </div>
         <div class="slide-body">
           <div class="key-points">
             <div class="key-point"><b>1</b>
-              <div><strong>OpenClaw 不是普通聊天机器人。</strong> 它是一个自托管 AI 网关，重点是"住在你电脑里干活"。</div>
+              <div><strong>OpenClaw 在整套系统里承担的是网关角色。</strong> 它负责把消息入口、模型能力和执行流程接起来，所以前面学到的部署、接入和配置才会彼此连成一套完整链路。</div>
             </div>
             <div class="key-point"><b>2</b>
-              <div><strong>先跑本地部署。</strong> 先安装、先 onboard、先打开 dashboard，不要一上来就追求全部能力。</div>
+              <div><strong>本地部署决定了后面的稳定性。</strong> 安装、onboard、dashboard 这几步跑顺以后，接入飞书和做个性化配置才更不容易反复出问题。</div>
             </div>
             <div class="key-point"><b>3</b>
-              <div><strong>飞书接入的关键是顺序。</strong> 应用、凭证、插件、渠道、事件、权限、发布、配对，一个都别乱。</div>
+              <div><strong>飞书接入要按顺序来。</strong> 应用、凭证、插件、渠道、事件、权限、发布、配对，这几步前后关系比较强，顺序乱了就容易卡住。</div>
             </div>
             <div class="key-point"><b>4</b>
-              <div><strong>Skills 决定能力边界，三件套决定个性和工作方式。</strong> 装完只是开始，养好它才会越来越像你的助手。</div>
+              <div><strong>Skills 和三件套会直接影响后面的使用体验。</strong> 前者决定它能做哪些事，后者决定它说话的风格、理解你的程度，以及做事时遵循什么规则。</div>
             </div>
             <div class="key-point"><b>5</b>
-              <div><strong>案例不是炫技，是前面配置的落地证明。</strong> 日报、调研、RAG 都是在告诉你：这套链路配好之后真的能用。</div>
+              <div><strong>后面的案例可以当成完整链路的实际落地。</strong> 日报、调研、知识库这些例子，都是在说明前面那套配置方式在真实场景里怎么用起来。</div>
             </div>
           </div>
-          <div class="quote">先跑通，再接飞书；先能用，再个性化；先照着案例练，再慢慢把它变成你自己的 AI 助手。</div>
+          <div class="quote">后面如果要继续练，最好从一个贴近自己工作的场景开始，把接入、配置和实际任务串起来做一遍，很多细节会在这个过程中自然变得清楚。</div>
         </div>
       </section>
 
@@ -5001,11 +5272,6 @@ npm rm -g openclaw</div>
             <p class="eyebrow" style="justify-content:center;">结束</p>
             <h2 class="ending-title">Thank You</h2>
             <p class="lead" style="margin:22px auto 0; max-width:760px;">OpenClaw 的更多用法，期待大家继续去发现。</p>
-            <div class="ending-keys" style="margin-top: 32px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
-              <span class="pill" style="font-size:11px;"><kbd style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:11px;">←→</kbd> 翻页</span>
-              <span class="pill" style="font-size:11px;"><kbd style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:11px;">F</kbd> 全屏</span>
-              <span class="pill" style="font-size:11px;"><kbd style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:11px;">Home</kbd> / <kbd style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:11px;">End</kbd> 首末页</span>
-            </div>
           </div>
         </div>
       </section>
@@ -5136,7 +5402,13 @@ npm rm -g openclaw</div>
       const dots = Array.from(gallery.querySelectorAll(".gallery-dot"));
       const prev = gallery.querySelector(".gallery-nav.prev");
       const next = gallery.querySelector(".gallery-nav.next");
+      const jumpScope = gallery.closest("[data-segment-panel]") || gallery.closest(".slide") || gallery;
+      const jumpButtons = Array.from(jumpScope.querySelectorAll("[data-gallery-jump]"));
       let galleryIndex = 0;
+
+      if (!panels.length) {
+        return;
+      }
 
       function renderGallery(index) {
         galleryIndex = (index + panels.length) % panels.length;
@@ -5146,6 +5418,10 @@ npm rm -g openclaw</div>
         dots.forEach((dot, dotIndex) => {
           dot.classList.toggle("active", dotIndex === galleryIndex);
         });
+        jumpButtons.forEach((button) => {
+          const targetIndex = Number.parseInt(button.dataset.galleryJump || "", 10);
+          button.classList.toggle("active", Number.isInteger(targetIndex) && targetIndex === galleryIndex);
+        });
       }
 
       prev?.addEventListener("click", () => renderGallery(galleryIndex - 1));
@@ -5153,8 +5429,47 @@ npm rm -g openclaw</div>
       dots.forEach((dot, dotIndex) => {
         dot.addEventListener("click", () => renderGallery(dotIndex));
       });
+      jumpButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const targetIndex = Number.parseInt(button.dataset.galleryJump || "", 10);
+          if (!Number.isInteger(targetIndex)) {
+            return;
+          }
+          renderGallery(targetIndex);
+        });
+      });
 
       renderGallery(0);
+    }
+
+    function initSegmented(container) {
+      const buttons = Array.from(container.querySelectorAll("[data-segment-btn]"));
+      const panels = Array.from(container.querySelectorAll("[data-segment-panel]"));
+      if (!buttons.length || !panels.length) {
+        return;
+      }
+
+      function renderSegment(key) {
+        buttons.forEach((button) => {
+          const active = button.dataset.segmentBtn === key;
+          button.classList.toggle("active", active);
+          button.setAttribute("aria-selected", String(active));
+          button.tabIndex = active ? 0 : -1;
+        });
+
+        panels.forEach((panel) => {
+          panel.hidden = panel.dataset.segmentPanel !== key;
+        });
+      }
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderSegment(button.dataset.segmentBtn);
+        });
+      });
+
+      const defaultButton = buttons.find((button) => button.hasAttribute("data-default")) || buttons[0];
+      renderSegment(defaultButton.dataset.segmentBtn);
     }
 
     function renderLightbox() {
@@ -5314,6 +5629,7 @@ npm rm -g openclaw</div>
     });
 
     galleries.forEach(initGallery);
+    Array.from(document.querySelectorAll("[data-segmented]")).forEach(initSegmented);
     Array.from(document.querySelectorAll("figure img")).forEach((image) => {
       image.addEventListener("click", () => openLightbox(image));
     });
