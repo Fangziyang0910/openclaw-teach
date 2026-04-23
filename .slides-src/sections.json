@@ -5,7 +5,7 @@
     {
       "file": "01-opening.html",
       "module": "开场",
-      "slideCount": 13
+      "slideCount": 11
     },
     {
       "file": "02-local-deploy.html",
@@ -15,7 +15,7 @@
     {
       "file": "03-install-config.html",
       "module": "安装与配置",
-      "slideCount": 9
+      "slideCount": 10
     },
     {
       "file": "04-feishu.html",
