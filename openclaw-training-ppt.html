@@ -713,6 +713,26 @@
       line-height: 1.65;
     }
 
+    /* Page-specific image treatment: avoid frame-inside-frame on the history slide */
+    .slide.history-clean-visual figure {
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+    }
+
+    .slide.history-clean-visual figure img {
+      height: 390px;
+      padding: 0;
+      background: transparent;
+      border-radius: 24px;
+      border: 1px solid rgba(124, 45, 18, 0.12);
+      box-shadow: 0 16px 36px rgba(72, 45, 16, 0.12);
+    }
+
+    .slide.history-clean-visual figure figcaption {
+      padding: 12px 4px 0;
+    }
+
     .stats-strip,
     .tag-strip {
       display: flex;
@@ -953,79 +973,6 @@
       opacity: 0;
     }
 
-    /* === SPEAKER NOTES === */
-    /* === SPEAKER NOTES PANEL === */
-    .speaker-notes-panel {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 60;
-      max-height: 35vh;
-      background: rgba(15, 23, 42, 0.95);
-      color: #e2e8f0;
-      backdrop-filter: blur(12px);
-      border-top: 2px solid rgba(245, 158, 11, 0.4);
-      transform: translateY(100%);
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .speaker-notes-panel.open {
-      transform: translateY(0);
-    }
-
-    .speaker-notes-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      flex-shrink: 0;
-    }
-
-    .speaker-notes-header strong {
-      font-size: 13px;
-      color: var(--accent-soft);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .speaker-notes-close {
-      background: rgba(255, 255, 255, 0.08);
-      border: 0;
-      color: #94a3b8;
-      padding: 4px 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 12px;
-    }
-
-    .speaker-notes-close:hover {
-      background: rgba(255, 255, 255, 0.14);
-      color: #fff;
-    }
-
-    .speaker-notes-content {
-      padding: 14px 20px;
-      overflow: auto;
-      font-size: 14px;
-      line-height: 1.75;
-      flex: 1;
-      color: #cbd5e1;
-    }
-
-    .speaker-notes-content .note-placeholder {
-      color: #64748b;
-      font-style: italic;
-    }
-
-    .notes-btn-active {
-      background: rgba(180, 83, 9, 0.15) !important;
-      border-color: rgba(180, 83, 9, 0.3) !important;
-    }
-
     .cover-side {
       display: grid;
       gap: 18px;
@@ -1088,6 +1035,25 @@
       max-width: 720px;
     }
 
+    .opening-module-intro .module-intro-copy h2 {
+      font-size: clamp(2.5rem, 4.9vw, 4.4rem);
+      line-height: 1.04;
+    }
+
+    .opening-module-intro .module-intro-copy p {
+      font-size: clamp(1.12rem, 1.9vw, 1.45rem);
+      line-height: 1.95;
+      max-width: 760px;
+    }
+
+    .opening-module-intro .modules-grid .module-box {
+      padding: 20px 20px 18px;
+    }
+
+    .opening-module-intro .modules-grid .module-box span {
+      font-size: 13px;
+    }
+
     .module-intro-side {
       display: grid;
       gap: 16px;
@@ -1109,10 +1075,17 @@
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
       gap: 18px;
+      align-items: stretch;
     }
 
     .split-tight>* {
-      align-self: start;
+      align-self: stretch;
+      height: 100%;
+    }
+
+    .split-tight>.card {
+      display: flex;
+      flex-direction: column;
     }
 
     /* === GALLERY COMPONENT === */
@@ -2432,8 +2405,8 @@
     /* === SCENARIO CARDS (Before/After) === */
     .scenario-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: clamp(10px, 1.5vw, 16px);
+      grid-template-columns: 1fr;
+      gap: clamp(12px, 1.8vw, 18px);
     }
     .scenario-card {
       display: flex;
@@ -2447,7 +2420,7 @@
     .scenario-card:hover { transform: translateY(-3px); }
     .scenario-before, .scenario-after {
       flex: 1;
-      padding: clamp(12px, 1.5vw, 16px);
+      padding: clamp(14px, 1.8vw, 20px);
     }
     .scenario-before {
       background: linear-gradient(135deg, rgba(220,38,38,0.04), rgba(255,255,255,0.9));
@@ -2457,7 +2430,7 @@
       background: linear-gradient(135deg, rgba(5,150,105,0.05), rgba(255,255,255,0.9));
     }
     .scenario-label {
-      font-size: clamp(10px, 1vw, 12px);
+      font-size: clamp(12px, 1.2vw, 14px);
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -2474,9 +2447,9 @@
       margin: 0 0 6px;
     }
     .scenario-card p {
-      font-size: clamp(11px, 1.1vw, 13px);
+      font-size: clamp(13px, 1.35vw, 16px);
       color: var(--muted);
-      line-height: 1.55;
+      line-height: 1.68;
       margin: 0;
     }
 
@@ -2604,7 +2577,6 @@
       <div class="progress"><span data-current>1</span> / <span data-total>55</span></div>
       <button class="btn" id="prevBtn" type="button"><i data-lucide="chevron-left" style="width:16px;height:16px;display:inline-block;vertical-align:-2px;"></i> 上一页</button>
       <button class="btn" id="nextBtn" type="button">下一页 <i data-lucide="chevron-right" style="width:16px;height:16px;display:inline-block;vertical-align:-2px;"></i></button>
-      <button class="btn" id="notesBtn" type="button" title="讲师备注 (N)"><i data-lucide="message-square" style="width:16px;height:16px;display:inline-block;vertical-align:-2px;"></i></button>
       <button class="btn" id="fullscreenBtn" type="button" title="全屏 (F)"><i data-lucide="maximize-2" style="width:16px;height:16px;display:inline-block;vertical-align:-2px;"></i></button>
     </div>
     <!-- Progress bar -->
@@ -2615,28 +2587,29 @@
     <aside class="sidebar">
       <div class="sidebar-header">
         <strong>培训导航</strong>
-        <p>只基于《OpenClaw从入门到精通实战手册》重组而成，适合 2 小时边讲边演示。</p>
       </div>
       <div class="sidebar-list" id="sidebarList"></div>
     </aside>
 
     <main class="stage">
-      <section class="slide compact-center cover-slide" data-module="开场" data-title="封面">
+      
+      <!-- section: 01-opening.html -->
+<section class="slide compact-center cover-slide" data-module="开场" data-title="封面">
         <div class="slide-body cover">
           <div>
             <p class="eyebrow">教育培训</p>
             <h2>OpenClaw 从入门到精通</h2>
             <p class="lead">从零开始理解开源 AI Agent —— 部署、接入、个性化配置与实战案例全覆盖。</p>
             <div class="deck-meta">
-              <span class="pill"><i data-lucide="clock" style="width:13px;height:13px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i>约 2 小时</span>
               <span class="pill demo-cue"><i data-lucide="monitor" style="width:13px;height:13px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i>边讲边演示</span>
-              <span class="pill"><i data-lucide="signal" style="width:13px;height:13px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i>零基础友好</span>
+              <span class="pill"><i data-lucide="signal" style="width:13px;height:13px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i>办公小白友好</span>
             </div>
             <div class="audience-tags">
-              <span class="audience-tag"><i data-lucide="code-2"></i>开发者</span>
-              <span class="audience-tag"><i data-lucide="server"></i>运维工程师</span>
-              <span class="audience-tag"><i data-lucide="layout-dashboard"></i>产品经理</span>
-              <span class="audience-tag"><i data-lucide="sparkles"></i>AI 爱好者</span>
+              <span class="audience-tag"><i data-lucide="briefcase-business"></i>办公室新人</span>
+              <span class="audience-tag"><i data-lucide="files"></i>行政文员</span>
+              <span class="audience-tag"><i data-lucide="handshake"></i>业务助理</span>
+              <span class="audience-tag"><i data-lucide="sparkles"></i>技术爱好者</span>
+              <span class="audience-tag"><i data-lucide="bot"></i>热爱 AI 的人</span>
             </div>
           </div>
           <div class="cover-side">
@@ -2658,14 +2631,13 @@
               </div>
               <div class="prereq-list">
                 <div class="prereq-item"><i data-lucide="laptop"></i>请确保笔记本电脑已充电并联网</div>
-                <div class="prereq-item"><i data-lucide="key-round"></i>提前注册 GitHub 账号与 AI 模型 API Key</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="slide" data-module="开场" data-title="学习目标与课程导航">
+<section class="slide" data-module="开场" data-title="学习目标与课程导航">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">开场</p>
@@ -2694,31 +2666,31 @@
             </div>
           </div>
           <div class="card teal-card">
-            <h3><i data-lucide="map" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;"></i>课程导航（约 2 小时）</h3>
+            <h3><i data-lucide="map" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;"></i>课程导航</h3>
             <div class="number-list">
               <div class="item"><b>1</b>
                 <div><strong>认识 OpenClaw</strong>
-                  <p>起源故事、核心定位、架构概览、四大能力、爆发增长。≈ 20 min</p>
+                  <p>起源故事、核心定位、架构概览、四大能力、爆发增长。</p>
                 </div>
               </div>
               <div class="item"><b>2</b>
                 <div><strong>安装与配置</strong>
-                  <p>硬件/软件要求、模型接入、系统安装、Gateway 初始化、Dashboard 使用。≈ 35 min</p>
+                  <p>硬件/软件要求、模型接入、系统安装、Gateway 初始化、Dashboard 使用。</p>
                 </div>
               </div>
               <div class="item"><b>3</b>
                 <div><strong>接入飞书</strong>
-                  <p>创建应用、插件配置、渠道注册、事件/权限/发布、连通测试。≈ 25 min</p>
+                  <p>创建应用、插件配置、渠道注册、事件/权限/发布、连通测试。</p>
                 </div>
               </div>
               <div class="item"><b>4</b>
                 <div><strong>Skills 与三件套</strong>
-                  <p>Skills 安装、SOUL/USER/AGENTS 配置、偏好与 Prompt 定制。≈ 20 min</p>
+                  <p>Skills 安装、SOUL/USER/AGENTS 配置、偏好与 Prompt 定制。</p>
                 </div>
               </div>
               <div class="item"><b>5</b>
                 <div><strong>实战案例与 FAQ</strong>
-                  <p>日报生成、深度调研、知识库搭建、常见问题、龙虾终极形态。≈ 20 min</p>
+                  <p>日报生成、深度调研、知识库搭建、常见问题、龙虾终极形态。</p>
                 </div>
               </div>
             </div>
@@ -2726,41 +2698,37 @@
         </div>
       </section>
 
-      <section class="slide compact-center" data-module="开场" data-title="模块一：认识 OpenClaw">
+<section class="slide compact-center opening-module-intro" data-module="开场" data-title="模块一：认识 OpenClaw">
         <div class="slide-body module-intro">
           <div class="module-intro-copy">
             <p class="eyebrow">模块一</p>
             <h2>认识 OpenClaw</h2>
             <p>在动手部署之前，先搞清楚三个问题：它从哪来？它到底是什么？它能帮你做什么？</p>
-            <div class="deck-meta">
-              <span class="pill"><i data-lucide="clock" style="width:13px;height:13px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i>约 20 分钟</span>
-              <span class="pill demo-cue"><i data-lucide="message-circle" style="width:13px;height:13px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i>以讲述为主</span>
-            </div>
           </div>
           <div class="module-intro-side">
             <div class="modules-grid">
               <div class="module-box">
                 <span><i data-lucide="history" style="width:13px;height:13px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>起源与历史</span>
-                <p style="margin:0;font-size:13px;color:var(--muted);line-height:1.6;">创始人故事、爆发增长、改名风波、加入 OpenAI。</p>
+                <p style="margin:0;font-size:15px;color:var(--muted);line-height:1.7;">创始人故事、爆发增长、改名风波、加入 OpenAI。</p>
               </div>
               <div class="module-box">
                 <span><i data-lucide="cpu" style="width:13px;height:13px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>核心定位与架构</span>
-                <p style="margin:0;font-size:13px;color:var(--muted);line-height:1.6;">自托管 AI 网关、三层架构（Channel → Gateway → Runtime）。</p>
+                <p style="margin:0;font-size:15px;color:var(--muted);line-height:1.7;">自托管 AI 网关、三层架构（Channel → Gateway → Runtime）。</p>
               </div>
               <div class="module-box">
                 <span><i data-lucide="zap" style="width:13px;height:13px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>四大能力特征</span>
-                <p style="margin:0;font-size:13px;color:var(--muted);line-height:1.6;">一句话执行、24h 驻守、Skills 扩展、多端嵌入。</p>
+                <p style="margin:0;font-size:15px;color:var(--muted);line-height:1.7;">一句话执行、24h 驻守、Skills 扩展、多端嵌入。</p>
               </div>
               <div class="module-box">
                 <span><i data-lucide="trending-up" style="width:13px;height:13px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>爆发增长与生态</span>
-                <p style="margin:0;font-size:13px;color:var(--muted);line-height:1.6;">GitHub 历史第一、养虾文化、Moltbook、InStreet。</p>
+                <p style="margin:0;font-size:15px;color:var(--muted);line-height:1.7;">GitHub 历史第一、养虾文化、Moltbook、InStreet。</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="slide" data-module="开场" data-title="起源与发展历史">
+<section class="slide history-clean-visual" data-module="开场" data-title="起源与发展历史">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块一 · 认识 OpenClaw</p>
@@ -2807,78 +2775,42 @@
         </div>
       </section>
 
-      <section class="slide" data-module="开场" data-title="核心定位">
+<section class="slide" data-module="开场" data-title="核心定位与问题解决">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块一 · 认识 OpenClaw</p>
-            <h2>核心定位：自托管的本地 AI 网关</h2>
+            <h2>核心定位与问题解决</h2>
+            <p>一页看懂 OpenClaw 是什么，以及它在办公场景里能直接帮你解决哪些问题。</p>
           </div>
         </div>
-        <div class="slide-body compare">
-          <div class="side accent-card">
-            <h3>它是什么</h3>
-            <ul>
-              <li>一个运行在你自己电脑或服务器上的 <strong>AI 网关</strong>。</li>
-              <li>把 WhatsApp、飞书、Telegram、Discord 等聊天工具与 AI 模型打通。</li>
-              <li>你在聊天 App 发一条消息，OpenClaw 自动拆解、执行、交付结果。</li>
-              <li>核心优势：<strong>一次部署，多端调用，数据不出门</strong>。</li>
+        <div class="slide-body split-tight">
+          <div class="card accent-card">
+            <h3>它的核心定位</h3>
+            <ul class="list-clean">
+              <li>它是运行在你电脑或服务器上的 <strong>本地 AI 网关</strong>，把聊天工具和模型能力连接起来。</li>
+              <li>你在飞书或其他渠道发一句话，它会自动拆解任务、调用能力并交付结果。</li>
+              <li>优势是 <strong>一次部署，多端可用，数据更可控</strong>。</li>
             </ul>
+            <div class="callout" style="margin-top: 14px;">一句话记忆：它不是多一个聊天窗口，而是把 AI 放进你的实际工作流。</div>
           </div>
-          <div class="side teal-card">
-            <h3>它不是什么</h3>
-            <ul>
-              <li>不是只会"你问我答"的网页聊天机器人。</li>
-              <li>不是大模型本身，而是承接模型能力的<strong>网关 + 执行框架</strong>。</li>
-              <li>不是把数据送到云端处理，重点是<strong>本地运行、隐私可控</strong>。</li>
-            </ul>
-          </div>
-        </div>
-        <div class="callout">一句话记忆：OpenClaw 不是"多一个聊天窗口"，而是"把 AI 真的放进你的工作环境里"。</div>
-      </section>
-
-      <!-- NEW: OpenClaw 解决什么问题？ -->
-      <section class="slide" data-module="开场" data-title="OpenClaw 解决什么问题？">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">模块一 · 认识 OpenClaw</p>
-            <h2>OpenClaw 解决什么问题？</h2>
-            <p>三个真实职场痛点，看 AI Agent 如何一键化解。</p>
-          </div>
-        </div>
-        <div class="slide-body">
-          <div class="pain-grid">
-            <div class="pain-card">
-              <div class="pain-icon-row">
-                <div class="pain-icon-circle"><i data-lucide="calendar-check" style="width:18px;height:18px;"></i></div>
-                <h4>信息碎片化，汇总耗时</h4>
+          <div class="card teal-card">
+            <h3>它能解决什么问题</h3>
+            <div class="number-list">
+              <div class="item"><b>1</b>
+                <p><strong>信息汇总太耗时：</strong>自动抓取和整合多源信息，输出结构化摘要与日报。</p>
               </div>
-              <p class="pain-desc">每天在飞书群、邮件、文档、网页间来回切换，手动整理会议纪要、周报、行业简报，至少花 1-2 小时。</p>
-              <div class="pain-arrow-divider"><i data-lucide="arrow-down" style="width:16px;height:16px;"></i></div>
-              <div class="pain-solution-tag"><i data-lucide="check-circle" style="width:13px;height:13px;"></i>定时抓取多源信息，自动汇总成结构化日报/周报，直接推送到飞书群。</div>
-            </div>
-            <div class="pain-card">
-              <div class="pain-icon-row">
-                <div class="pain-icon-circle"><i data-lucide="search" style="width:18px;height:18px;"></i></div>
-                <h4>深度调研，检索门槛高</h4>
+              <div class="item"><b>2</b>
+                <p><strong>调研检索门槛高：</strong>一句话触发多轮搜索，自动筛选与交叉验证形成结论。</p>
               </div>
-              <p class="pain-desc">竞品分析、技术选型、市场调研——需要翻阅大量资料，整理成报告，过程繁琐且容易遗漏关键信息。</p>
-              <div class="pain-arrow-divider"><i data-lucide="arrow-down" style="width:16px;height:16px;"></i></div>
-              <div class="pain-solution-tag"><i data-lucide="check-circle" style="width:13px;height:13px;"></i>一句话触发多轮搜索，Agent 自动迭代筛选、交叉验证、生成结构化报告。</div>
-            </div>
-            <div class="pain-card">
-              <div class="pain-icon-row">
-                <div class="pain-icon-circle"><i data-lucide="repeat" style="width:18px;height:18px;"></i></div>
-                <h4>重复操作，人当机器用</h4>
+              <div class="item"><b>3</b>
+                <p><strong>重复操作太多：</strong>批量通知、定时任务、跨平台同步可自动执行，减少手工反复劳动。</p>
               </div>
-              <p class="pain-desc">数据格式转换、批量通知、定时报表、多平台同步……这些机械任务每天都在消耗你的时间。</p>
-              <div class="pain-arrow-divider"><i data-lucide="arrow-down" style="width:16px;height:16px;"></i></div>
-              <div class="pain-solution-tag"><i data-lucide="check-circle" style="width:13px;height:13px;"></i>装一个 Skill 就能用，7x24 驻守后台，定时/触发式自动执行，解放双手。</div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="slide" data-module="开场" data-title="三层架构概览">
+<section class="slide" data-module="开场" data-title="三层架构概览">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块一 · 认识 OpenClaw</p>
@@ -2910,8 +2842,7 @@
         <div class="callout">类比：Channel 是"前台"，Gateway 是"调度中心"，Runtime 是"干活的员工"。三层协作，缺一不可。</div>
       </section>
 
-      <!-- NEW: 一次完整对话的旅程 -->
-      <section class="slide" data-module="开场" data-title="一次完整对话的旅程">
+<section class="slide" data-module="开场" data-title="一次完整对话的旅程">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块一 · 认识 OpenClaw</p>
@@ -2968,7 +2899,7 @@
         </div>
       </section>
 
-      <section class="slide layout-contrast-dense" data-module="开场" data-title="四大能力特征">
+<section class="slide layout-contrast-dense" data-module="开场" data-title="四大能力特征">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块一 · 认识 OpenClaw</p>
@@ -3012,8 +2943,7 @@
         <div class="quote">Andrej Karpathy（前 Tesla AI 总监、OpenAI 联合创始人）："这很接近科幻里'起飞'的场景。"</div>
       </section>
 
-      <!-- NEW: 与传统 AI 方案对比 -->
-      <section class="slide" data-module="开场" data-title="与传统 AI 方案对比">
+<section class="slide" data-module="开场" data-title="与传统 AI 方案对比">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块一 · 认识 OpenClaw</p>
@@ -3083,8 +3013,7 @@
         </div>
       </section>
 
-      <!-- NEW: 典型使用场景 Before/After -->
-      <section class="slide" data-module="开场" data-title="典型使用场景">
+<section class="slide" data-module="开场" data-title="典型使用场景">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块一 · 认识 OpenClaw</p>
@@ -3146,12 +3075,12 @@
         </div>
       </section>
 
-      <section class="slide" data-module="开场" data-title="爆发增长数据">
+<section class="slide" data-module="开场" data-title="爆发增长与养虾文化">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块一 · 认识 OpenClaw</p>
-            <h2>爆发增长：GitHub 历史第一</h2>
-            <p>不到 100 天，从 0 到登顶全球开源项目 Star 榜首。</p>
+            <h2>爆发增长与养虾文化</h2>
+            <p>一页看懂：OpenClaw 如何迅速破圈，以及背后的社区文化与生态势能。</p>
           </div>
         </div>
         <div class="slide-body">
@@ -3195,44 +3124,33 @@
               <small>登顶 GitHub Star 历史第一</small>
             </div>
           </div>
+          <div class="grid-3" style="margin-top:16px;">
+            <div class="eco-card accent-card">
+              <h4><i data-lucide="shell" style="width:16px;height:16px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i>"养虾"运动</h4>
+              <p>因龙虾图标，开发者把调教 AI Agent 称为"养虾"——一场全民参与的 AI 社会化实验。</p>
+              <div class="eco-stat"><i data-lucide="users" style="width:12px;height:12px;display:inline-block;vertical-align:-1px;"></i>从 9 岁到 70 岁都能参与</div>
+            </div>
+            <div class="eco-card">
+              <h4><i data-lucide="book-open" style="width:16px;height:16px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i>Agent 社交平台</h4>
+              <p>Moltbook：3 天聚集 150 万 AI Agent。InStreet（字节扣子）：800 只龙虾举办"AI 吐槽大会"。</p>
+              <div class="eco-stat"><i data-lucide="bot" style="width:12px;height:12px;display:inline-block;vertical-align:-1px;"></i>150 万+ AI Agent 在线社交</div>
+            </div>
+            <div class="eco-card teal-card">
+              <h4><i data-lucide="landmark" style="width:16px;height:16px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i>政策与产业</h4>
+              <p>深圳"龙虾十条"、腾讯/字节入局、ClawHub 5000+ Skills。</p>
+              <div class="eco-stat"><i data-lucide="package" style="width:12px;height:12px;display:inline-block;vertical-align:-1px;"></i>5000+ 社区 Skills</div>
+            </div>
+          </div>
+          <div class="callout" style="margin-top:12px;">为什么这对你重要？生态越大、可复用能力越多，上手 OpenClaw 的实际收益就越明显。</div>
         </div>
       </section>
 
-      <section class="slide layout-contrast-dense" data-module="开场" data-title="养虾文化与生态">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">模块一 · 认识 OpenClaw</p>
-            <h2>养虾文化与 Agent 生态</h2>
-          </div>
-        </div>
-        <div class="slide-body grid-3">
-          <div class="eco-card accent-card">
-            <h4><i data-lucide="shell" style="width:16px;height:16px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i>"养虾"运动</h4>
-            <p>因龙虾图标，开发者把调教 AI Agent 称为"养虾"——一场全民参与的 AI 社会化实验。</p>
-            <div class="eco-stat"><i data-lucide="users" style="width:12px;height:12px;display:inline-block;vertical-align:-1px;"></i>从 9 岁到 70 岁都能参与</div>
-          </div>
-          <div class="eco-card">
-            <h4><i data-lucide="book-open" style="width:16px;height:16px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i>Agent 社交平台</h4>
-            <p>Moltbook：3 天聚集 150 万 AI Agent。InStreet（字节扣子）：800 只龙虾举办"AI 吐槽大会"。</p>
-            <div class="eco-stat"><i data-lucide="bot" style="width:12px;height:12px;display:inline-block;vertical-align:-1px;"></i>150 万+ AI Agent 在线社交</div>
-          </div>
-          <div class="eco-card teal-card">
-            <h4><i data-lucide="landmark" style="width:16px;height:16px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i>政策与产业</h4>
-            <p>深圳"龙虾十条"、腾讯/字节入局、ClawHub 5000+ Skills。</p>
-            <div class="eco-stat"><i data-lucide="package" style="width:12px;height:12px;display:inline-block;vertical-align:-1px;"></i>5000+ 社区 Skills</div>
-          </div>
-        </div>
-        <div class="callout">为什么这对你重要？生态越大，可用的 Skills 越多，你的 AI 助手就越强大。现在入局，正好赶上最好的时机。</div>
-      </section>
-
-      <section class="slide compact-center" data-module="本地部署" data-title="本地部署测试">
+      <!-- section: 02-local-deploy.html -->
+<section class="slide compact-center" data-module="本地部署" data-title="本地部署测试">
         <div class="slide-body module-intro">
           <div class="module-intro-copy">
             <p class="eyebrow">模块二</p>
             <h2>模块二：本地部署</h2>
-            <div class="deck-meta">
-              <span class="demo-cue">演示切换：终端 → 浏览器</span>
-            </div>
           </div>
           <div class="module-intro-side">
             <div class="modules-grid">
@@ -3262,7 +3180,7 @@
         </div>
       </section>
 
-      <section class="slide layout-path-dense" data-module="本地部署" data-title="安装运行路径">
+<section class="slide layout-path-dense" data-module="本地部署" data-title="安装运行路径">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块二 · 本地部署</p>
@@ -3279,12 +3197,10 @@
           </div>
           <div class="callout">先理解，再部署，后实战。这里做的是"最小成功路径"的现场演示版。</div>
         </div>
-        <div class="slide-footer">
-          <span class="demo-cue">演示切换：终端</span>
-        </div>
       </section>
 
-      <section class="slide layout-warning-dense" data-module="安装与配置" data-title="软硬件准备要求">
+      <!-- section: 03-install-config.html -->
+<section class="slide layout-warning-dense" data-module="安装与配置" data-title="软硬件准备要求">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块二 · 本地部署</p>
@@ -3336,7 +3252,7 @@
         </div>
       </section>
 
-      <section class="slide" data-module="安装与配置" data-title="环境要求与模型准备">
+<section class="slide" data-module="安装与配置" data-title="环境要求与模型准备">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块二 · 本地部署</p>
@@ -3403,7 +3319,7 @@
         </div>
       </section>
 
-      <section class="slide layout-config-dense" data-module="安装与配置" data-title="系统级安装方式">
+<section class="slide layout-config-dense" data-module="安装与配置" data-title="系统级安装方式">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块二 · 本地部署</p>
@@ -3424,12 +3340,9 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
             <p>分别执行上面两条命令。</p>
           </div>
         </div>
-        <div class="slide-footer">
-          <span class="demo-cue">演示切换：终端</span>
-        </div>
       </section>
 
-      <section class="slide" data-module="安装与配置" data-title="手动安装验证">
+<section class="slide" data-module="安装与配置" data-title="手动安装验证">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块二 · 本地部署</p>
@@ -3533,7 +3446,7 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
         </div>
       </section>
 
-      <section class="slide" data-module="安装与配置" data-title="服务初始化配置">
+<section class="slide" data-module="安装与配置" data-title="服务初始化配置">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块二 · 本地部署</p>
@@ -3646,12 +3559,9 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
             </div>
           </div>
         </div>
-        <div class="slide-footer">
-          <span class="demo-cue">演示切换：终端</span>
-        </div>
       </section>
 
-      <section class="slide layout-path-dense" data-module="安装与配置" data-title="核心参数说明">
+<section class="slide layout-path-dense" data-module="安装与配置" data-title="核心参数说明">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块二 · 本地部署</p>
@@ -3686,7 +3596,7 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
         </div>
       </section>
 
-      <section class="slide" data-module="安装与配置" data-title="外部鉴权与计费模型">
+<section class="slide" data-module="安装与配置" data-title="外部鉴权与计费模型">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块二 · 本地部署</p>
@@ -3744,7 +3654,7 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
         </div>
       </section>
 
-      <section class="slide" data-module="安装与配置" data-title="双端交互界面">
+<section class="slide" data-module="安装与配置" data-title="双端交互界面">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块二 · 本地部署</p>
@@ -3813,7 +3723,7 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
         </div>
       </section>
 
-      <section class="slide" data-module="安装与配置" data-title="服务健康检测">
+<section class="slide" data-module="安装与配置" data-title="服务健康检测">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块二 · 本地部署</p>
@@ -3849,20 +3759,15 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
             <div class="gallery-hint">点击截图可放大</div>
           </div>
         </div>
-        <div class="slide-footer">
-          <span class="demo-cue">演示切换：终端 → 浏览器</span>
-        </div>
       </section>
 
-      <section class="slide compact-center" data-module="飞书接入" data-title="私域工具集成">
+      <!-- section: 04-feishu.html -->
+<section class="slide compact-center" data-module="飞书接入" data-title="私域工具集成">
         <div class="slide-body module-intro">
           <div class="module-intro-copy">
             <p class="eyebrow">模块三</p>
             <h2>模块三：飞书端接入</h2>
             <p>从"本地可用"走向"飞书内可用"。涉及权限、事件、发布等操作时，建议严格按顺序执行。</p>
-            <div class="deck-meta">
-              <span class="demo-cue">演示切换：浏览器 → 终端 → 飞书</span>
-            </div>
           </div>
           <div class="module-intro-side">
             <div class="modules-grid">
@@ -3891,7 +3796,7 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
         </div>
       </section>
 
-      <section class="slide layout-contrast-dense" data-module="飞书接入" data-title="接入客户端的优势">
+<section class="slide layout-contrast-dense" data-module="飞书接入" data-title="接入客户端的优势">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块三 · 飞书接入</p>
@@ -3924,7 +3829,7 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
         </div>
       </section>
 
-      <section class="slide" data-module="飞书接入" data-title="创建应用、获取凭证、添加机器人">
+<section class="slide" data-module="飞书接入" data-title="创建应用、获取凭证、添加机器人">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块三 · 飞书接入</p>
@@ -3975,7 +3880,7 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
         </div>
       </section>
 
-      <section class="slide" data-module="飞书接入" data-title="网关插件体系配置">
+<section class="slide" data-module="飞书接入" data-title="网关插件体系配置">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块三 · 飞书接入</p>
@@ -4018,12 +3923,9 @@ openclaw plugins enable feishu</div>
             <div class="gallery-hint">点击截图可放大</div>
           </div>
         </div>
-        <div class="slide-footer">
-          <span class="demo-cue">演示切换：终端</span>
-        </div>
       </section>
 
-      <section class="slide" data-module="飞书接入" data-title="飞书 Channel 注册">
+<section class="slide" data-module="飞书接入" data-title="飞书 Channel 注册">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块三 · 飞书接入</p>
@@ -4115,12 +4017,9 @@ openclaw plugins enable feishu</div>
             <div class="gallery-hint">点击截图可放大</div>
           </div>
         </div>
-        <div class="slide-footer">
-          <span class="demo-cue">演示切换：终端</span>
-        </div>
       </section>
 
-      <section class="slide layout-contrast-dense" data-module="飞书接入" data-title="交互边界划分">
+<section class="slide layout-contrast-dense" data-module="飞书接入" data-title="交互边界划分">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块三 · 飞书接入</p>
@@ -4161,7 +4060,7 @@ openclaw plugins enable feishu</div>
         </div>
       </section>
 
-      <section class="slide" data-module="飞书接入" data-title="事件、权限、发布">
+<section class="slide" data-module="飞书接入" data-title="事件、权限、发布">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块三 · 飞书接入</p>
@@ -4262,7 +4161,7 @@ openclaw plugins enable feishu</div>
         </div>
       </section>
 
-      <section class="slide" data-module="飞书接入" data-title="消息连通测试">
+<section class="slide" data-module="飞书接入" data-title="消息连通测试">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块三 · 飞书接入</p>
@@ -4325,12 +4224,10 @@ openclaw plugins enable feishu</div>
             </div>
           </div>
         </div>
-        <div class="slide-footer">
-          <span class="demo-cue">演示切换：飞书</span>
-        </div>
       </section>
 
-      <section class="slide compact-center" data-module="Skills 与个性化" data-title="扩展能力与个性化">
+      <!-- section: 05-skills-customization.html -->
+<section class="slide compact-center" data-module="Skills 与个性化" data-title="扩展能力与个性化">
         <div class="slide-body module-intro">
           <div class="module-intro-copy">
             <p class="eyebrow">模块四</p>
@@ -4369,7 +4266,7 @@ openclaw plugins enable feishu</div>
         </div>
       </section>
 
-      <section class="slide" data-module="Skills 与个性化" data-title="Skills 动作插件扩充">
+<section class="slide" data-module="Skills 与个性化" data-title="Skills 动作插件扩充">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块四 · Skills</p>
@@ -4395,7 +4292,7 @@ clawhub uninstall 技能名称</div>
         </div>
       </section>
 
-      <section class="slide" data-module="Skills 与个性化" data-title="Skills 安装操作指南">
+<section class="slide" data-module="Skills 与个性化" data-title="Skills 安装操作指南">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块四 · Skills</p>
@@ -4449,7 +4346,7 @@ npx clawhub@latest install weather --force</div>
         </div>
       </section>
 
-      <section class="slide layout-contrast-dense" data-module="Skills 与个性化" data-title="默认工具人现象">
+<section class="slide layout-contrast-dense" data-module="Skills 与个性化" data-title="默认工具人现象">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块四 · 三件套</p>
@@ -4473,7 +4370,7 @@ npx clawhub@latest install weather --force</div>
         </div>
       </section>
 
-      <section class="slide layout-contrast-dense" data-module="Skills 与个性化" data-title="系统角色配置架构">
+<section class="slide layout-contrast-dense" data-module="Skills 与个性化" data-title="系统角色配置架构">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块四 · 三件套</p>
@@ -4518,7 +4415,7 @@ npx clawhub@latest install weather --force</div>
         </div>
       </section>
 
-      <section class="slide layout-path-dense" data-module="Skills 与个性化" data-title="三种配置方式">
+<section class="slide layout-path-dense" data-module="Skills 与个性化" data-title="三种配置方式">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块四 · 三件套</p>
@@ -4547,7 +4444,7 @@ MacOS:
         </div>
       </section>
 
-      <section class="slide layout-config-dense" data-module="Skills 与个性化" data-title="编写 SOUL 角色说明">
+<section class="slide layout-config-dense" data-module="Skills 与个性化" data-title="编写 SOUL 角色说明">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块四 · 三件套</p>
@@ -4575,7 +4472,7 @@ MacOS:
         </div>
       </section>
 
-      <section class="slide layout-contrast-dense" data-module="Skills 与个性化" data-title="偏好机制与动作规范">
+<section class="slide layout-contrast-dense" data-module="Skills 与个性化" data-title="偏好机制与动作规范">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块四 · 三件套</p>
@@ -4604,12 +4501,9 @@ MacOS:
           </div>
         </div>
         <div class="callout">设置完成后，记得执行 `openclaw gateway restart` 重启一下。</div>
-        <div class="slide-footer">
-          <span class="demo-cue">演示切换：终端</span>
-        </div>
       </section>
 
-      <section class="slide layout-path-dense" data-module="Skills 与个性化" data-title="基于 Prompt 的定制">
+<section class="slide layout-path-dense" data-module="Skills 与个性化" data-title="基于 Prompt 的定制">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块四 · 三件套</p>
@@ -4648,7 +4542,7 @@ MacOS:
         </div>
       </section>
 
-      <section class="slide" data-module="Skills 与个性化" data-title="内部提示词工程">
+<section class="slide" data-module="Skills 与个性化" data-title="内部提示词工程">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块四 · 三件套</p>
@@ -4711,7 +4605,8 @@ MacOS:
         </div>
       </section>
 
-      <section class="slide compact-center" data-module="案例与 FAQ" data-title="实战案例与常见问题">
+      <!-- section: 06-cases-faq.html -->
+<section class="slide compact-center" data-module="案例与 FAQ" data-title="实战案例与常见问题">
         <div class="slide-body module-intro">
           <div class="module-intro-copy">
             <p class="eyebrow">模块五</p>
@@ -4745,7 +4640,7 @@ MacOS:
         </div>
       </section>
 
-      <section class="slide" data-module="案例与 FAQ" data-title="案例一：多源科技新闻摘要">
+<section class="slide" data-module="案例与 FAQ" data-title="案例一：多源科技新闻摘要">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块五 · 案例一</p>
@@ -4785,7 +4680,7 @@ MacOS:
         </div>
       </section>
 
-      <section class="slide layout-contrast-dense" data-module="案例与 FAQ" data-title="原理解析：四层数据流水线">
+<section class="slide layout-contrast-dense" data-module="案例与 FAQ" data-title="原理解析：四层数据流水线">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">案例一背后的逻辑</p>
@@ -4812,7 +4707,7 @@ MacOS:
         </div>
       </section>
 
-      <section class="slide" data-module="案例与 FAQ" data-title="未来职场的 AI 助理形态">
+<section class="slide" data-module="案例与 FAQ" data-title="未来职场的 AI 助理形态">
         <div class="slide-body"
           style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100%;">
           <figure style="margin: 0; padding: 0; display:flex; flex-direction:column; align-items:center; width:80%;">
@@ -4825,7 +4720,7 @@ MacOS:
         </div>
       </section>
 
-      <section class="slide" data-module="案例与 FAQ" data-title="案例二：深度调研">
+<section class="slide" data-module="案例与 FAQ" data-title="案例二：深度调研">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块五 · 案例二</p>
@@ -4877,7 +4772,7 @@ MacOS:
         </div>
       </section>
 
-      <section class="slide layout-path-dense" data-module="案例与 FAQ" data-title="原理解析：Agent 迭代搜索">
+<section class="slide layout-path-dense" data-module="案例与 FAQ" data-title="原理解析：Agent 迭代搜索">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">案例二背后的逻辑</p>
@@ -4907,7 +4802,7 @@ MacOS:
         </div>
       </section>
 
-      <section class="slide" data-module="案例与 FAQ" data-title="案例三：个人知识库（RAG）">
+<section class="slide" data-module="案例与 FAQ" data-title="案例三：个人知识库（RAG）">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块五 · 案例三</p>
@@ -4958,7 +4853,7 @@ MacOS:
         </div>
       </section>
 
-      <section class="slide layout-contrast-dense" data-module="案例与 FAQ" data-title="原理解析：RAG 的极简拆解">
+<section class="slide layout-contrast-dense" data-module="案例与 FAQ" data-title="原理解析：RAG 的极简拆解">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">案例三背后的逻辑</p>
@@ -4982,7 +4877,7 @@ MacOS:
         </div>
       </section>
 
-      <section class="slide" data-module="案例与 FAQ" data-title="常见问题">
+<section class="slide" data-module="案例与 FAQ" data-title="常见问题">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块五 · FAQ</p>
@@ -5027,7 +4922,7 @@ npm rm -g openclaw</div>
         </div>
       </section>
 
-      <section class="slide layout-contrast-dense" data-module="案例与 FAQ" data-title="龙虾养好的四种终极形态">
+<section class="slide layout-contrast-dense" data-module="案例与 FAQ" data-title="龙虾养好的四种终极形态">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">终极展望</p>
@@ -5057,7 +4952,7 @@ npm rm -g openclaw</div>
         <div class="callout">它的终极上限不再是一个好用的效率软件，而是一个"低成本的数字人类"。</div>
       </section>
 
-      <section class="slide" style="padding: 1rem 2rem;" data-module="案例与 FAQ" data-title="龙虾最终形态：视觉呈现">
+<section class="slide" style="padding: 1rem 2rem;" data-module="案例与 FAQ" data-title="龙虾最终形态：视觉呈现">
         <div class="slide-body"
           style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100%; padding:0;">
           <figure
@@ -5070,7 +4965,8 @@ npm rm -g openclaw</div>
         </div>
       </section>
 
-      <section class="slide" data-module="结束" data-title="课程重难点回顾">
+      <!-- section: 07-ending.html -->
+<section class="slide" data-module="结束" data-title="课程重难点回顾">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">结束</p>
@@ -5099,7 +4995,7 @@ npm rm -g openclaw</div>
         </div>
       </section>
 
-      <section class="slide compact-center ending-slide" data-module="结束" data-title="Thank You">
+<section class="slide compact-center ending-slide" data-module="结束" data-title="Thank You">
         <div class="slide-body" style="display:flex; align-items:center; justify-content:center; min-height:100%;">
           <div style="text-align:center; max-width:900px;">
             <p class="eyebrow" style="justify-content:center;">结束</p>
@@ -5108,24 +5004,12 @@ npm rm -g openclaw</div>
             <div class="ending-keys" style="margin-top: 32px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
               <span class="pill" style="font-size:11px;"><kbd style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:11px;">←→</kbd> 翻页</span>
               <span class="pill" style="font-size:11px;"><kbd style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:11px;">F</kbd> 全屏</span>
-              <span class="pill" style="font-size:11px;"><kbd style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:11px;">N</kbd> 讲师备注</span>
               <span class="pill" style="font-size:11px;"><kbd style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:11px;">Home</kbd> / <kbd style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:11px;">End</kbd> 首末页</span>
             </div>
           </div>
         </div>
       </section>
     </main>
-  </div>
-
-  <!-- Speaker Notes Panel -->
-  <div class="speaker-notes-panel" id="speakerNotes">
-    <div class="speaker-notes-header">
-      <strong><i data-lucide="message-square" style="width:14px;height:14px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i>讲师备注</strong>
-      <button class="speaker-notes-close" id="notesClose" type="button">关闭 (N)</button>
-    </div>
-    <div class="speaker-notes-content" id="notesContent">
-      <p class="note-placeholder">此页暂无讲师备注。按 N 键或点击顶部按钮关闭此面板。</p>
-    </div>
   </div>
 
   <div class="lightbox" id="lightbox">
@@ -5139,6 +5023,7 @@ npm rm -g openclaw</div>
     </div>
   </div>
 
+  
   <script>
     const slides = Array.from(document.querySelectorAll(".slide"));
     const sidebarList = document.getElementById("sidebarList");
@@ -5148,11 +5033,7 @@ npm rm -g openclaw</div>
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
     const fullscreenBtn = document.getElementById("fullscreenBtn");
-    const notesBtn = document.getElementById("notesBtn");
     const progressBar = document.getElementById("progressBar");
-    const speakerNotes = document.getElementById("speakerNotes");
-    const notesContent = document.getElementById("notesContent");
-    const notesClose = document.getElementById("notesClose");
     const stage = document.querySelector(".stage");
     const galleries = Array.from(document.querySelectorAll("[data-gallery]"));
     const lightbox = document.getElementById("lightbox");
@@ -5227,7 +5108,6 @@ npm rm -g openclaw</div>
       }
       stage.scrollTo({ top: 0, behavior: "smooth" });
       updateHash(index);
-      updateSpeakerNotes(slides[index]);
     }
 
     function goToSlide(index) {
@@ -5423,10 +5303,6 @@ npm rm -g openclaw</div>
         event.preventDefault();
         goToSlide(slides.length - 1);
       }
-      if (event.key === "n" || event.key === "N") {
-        event.preventDefault();
-        toggleSpeakerNotes();
-      }
       if (event.key === "f" || event.key === "F") {
         event.preventDefault();
         if (!document.fullscreenElement) {
@@ -5454,24 +5330,6 @@ npm rm -g openclaw</div>
     if (typeof lucide !== "undefined") {
       lucide.createIcons();
     }
-
-    /* === SPEAKER NOTES LOGIC === */
-    function toggleSpeakerNotes() {
-      speakerNotes.classList.toggle("open");
-      notesBtn.classList.toggle("notes-btn-active", speakerNotes.classList.contains("open"));
-    }
-
-    function updateSpeakerNotes(slide) {
-      const noteEl = slide.querySelector(".speaker-note");
-      if (noteEl) {
-        notesContent.innerHTML = noteEl.innerHTML;
-      } else {
-        notesContent.innerHTML = '<p class="note-placeholder">此页暂无讲师备注。按 N 键或点击顶部按钮关闭此面板。</p>';
-      }
-    }
-
-    notesBtn.addEventListener("click", toggleSpeakerNotes);
-    notesClose.addEventListener("click", toggleSpeakerNotes);
 
     initFromHash();
   </script>

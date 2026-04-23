@@ -1,0 +1,463 @@
+<section class="slide compact-center" data-module="飞书接入" data-title="私域工具集成">
+        <div class="slide-body module-intro">
+          <div class="module-intro-copy">
+            <p class="eyebrow">模块三</p>
+            <h2>模块三：飞书端接入</h2>
+            <p>从"本地可用"走向"飞书内可用"。涉及权限、事件、发布等操作时，建议严格按顺序执行。</p>
+          </div>
+          <div class="module-intro-side">
+            <div class="modules-grid">
+              <div class="module-box">
+                <span>Part 1</span>
+                <h3>飞书侧准备</h3>
+                <p>创建应用、取凭证、加机器人能力。</p>
+              </div>
+              <div class="module-box">
+                <span>Part 2</span>
+                <h3>OpenClaw 侧接入</h3>
+                <p>装插件、启用插件、配置渠道。</p>
+              </div>
+              <div class="module-box">
+                <span>Part 3</span>
+                <h3>事件与权限</h3>
+                <p>补齐"能收消息、能发消息、能用接口"。</p>
+              </div>
+              <div class="module-box">
+                <span>Part 4</span>
+                <h3>发布与配对</h3>
+                <p>真正让机器人在私聊和群聊里可用。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+<section class="slide layout-contrast-dense" data-module="飞书接入" data-title="接入客户端的优势">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">模块三 · 飞书接入</p>
+            <h2>如何接入飞书机器人？</h2>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="timeline timeline-6">
+            <div class="node">创建企业自建应用</div>
+            <div class="node">获取 AppID / AppSecret</div>
+            <div class="node">添加机器人能力</div>
+            <div class="node">安装并启用 Feishu 插件</div>
+            <div class="node">配置事件 / 权限 / 发布</div>
+            <div class="node">完成配对，在私聊或群聊里使用</div>
+          </div>
+          <div class="grid-3" style="margin-top:18px;">
+            <div class="card accent-card">
+              <h3>从本地走向多端驻留</h3>
+              <p>打通这一环，系统会实质性脱离浏览器限制，在即时通讯软件中开启二十四小时待命状态。</p>
+            </div>
+            <div class="card">
+              <h3>两端配置对齐</h3>
+              <p>大部分失败案例源于飞书后台配置遗漏。必须确保两端的事件订阅与发布信息完全匹配，服务才能接收动作消息。</p>
+            </div>
+            <div class="card teal-card">
+              <h3>渠道中枢映射</h3>
+              <p>系统通过渠道设置实现身份互认，从而确认依靠哪个底层身份往飞书环境发送结果。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+<section class="slide" data-module="飞书接入" data-title="创建应用、获取凭证、添加机器人">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">模块三 · 飞书接入</p>
+            <h2>创建应用、获取凭证、添加机器人</h2>
+            <p>这一页把 OpenClaw 接飞书之前，在飞书后台要做的三件事合成一页讲清楚。</p>
+          </div>
+        </div>
+        <div class="slide-body stack-gallery">
+          <div class="card accent-card">
+            <h3>先把飞书侧准备好</h3>
+            <div class="steps-list">
+              <div class="step-row"><strong>Step 1</strong>
+                <p>进入飞书开发者后台，创建企业自建应用。</p>
+              </div>
+              <div class="step-row"><strong>Step 2</strong>
+                <p>在"凭据与基础信息"里保存 AppID 和 AppSecret。</p>
+              </div>
+              <div class="step-row"><strong>Step 3</strong>
+                <p>在"添加应用能力"里把机器人能力加上。</p>
+              </div>
+            </div>
+            <div class="callout">这三步都发生在飞书后台，作用是先准备出一个能被 OpenClaw 绑定的应用。</div>
+          </div>
+          <div class="gallery gallery-wide" data-gallery>
+            <div class="gallery-stage">
+              <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+              <figure class="gallery-panel">
+                <img src="images/27.png" alt="创建企业自建应用" />
+                <figcaption>第 1 步：创建企业自建应用。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/29.png" alt="获取 AppID 和 AppSecret" />
+                <figcaption>第 2 步：保存好 AppID 和 AppSecret，后面 `channels add` 要用。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/28.png" alt="添加机器人能力" />
+                <figcaption>第 3 步：把机器人能力真正加到应用里。</figcaption>
+              </figure>
+              <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+            </div>
+            <div class="gallery-dots">
+              <button class="gallery-dot" type="button">1 创建应用</button>
+              <button class="gallery-dot" type="button">2 获取凭证</button>
+              <button class="gallery-dot" type="button">3 添加机器人</button>
+            </div>
+            <div class="gallery-hint">点击截图可放大</div>
+          </div>
+        </div>
+      </section>
+
+<section class="slide" data-module="飞书接入" data-title="网关插件体系配置">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">模块三 · 飞书接入</p>
+            <h2>插件安装与启用</h2>
+            <p>这一段抓三个命令就够了：查、装、启用。</p>
+          </div>
+        </div>
+        <div class="slide-body stack-gallery">
+          <div class="card accent-card">
+            <h3>关键命令</h3>
+            <div class="code-block">openclaw plugins list
+
+openclaw plugins install @openclaw/feishu
+
+openclaw plugins enable feishu</div>
+            <p>先看列表里有没有 Feishu 插件；如果没有，就安装；如果状态是 disabled，就启用。</p>
+          </div>
+          <div class="gallery gallery-wide" data-gallery>
+            <div class="gallery-stage">
+              <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+              <figure class="gallery-panel">
+                <img src="images/30.png" alt="查看插件列表" />
+                <figcaption>先用 `openclaw plugins list` 确认 Feishu 插件是否已经安装。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/31.png" alt="启用 feishu 插件" />
+                <figcaption>如果状态是 `disabled`，执行 `openclaw plugins enable feishu`。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/32.png" alt="loaded 状态" />
+                <figcaption>状态显示 `loaded`，说明启用成功。</figcaption>
+              </figure>
+              <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+            </div>
+            <div class="gallery-dots">
+              <button class="gallery-dot" type="button">1 查列表</button>
+              <button class="gallery-dot" type="button">2 启用插件</button>
+              <button class="gallery-dot" type="button">3 看 loaded</button>
+            </div>
+            <div class="gallery-hint">点击截图可放大</div>
+          </div>
+        </div>
+      </section>
+
+<section class="slide" data-module="飞书接入" data-title="飞书 Channel 注册">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">模块三 · 飞书接入</p>
+            <h2>渠道配置关键选项</h2>
+            <p>这一步才是真正把飞书应用和 OpenClaw 连起来。</p>
+          </div>
+        </div>
+        <div class="slide-body stack-gallery">
+          <div>
+            <div class="code-block">openclaw channels add</div>
+            <div class="steps-list">
+              <div class="step-row"><strong>选择</strong>
+                <p>先选 Yes，再选飞书。</p>
+              </div>
+              <div class="step-row"><strong>凭证</strong>
+                <p>依次输入飞书应用的 AppID 和 AppSecret。</p>
+              </div>
+              <div class="step-row"><strong>域名</strong>
+                <p>国内版飞书选 `feishu.cn`。</p>
+              </div>
+              <div class="step-row"><strong>群聊策略</strong>
+                <p>群聊一般选 `Open`，只有 @ 机器人时才回复。</p>
+              </div>
+              <div class="step-row"><strong>私聊策略</strong>
+                <p>这里先知道有几种模式可选，下一页单独解释区别。</p>
+              </div>
+              <div class="step-row"><strong>绑定 Agent</strong>
+                <p>把飞书机器人与默认 AI Agent 绑定。</p>
+              </div>
+            </div>
+            <div class="grid-3" style="margin-top:18px;">
+              <div class="card">
+                <h3>这一步是什么</h3>
+                <p>把"飞书"正式注册成 OpenClaw 的一个消息入口。</p>
+              </div>
+              <div class="card accent-card">
+                <h3>为什么要做</h3>
+                <p>前面装插件只是把能力装进来，这一步才是真正把你的飞书应用和 OpenClaw 连起来。</p>
+              </div>
+              <div class="card teal-card">
+                <h3>做完效果</h3>
+                <p>配置完成后，OpenClaw 才知道该用哪个飞书应用去接收消息、回复消息、绑定对应的 Agent。</p>
+              </div>
+            </div>
+          </div>
+          <div class="gallery gallery-wide" data-gallery>
+            <div class="gallery-stage">
+              <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+              <figure class="gallery-panel">
+                <img src="images/33.png" alt="添加飞书渠道第一步" />
+                <figcaption>进入 `openclaw channels add` 后，先选 Yes，再选飞书。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/34.png" alt="选择飞书选项" />
+                <figcaption>选择飞书选项。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/35.png" alt="输入 AppID 和 AppSecret" />
+                <figcaption>根据提示输入 AppID 和 AppSecret。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/36.png" alt="选择 feishu.cn" />
+                <figcaption>国内版飞书域名选择 `feishu.cn`。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/37.png" alt="群聊策略选择 Open" />
+                <figcaption>群聊策略一般选择 `Open`。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/38.png" alt="群聊策略完成" />
+                <figcaption>群聊策略配置完成后继续。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/39.png" alt="私聊策略选择确认" />
+                <figcaption>进入私聊策略选择。</figcaption>
+              </figure>
+              <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+            </div>
+            <div class="gallery-dots">
+              <button class="gallery-dot" type="button">1 进入渠道</button>
+              <button class="gallery-dot" type="button">2 选飞书</button>
+              <button class="gallery-dot" type="button">3 填凭证</button>
+              <button class="gallery-dot" type="button">4 选域名</button>
+              <button class="gallery-dot" type="button">5 群聊策略</button>
+              <button class="gallery-dot" type="button">6 群聊完成</button>
+              <button class="gallery-dot" type="button">7 私聊确认</button>
+              <button class="gallery-dot" type="button">8 进入私聊</button>
+            </div>
+            <div class="gallery-hint">点击截图可放大</div>
+          </div>
+        </div>
+      </section>
+
+<section class="slide layout-contrast-dense" data-module="飞书接入" data-title="交互边界划分">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">模块三 · 飞书接入</p>
+            <h2>访问控制方案详解</h2>
+            <p>这里重点不是命令本身，而是理解四种模式分别适合什么场景。</p>
+          </div>
+        </div>
+        <div class="slide-body split-tight">
+          <div class="card warning">
+            <h3>四种私聊模式</h3>
+            <ul class="list-clean" style="margin-top:14px;">
+              <li><strong>pairing：</strong>陌生用户需要通过配对码授权后才能使用。</li>
+              <li><strong>open：</strong>开放模式，允许所有用户私聊机器人。</li>
+              <li><strong>allowlist：</strong>白名单模式，只有在配置文件的"允许列表"里的用户才能私聊机器人。</li>
+              <li><strong>disabled：</strong>禁用模式，完全关闭机器人的私聊功能，无法在任何私聊中使用。</li>
+            </ul>
+            <div class="callout">如果你希望先稳一点，`pairing` 往往是最合适的起点：先验证配对，再开放使用。</div>
+          </div>
+          <div class="gallery gallery-wide" data-gallery>
+            <div class="gallery-stage">
+              <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+              <figure class="gallery-panel">
+                <img src="images/40.png" alt="pairing 私聊策略" />
+                <figcaption>私聊策略可选 `pairing`，陌生用户要先通过配对码授权。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/41.png" alt="绑定默认 Agent" />
+                <figcaption>最后把飞书机器人与默认 AI Agent 绑定。</figcaption>
+              </figure>
+              <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+            </div>
+            <div class="gallery-dots">
+              <button class="gallery-dot" type="button">1 私聊策略</button>
+              <button class="gallery-dot" type="button">2 绑定 Agent</button>
+            </div>
+            <div class="gallery-hint">点击截图可放大</div>
+          </div>
+        </div>
+      </section>
+
+<section class="slide" data-module="飞书接入" data-title="事件、权限、发布">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">模块三 · 飞书接入</p>
+            <h2>事件配置、权限配置、发布版本</h2>
+            <p>这是最容易因为漏步骤而卡住的地方，必须按顺序讲。</p>
+          </div>
+        </div>
+        <div class="slide-body grid-3">
+          <div class="card accent-card">
+            <h3>事件配置</h3>
+            <p><strong>这一步是什么：</strong> 告诉飞书"哪些消息和事件要推送给 OpenClaw"，以及机器人要监听哪些变化。</p>
+            <p>在"事件与订阅"里，选择"使用长连接接收事件"，再勾选接收消息、消息已读、消息撤回、机器人进群、机器人被移出群等事件。</p>
+            <div class="gallery gallery-compact" data-gallery style="margin-top:14px;">
+              <div class="gallery-stage">
+                <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                <figure class="gallery-panel">
+                  <img src="images/42.png" alt="长连接接收事件" />
+                  <figcaption>先选择长连接方式。</figcaption>
+                </figure>
+                <figure class="gallery-panel" hidden>
+                  <img src="images/43.png" alt="添加事件按钮" />
+                  <figcaption>然后点击"添加事件"。</figcaption>
+                </figure>
+                <figure class="gallery-panel" hidden>
+                  <img src="images/44.png" alt="事件配置第一部分" />
+                  <figcaption>勾选消息与群组相关事件。</figcaption>
+                </figure>
+                <figure class="gallery-panel" hidden>
+                  <img src="images/45.png" alt="事件配置第二部分" />
+                  <figcaption>继续勾选需要监听的事件。</figcaption>
+                </figure>
+                <figure class="gallery-panel" hidden>
+                  <img src="images/46.png" alt="事件配置第三部分" />
+                  <figcaption>确认事件配置完整。</figcaption>
+                </figure>
+                <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+              </div>
+              <div class="gallery-dots">
+                <button class="gallery-dot" type="button">1 长连接</button>
+                <button class="gallery-dot" type="button">2 加事件</button>
+                <button class="gallery-dot" type="button">3 事件 1</button>
+                <button class="gallery-dot" type="button">4 事件 2</button>
+                <button class="gallery-dot" type="button">5 事件 3</button>
+              </div>
+            </div>
+          </div>
+          <div class="card teal-card">
+            <h3>权限配置</h3>
+            <p><strong>这一步是什么：</strong> 给飞书机器人补齐它在飞书生态里允许执行的能力范围。</p>
+            <p><strong>为什么要做：</strong> 事件配置解决的是"能不能收到"，权限配置解决的是"收到以后能不能做、能不能回"。</p>
+            <p><strong>做完效果：</strong> 权限生效后，机器人才能正常读消息、发消息，以及使用相关接口能力，不然很容易出现能连上但不能正常工作的情况。</p>
+            <div class="gallery gallery-compact" data-gallery style="margin-top:14px;">
+              <div class="gallery-stage">
+                <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                <figure class="gallery-panel">
+                  <img src="images/47.png" alt="批量导入权限入口" />
+                  <figcaption>先进入权限管理并打开批量导入入口。</figcaption>
+                </figure>
+                <figure class="gallery-panel" hidden>
+                  <img src="images/48.png" alt="批量导入权限" />
+                  <figcaption>这里有完整 JSON，可直接复制导入。</figcaption>
+                </figure>
+                <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+              </div>
+              <div class="gallery-dots">
+                <button class="gallery-dot" type="button">1 导入入口</button>
+                <button class="gallery-dot" type="button">2 导入 JSON</button>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>发布版本</h3>
+            <p>进入"版本管理与发布"，创建版本，填写版本号和更新说明，再确认发布。</p>
+            <div class="gallery gallery-compact" data-gallery style="margin-top:14px;">
+              <div class="gallery-stage">
+                <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                <figure class="gallery-panel">
+                  <img src="images/49.png" alt="创建版本入口" />
+                  <figcaption>先进入版本管理并点击创建版本。</figcaption>
+                </figure>
+                <figure class="gallery-panel" hidden>
+                  <img src="images/50.png" alt="创建版本并发布" />
+                  <figcaption>填写版本信息并发布。</figcaption>
+                </figure>
+                <figure class="gallery-panel" hidden>
+                  <img src="images/51.png" alt="版本发布完成" />
+                  <figcaption>发布完成后配置才会真正生效。</figcaption>
+                </figure>
+                <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+              </div>
+              <div class="gallery-dots">
+                <button class="gallery-dot" type="button">1 创建版本</button>
+                <button class="gallery-dot" type="button">2 发布</button>
+                <button class="gallery-dot" type="button">3 完成</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+<section class="slide" data-module="飞书接入" data-title="消息连通测试">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">模块三 · 飞书接入</p>
+            <h2>配对成功与群聊使用</h2>
+            <p>这是飞书接入模块的结果页，要明确看到"终于真的能聊了"。</p>
+          </div>
+        </div>
+        <div class="slide-body grid-2">
+          <div class="card accent-card">
+            <h3>私聊配对</h3>
+            <ul>
+              <li>在飞书里搜索刚创建的应用名称。</li>
+              <li>机器人会回复一个配对信息。</li>
+              <li>复制其中的命令回到终端执行。</li>
+              <li>执行后再回到飞书窗口，就能正常回复了。</li>
+            </ul>
+            <div class="gallery gallery-compact" data-gallery>
+              <div class="gallery-stage">
+                <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                <figure class="gallery-panel">
+                  <img src="images/52.png" alt="飞书收到配对信息" />
+                  <figcaption>首次私聊会收到配对信息。</figcaption>
+                </figure>
+                <figure class="gallery-panel" hidden>
+                  <img src="images/54.png" alt="复制命令到终端执行" />
+                  <figcaption>把命令复制到终端执行后，私聊就能正常使用。</figcaption>
+                </figure>
+                <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+              </div>
+              <div class="gallery-dots">
+                <button class="gallery-dot" type="button">1 收到配对码</button>
+                <button class="gallery-dot" type="button">2 执行配对</button>
+              </div>
+            </div>
+          </div>
+          <div class="card teal-card">
+            <h3>群聊使用</h3>
+            <ul>
+              <li>在飞书客户端把机器人添加到群聊。</li>
+              <li>必须是内部组织群聊。</li>
+              <li>添加成功后，在群里 @ 它，就可以响应需求。</li>
+            </ul>
+            <div class="gallery gallery-compact" data-gallery>
+              <div class="gallery-stage">
+                <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                <figure class="gallery-panel">
+                  <img src="images/57.png" alt="把机器人加入群聊" />
+                  <figcaption>把机器人加入已有群聊。</figcaption>
+                </figure>
+                <figure class="gallery-panel" hidden>
+                  <img src="images/59.png" alt="群聊里 @ 机器人" />
+                  <figcaption>群里 @ 它，就能开始交互。</figcaption>
+                </figure>
+                <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+              </div>
+              <div class="gallery-dots">
+                <button class="gallery-dot" type="button">1 加进群聊</button>
+                <button class="gallery-dot" type="button">2 群里 @ 它</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
