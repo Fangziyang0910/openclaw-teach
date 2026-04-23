@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 const rootDir = process.cwd();
-const sourceDir = path.join(rootDir, ".slides-src");
+const sourceDir = path.join(rootDir, "src");
 const outputFile = path.join(rootDir, "openclaw-training-ppt.html");
 
 async function read(filePath) {
