@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(open:*)",
+      "Bash(lsof -ti:8765)",
+      "Bash(xargs kill:*)",
+      "Bash(python3 -m http.server 8765)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8765/openclaw-training-ppt.html)",
+      "mcp__plugin_playwright_playwright__browser_take_screenshot",
+      "mcp__plugin_playwright_playwright__browser_snapshot",
+      "mcp__plugin_playwright_playwright__browser_console_messages",
+      "mcp__plugin_playwright_playwright__browser_press_key",
+      "Bash(kill 18905 19793)",
+      "mcp__plugin_playwright_playwright__browser_evaluate",
+      "Bash(xxd \"/Users/fang/Downloads/openclaw从入门到精通/openclaw-training-ppt.html\")",
+      "Bash(python3 -m http.server 8766)",
+      "mcp__plugin_playwright_playwright__browser_tabs"
+    ]
+  }
+}
