@@ -44,13 +44,13 @@
 
     /* Module icon map for sidebar */
     const moduleIcons = {
-      "模块一：认识 OpenClaw": "compass",
-      "模块二：基本原理": "network",
-      "模块三：部署思路": "route",
-      "模块四：现场部署": "server",
-      "模块五：飞书接入": "message-circle",
-      "模块六：Skills 配置": "puzzle",
-      "模块七：案例实战": "lightbulb",
+      "第一部分：认识 OpenClaw": "compass",
+      "第二部分：基本原理": "network",
+      "第三部分：部署思路": "route",
+      "第四部分：现场部署": "server",
+      "第五部分：飞书接入": "message-circle",
+      "第六部分：Skills 配置": "puzzle",
+      "第七部分：案例实战": "lightbulb",
     };
 
     slides.forEach((slide, index) => {
