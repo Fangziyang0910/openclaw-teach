@@ -1,9 +1,148 @@
+<section class="slide compact-center deploy-route-intro-slide" data-module="第三部分：部署思路" data-title="部署思路导入">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">第三部分 · 部署思路</p>
+            <h2>先按使用场景选部署方式</h2>
+            <p>OpenClaw 部署方式很多，课堂里先抓住四类：本地、云服务器、平台托管、Docker。</p>
+          </div>
+        </div>
+        <div class="slide-body grid-4 route-card-grid">
+          <div class="card accent-card">
+            <h3>本地部署</h3>
+            <p>跑在自己的电脑上。安装、配置、日志、文件权限都看得见，适合课堂现场一步步跟。</p>
+            <span class="pill">课堂主线</span>
+          </div>
+          <div class="card teal-card">
+            <h3>云服务器部署</h3>
+            <p>跑在轻量服务器或云主机上。电脑关了也能继续在线，适合消息机器人和定时任务。</p>
+            <span class="pill">长期在线</span>
+          </div>
+          <div class="card">
+            <h3>第三方平台托管</h3>
+            <p>平台把运行环境准备好，用户主要负责创建实例、选模型、接入口，适合快速体验。</p>
+            <span class="pill">最快体验</span>
+          </div>
+          <div class="card warning">
+            <h3>Docker 部署</h3>
+            <p>把 OpenClaw 放进容器里运行。环境更容易迁移，适合测试、多版本验证和服务器隔离。</p>
+            <span class="pill">进阶选择</span>
+          </div>
+        </div>
+      </section>
+
+<section class="slide deploy-route-table-slide" data-module="第三部分：部署思路" data-title="四种部署方式对比">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">第三部分 · 部署思路</p>
+            <h2>四种部署方式对比</h2>
+            <p>同一个 OpenClaw，放在不同地方运行，后面的成本、权限和维护方式会很不一样。</p>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="table-wrap route-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>方案</th>
+                  <th>先准备什么</th>
+                  <th>用起来的感觉</th>
+                  <th>要注意什么</th>
+                  <th>更适合谁</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>本地部署</strong></td>
+                  <td>一台电脑、Node.js、模型 Key、可用网络</td>
+                  <td>像在自己电脑里养一个助手，文件和日志都在手边</td>
+                  <td>电脑休眠、断网、权限弹窗都会影响运行</td>
+                  <td>课堂学员、个人用户、本地资料整理</td>
+                </tr>
+                <tr>
+                  <td><strong>云服务器部署</strong></td>
+                  <td>轻量服务器、登录方式、端口、模型 Key</td>
+                  <td>像把助手放到一台长期在线的机器上，手机和飞书都能找它</td>
+                  <td>服务器安全、升级、日志、备份需要有人看</td>
+                  <td>长期助手、团队机器人、自动推送任务</td>
+                </tr>
+                <tr>
+                  <td><strong>第三方平台托管</strong></td>
+                  <td>平台账号、会员或额度、平台支持的入口</td>
+                  <td>创建最快，很多环境细节已经被平台处理掉</td>
+                  <td>模型、额度、数据位置和可装技能跟着平台规则走</td>
+                  <td>飞书、Kimi、扣子、WorkBuddy 等生态用户</td>
+                </tr>
+                <tr>
+                  <td><strong>Docker 部署</strong></td>
+                  <td>Docker、Compose 文件、端口、数据卷、环境变量</td>
+                  <td>环境边界清楚，迁移、重建和版本切换更利落</td>
+                  <td>端口映射、卷挂载、容器日志要会看</td>
+                  <td>开发者、测试环境、服务器隔离部署</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout">课堂现场采用本地部署。云服务器适合长期在线，平台托管适合快速体验，Docker 适合开发和隔离环境。</div>
+        </div>
+      </section>
+
+<section class="slide deploy-route-table-slide deploy-choice-slide" data-module="第三部分：部署思路" data-title="部署方案怎么选">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">第三部分 · 部署思路</p>
+            <h2>部署方案怎么选</h2>
+            <p>真正做选择时，看三件事：任务要跑多久、要碰哪些数据、谁负责后续维护。</p>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="table-wrap route-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>使用目标</th>
+                  <th>优先方案</th>
+                  <th>原因</th>
+                  <th>后续动作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>课堂现场学习</td>
+                  <td>本地部署</td>
+                  <td>安装、配置、启动、排错都能看到，后面接飞书也更容易理解</td>
+                  <td>先跑通 Web UI，再进入飞书接入</td>
+                </tr>
+                <tr>
+                  <td>个人日常助手</td>
+                  <td>本地部署 / 云服务器</td>
+                  <td>处理本机资料用本地；长期收消息、推送结果用云服务器</td>
+                  <td>先确定数据放哪里，再决定入口放哪里</td>
+                </tr>
+                <tr>
+                  <td>快速体验效果</td>
+                  <td>第三方平台托管</td>
+                  <td>省掉环境安装，适合先看飞书、浏览器、移动端里的使用效果</td>
+                  <td>确认额度、数据策略和可用技能</td>
+                </tr>
+                <tr>
+                  <td>开发测试和隔离</td>
+                  <td>Docker 部署</td>
+                  <td>容器环境干净，换版本、重建环境、复制配置都更方便</td>
+                  <td>提前规划端口、数据卷和环境变量</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout">课堂里先把本地部署跑通。课后想长期在线、接团队入口或做隔离测试时，再按这张表换方案。</div>
+        </div>
+      </section>
+
 <section class="slide concept-visual-slide safety-visual-slide" data-module="第三部分：部署思路" data-title="自动化与长期助手的边界">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">第三部分 · 部署思路</p>
-            <h2>自动化与长期助手的边界</h2>
-            <p>OpenClaw 越贴近真实工作，越要重视授权范围和使用边界。</p>
+            <h2>部署方案选完以后看权限</h2>
+            <p>一旦让 OpenClaw 读文件、调用脚本、接消息入口，权限范围就要一起管起来。</p>
           </div>
         </div>
         <div class="slide-body concept-visual-body">

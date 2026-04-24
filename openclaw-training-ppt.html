@@ -56,6 +56,7 @@
 
     /* === MODULE COLOR SYSTEM === */
     [data-module="第一部分：认识 OpenClaw"] { --module: #b45309; --module-soft: #fbbf24; --module-deep: #7c2d12; }
+    [data-module="第二部分：核心原理"] { --module: #2563eb; --module-soft: #38bdf8; --module-deep: #1e3a8a; }
     [data-module="第三部分：部署思路"] { --module: #2563eb; --module-soft: #60a5fa; --module-deep: #1e3a8a; }
     [data-module="第四部分：现场部署"] { --module: #0f766e; --module-soft: #2dd4bf; --module-deep: #064e3b; }
     [data-module="第五部分：飞书接入"] { --module: #7c3aed; --module-soft: #a78bfa; --module-deep: #5b21b6; }
@@ -4664,6 +4665,50 @@
       border-color: rgba(180, 83, 9, 0.18);
     }
 
+    /* === DEPLOYMENT STRATEGY === */
+    .deploy-route-intro-slide .route-card-grid {
+      gap: clamp(10px, 1.2vw, 14px);
+    }
+
+    .deploy-route-intro-slide .card {
+      padding: clamp(14px, 1.5vw, 20px);
+      min-height: 0;
+    }
+
+    .deploy-route-intro-slide .card p {
+      font-size: clamp(13px, 1.05vw, 15px);
+      line-height: 1.48;
+    }
+
+    .deploy-route-table-slide .slide-body {
+      display: grid;
+      gap: clamp(10px, 1.2vw, 14px);
+    }
+
+    .deploy-route-table-slide .table-wrap {
+      margin-top: 0;
+      border-radius: 18px;
+    }
+
+    .deploy-route-table-slide th,
+    .deploy-route-table-slide td {
+      padding: clamp(8px, 0.82vw, 11px) clamp(7px, 0.82vw, 11px);
+      font-size: clamp(10.8px, 0.88vw, 12.8px);
+      line-height: 1.36;
+    }
+
+    .deploy-route-table-slide .callout {
+      margin-top: 0;
+      font-size: clamp(12px, 0.95vw, 14px);
+      padding: clamp(10px, 1.2vw, 14px) clamp(12px, 1.5vw, 18px);
+    }
+
+    .deploy-choice-slide th,
+    .deploy-choice-slide td {
+      font-size: clamp(11px, 0.92vw, 13px);
+      line-height: 1.4;
+    }
+
     .community-context-strip {
       display: flex;
       align-items: center;
@@ -4708,6 +4753,231 @@
       width: 18px;
       height: 18px;
       flex: none;
+    }
+
+    /* === MODULE 2: CORE PRINCIPLES SLIDES === */
+    .principles-intro-slide .module-intro-copy h2 {
+      max-width: 520px;
+    }
+
+    .principle-index {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .principle-index-item {
+      min-height: 138px;
+      display: grid;
+      align-content: start;
+      gap: 7px;
+      padding: 16px 16px 14px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid color-mix(in srgb, var(--module, #2563eb) 16%, transparent);
+      box-shadow: 0 14px 32px rgba(30, 58, 138, 0.08);
+    }
+
+    .principle-index-item span {
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--module), var(--module-soft));
+      font-size: 12px;
+      font-weight: 900;
+      font-family: var(--font-mono);
+    }
+
+    .principle-index-item strong {
+      font-size: clamp(15px, 1.3vw, 18px);
+      line-height: 1.25;
+    }
+
+    .principle-index-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(11px, 0.95vw, 13px);
+      line-height: 1.55;
+      font-weight: 650;
+    }
+
+    .principle-visual-body {
+      display: grid;
+      place-items: center;
+      min-height: 0;
+    }
+
+    .principle-wide-figure img {
+      width: 100%;
+      max-height: 518px;
+      object-fit: contain;
+    }
+
+    .principle-square-figure {
+      align-self: center;
+      align-items: center;
+    }
+
+    .principle-square-figure img {
+      max-width: 100%;
+      max-height: 476px;
+      object-fit: contain;
+    }
+
+    .principle-split-visual {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.36fr) minmax(0, 0.64fr);
+      gap: 20px;
+      align-items: center;
+      min-height: 0;
+    }
+
+    .agent-loop-slide .principle-split-visual,
+    .workspace-memory-slide .principle-split-visual {
+      grid-template-columns: minmax(0, 0.58fr) minmax(280px, 0.42fr);
+    }
+
+    .principle-copy-stack {
+      display: grid;
+      gap: 12px;
+      align-content: center;
+      min-width: 0;
+    }
+
+    .principle-copy-stack div {
+      display: grid;
+      gap: 6px;
+      padding: 16px 17px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid color-mix(in srgb, var(--module, #2563eb) 14%, transparent);
+      box-shadow: 0 12px 28px rgba(30, 58, 138, 0.06);
+    }
+
+    .principle-copy-stack strong {
+      color: var(--module-deep);
+      font-size: clamp(15px, 1.2vw, 18px);
+      line-height: 1.25;
+    }
+
+    .principle-copy-stack span {
+      color: var(--muted);
+      font-size: clamp(12px, 1vw, 14px);
+      line-height: 1.5;
+      font-weight: 650;
+    }
+
+    .principle-role-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .principle-role-card {
+      min-height: 156px;
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      gap: 8px;
+      padding: 18px 18px 16px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(124, 45, 18, 0.1);
+      box-shadow: 0 12px 30px rgba(72, 45, 16, 0.06);
+    }
+
+    .principle-role-card.strong-role {
+      background: linear-gradient(135deg, color-mix(in srgb, var(--module, #2563eb) 12%, rgba(255,255,255,0.9)), rgba(255,255,255,0.92));
+      border-color: color-mix(in srgb, var(--module, #2563eb) 24%, transparent);
+    }
+
+    .principle-role-card i {
+      width: 28px;
+      height: 28px;
+      color: var(--module);
+    }
+
+    .principle-role-card strong {
+      font-size: clamp(15px, 1.28vw, 18px);
+      line-height: 1.25;
+    }
+
+    .principle-role-card span {
+      color: var(--muted);
+      font-size: clamp(11.5px, 0.98vw, 13.5px);
+      line-height: 1.55;
+      font-weight: 650;
+    }
+
+    .principle-recap-flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .principle-recap-flow div {
+      position: relative;
+      min-height: 218px;
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      gap: 9px;
+      padding: 18px 16px 16px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid color-mix(in srgb, var(--module, #2563eb) 16%, transparent);
+      box-shadow: 0 12px 30px rgba(30, 58, 138, 0.06);
+    }
+
+    .principle-recap-flow div::after {
+      content: "";
+      position: absolute;
+      top: 42px;
+      right: -12px;
+      width: 12px;
+      height: 2px;
+      background: color-mix(in srgb, var(--module, #2563eb) 42%, transparent);
+    }
+
+    .principle-recap-flow div:last-child::after {
+      display: none;
+    }
+
+    .principle-recap-flow span {
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 13px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--module), var(--module-soft));
+      font-size: 12px;
+      font-weight: 900;
+      font-family: var(--font-mono);
+    }
+
+    .principle-recap-flow strong {
+      font-size: clamp(15px, 1.25vw, 18px);
+      line-height: 1.25;
+    }
+
+    .principle-recap-flow p {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(11.5px, 0.98vw, 13.5px);
+      line-height: 1.5;
+      font-weight: 650;
+    }
+
+    .slide.active .principle-index-item,
+    .slide.active .principle-role-card,
+    .slide.active .principle-copy-stack div,
+    .slide.active .principle-recap-flow div {
+      animation: scaleIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     .slide[data-title="Agent：从回答问题到推进任务"] .agent-statement {
@@ -5458,7 +5728,7 @@
       </div>
     </div>
     <div class="topbar-actions">
-      <div class="progress"><span data-current>1</span> / <span data-total>60</span></div>
+      <div class="progress"><span data-current>1</span> / <span data-total>71</span></div>
       <button class="btn" id="prevBtn" type="button"><i class="btn-icon" data-lucide="chevron-left"></i> 上一页</button>
       <button class="btn" id="nextBtn" type="button">下一页 <i class="btn-icon" data-lucide="chevron-right"></i></button>
       <button class="btn" id="fullscreenBtn" type="button" title="全屏 (F)"><i class="btn-icon" data-lucide="maximize-2"></i></button>
@@ -5891,13 +6161,394 @@
         </div>
       </section>
 
+      <!-- section: 02-core-principles.html -->
+<section class="slide compact-center principles-intro-slide" data-module="第二部分：核心原理" data-title="核心运行原理导入">
+        <div class="slide-body module-intro">
+          <div class="module-intro-copy">
+            <p class="eyebrow">第二部分</p>
+            <h2>OpenClaw 的核心运行原理</h2>
+            <p>一条消息进入系统后，会依次经过事件接入、会话路由、上下文组装、工具调用和结果回传。</p>
+          </div>
+          <div class="module-intro-side">
+            <div class="principle-index">
+              <div class="principle-index-item">
+                <span>01</span>
+                <strong>系统位置</strong>
+                <p>Channel、Gateway、Agent、模型、工具和上下文层的职责边界。</p>
+              </div>
+              <div class="principle-index-item">
+                <span>02</span>
+                <strong>消息链路</strong>
+                <p>消息事件进入 Session，再沿着调度链路返回原入口。</p>
+              </div>
+              <div class="principle-index-item">
+                <span>03</span>
+                <strong>执行机制</strong>
+                <p>模型判断、工具结果和 Skill 规则共同组成任务过程。</p>
+              </div>
+              <div class="principle-index-item">
+                <span>04</span>
+                <strong>长期上下文</strong>
+                <p>Workspace、Context、Memory 决定一次任务能拿到多少有效信息。</p>
+              </div>
+            </div>
+            <div class="intro-note">部署时看 Gateway，接入飞书时看 Channel，配置 Skills 时看能力层，做案例时看上下文和工具调用。</div>
+          </div>
+        </div>
+      </section>
+
+<section class="slide concept-visual-slide principle-map-slide" data-module="第二部分：核心原理" data-title="OpenClaw 在系统里的位置">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">第二部分 · 系统位置</p>
+            <h2>OpenClaw 在系统里的位置</h2>
+            <p>OpenClaw 是一个 Agent Gateway。它把消息入口、模型能力、工具系统和长期资料连接到同一条任务链路里。</p>
+          </div>
+        </div>
+        <div class="slide-body principle-visual-body">
+          <figure class="concept-visual-figure principle-wide-figure">
+            <img src="images/openclaw 总体分层图.png" alt="OpenClaw 总体分层图：用户、Channel、Gateway、Agent、Model Tools Skills、Workspace Context Memory 和结果返回" />
+          </figure>
+        </div>
+      </section>
+
+<section class="slide principles-role-slide" data-module="第二部分：核心原理" data-title="核心角色">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">第二部分 · 系统位置</p>
+            <h2>核心角色</h2>
+            <p>先分清每个组件处理哪类问题：消息、会话、推理、执行、资料和记忆。</p>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="principle-role-grid">
+            <div class="principle-role-card">
+              <i data-lucide="message-square-more"></i>
+              <strong>Channel</strong>
+              <span>平台适配层。把飞书、Web UI 等入口里的消息转换成系统事件。</span>
+            </div>
+            <div class="principle-role-card strong-role">
+              <i data-lucide="waypoints"></i>
+              <strong>Gateway</strong>
+              <span>运行时调度层。维护连接、Session、权限检查、任务分发和响应回传。</span>
+            </div>
+            <div class="principle-role-card">
+              <i data-lucide="bot"></i>
+              <strong>Agent</strong>
+              <span>执行控制层。处理上下文准备、步骤推进、工具调用和中间结果整理。</span>
+            </div>
+            <div class="principle-role-card">
+              <i data-lucide="brain-circuit"></i>
+              <strong>Model</strong>
+              <span>判断与生成层。完成意图识别、计划推理、工具选择和最终表达。</span>
+            </div>
+            <div class="principle-role-card">
+              <i data-lucide="wrench"></i>
+              <strong>Tools / Skills</strong>
+              <span>能力层。Tools 执行动作，Skills 注入任务步骤、约束和输出格式。</span>
+            </div>
+            <div class="principle-role-card">
+              <i data-lucide="database"></i>
+              <strong>Workspace / Context / Memory</strong>
+              <span>上下文层。管理文件材料、当前窗口内容、用户偏好和长期事实。</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+<section class="slide concept-visual-slide principle-chain-slide" data-module="第二部分：核心原理" data-title="一条消息如何被处理">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">第二部分 · 消息链路</p>
+            <h2>一条消息如何被处理</h2>
+            <p>一次回复背后是一条事件流水线：接入消息、定位 Session、组装 Context、执行工具调用、合成响应。</p>
+          </div>
+        </div>
+        <div class="slide-body principle-visual-body">
+          <figure class="concept-visual-figure principle-wide-figure">
+            <img src="images/openclaw 一条消息的运行链路.png" alt="OpenClaw 一条消息的运行链路图" />
+          </figure>
+        </div>
+      </section>
+
+<section class="slide concept-visual-slide gateway-focus-slide" data-module="第二部分：核心原理" data-title="Gateway 调度中心">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">第二部分 · Gateway</p>
+            <h2>Gateway：中转和调度服务</h2>
+            <p>Gateway 把不同入口的消息统一成任务事件，并把 Agent 输出转换回对应平台的消息格式。</p>
+          </div>
+        </div>
+        <div class="slide-body principle-split-visual">
+          <div class="principle-copy-stack">
+            <div>
+              <strong>入口适配</strong>
+              <span>把飞书、Web UI、Telegram 等平台消息转换成统一事件。</span>
+            </div>
+            <div>
+              <strong>Session 路由</strong>
+              <span>根据用户、群组、入口类型和会话 ID 找到上下文归属。</span>
+            </div>
+            <div>
+              <strong>策略检查</strong>
+              <span>读取配置、权限、白名单、可用模型和可用能力集合。</span>
+            </div>
+            <div>
+              <strong>响应回传</strong>
+              <span>把 Agent 输出打包成平台消息、文档更新或 Web UI 结果。</span>
+            </div>
+          </div>
+          <figure class="concept-visual-figure principle-square-figure">
+            <img src="images/gateway 调度中心.png" alt="Gateway 调度中心图，展示 Gateway 连接多个入口、Agent、模型、工具和上下文" />
+          </figure>
+        </div>
+      </section>
+
+<section class="slide concept-visual-slide agent-loop-slide" data-module="第二部分：核心原理" data-title="Agent 执行循环">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">第二部分 · Agent</p>
+            <h2>Agent 的执行循环</h2>
+            <p>Agent 管理一次任务的生命周期：构造输入、请求模型、执行工具、吸收结果、继续推进。</p>
+          </div>
+        </div>
+        <div class="slide-body principle-split-visual">
+          <figure class="concept-visual-figure principle-square-figure">
+            <img src="images/agent 执行循环.png" alt="Agent 执行循环图，展示理解任务、准备上下文、选择工具、执行动作、读取结果和生成交付结果" />
+          </figure>
+          <div class="principle-copy-stack">
+            <div>
+              <strong>Context assembly</strong>
+              <span>合并用户消息、会话历史、系统规则、Skill 说明和检索到的资料。</span>
+            </div>
+            <div>
+              <strong>Planning</strong>
+              <span>模型判断任务类型、必要步骤、调用哪些工具、输出什么格式。</span>
+            </div>
+            <div>
+              <strong>Tool execution</strong>
+              <span>Agent 发起工具调用，拿到文件、网页、命令或消息平台返回值。</span>
+            </div>
+            <div>
+              <strong>Result synthesis</strong>
+              <span>模型吸收工具结果，生成面向用户的回复、清单、报告或下一步动作。</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+<section class="slide concept-visual-slide tools-skills-slide" data-module="第二部分：核心原理" data-title="Tools、Skills 与 Plugins">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">第二部分 · 能力扩展</p>
+            <h2>Tools、Skills 与 Plugins</h2>
+            <p>能力扩展分成安装、说明和执行三层。Skills 记录任务步骤、材料要求、检查点和输出格式。</p>
+          </div>
+        </div>
+        <div class="slide-body principle-split-visual">
+          <div class="principle-copy-stack">
+            <div>
+              <strong>Plugin</strong>
+              <span>安装包层。一次性引入入口适配、工具、模型接入或一组 Skills。</span>
+            </div>
+            <div>
+              <strong>Skill</strong>
+              <span>任务规则层。描述适用场景、输入材料、处理步骤、验收标准和输出格式。</span>
+            </div>
+            <div>
+              <strong>Tool</strong>
+              <span>执行层。读取文件、访问网页、运行脚本、调用 API、发送平台消息。</span>
+            </div>
+            <div>
+              <strong>调用边界</strong>
+              <span>工具能力越强，越依赖权限、确认机制、日志和可回滚设计。</span>
+            </div>
+          </div>
+          <figure class="concept-visual-figure principle-square-figure">
+            <img src="images/tools_skills_plugins.png" alt="Tools Skills Plugins 关系图" />
+          </figure>
+        </div>
+      </section>
+
+<section class="slide concept-visual-slide workspace-memory-slide" data-module="第二部分：核心原理" data-title="Workspace、Context、Memory">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">第二部分 · 上下文机制</p>
+            <h2>Workspace、Context、Memory</h2>
+            <p>Agent 的判断质量取决于输入质量。资料位置、当前窗口材料、长期偏好检索都会进入结果质量。</p>
+          </div>
+        </div>
+        <div class="slide-body principle-split-visual">
+          <figure class="concept-visual-figure principle-square-figure">
+            <img src="images/workspace_context_memory.png" alt="Workspace Context Memory 概念图" />
+          </figure>
+          <div class="principle-copy-stack">
+            <div>
+              <strong>Workspace</strong>
+              <span>文件和任务材料所在的位置。课程文档、配置、生成结果都从这里读取或写入。</span>
+            </div>
+            <div>
+              <strong>Context</strong>
+              <span>模型本轮可见的信息集合。包含消息、历史、系统规则、Skill 内容和工具返回值。</span>
+            </div>
+            <div>
+              <strong>Memory</strong>
+              <span>跨任务保存的信息。用户偏好、项目背景、常用规则可以在之后的任务中被检索。</span>
+            </div>
+            <div>
+              <strong>Context window</strong>
+              <span>模型可见内容有窗口限制，检索、裁剪和排序会进入任务表现。</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- section: 02-deploy-strategy.html -->
+<section class="slide compact-center deploy-route-intro-slide" data-module="第三部分：部署思路" data-title="部署思路导入">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">第三部分 · 部署思路</p>
+            <h2>先按使用场景选部署方式</h2>
+            <p>OpenClaw 部署方式很多，课堂里先抓住四类：本地、云服务器、平台托管、Docker。</p>
+          </div>
+        </div>
+        <div class="slide-body grid-4 route-card-grid">
+          <div class="card accent-card">
+            <h3>本地部署</h3>
+            <p>跑在自己的电脑上。安装、配置、日志、文件权限都看得见，适合课堂现场一步步跟。</p>
+            <span class="pill">课堂主线</span>
+          </div>
+          <div class="card teal-card">
+            <h3>云服务器部署</h3>
+            <p>跑在轻量服务器或云主机上。电脑关了也能继续在线，适合消息机器人和定时任务。</p>
+            <span class="pill">长期在线</span>
+          </div>
+          <div class="card">
+            <h3>第三方平台托管</h3>
+            <p>平台把运行环境准备好，用户主要负责创建实例、选模型、接入口，适合快速体验。</p>
+            <span class="pill">最快体验</span>
+          </div>
+          <div class="card warning">
+            <h3>Docker 部署</h3>
+            <p>把 OpenClaw 放进容器里运行。环境更容易迁移，适合测试、多版本验证和服务器隔离。</p>
+            <span class="pill">进阶选择</span>
+          </div>
+        </div>
+      </section>
+
+<section class="slide deploy-route-table-slide" data-module="第三部分：部署思路" data-title="四种部署方式对比">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">第三部分 · 部署思路</p>
+            <h2>四种部署方式对比</h2>
+            <p>同一个 OpenClaw，放在不同地方运行，后面的成本、权限和维护方式会很不一样。</p>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="table-wrap route-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>方案</th>
+                  <th>先准备什么</th>
+                  <th>用起来的感觉</th>
+                  <th>要注意什么</th>
+                  <th>更适合谁</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>本地部署</strong></td>
+                  <td>一台电脑、Node.js、模型 Key、可用网络</td>
+                  <td>像在自己电脑里养一个助手，文件和日志都在手边</td>
+                  <td>电脑休眠、断网、权限弹窗都会影响运行</td>
+                  <td>课堂学员、个人用户、本地资料整理</td>
+                </tr>
+                <tr>
+                  <td><strong>云服务器部署</strong></td>
+                  <td>轻量服务器、登录方式、端口、模型 Key</td>
+                  <td>像把助手放到一台长期在线的机器上，手机和飞书都能找它</td>
+                  <td>服务器安全、升级、日志、备份需要有人看</td>
+                  <td>长期助手、团队机器人、自动推送任务</td>
+                </tr>
+                <tr>
+                  <td><strong>第三方平台托管</strong></td>
+                  <td>平台账号、会员或额度、平台支持的入口</td>
+                  <td>创建最快，很多环境细节已经被平台处理掉</td>
+                  <td>模型、额度、数据位置和可装技能跟着平台规则走</td>
+                  <td>飞书、Kimi、扣子、WorkBuddy 等生态用户</td>
+                </tr>
+                <tr>
+                  <td><strong>Docker 部署</strong></td>
+                  <td>Docker、Compose 文件、端口、数据卷、环境变量</td>
+                  <td>环境边界清楚，迁移、重建和版本切换更利落</td>
+                  <td>端口映射、卷挂载、容器日志要会看</td>
+                  <td>开发者、测试环境、服务器隔离部署</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout">课堂现场采用本地部署。云服务器适合长期在线，平台托管适合快速体验，Docker 适合开发和隔离环境。</div>
+        </div>
+      </section>
+
+<section class="slide deploy-route-table-slide deploy-choice-slide" data-module="第三部分：部署思路" data-title="部署方案怎么选">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">第三部分 · 部署思路</p>
+            <h2>部署方案怎么选</h2>
+            <p>真正做选择时，看三件事：任务要跑多久、要碰哪些数据、谁负责后续维护。</p>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="table-wrap route-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>使用目标</th>
+                  <th>优先方案</th>
+                  <th>原因</th>
+                  <th>后续动作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>课堂现场学习</td>
+                  <td>本地部署</td>
+                  <td>安装、配置、启动、排错都能看到，后面接飞书也更容易理解</td>
+                  <td>先跑通 Web UI，再进入飞书接入</td>
+                </tr>
+                <tr>
+                  <td>个人日常助手</td>
+                  <td>本地部署 / 云服务器</td>
+                  <td>处理本机资料用本地；长期收消息、推送结果用云服务器</td>
+                  <td>先确定数据放哪里，再决定入口放哪里</td>
+                </tr>
+                <tr>
+                  <td>快速体验效果</td>
+                  <td>第三方平台托管</td>
+                  <td>省掉环境安装，适合先看飞书、浏览器、移动端里的使用效果</td>
+                  <td>确认额度、数据策略和可用技能</td>
+                </tr>
+                <tr>
+                  <td>开发测试和隔离</td>
+                  <td>Docker 部署</td>
+                  <td>容器环境干净，换版本、重建环境、复制配置都更方便</td>
+                  <td>提前规划端口、数据卷和环境变量</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout">课堂里先把本地部署跑通。课后想长期在线、接团队入口或做隔离测试时，再按这张表换方案。</div>
+        </div>
+      </section>
+
 <section class="slide concept-visual-slide safety-visual-slide" data-module="第三部分：部署思路" data-title="自动化与长期助手的边界">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">第三部分 · 部署思路</p>
-            <h2>自动化与长期助手的边界</h2>
-            <p>OpenClaw 越贴近真实工作，越要重视授权范围和使用边界。</p>
+            <h2>部署方案选完以后看权限</h2>
+            <p>一旦让 OpenClaw 读文件、调用脚本、接消息入口，权限范围就要一起管起来。</p>
           </div>
         </div>
         <div class="slide-body concept-visual-body">

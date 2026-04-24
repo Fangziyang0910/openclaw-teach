@@ -8,9 +8,14 @@
       "slideCount": 16
     },
     {
+      "file": "02-core-principles.html",
+      "module": "第二部分：核心原理",
+      "slideCount": 8
+    },
+    {
       "file": "02-deploy-strategy.html",
       "module": "第三部分：部署思路",
-      "slideCount": 1
+      "slideCount": 4
     },
     {
       "file": "02-local-deploy.html",

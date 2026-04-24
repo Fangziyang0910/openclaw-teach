@@ -1,0 +1,240 @@
+<section class="slide compact-center principles-intro-slide" data-module="第二部分：核心原理" data-title="核心运行原理导入">
+        <div class="slide-body module-intro">
+          <div class="module-intro-copy">
+            <p class="eyebrow">第二部分</p>
+            <h2>OpenClaw 的核心运行原理</h2>
+            <p>一条消息进入系统后，会依次经过事件接入、会话路由、上下文组装、工具调用和结果回传。</p>
+          </div>
+          <div class="module-intro-side">
+            <div class="principle-index">
+              <div class="principle-index-item">
+                <span>01</span>
+                <strong>系统位置</strong>
+                <p>Channel、Gateway、Agent、模型、工具和上下文层的职责边界。</p>
+              </div>
+              <div class="principle-index-item">
+                <span>02</span>
+                <strong>消息链路</strong>
+                <p>消息事件进入 Session，再沿着调度链路返回原入口。</p>
+              </div>
+              <div class="principle-index-item">
+                <span>03</span>
+                <strong>执行机制</strong>
+                <p>模型判断、工具结果和 Skill 规则共同组成任务过程。</p>
+              </div>
+              <div class="principle-index-item">
+                <span>04</span>
+                <strong>长期上下文</strong>
+                <p>Workspace、Context、Memory 决定一次任务能拿到多少有效信息。</p>
+              </div>
+            </div>
+            <div class="intro-note">部署时看 Gateway，接入飞书时看 Channel，配置 Skills 时看能力层，做案例时看上下文和工具调用。</div>
+          </div>
+        </div>
+      </section>
+
+<section class="slide concept-visual-slide principle-map-slide" data-module="第二部分：核心原理" data-title="OpenClaw 在系统里的位置">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">第二部分 · 系统位置</p>
+            <h2>OpenClaw 在系统里的位置</h2>
+            <p>OpenClaw 是一个 Agent Gateway。它把消息入口、模型能力、工具系统和长期资料连接到同一条任务链路里。</p>
+          </div>
+        </div>
+        <div class="slide-body principle-visual-body">
+          <figure class="concept-visual-figure principle-wide-figure">
+            <img src="images/openclaw 总体分层图.png" alt="OpenClaw 总体分层图：用户、Channel、Gateway、Agent、Model Tools Skills、Workspace Context Memory 和结果返回" />
+          </figure>
+        </div>
+      </section>
+
+<section class="slide principles-role-slide" data-module="第二部分：核心原理" data-title="核心角色">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">第二部分 · 系统位置</p>
+            <h2>核心角色</h2>
+            <p>先分清每个组件处理哪类问题：消息、会话、推理、执行、资料和记忆。</p>
+          </div>
+        </div>
+        <div class="slide-body">
+          <div class="principle-role-grid">
+            <div class="principle-role-card">
+              <i data-lucide="message-square-more"></i>
+              <strong>Channel</strong>
+              <span>平台适配层。把飞书、Web UI 等入口里的消息转换成系统事件。</span>
+            </div>
+            <div class="principle-role-card strong-role">
+              <i data-lucide="waypoints"></i>
+              <strong>Gateway</strong>
+              <span>运行时调度层。维护连接、Session、权限检查、任务分发和响应回传。</span>
+            </div>
+            <div class="principle-role-card">
+              <i data-lucide="bot"></i>
+              <strong>Agent</strong>
+              <span>执行控制层。处理上下文准备、步骤推进、工具调用和中间结果整理。</span>
+            </div>
+            <div class="principle-role-card">
+              <i data-lucide="brain-circuit"></i>
+              <strong>Model</strong>
+              <span>判断与生成层。完成意图识别、计划推理、工具选择和最终表达。</span>
+            </div>
+            <div class="principle-role-card">
+              <i data-lucide="wrench"></i>
+              <strong>Tools / Skills</strong>
+              <span>能力层。Tools 执行动作，Skills 注入任务步骤、约束和输出格式。</span>
+            </div>
+            <div class="principle-role-card">
+              <i data-lucide="database"></i>
+              <strong>Workspace / Context / Memory</strong>
+              <span>上下文层。管理文件材料、当前窗口内容、用户偏好和长期事实。</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+<section class="slide concept-visual-slide principle-chain-slide" data-module="第二部分：核心原理" data-title="一条消息如何被处理">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">第二部分 · 消息链路</p>
+            <h2>一条消息如何被处理</h2>
+            <p>一次回复背后是一条事件流水线：接入消息、定位 Session、组装 Context、执行工具调用、合成响应。</p>
+          </div>
+        </div>
+        <div class="slide-body principle-visual-body">
+          <figure class="concept-visual-figure principle-wide-figure">
+            <img src="images/openclaw 一条消息的运行链路.png" alt="OpenClaw 一条消息的运行链路图" />
+          </figure>
+        </div>
+      </section>
+
+<section class="slide concept-visual-slide gateway-focus-slide" data-module="第二部分：核心原理" data-title="Gateway 调度中心">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">第二部分 · Gateway</p>
+            <h2>Gateway：中转和调度服务</h2>
+            <p>Gateway 把不同入口的消息统一成任务事件，并把 Agent 输出转换回对应平台的消息格式。</p>
+          </div>
+        </div>
+        <div class="slide-body principle-split-visual">
+          <div class="principle-copy-stack">
+            <div>
+              <strong>入口适配</strong>
+              <span>把飞书、Web UI、Telegram 等平台消息转换成统一事件。</span>
+            </div>
+            <div>
+              <strong>Session 路由</strong>
+              <span>根据用户、群组、入口类型和会话 ID 找到上下文归属。</span>
+            </div>
+            <div>
+              <strong>策略检查</strong>
+              <span>读取配置、权限、白名单、可用模型和可用能力集合。</span>
+            </div>
+            <div>
+              <strong>响应回传</strong>
+              <span>把 Agent 输出打包成平台消息、文档更新或 Web UI 结果。</span>
+            </div>
+          </div>
+          <figure class="concept-visual-figure principle-square-figure">
+            <img src="images/gateway 调度中心.png" alt="Gateway 调度中心图，展示 Gateway 连接多个入口、Agent、模型、工具和上下文" />
+          </figure>
+        </div>
+      </section>
+
+<section class="slide concept-visual-slide agent-loop-slide" data-module="第二部分：核心原理" data-title="Agent 执行循环">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">第二部分 · Agent</p>
+            <h2>Agent 的执行循环</h2>
+            <p>Agent 管理一次任务的生命周期：构造输入、请求模型、执行工具、吸收结果、继续推进。</p>
+          </div>
+        </div>
+        <div class="slide-body principle-split-visual">
+          <figure class="concept-visual-figure principle-square-figure">
+            <img src="images/agent 执行循环.png" alt="Agent 执行循环图，展示理解任务、准备上下文、选择工具、执行动作、读取结果和生成交付结果" />
+          </figure>
+          <div class="principle-copy-stack">
+            <div>
+              <strong>Context assembly</strong>
+              <span>合并用户消息、会话历史、系统规则、Skill 说明和检索到的资料。</span>
+            </div>
+            <div>
+              <strong>Planning</strong>
+              <span>模型判断任务类型、必要步骤、调用哪些工具、输出什么格式。</span>
+            </div>
+            <div>
+              <strong>Tool execution</strong>
+              <span>Agent 发起工具调用，拿到文件、网页、命令或消息平台返回值。</span>
+            </div>
+            <div>
+              <strong>Result synthesis</strong>
+              <span>模型吸收工具结果，生成面向用户的回复、清单、报告或下一步动作。</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+<section class="slide concept-visual-slide tools-skills-slide" data-module="第二部分：核心原理" data-title="Tools、Skills 与 Plugins">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">第二部分 · 能力扩展</p>
+            <h2>Tools、Skills 与 Plugins</h2>
+            <p>能力扩展分成安装、说明和执行三层。Skills 记录任务步骤、材料要求、检查点和输出格式。</p>
+          </div>
+        </div>
+        <div class="slide-body principle-split-visual">
+          <div class="principle-copy-stack">
+            <div>
+              <strong>Plugin</strong>
+              <span>安装包层。一次性引入入口适配、工具、模型接入或一组 Skills。</span>
+            </div>
+            <div>
+              <strong>Skill</strong>
+              <span>任务规则层。描述适用场景、输入材料、处理步骤、验收标准和输出格式。</span>
+            </div>
+            <div>
+              <strong>Tool</strong>
+              <span>执行层。读取文件、访问网页、运行脚本、调用 API、发送平台消息。</span>
+            </div>
+            <div>
+              <strong>调用边界</strong>
+              <span>工具能力越强，越依赖权限、确认机制、日志和可回滚设计。</span>
+            </div>
+          </div>
+          <figure class="concept-visual-figure principle-square-figure">
+            <img src="images/tools_skills_plugins.png" alt="Tools Skills Plugins 关系图" />
+          </figure>
+        </div>
+      </section>
+
+<section class="slide concept-visual-slide workspace-memory-slide" data-module="第二部分：核心原理" data-title="Workspace、Context、Memory">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">第二部分 · 上下文机制</p>
+            <h2>Workspace、Context、Memory</h2>
+            <p>Agent 的判断质量取决于输入质量。资料位置、当前窗口材料、长期偏好检索都会进入结果质量。</p>
+          </div>
+        </div>
+        <div class="slide-body principle-split-visual">
+          <figure class="concept-visual-figure principle-square-figure">
+            <img src="images/workspace_context_memory.png" alt="Workspace Context Memory 概念图" />
+          </figure>
+          <div class="principle-copy-stack">
+            <div>
+              <strong>Workspace</strong>
+              <span>文件和任务材料所在的位置。课程文档、配置、生成结果都从这里读取或写入。</span>
+            </div>
+            <div>
+              <strong>Context</strong>
+              <span>模型本轮可见的信息集合。包含消息、历史、系统规则、Skill 内容和工具返回值。</span>
+            </div>
+            <div>
+              <strong>Memory</strong>
+              <span>跨任务保存的信息。用户偏好、项目背景、常用规则可以在之后的任务中被检索。</span>
+            </div>
+            <div>
+              <strong>Context window</strong>
+              <span>模型可见内容有窗口限制，检索、裁剪和排序会进入任务表现。</span>
+            </div>
+          </div>
+        </div>
+      </section>

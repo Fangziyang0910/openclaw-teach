@@ -42,6 +42,7 @@
 
     /* === MODULE COLOR SYSTEM === */
     [data-module="第一部分：认识 OpenClaw"] { --module: #b45309; --module-soft: #fbbf24; --module-deep: #7c2d12; }
+    [data-module="第二部分：核心原理"] { --module: #2563eb; --module-soft: #38bdf8; --module-deep: #1e3a8a; }
     [data-module="第三部分：部署思路"] { --module: #2563eb; --module-soft: #60a5fa; --module-deep: #1e3a8a; }
     [data-module="第四部分：现场部署"] { --module: #0f766e; --module-soft: #2dd4bf; --module-deep: #064e3b; }
     [data-module="第五部分：飞书接入"] { --module: #7c3aed; --module-soft: #a78bfa; --module-deep: #5b21b6; }
@@ -4650,6 +4651,50 @@
       border-color: rgba(180, 83, 9, 0.18);
     }
 
+    /* === DEPLOYMENT STRATEGY === */
+    .deploy-route-intro-slide .route-card-grid {
+      gap: clamp(10px, 1.2vw, 14px);
+    }
+
+    .deploy-route-intro-slide .card {
+      padding: clamp(14px, 1.5vw, 20px);
+      min-height: 0;
+    }
+
+    .deploy-route-intro-slide .card p {
+      font-size: clamp(13px, 1.05vw, 15px);
+      line-height: 1.48;
+    }
+
+    .deploy-route-table-slide .slide-body {
+      display: grid;
+      gap: clamp(10px, 1.2vw, 14px);
+    }
+
+    .deploy-route-table-slide .table-wrap {
+      margin-top: 0;
+      border-radius: 18px;
+    }
+
+    .deploy-route-table-slide th,
+    .deploy-route-table-slide td {
+      padding: clamp(8px, 0.82vw, 11px) clamp(7px, 0.82vw, 11px);
+      font-size: clamp(10.8px, 0.88vw, 12.8px);
+      line-height: 1.36;
+    }
+
+    .deploy-route-table-slide .callout {
+      margin-top: 0;
+      font-size: clamp(12px, 0.95vw, 14px);
+      padding: clamp(10px, 1.2vw, 14px) clamp(12px, 1.5vw, 18px);
+    }
+
+    .deploy-choice-slide th,
+    .deploy-choice-slide td {
+      font-size: clamp(11px, 0.92vw, 13px);
+      line-height: 1.4;
+    }
+
     .community-context-strip {
       display: flex;
       align-items: center;
@@ -4694,6 +4739,231 @@
       width: 18px;
       height: 18px;
       flex: none;
+    }
+
+    /* === MODULE 2: CORE PRINCIPLES SLIDES === */
+    .principles-intro-slide .module-intro-copy h2 {
+      max-width: 520px;
+    }
+
+    .principle-index {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .principle-index-item {
+      min-height: 138px;
+      display: grid;
+      align-content: start;
+      gap: 7px;
+      padding: 16px 16px 14px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid color-mix(in srgb, var(--module, #2563eb) 16%, transparent);
+      box-shadow: 0 14px 32px rgba(30, 58, 138, 0.08);
+    }
+
+    .principle-index-item span {
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--module), var(--module-soft));
+      font-size: 12px;
+      font-weight: 900;
+      font-family: var(--font-mono);
+    }
+
+    .principle-index-item strong {
+      font-size: clamp(15px, 1.3vw, 18px);
+      line-height: 1.25;
+    }
+
+    .principle-index-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(11px, 0.95vw, 13px);
+      line-height: 1.55;
+      font-weight: 650;
+    }
+
+    .principle-visual-body {
+      display: grid;
+      place-items: center;
+      min-height: 0;
+    }
+
+    .principle-wide-figure img {
+      width: 100%;
+      max-height: 518px;
+      object-fit: contain;
+    }
+
+    .principle-square-figure {
+      align-self: center;
+      align-items: center;
+    }
+
+    .principle-square-figure img {
+      max-width: 100%;
+      max-height: 476px;
+      object-fit: contain;
+    }
+
+    .principle-split-visual {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.36fr) minmax(0, 0.64fr);
+      gap: 20px;
+      align-items: center;
+      min-height: 0;
+    }
+
+    .agent-loop-slide .principle-split-visual,
+    .workspace-memory-slide .principle-split-visual {
+      grid-template-columns: minmax(0, 0.58fr) minmax(280px, 0.42fr);
+    }
+
+    .principle-copy-stack {
+      display: grid;
+      gap: 12px;
+      align-content: center;
+      min-width: 0;
+    }
+
+    .principle-copy-stack div {
+      display: grid;
+      gap: 6px;
+      padding: 16px 17px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid color-mix(in srgb, var(--module, #2563eb) 14%, transparent);
+      box-shadow: 0 12px 28px rgba(30, 58, 138, 0.06);
+    }
+
+    .principle-copy-stack strong {
+      color: var(--module-deep);
+      font-size: clamp(15px, 1.2vw, 18px);
+      line-height: 1.25;
+    }
+
+    .principle-copy-stack span {
+      color: var(--muted);
+      font-size: clamp(12px, 1vw, 14px);
+      line-height: 1.5;
+      font-weight: 650;
+    }
+
+    .principle-role-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .principle-role-card {
+      min-height: 156px;
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      gap: 8px;
+      padding: 18px 18px 16px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(124, 45, 18, 0.1);
+      box-shadow: 0 12px 30px rgba(72, 45, 16, 0.06);
+    }
+
+    .principle-role-card.strong-role {
+      background: linear-gradient(135deg, color-mix(in srgb, var(--module, #2563eb) 12%, rgba(255,255,255,0.9)), rgba(255,255,255,0.92));
+      border-color: color-mix(in srgb, var(--module, #2563eb) 24%, transparent);
+    }
+
+    .principle-role-card i {
+      width: 28px;
+      height: 28px;
+      color: var(--module);
+    }
+
+    .principle-role-card strong {
+      font-size: clamp(15px, 1.28vw, 18px);
+      line-height: 1.25;
+    }
+
+    .principle-role-card span {
+      color: var(--muted);
+      font-size: clamp(11.5px, 0.98vw, 13.5px);
+      line-height: 1.55;
+      font-weight: 650;
+    }
+
+    .principle-recap-flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .principle-recap-flow div {
+      position: relative;
+      min-height: 218px;
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      gap: 9px;
+      padding: 18px 16px 16px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid color-mix(in srgb, var(--module, #2563eb) 16%, transparent);
+      box-shadow: 0 12px 30px rgba(30, 58, 138, 0.06);
+    }
+
+    .principle-recap-flow div::after {
+      content: "";
+      position: absolute;
+      top: 42px;
+      right: -12px;
+      width: 12px;
+      height: 2px;
+      background: color-mix(in srgb, var(--module, #2563eb) 42%, transparent);
+    }
+
+    .principle-recap-flow div:last-child::after {
+      display: none;
+    }
+
+    .principle-recap-flow span {
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 13px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--module), var(--module-soft));
+      font-size: 12px;
+      font-weight: 900;
+      font-family: var(--font-mono);
+    }
+
+    .principle-recap-flow strong {
+      font-size: clamp(15px, 1.25vw, 18px);
+      line-height: 1.25;
+    }
+
+    .principle-recap-flow p {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(11.5px, 0.98vw, 13.5px);
+      line-height: 1.5;
+      font-weight: 650;
+    }
+
+    .slide.active .principle-index-item,
+    .slide.active .principle-role-card,
+    .slide.active .principle-copy-stack div,
+    .slide.active .principle-recap-flow div {
+      animation: scaleIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     .slide[data-title="Agent：从回答问题到推进任务"] .agent-statement {
