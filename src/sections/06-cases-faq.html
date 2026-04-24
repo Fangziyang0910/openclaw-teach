@@ -205,7 +205,21 @@
     </div>
   </div>
   <div class="slide-body"
-    style="flex:1; min-height:0; overflow:hidden; padding-right:0; overscroll-behavior:contain; display:grid; align-content:start;">
+    style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain; display:grid; align-content:start;">
+    <div class="card accent-card" style="margin-bottom:14px; padding:14px 14px 12px;">
+      <h3>最小配置步骤</h3>
+      <div class="key-points" style="gap:8px; margin-top:10px;">
+        <div class="key-point" style="padding:8px 10px; gap:10px;"><b>1</b>
+          <div>先安装 `feishu-deep-research`。</div>
+        </div>
+        <div class="key-point" style="padding:8px 10px; gap:10px;"><b>2</b>
+          <div>按提示补 Tavily API Key，补齐联网搜索能力。</div>
+        </div>
+        <div class="key-point" style="padding:8px 10px; gap:10px;"><b>3</b>
+          <div>再输入研究主题和想要的报告结构。</div>
+        </div>
+      </div>
+    </div>
     <div class="gallery gallery-wide" data-gallery>
       <div class="gallery-stage" style="min-height:clamp(360px, 54vh, 660px);">
         <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
@@ -287,29 +301,46 @@
   </div>
   <div class="slide-body"
     style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain;">
-    <div class="timeline timeline-5">
-      <div class="step">
-        意图拆解
-        <small>把宽泛主题拆成市场、玩家、数据、趋势等可研究维度。</small>
+    <div class="grid-4" style="grid-template-columns:repeat(2, minmax(0, 1fr)); gap:14px;">
+      <div class="card">
+        <h3>1. 意图拆解</h3>
+        <p>先把宽泛主题拆成市场、竞争格局、关键数据、趋势等可研究维度，避免一开始就被模糊问题带偏。</p>
       </div>
-      <div class="step">
-        初轮搜索
-        <small>调用 Tavily 等搜索工具并发抓第一批资料。</small>
+      <div class="card accent-card">
+        <h3>2. 初轮搜索</h3>
+        <p>调用 Tavily 等联网能力并发抓第一批资料，先把关键事实、主要来源和基础线索铺开。</p>
       </div>
-      <div class="step">
-        缺口识别
-        <small>阅读首轮结果，找出还缺的数据点、时间线和关键论据。</small>
+      <div class="card teal-card">
+        <h3>3. 缺口识别与补搜</h3>
+        <p>读完首轮结果后继续找缺的数据点和论据，再自动改关键词补第二轮、第三轮搜索。</p>
       </div>
-      <div class="step">
-        继续深挖
-        <small>自动改关键词、换角度、补第二轮甚至第三轮搜索。</small>
-      </div>
-      <div class="step">
-        结构化成文
-        <small>按报告逻辑组装结论、证据和建议，而不是简单复制网页片段。</small>
+      <div class="card">
+        <h3>4. 结构化成文</h3>
+        <p>最后按报告逻辑把结论、证据和建议组装起来，交付的是一份真正能看的研究报告。</p>
       </div>
     </div>
-    <div class="callout">所以它最终交付的不是“搜索结果合集”，而是一份已经完成取舍与组织的研究文档。</div>
+    <div class="stats-strip" style="display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:12px;">
+      <div class="stat"
+        style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+        <strong>拆题</strong>
+        <span>先定维度</span>
+      </div>
+      <div class="stat"
+        style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+        <strong>联网</strong>
+        <span>并发初搜</span>
+      </div>
+      <div class="stat"
+        style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+        <strong>补搜</strong>
+        <span>识别缺口</span>
+      </div>
+      <div class="stat"
+        style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+        <strong>成文</strong>
+        <span>结构交付</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -322,34 +353,24 @@
       <p>这个案例的配置重点，是装对 skill、补齐搜索能力，再给它一个明确的研究主题。</p>
     </div>
   </div>
-  <div class="slide-body split-tight"
-    style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain;">
-    <div class="card accent-card">
-      <h3>配置入口</h3>
-      <div class="code-block">帮我安装一下这个 skill
-        openclaw skills install feishu-deep-research</div>
-      <div class="code-block">研究主题示例：
-        请帮我深度调研国内外导览机器人发展情况，
-        给我一份包含市场规模、头部玩家、典型案例、
-        技术趋势与结论建议的结构化报告。</div>
-      <p>安装后按提示补 Tavily API Key，龙虾才有稳定的联网搜索能力。</p>
-    </div>
-    <div class="gallery" data-gallery>
-      <div class="gallery-stage">
+  <div class="slide-body"
+    style="flex:1; min-height:0; overflow:hidden; padding-right:0; overscroll-behavior:contain; display:grid; align-content:start;">
+    <div class="gallery gallery-wide" data-gallery>
+      <div class="gallery-stage" style="min-height:clamp(340px, 50vh, 600px);">
         <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
         <figure class="gallery-panel">
-          <img src="images/70.png" alt="安装深度调研 skill 第一步" />
+          <img src="images/70.png" alt="安装深度调研 skill 第一步" style="max-height:min(50vh, 540px);" />
           <figcaption>先让 OpenClaw 安装 `feishu-deep-research` Skill。</figcaption>
         </figure>
         <figure class="gallery-panel" hidden>
-          <img src="images/74.png" alt="提供 Tavily API Key" />
+          <img src="images/74.png" alt="提供 Tavily API Key" style="max-height:min(50vh, 540px);" />
           <figcaption>再按提示补 Tavily API Key，补齐联网搜索能力。</figcaption>
         </figure>
         <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
       </div>
-      <div class="gallery-dots">
-        <button class="gallery-dot" type="button">1 安装 Skill</button>
-        <button class="gallery-dot" type="button">2 补 API Key</button>
+      <div class="gallery-dots" style="justify-content:center; gap:10px; margin-top:4px;">
+        <button class="gallery-dot" type="button" style="padding:8px 14px; min-width:auto;">1 安装 Skill</button>
+        <button class="gallery-dot" type="button" style="padding:8px 14px; min-width:auto;">2 补 API Key</button>
       </div>
     </div>
   </div>
@@ -363,29 +384,169 @@
       <p>用户拿到的不是十几个网页链接，而是一份已经有执行摘要、章节结构和结论建议的研究结果。</p>
     </div>
   </div>
-  <div class="slide-body split-tight"
+  <div class="slide-body"
+    style="flex:1; min-height:0; overflow:hidden; padding-right:0; overscroll-behavior:contain; display:grid; align-content:start;">
+    <div class="gallery gallery-wide" data-gallery>
+      <div class="gallery-stage" style="min-height:clamp(360px, 54vh, 660px);">
+        <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+        <figure class="gallery-panel">
+          <img src="images/75.png" alt="深度调研效果" style="max-height:min(54vh, 600px);" />
+          <figcaption>当研究主题明确后，龙虾会交付一份完整的结构化调研报告。</figcaption>
+        </figure>
+        <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+      </div>
+      <div class="gallery-dots" style="justify-content:center; gap:10px; margin-top:4px;">
+        <button class="gallery-dot" type="button" style="padding:8px 14px; min-width:auto;">1 看报告效果</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-module="案例与 FAQ" data-title="案例二：完整报告" style="display:flex; flex-direction:column;">
+  <div class="slide-header" style="margin-bottom:12px; gap:14px; flex:none;">
+    <div class="title-stack">
+      <p class="eyebrow">案例二 · 完整报告</p>
+      <h2>完整报告示例</h2>
+      <p>这一页直接展示龙虾最终交付的完整研究报告样式，便于感受它已经接近正式产出物。</p>
+    </div>
+  </div>
+  <div class="slide-body"
     style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain;">
-    <figure class="tall">
-      <img src="images/75.png" alt="深度调研效果" />
-      <figcaption>当研究主题明确后，龙虾会交付一份完整的结构化调研报告。</figcaption>
-    </figure>
-    <div class="card teal-card">
-      <h3>报告会包含什么</h3>
-      <div class="code-block"># 国内外导览机器人发展情况深度研究报告
+    <div class="card accent-card" style="padding:18px 18px 16px;">
+      <div class="quote" style="margin-top:0; padding:14px 18px;">报告生成时间：2026-04-12｜研究深度：deep</div>
+      <div class="key-points" style="margin-top:14px;">
+        <div class="key-point"><b>时</b>
+          <div>数据时间范围：2024 年 - 2026 年；最新数据日期：2026 年 4 月。</div>
+        </div>
+        <div class="key-point"><b>源</b>
+          <div>搜索来源数：24 个；覆盖完整性：完整。</div>
+        </div>
+      </div>
 
-        ## 一、执行摘要
-        - 全球市场规模与 CAGR
-        - 国内外发展差异
+      <div class="card" style="margin-top:14px;">
+        <h3>一、执行摘要</h3>
+        <p>全球导览机器人市场正处于高速增长期。2024 年全球智能导览机器人市场规模约 2.78 亿美元，预计 2031 年将达到 4.21 亿美元，年复合增长率为 6.2%。中国智能服务机器人产业在 AI 技术驱动下进入高速增长阶段，2025 年市场规模预计突破 350 亿美元。</p>
+        <ul class="list-clean" style="margin-top:12px;">
+          <li>国内发展态势：中国导览机器人在博物馆、机场、展厅等场景加速落地，头部企业已形成规模化部署能力。</li>
+          <li>国外发展态势：日本软银 Pepper、美国 Atlas 等代表产品引领技术前沿，但成本高、落地难仍是主要挑战。</li>
+        </ul>
+        <div class="table-wrap" style="margin-top:12px;">
+          <table>
+            <thead>
+              <tr><th>指标</th><th>数据</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>2024年全球导览机器人市场规模</td><td>2.78亿美元</td></tr>
+              <tr><td>2031年预期市场规模</td><td>4.21亿美元</td></tr>
+              <tr><td>年复合增长率</td><td>6.2%</td></tr>
+              <tr><td>2025年中国服务机器人市场规模预期</td><td>350亿美元</td></tr>
+              <tr><td>中国人形机器人 2024年1-10月投融资</td><td>42亿元</td></tr>
+              <tr><td>博物馆部署导览机器人日均访客提升</td><td>30%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-        ## 二、研究背景与定义
-        - 场景分类
-        - 关键技术架构
+      <div class="card" style="margin-top:14px;">
+        <h3>二、研究背景与定义</h3>
+        <p>导览机器人是服务机器人的重要细分领域，覆盖博物馆、机场、企业展厅、政务大厅、景区/园区等典型场景。</p>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="card">
+            <h4>按应用场景分类</h4>
+            <ul class="list-clean" style="margin-top:10px;">
+              <li>博物馆/展览馆导览：展品讲解、路线导航、互动问答。</li>
+              <li>机场/车站导览：航班查询、路径指引、安检提示。</li>
+              <li>企业展厅/政务大厅：接待讲解、业务介绍、排队叫号。</li>
+              <li>景区/园区导览：景点介绍、位置导航、活动预告。</li>
+            </ul>
+          </div>
+          <div class="card teal-card">
+            <h4>按技术形态分类</h4>
+            <ul class="list-clean" style="margin-top:10px;">
+              <li>人形导览机器人：支持移动、语音、手势等多模态交互。</li>
+              <li>移动导览机器人：以导航和语音交互为重点。</li>
+              <li>桌面交互机器人：适合咨询台、展厅前台。</li>
+              <li>AR/VR 导览系统：与实体机器人形成互补。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card" style="margin-top:12px;">
+          <h4>关键技术架构</h4>
+          <ul class="list-clean" style="margin-top:10px;">
+            <li>感知层：语音识别（ASR）、视觉感知、室内定位、触觉交互。</li>
+            <li>认知层：自然语言理解（NLU）、知识图谱、自主导航、RAG 知识检索增强。</li>
+            <li>执行层：运动控制、语音合成（TTS）、多模态表达、系统集成。</li>
+          </ul>
+        </div>
+      </div>
 
-        ## 三、主要研究发现
-        - 头部企业
-        - 典型场景
-        - 技术趋势</div>
-      <p>这意味着人把时间花在“判断报告值不值得用”，而不是“自己从头拼一份出来”。</p>
+      <div class="card" style="margin-top:14px;">
+        <h3>三、主要研究发现</h3>
+        <h4 style="margin-top:10px;">3.1 全球市场格局</h4>
+        <ul class="list-clean" style="margin-top:10px;">
+          <li>2024年市场规模：2.78亿美元；2031年预期规模：4.21亿美元；年复合增长率：6.2%。</li>
+          <li>驱动因素：AI 技术成熟、人力成本上涨、疫情后的无接触需求、5G/IoT 基础设施完善。</li>
+        </ul>
+        <div class="table-wrap" style="margin-top:12px;">
+          <table>
+            <thead>
+              <tr><th>区域</th><th>特点</th><th>代表</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>北美</td><td>技术领先</td><td>Best Buy 门店机器人</td></tr>
+              <tr><td>欧洲</td><td>博物馆应用成熟</td><td>法国博物馆导览机器人</td></tr>
+              <tr><td>日本</td><td>人形机器人尖端</td><td>软银 Pepper</td></tr>
+              <tr><td>中国</td><td>规模化落地最快</td><td>科梦奇、云迹科技</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h4 style="margin-top:14px;">3.2 国内发展现状</h4>
+        <ul class="list-clean" style="margin-top:10px;">
+          <li>头部企业：科梦奇、云迹科技、猎豹移动、商汤科技。</li>
+          <li>典型场景：博物馆、机场、企业展厅、政务大厅。</li>
+        </ul>
+        <div class="table-wrap" style="margin-top:12px;">
+          <table>
+            <thead>
+              <tr><th>年份</th><th>事件数</th><th>规模</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>2021</td><td>4件</td><td>1.7亿元</td></tr>
+              <tr><td>2022</td><td>10件</td><td>21.3亿元</td></tr>
+              <tr><td>2023</td><td>30件</td><td>54.1亿元</td></tr>
+              <tr><td>2024年1-10月</td><td>33件</td><td>42亿元</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h4 style="margin-top:14px;">3.3 国外发展现状</h4>
+        <ul class="list-clean" style="margin-top:10px;">
+          <li>软银 Pepper：法国诞生，曾获软银投资，2024年原公司倒闭，相关资产被中国企业接手。</li>
+          <li>波士顿动力 Atlas：运动能力最强，尚未大规模商业化。</li>
+          <li>特斯拉 Optimus：2022年发布，导览应用仍处于探索阶段。</li>
+          <li>发展困境：成本高、技术瓶颈明显、市场接受度仍需验证。</li>
+        </ul>
+        <h4 style="margin-top:14px;">3.4 技术趋势</h4>
+        <ul class="list-clean" style="margin-top:10px;">
+          <li>大模型重塑交互：从“语音答录机”升级为“AI员工”。</li>
+          <li>具身智能加速：视觉、语言、动作的多模态统一。</li>
+          <li>国产力量崛起：宇树 G1 售价 9.9 万起，智元机器人推进全系列具身智能布局。</li>
+        </ul>
+      </div>
+
+      <div class="card teal-card" style="margin-top:14px;">
+        <h3>四、竞争格局</h3>
+        <ul class="list-clean" style="margin-top:10px;">
+          <li>上游：芯片、传感器、伺服电机、语音模块。</li>
+          <li>中游：人形、移动、桌面机器人整机。</li>
+          <li>下游：博物馆、机场、企业展厅、政务大厅。</li>
+        </ul>
+        <h3 style="margin-top:14px;">五、结论与建议</h3>
+        <ul class="list-clean" style="margin-top:10px;">
+          <li>结论：市场高速增长，中国场景落地领先，大模型正在重塑导览机器人产品形态，成本仍是核心瓶颈，具身智能是确定性方向。</li>
+          <li>建议：短期聚焦单一场景打磨，中期布局具身智能并拓展海外市场，长期构建数据壁垒并探索 RaaS 模式。</li>
+          <li>数据来源：24个来源，包括 HengCe、IIM、头豹、赛迪、艾邦、IFR、信通院等权威机构。</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -450,7 +611,7 @@
   </div>
   <div class="slide-body"
     style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain;">
-    <div class="timeline timeline-5">
+    <div class="timeline" style="grid-template-columns:repeat(2, minmax(0, 1fr)); gap:14px;">
       <div class="node">
         1. 摄入内容
         <small>抓取文章、推文、字幕或 PDF 的正文和元数据。</small>
@@ -467,7 +628,7 @@
         4. 语义检索
         <small>用户提问时，先找出最相关的历史片段。</small>
       </div>
-      <div class="node">
+      <div class="node" style="grid-column:1 / -1;">
         5. 带引用回答
         <small>模型基于召回内容作答，尽量减少凭空编造。</small>
       </div>
@@ -528,27 +689,27 @@
       <p>知识库真正的成效，要看两件事: 入库时能否给出确认，提问时能否按语义把最相关的内容召回出来。</p>
     </div>
   </div>
-  <div class="slide-body split-tight"
-    style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain;">
-    <div class="gallery" data-gallery>
-      <div class="gallery-stage">
+  <div class="slide-body"
+    style="flex:1; min-height:0; overflow:hidden; padding-right:0; overscroll-behavior:contain; display:grid; align-content:start;">
+    <div class="gallery gallery-wide" data-gallery>
+      <div class="gallery-stage" style="min-height:clamp(340px, 50vh, 600px);">
         <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
         <figure class="gallery-panel">
-          <img src="images/78.png" alt="把链接存入知识库" />
+          <img src="images/78.png" alt="把链接存入知识库" style="max-height:min(50vh, 540px);" />
           <figcaption>先把指定链接入库，龙虾会返回是否成功处理以及对应内容。</figcaption>
         </figure>
         <figure class="gallery-panel" hidden>
-          <img src="images/79.png" alt="语义搜索知识库" />
+          <img src="images/79.png" alt="语义搜索知识库" style="max-height:min(50vh, 540px);" />
           <figcaption>再用自然语言提问，龙虾会按语义检索并给出带来源的回答。</figcaption>
         </figure>
         <button class="gallery-nav next" type="button" aria-label="上一张截图">&#10095;</button>
       </div>
-      <div class="gallery-dots">
-        <button class="gallery-dot" type="button">1 入库确认</button>
-        <button class="gallery-dot" type="button">2 语义检索</button>
+      <div class="gallery-dots" style="justify-content:center; gap:10px; margin-top:4px;">
+        <button class="gallery-dot" type="button" style="padding:8px 14px; min-width:auto;">1 入库确认</button>
+        <button class="gallery-dot" type="button" style="padding:8px 14px; min-width:auto;">2 语义检索</button>
       </div>
     </div>
-    <div class="card teal-card">
+    <div class="card teal-card" style="margin-top:14px;">
       <h3>用户能直接得到什么</h3>
       <div class="code-block">给我介绍一下 Claude Code 的六层分层架构</div>
       <div class="key-points">

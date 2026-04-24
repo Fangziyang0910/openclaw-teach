@@ -1,471 +1,552 @@
 <section class="slide layout-warning-dense" data-module="安装与配置" data-title="步骤 01：部署前检查">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">模块二 · 步骤 01</p>
-            <h2>部署前检查</h2>
-            <p>执行安装命令前，先把运行环境、终端工具和模型凭证准备完成。</p>
-          </div>
-        </div>
-        <div class="slide-body split-tight">
-          <div class="card warning">
-            <h3>部署位置</h3>
-            <p>长期托管或高权限运行时，优先使用<strong>单独的学习机、闲置主机或独立账号</strong>。如果需要给 Agent 较高的文件、终端或浏览器权限，不建议直接在核心生产电脑上长期运行。</p>
-            <p>本机体验完全可以做，但要建立“最小权限、先测再放开”的习惯。</p>
-          </div>
-          <div class="card">
-            <h3>检查清单</h3>
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>检查项</th>
-                    <th>建议</th>
-                    <th>作用</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>操作系统</td>
-                    <td>macOS、Linux、Windows 都可；Windows 环境更推荐 WSL2</td>
-                    <td>官方脚本和类 Unix 环境更稳定，排错资料也更多</td>
-                  </tr>
-                  <tr>
-                    <td>Node.js</td>
-                    <td>官方推荐 Node 24；Node 22.14+ 仍受支持</td>
-                    <td>版本过低时，安装脚本和依赖最容易直接失败</td>
-                  </tr>
-                  <tr>
-                    <td>Git / 终端</td>
-                    <td>提前确认能正常执行 `git --version` 与 `node -v`</td>
-                    <td>后续安装、升级、日志排查都离不开命令行</td>
-                  </tr>
-                  <tr>
-                    <td>模型凭证</td>
-                    <td>准备至少 1 个可用 Provider 的 API Key</td>
-                    <td>OpenClaw 自身不提供模型算力，没凭证就无法真正对话</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="code-block" style="margin-top:14px;">node -v
-git --version</div>
-          </div>
-        </div>
-      </section>
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块二 · 步骤 01</p>
+      <h2>部署前检查</h2>
+      <p>执行安装命令前，先把运行环境、终端工具和模型凭证准备完成。</p>
+    </div>
+  </div>
+  <div class="slide-body split-tight">
+    <div class="card warning">
+      <h3>部署位置</h3>
+      <p>长期托管或高权限运行时，优先使用<strong>单独的学习机、闲置主机或独立账号</strong>。如果需要给 Agent 较高的文件、终端或浏览器权限，不建议直接在核心生产电脑上长期运行。</p>
+      <p>本机体验完全可以做，但要建立“最小权限、先测再放开”的习惯。</p>
+    </div>
+    <div class="card">
+      <h3>检查清单</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>检查项</th>
+              <th>建议</th>
+              <th>作用</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>操作系统</td>
+              <td>macOS、Linux、Windows 都可；Windows 环境更推荐 WSL2</td>
+              <td>官方脚本和类 Unix 环境更稳定，排错资料也更多</td>
+            </tr>
+            <tr>
+              <td>模型凭证</td>
+              <td>准备至少 1 个可用 Provider 的 API Key</td>
+              <td>OpenClaw 自身不提供模型算力，没凭证就无法真正对话</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="slide" data-module="安装与配置" data-title="步骤 01 补充：Provider 凭证">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">模块二 · 步骤 01 补充</p>
-            <h2>Provider 凭证准备</h2>
-            <p>onboarding 过程中需要填写模型 Provider 凭证，因此应在运行向导前先准备好可用的 API Key。</p>
-          </div>
-        </div>
-        <div class="slide-body grid-2">
-          <div class="card accent-card">
-            <h3>准备内容</h3>
-            <ul>
-              <li>Node.js：官方推荐 24，最低支持 22.14+</li>
-              <li>npm（Node.js 自带）</li>
-              <li>Git</li>
-              <li>一个能调用成功的模型凭证：OpenAI / Anthropic / Google / OpenRouter / 国内兼容 Provider 等</li>
-            </ul>
-          </div>
-          <div class="card teal-card">
-            <h3>推荐选择原则</h3>
-            <p>第一次安装时，优先选择<strong>开通快、余额可见、失败提示清晰</strong>的 Provider。国内环境下，兼容 OpenAI 风格 API 的服务通常更容易快速跑通。</p>
-            <div class="tag-strip">
-              <span class="pill">阿里云百炼</span>
-              <span class="pill">智谱 GLM</span>
-              <span class="pill">Minimax</span>
-              <span class="pill">Kimi</span>
-              <span class="pill">豆包</span>
-              <span class="pill">腾讯云</span>
-            </div>
-          </div>
-        </div>
-        <div class="callout">第一次部署建议只准备 1 个可用 Provider；等主流程跑通后，再补第二个 Provider 作为备用。</div>
-        <div class="resource-panel">
-          <h3>常用入口</h3>
-          <div class="resource-grid">
-            <div class="resource-link-card">
-              <strong>阿里云百炼 Coding Plan</strong>
-              <a href="https://bailian.console.aliyun.com/cn-beijing/?tab=coding-plan#/efm/index" target="_blank"
-                rel="noreferrer">https://bailian.console.aliyun.com/cn-beijing/?tab=coding-plan#/efm/index</a>
-            </div>
-            <div class="resource-link-card">
-              <strong>智谱 AI（GLM）</strong>
-              <a href="https://www.bigmodel.cn/glm-coding?ic=CDU205JPZM&closedialog=true" target="_blank"
-                rel="noreferrer">https://www.bigmodel.cn/glm-coding?ic=CDU205JPZM&closedialog=true</a>
-            </div>
-            <div class="resource-link-card">
-              <strong>Minimax Coding Plan</strong>
-              <a href="https://platform.minimaxi.com/docs/coding-plan/quickstart" target="_blank"
-                rel="noreferrer">https://platform.minimaxi.com/docs/coding-plan/quickstart</a>
-            </div>
-            <div class="resource-link-card">
-              <strong>Kimi Code Plan</strong>
-              <a href="https://www.kimi.com/code" target="_blank" rel="noreferrer">https://www.kimi.com/code</a>
-            </div>
-            <div class="resource-link-card">
-              <strong>豆包 Coding Plan</strong>
-              <a href="https://volcengine.com/L/8o7kIXwoTZs" target="_blank"
-                rel="noreferrer">https://volcengine.com/L/8o7kIXwoTZs</a>
-            </div>
-            <div class="resource-link-card">
-              <strong>腾讯云 Coding Plan</strong>
-              <a href="https://cloud.tencent.com/act/pro/codingplan?Is=home#buy" target="_blank"
-                rel="noreferrer">https://cloud.tencent.com/act/pro/codingplan?Is=home#buy</a>
-            </div>
-          </div>
-        </div>
-      </section>
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块二 · 步骤 01 补充</p>
+      <h2>Provider 凭证准备</h2>
+      <p>这一页只讲一件事：在进入 onboarding 之前，先准备好可用的模型密钥。常见做法分成 API Key 和 Token Plan 两种。</p>
+    </div>
+  </div>
+  <div class="slide-body grid-2">
+    <div class="card accent-card">
+      <h3>方案 A：先用 API Key</h3>
+      <ul>
+        <li>适合首次安装、功能测试、低频使用。</li>
+        <li>优点是开通快、试错成本低，遇到问题也更容易排查。</li>
+        <li>拿到 API Key 后，后面的 onboarding 填写方式最直接。</li>
+      </ul>
+    </div>
+    <div class="card teal-card">
+      <h3>方案 B：长期用 Token Plan</h3>
+      <p>更适合长期运行、固定工作流和高频调用。通常要先开通套餐，再到平台里拿可用的接口密钥。</p>
+      <p>如果你已经确认会长期使用 OpenClaw，再考虑 Token Plan 会更合适。</p>
+      <div class="tag-strip">
+        <span class="pill">阿里云百炼</span>
+        <span class="pill">智谱 GLM</span>
+        <span class="pill">Minimax</span>
+        <span class="pill">Kimi</span>
+        <span class="pill">豆包</span>
+        <span class="pill">腾讯云</span>
+      </div>
+    </div>
+  </div>
+  <div class="callout">讲解顺序建议是：先知道去哪里拿密钥，再判断该选 API Key 还是 Token Plan。第一次部署建议先准备 1 个能跑通的 Provider 即可。</div>
+  <div class="resource-panel">
+    <h3>获取入口</h3>
+    <div class="resource-grid">
+      <div class="resource-link-card">
+        <strong>阿里云百炼 API Key</strong>
+        <a href="https://bailian.console.aliyun.com/cn-beijing/?spm=5176.29619931.J_SEsSjsNv72yRuRFS2VknO.2.3b8410d75xThZQ&tab=demohouse#/api-key"
+          target="_blank"
+          rel="noreferrer">https://bailian.console.aliyun.com/cn-beijing/?spm=5176.29619931.J_SEsSjsNv72yRuRFS2VknO.2.3b8410d75xThZQ&tab=demohouse#/api-key</a>
+      </div>
+      <div class="resource-link-card">
+        <strong>Minimax API Key</strong>
+        <a href="https://platform.minimaxi.com/user-center/basic-information/interface-key" target="_blank"
+          rel="noreferrer">https://platform.minimaxi.com/user-center/basic-information/interface-key</a>
+      </div>
+      <div class="resource-link-card">
+        <strong>阿里云百炼 Coding Plan</strong>
+        <a href="https://bailian.console.aliyun.com/cn-beijing/?tab=coding-plan#/efm/index" target="_blank"
+          rel="noreferrer">https://bailian.console.aliyun.com/cn-beijing/?tab=coding-plan#/efm/index</a>
+      </div>
+      <div class="resource-link-card">
+        <strong>智谱 AI（GLM）</strong>
+        <a href="https://www.bigmodel.cn/glm-coding?ic=CDU205JPZM&closedialog=true" target="_blank"
+          rel="noreferrer">https://www.bigmodel.cn/glm-coding?ic=CDU205JPZM&closedialog=true</a>
+      </div>
+      <div class="resource-link-card">
+        <strong>Minimax Coding Plan</strong>
+        <a href="https://platform.minimaxi.com/docs/coding-plan/quickstart" target="_blank"
+          rel="noreferrer">https://platform.minimaxi.com/docs/coding-plan/quickstart</a>
+      </div>
+      <div class="resource-link-card">
+        <strong>Kimi Code Plan</strong>
+        <a href="https://www.kimi.com/code" target="_blank" rel="noreferrer">https://www.kimi.com/code</a>
+      </div>
+      <div class="resource-link-card">
+        <strong>豆包 Coding Plan</strong>
+        <a href="https://volcengine.com/L/8o7kIXwoTZs" target="_blank"
+          rel="noreferrer">https://volcengine.com/L/8o7kIXwoTZs</a>
+      </div>
+      <div class="resource-link-card">
+        <strong>腾讯云 Coding Plan</strong>
+        <a href="https://cloud.tencent.com/act/pro/codingplan?Is=home#buy" target="_blank"
+          rel="noreferrer">https://cloud.tencent.com/act/pro/codingplan?Is=home#buy</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-module="安装与配置" data-title="步骤 01 补充：API Key 和 Token Plan 怎么选">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块二 · 步骤 01 补充</p>
+      <h2>API Key 和 Token Plan 有什么区别？</h2>
+      <p>它们最后都能给 OpenClaw 提供模型凭证，核心区别不在能不能接入，而在付费方式、使用频率和长期成本控制。</p>
+    </div>
+  </div>
+  <div class="slide-body">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>对比项</th>
+            <th>API Key</th>
+            <th>Token Plan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>本质</td>
+            <td>普通接口密钥</td>
+            <td>订阅或套餐模式下使用的接口凭证</td>
+          </tr>
+          <tr>
+            <td>适合谁</td>
+            <td>刚开始体验、低频使用、新手测试</td>
+            <td>长期使用、重度使用、团队稳定接入</td>
+          </tr>
+          <tr>
+            <td>成本特点</td>
+            <td>按量消耗，先用先试</td>
+            <td>更适合长期规划，成本预期更稳定</td>
+          </tr>
+          <tr>
+            <td>灵活性</td>
+            <td>高，开通快，试错成本低</td>
+            <td>更适合固定工作流和长期运行</td>
+          </tr>
+          <tr>
+            <td>常见场景</td>
+            <td>跑通安装、测试功能、偶尔使用</td>
+            <td>日常高频对话、定时任务、长期托管</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid-2" style="margin-top:18px;">
+      <div class="card accent-card">
+        <h3>第一次部署</h3>
+        <p>建议先用 API Key，把安装、onboarding 和 Dashboard 验收完整走通。这样上手最快，遇到问题也最容易定位。</p>
+      </div>
+      <div class="card">
+        <h3>长期运行</h3>
+        <p>当本地 Gateway、渠道接入和自动化任务都稳定后，再评估 Token Plan 是否更适合长期成本和调用频率。</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="slide layout-config-dense" data-module="安装与配置" data-title="步骤 02：执行安装命令">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">模块二 · 步骤 02</p>
-            <h2>执行安装命令</h2>
-            <p>OpenClaw 官方推荐先使用安装脚本。脚本会完成 CLI 安装，并进入 onboarding 流程。</p>
-          </div>
-        </div>
-        <div class="slide-body compare">
-          <div class="side accent-card">
-            <h3>macOS / Linux</h3>
-            <div class="code-block">curl -fsSL https://openclaw.ai/install.sh | bash</div>
-            <p>在终端中直接执行上面的命令。</p>
-          </div>
-          <div class="side teal-card">
-            <h3>Windows（PowerShell）</h3>
-            <div class="code-block">Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
-iwr -useb https://openclaw.ai/install.ps1 | iex</div>
-            <p>先放开当前用户脚本权限，再执行安装命令。Windows 原生可用，但更推荐 WSL2。</p>
-          </div>
-        </div>
-        <div class="callout">安装完成后，应继续执行 `openclaw onboard --install-daemon`；如果脚本已自动进入向导，可直接继续下一步。</div>
-      </section>
-
-<section class="slide" data-module="安装与配置" data-title="步骤 02 补充：手动安装">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">模块二 · 步骤 02 补充</p>
-            <h2>手动安装</h2>
-            <p>安装脚本失败时，可切换到手动安装路径，逐步确认依赖、权限和终端环境。</p>
-          </div>
-        </div>
-        <div class="slide-body">
-          <div class="manual-install-layout" data-segmented>
-            <div class="manual-install-top">
-              <p>手动安装的好处在于每一步都能自己确认，环境里缺了什么、卡在什么地方，会看得更清楚。</p>
-              <div class="segmented-nav" role="tablist" aria-label="操作系统切换">
-                <button class="segmented-btn active" type="button" role="tab" aria-selected="true" data-segment-btn="mac" data-default>macOS</button>
-                <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="windows">Windows</button>
-              </div>
-            </div>
-
-            <section class="segmented-panel" data-segment-panel="mac" role="tabpanel">
-              <div class="manual-install-stage">
-                <aside class="manual-route">
-                  <h3>macOS 路线</h3>
-                  <ol class="manual-step-list">
-                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 下载 Node.js 安装包</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 打开终端并安装 Homebrew</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 执行 `git --version` 验证</button></li>
-                  </ol>
-                </aside>
-                <div class="gallery manual-gallery" data-gallery>
-                  <div class="gallery-stage">
-                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-                    <figure class="gallery-panel">
-                      <img src="images/2.png" alt="下载 Node.js 安装包" />
-                      <figcaption>先下载 macOS 版 Node.js 安装包。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/3.png" alt="打开终端并准备安装 Homebrew" />
-                      <figcaption>先打开终端，准备安装 Homebrew。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/4.png" alt="验证 git 安装" />
-                      <figcaption>再通过 `git --version` 验证 Git 安装成功。</figcaption>
-                    </figure>
-                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>
-      </section>
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块二 · 步骤 02</p>
+      <h2>执行安装命令</h2>
+      <p>OpenClaw 官方推荐先使用安装脚本。脚本会完成 CLI 安装，并进入 onboarding 流程。</p>
+    </div>
+  </div>
+  <div class="slide-body compare">
+    <div class="side accent-card">
+      <h3>macOS / Linux</h3>
+      <div class="code-block">curl -fsSL https://openclaw.ai/install.sh | bash</div>
+      <p>在终端中直接执行上面的命令。</p>
+    </div>
+    <div class="side teal-card">
+      <h3>Windows（PowerShell）</h3>
+      <div class="code-block">Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+        iwr -useb https://openclaw.ai/install.ps1 | iex</div>
+      <p>先放开当前用户脚本权限，再执行安装命令。Windows 原生可用，但更推荐 WSL2。</p>
+    </div>
+  </div>
+  <div class="callout">安装完成后，应继续执行 `openclaw onboard --install-daemon`；如果脚本已自动进入向导，可直接继续下一步。</div>
+  <div class="callout warning">如果一键安装命令失败，请直接跳到附录 A：手动安装，按操作系统分支逐步排查环境与依赖。</div>
+</section>
 
 <section class="slide" data-module="安装与配置" data-title="步骤 03：运行 onboarding">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">模块二 · 步骤 03</p>
-            <h2>运行 onboarding</h2>
-            <p>安装完成后，在终端执行下列命令，进入官方交互式向导。</p>
-          </div>
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块二 · 步骤 03</p>
+      <h2>运行 onboarding</h2>
+      <p>安装完成后，在终端执行下列命令，进入官方交互式向导。</p>
+    </div>
+  </div>
+  <div class="slide-body">
+    <div class="manual-install-layout" data-segmented>
+      <div class="manual-install-top">
+        <div class="code-block" style="margin-top:0;">openclaw onboard --install-daemon</div>
+        <div class="segmented-nav" role="tablist" aria-label="配置阶段切换">
+          <button class="segmented-btn active" type="button" role="tab" aria-selected="true" data-segment-btn="basic"
+            data-default>① 基础配置</button>
+          <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="api-qwen">② API
+            (Qwen)</button>
+          <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="api-minimax">③
+            API (Minimax)</button>
+          <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="finish">④
+            完成设置</button>
         </div>
-        <div class="slide-body">
-          <div class="manual-install-layout" data-segmented>
-            <div class="manual-install-top">
-              <div class="code-block" style="margin-top:0;">openclaw onboard --install-daemon</div>
-              <div class="segmented-nav" role="tablist" aria-label="配置阶段切换">
-                <button class="segmented-btn active" type="button" role="tab" aria-selected="true" data-segment-btn="basic" data-default>① 基础配置</button>
-                <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="api-qwen">② API (Qwen)</button>
-                <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="api-minimax">③ API (Minimax)</button>
-                <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="finish">④ 完成设置</button>
-              </div>
-            </div>
+      </div>
 
-            <section class="segmented-panel" data-segment-panel="basic" role="tabpanel">
-              <div class="manual-install-stage">
-                <aside class="manual-route">
-                  <h3>基础配置</h3>
-                  <ol class="manual-step-list">
-                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 执行命令并进入向导</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 选择 Quick start</button></li>
-                  </ol>
-                </aside>
-                <div class="gallery manual-gallery" data-gallery>
-                  <div class="gallery-stage">
-                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-                    <figure class="gallery-panel">
-                      <img src="images/14.png" alt="忽略安全警告" />
-                      <figcaption>执行 `openclaw onboard --install-daemon` 后，按提示进入 onboarding。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/15.png" alt="Quick start 选项" />
-                      <figcaption>向导模式选择 `Quick start`。</figcaption>
-                    </figure>
-                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>
-      </section>
-
-<section class="slide layout-path-dense" data-module="安装与配置" data-title="步骤 03 速查：推荐选项">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">模块二 · 步骤 03 速查</p>
-            <h2>onboarding 推荐选项</h2>
-            <p>首次本地部署时，下面这组选择通常最容易跑通主流程。</p>
-          </div>
-        </div>
-        <div class="slide-body grid-3">
-          <div class="card accent-card">
-            <h3>命令</h3>
-            <p>`openclaw onboard --install-daemon`</p>
-            <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(124, 45, 18, 0.08);">
-              <span class="pill demo-cue" style="margin-bottom: 8px;">选择</span>
-              <p style="margin-top: 0; font-weight: 600; color: var(--text);">保留 `--install-daemon`，让 Gateway 作为后台服务安装。</p>
-            </div>
-          </div>
-          <div class="card">
-            <h3>向导模式</h3>
-            <p>进入 onboarding 后，优先选择 `Quick start`。</p>
-            <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(124, 45, 18, 0.08);">
-              <span class="pill demo-cue" style="margin-bottom: 8px;">作用</span>
-              <p style="margin-top: 0; font-weight: 600; color: var(--text);">优先走官方默认配置，减少首次安装时的自定义变量。</p>
-            </div>
-          </div>
-          <div class="card teal-card">
-            <h3>完成设置</h3>
-            <p>渠道先跳过，Skills 先选 `No`，交互入口优先选 `Web UI`。</p>
-            <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(15, 118, 110, 0.1);">
-              <span class="pill demo-cue" style="margin-bottom: 8px;">顺序</span>
-              <p style="margin-top: 0; font-weight: 600; color: var(--text);">先完成本地可用，再进入飞书接入和 Skills 安装。</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-<section class="slide" data-module="安装与配置" data-title="步骤 04：交互入口选择">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">模块二 · 步骤 04</p>
-            <h2>交互入口选择</h2>
-            <p>首次本地部署推荐先用 Web UI；如果部署在远程主机或长期使用 SSH，可改用 TUI。</p>
-          </div>
-        </div>
-        <div class="slide-body">
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>项目</th>
-                  <th>Web UI</th>
-                  <th>TUI</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>进入方式</td>
-                  <td>在浏览器里打开管理页面</td>
-                  <td>直接在终端里进入交互界面</td>
-                </tr>
-                <tr>
-                  <td>信息查看</td>
-                  <td>页面层次更清楚，状态、配置和会话更容易一起看</td>
-                  <td>信息集中在终端里，切换速度快，连续操作更直接</td>
-                </tr>
-                <tr>
-                  <td>操作习惯</td>
-                  <td>更接近后台管理页面，适合边看边点边调</td>
-                  <td>更接近命令行工作流，适合长期维护和远程操作</td>
-                </tr>
-                <tr>
-                  <td>部署环境</td>
-                  <td>本地电脑、带桌面的 macOS / Windows 环境</td>
-                  <td>Linux 主机、云服务器、长期 SSH 维护环境</td>
-                </tr>
-                <tr>
-                  <td>更常见的使用者</td>
-                  <td>刚开始接触的人，或者平时更习惯图形界面的人</td>
-                  <td>已经习惯命令行、希望尽量轻量维护的人</td>
-                </tr>
-                <tr>
-                  <td>更常见的选择</td>
-                  <td>本地部署时通常优先选它，查看和排查都更直观</td>
-                  <td>远程部署时通常更顺手，不需要图形桌面也能完整维护</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="callout">本地电脑部署时，Web UI 更适合查看状态、修改配置和排查问题；远程主机或长期 SSH 维护环境里，TUI 往往更高效。</div>
-        </div>
-      </section>
-
-<section class="slide" data-module="安装与配置" data-title="步骤 05：部署验收">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">模块二 · 步骤 05</p>
-            <h2>部署验收</h2>
-            <p>部署完成后，按命令行检查 → 服务状态 → 控制界面 这条顺序验收。</p>
-          </div>
-        </div>
-        <div class="slide-body split-tight">
-          <div class="card accent-card">
-            <h3>验收命令</h3>
-            <div class="code-block">openclaw doctor
-openclaw gateway status
-openclaw dashboard</div>
-            <p>`openclaw --version` 可先确认 CLI 是否安装成功；`doctor` 用于检查依赖与配置；`gateway status` 用于查看 Gateway 是否已运行；`dashboard` 用于打开控制界面。</p>
-            <div class="callout">验收完成时，应同时满足三件事：CLI 可调用、Gateway 正在运行、Dashboard 能正常打开。</div>
-          </div>
-          <div class="gallery" data-gallery>
+      <section class="segmented-panel" data-segment-panel="basic" role="tabpanel">
+        <div class="manual-install-stage">
+          <aside class="manual-route">
+            <h3>基础配置</h3>
+            <ol class="manual-step-list">
+              <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 执行命令并进入向导</button></li>
+              <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 选择 Quick start</button></li>
+            </ol>
+          </aside>
+          <div class="gallery manual-gallery" data-gallery>
             <div class="gallery-stage">
               <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
               <figure class="gallery-panel">
-                <img src="images/25.png" alt="打开 dashboard 第一步" />
-                <figcaption>完成命令行体检后，再执行 `openclaw dashboard`。</figcaption>
+                <img src="images/14.png" alt="忽略安全警告" />
+                <figcaption>执行 `openclaw onboard --install-daemon` 后，按提示进入 onboarding。</figcaption>
               </figure>
               <figure class="gallery-panel" hidden>
-                <img src="images/26.png" alt="打开 dashboard 后的页面" />
-                <figcaption>页面能正常打开，说明控制面已可访问；如果前面的状态检查也通过，就可以进入后续飞书与 Skills 模块。</figcaption>
+                <img src="images/15.png" alt="Quick start 选项" />
+                <figcaption>向导模式选择 `Quick start`。</figcaption>
+              </figure>
+              <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="segmented-panel" data-segment-panel="api-qwen" role="tabpanel" hidden>
+        <div class="manual-install-stage">
+          <aside class="manual-route">
+            <h3>API (Qwen)</h3>
+            <ol class="manual-step-list">
+              <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 获取 Qwen API Key</button></li>
+              <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 填写配置第 1 步</button></li>
+              <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 填写配置第 2 步</button></li>
+              <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 完成 Provider 绑定</button></li>
+            </ol>
+          </aside>
+          <div class="gallery manual-gallery" data-gallery>
+            <div class="gallery-stage">
+              <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+              <figure class="gallery-panel">
+                <img src="images/16.png" alt="获取 Qwen API Key" />
+                <figcaption>先到百炼后台获取 Qwen API Key。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/17.png" alt="填写 Qwen 配置第一步" />
+                <figcaption>在向导里填写 Qwen 的第一段 Provider 配置。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/18.png" alt="填写 Qwen 配置第二步" />
+                <figcaption>继续补完模型、凭证等相关字段。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/19.png" alt="完成 Qwen Provider 绑定" />
+                <figcaption>Provider 绑定完成后，就可以进入下一阶段配置。</figcaption>
               </figure>
               <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
             </div>
             <div class="gallery-dots">
-              <button class="gallery-dot" type="button">1 执行命令</button>
-              <button class="gallery-dot" type="button">2 看页面</button>
+              <button class="gallery-dot" type="button">1 获取 Key</button>
+              <button class="gallery-dot" type="button">2 配置 1</button>
+              <button class="gallery-dot" type="button">3 配置 2</button>
+              <button class="gallery-dot" type="button">4 绑定完成</button>
             </div>
           </div>
         </div>
       </section>
+      <section class="segmented-panel" data-segment-panel="api-minimax" role="tabpanel" hidden>
+        <div class="manual-install-stage">
+          <aside class="manual-route">
+            <h3>API (Minimax)</h3>
+            <ol class="manual-step-list">
+              <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 选择 Token Plan 套餐</button></li>
+              <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 获取 Token Plan API Key</button></li>
+              <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 填写配置第 1 步</button></li>
+              <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 填写配置第 2 步</button></li>
+            </ol>
+          </aside>
+          <div class="gallery manual-gallery" data-gallery>
+            <div class="gallery-stage">
+              <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+              <figure class="gallery-panel">
+                <img src="images/minimax-0.png" alt="选择 Minimax Token Plan 套餐" />
+                <figcaption>先根据自己的使用频率选择 Minimax Token Plan 套餐。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/minimax-3.png" alt="获取 Minimax Token Plan API Key" />
+                <figcaption>然后到用户中心获取 Token Plan API Key。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/minimax-1.png" alt="填写 Minimax 配置第一步" />
+                <figcaption>回到向导，填写 Minimax 的第一段配置。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/minimax-2.png" alt="填写 Minimax 配置第二步" />
+                <figcaption>继续补完模型与凭证等必要字段。</figcaption>
+              </figure>
+              <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+            </div>
+            <div class="gallery-dots">
+              <button class="gallery-dot" type="button">1 选套餐</button>
+              <button class="gallery-dot" type="button">2 获取 Key</button>
+              <button class="gallery-dot" type="button">3 配置 1</button>
+              <button class="gallery-dot" type="button">4 配置 2</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="segmented-panel" data-segment-panel="finish" role="tabpanel" hidden>
+        <div class="manual-install-stage">
+          <aside class="manual-route">
+            <h3>完成设置</h3>
+            <ol class="manual-step-list">
+              <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 是否接入渠道先选 No</button></li>
+              <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 选择交互入口</button></li>
+              <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. Skills 先选 No</button></li>
+              <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 完成安装并启动</button></li>
+            </ol>
+          </aside>
+          <div class="gallery manual-gallery" data-gallery>
+            <div class="gallery-stage">
+              <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+              <figure class="gallery-panel">
+                <img src="images/20.png" alt="渠道先选 No" />
+                <figcaption>首次本地部署时，渠道接入先选 `No`，后面单独再接飞书。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/21.png" alt="选择 Web UI" />
+                <figcaption>交互入口优先选择 `Web UI`，更适合首次安装时排查问题。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/22.png" alt="Skills 先选 No" />
+                <figcaption>Skills 这里先选 `No`，后面再用更顺手的方式安装。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/23.png" alt="完成安装和启动" />
+                <figcaption>完成剩余确认后，Gateway 会按向导结果安装并启动。</figcaption>
+              </figure>
+              <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+            </div>
+            <div class="gallery-dots">
+              <button class="gallery-dot" type="button">1 先不接渠道</button>
+              <button class="gallery-dot" type="button">2 选 Web UI</button>
+              <button class="gallery-dot" type="button">3 Skills 选 No</button>
+              <button class="gallery-dot" type="button">4 完成安装</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<section class="slide layout-path-dense" data-module="安装与配置" data-title="步骤 03 速查：推荐选项">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块二 · 步骤 03 速查</p>
+      <h2>onboarding 推荐选项</h2>
+      <p>首次本地部署时，下面这组选择通常最容易跑通主流程。</p>
+    </div>
+  </div>
+  <div class="slide-body grid-3">
+    <div class="card accent-card">
+      <h3>命令</h3>
+      <p>`openclaw onboard --install-daemon`</p>
+      <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(124, 45, 18, 0.08);">
+        <span class="pill demo-cue" style="margin-bottom: 8px;">选择</span>
+        <p style="margin-top: 0; font-weight: 600; color: var(--text);">保留 `--install-daemon`，让 Gateway 作为后台服务安装。</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>向导模式</h3>
+      <p>进入 onboarding 后，优先选择 `Quick start`。</p>
+      <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(124, 45, 18, 0.08);">
+        <span class="pill demo-cue" style="margin-bottom: 8px;">作用</span>
+        <p style="margin-top: 0; font-weight: 600; color: var(--text);">优先走官方默认配置，减少首次安装时的自定义变量。</p>
+      </div>
+    </div>
+    <div class="card teal-card">
+      <h3>完成设置</h3>
+      <p>渠道先跳过，Skills 先选 `No`，交互入口优先选 `Web UI`。</p>
+      <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(15, 118, 110, 0.1);">
+        <span class="pill demo-cue" style="margin-bottom: 8px;">顺序</span>
+        <p style="margin-top: 0; font-weight: 600; color: var(--text);">先完成本地可用，再进入飞书接入和 Skills 安装。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-module="安装与配置" data-title="步骤 04：交互入口选择">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块二 · 步骤 04</p>
+      <h2>交互入口选择</h2>
+      <p>首次本地部署推荐先用 Web UI；如果部署在远程主机或长期使用 SSH，可改用 TUI。</p>
+    </div>
+  </div>
+  <div class="slide-body">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>项目</th>
+            <th>Web UI</th>
+            <th>TUI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>进入方式</td>
+            <td>在浏览器里打开管理页面</td>
+            <td>直接在终端里进入交互界面</td>
+          </tr>
+          <tr>
+            <td>信息查看</td>
+            <td>页面层次更清楚，状态、配置和会话更容易一起看</td>
+            <td>信息集中在终端里，切换速度快，连续操作更直接</td>
+          </tr>
+          <tr>
+            <td>操作习惯</td>
+            <td>更接近后台管理页面，适合边看边点边调</td>
+            <td>更接近命令行工作流，适合长期维护和远程操作</td>
+          </tr>
+          <tr>
+            <td>部署环境</td>
+            <td>本地电脑、带桌面的 macOS / Windows 环境</td>
+            <td>Linux 主机、云服务器、长期 SSH 维护环境</td>
+          </tr>
+          <tr>
+            <td>更常见的使用者</td>
+            <td>刚开始接触的人，或者平时更习惯图形界面的人</td>
+            <td>已经习惯命令行、希望尽量轻量维护的人</td>
+          </tr>
+          <tr>
+            <td>更常见的选择</td>
+            <td>本地部署时通常优先选它，查看和排查都更直观</td>
+            <td>远程部署时通常更顺手，不需要图形桌面也能完整维护</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">本地电脑部署时，Web UI 更适合查看状态、修改配置和排查问题；远程主机或长期 SSH 维护环境里，TUI 往往更高效。</div>
+  </div>
+</section>
+
+<section class="slide" data-module="安装与配置" data-title="步骤 05：部署验收">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块二 · 步骤 05</p>
+      <h2>部署验收</h2>
+      <p>部署完成后，按命令行检查 → 服务状态 → 控制界面 这条顺序验收。</p>
+    </div>
+  </div>
+  <div class="slide-body split-tight">
+    <div class="card accent-card">
+      <h3>验收命令</h3>
+      <div class="code-block">openclaw doctor
+        openclaw gateway status
+        openclaw dashboard</div>
+      <p>`openclaw --version` 可先确认 CLI 是否安装成功；`doctor` 用于检查依赖与配置；`gateway status` 用于查看 Gateway 是否已运行；`dashboard`
+        用于打开控制界面。</p>
+      <div class="callout">验收完成时，应同时满足三件事：CLI 可调用、Gateway 正在运行、Dashboard 能正常打开。</div>
+    </div>
+    <div class="gallery" data-gallery>
+      <div class="gallery-stage">
+        <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+        <figure class="gallery-panel">
+          <img src="images/25.png" alt="打开 dashboard 第一步" />
+          <figcaption>完成命令行体检后，再执行 `openclaw dashboard`。</figcaption>
+        </figure>
+        <figure class="gallery-panel" hidden>
+          <img src="images/26.png" alt="打开 dashboard 后的页面" />
+          <figcaption>页面能正常打开，说明控制面已可访问；如果前面的状态检查也通过，就可以进入后续飞书与 Skills 模块。</figcaption>
+        </figure>
+        <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+      </div>
+      <div class="gallery-dots">
+        <button class="gallery-dot" type="button">1 执行命令</button>
+        <button class="gallery-dot" type="button">2 看页面</button>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="slide" data-module="安装与配置" data-title="步骤 06：故障定位顺序">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">模块二 · 步骤 06</p>
-            <h2>故障定位顺序</h2>
-            <p>出现异常时，按固定顺序排查，可快速判断问题位于环境、服务、模型还是渠道层。</p>
-          </div>
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块二 · 步骤 06</p>
+      <h2>故障定位顺序</h2>
+      <p>出现异常时，按固定顺序排查，可快速判断问题位于环境、服务、模型还是渠道层。</p>
+    </div>
+  </div>
+  <div class="slide-body split-tight">
+    <div class="card accent-card">
+      <h3>定位顺序</h3>
+      <div class="number-list">
+        <div class="item"><b>1</b>
+          <p><strong>版本是否满足：</strong>`node -v`、`git --version`、`openclaw --version`。</p>
         </div>
-        <div class="slide-body split-tight">
-          <div class="card accent-card">
-            <h3>定位顺序</h3>
-            <div class="number-list">
-              <div class="item"><b>1</b>
-                <p><strong>版本是否满足：</strong>`node -v`、`git --version`、`openclaw --version`。</p>
-              </div>
-              <div class="item"><b>2</b>
-                <p><strong>环境是否健康：</strong>`openclaw doctor` 看依赖、路径和基础配置。</p>
-              </div>
-              <div class="item"><b>3</b>
-                <p><strong>服务是否在线：</strong>`openclaw gateway status` 看 Gateway 有没有真正跑起来。</p>
-              </div>
-              <div class="item"><b>4</b>
-                <p><strong>Provider 是否可用：</strong>检查 API Key、余额、模型名和地区访问限制。</p>
-              </div>
-            </div>
-          </div>
-          <div class="card teal-card">
-            <h3>常见现象与定位</h3>
-            <ul class="list-clean">
-              <li><strong>命令都不存在：</strong>先回到安装环节，不要继续往后配。</li>
-              <li><strong>Gateway 没启动：</strong>先解决服务问题，不要急着看飞书和 Skills。</li>
-              <li><strong>页面打开但不能回复：</strong>优先查 Provider 凭证和模型配置。</li>
-              <li><strong>本地可用、飞书不可用：</strong>说明核心安装已过关，问题已经缩小到渠道接入层。</li>
-            </ul>
-            <div class="callout">排查完成后，应能明确判断问题属于哪一层，再进入对应模块继续处理。</div>
-          </div>
+        <div class="item"><b>2</b>
+          <p><strong>环境是否健康：</strong>`openclaw doctor` 看依赖、路径和基础配置。</p>
         </div>
-      </section>
-
-<section class="slide" data-module="安装与配置" data-title="附：长期使用时再看 Token Plan">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">模块二 · 附加说明</p>
-            <h2>长期使用时再看 Token Plan</h2>
-            <p>这部分不影响首次部署；只有在本地部署已经跑通后，才需要比较不同 Provider 的套餐方式。</p>
-          </div>
+        <div class="item"><b>3</b>
+          <p><strong>服务是否在线：</strong>`openclaw gateway status` 看 Gateway 有没有真正跑起来。</p>
         </div>
-        <div class="slide-body">
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>对比项</th>
-                  <th>API Key</th>
-                  <th>Token Plan</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>适合场景</td>
-                  <td>首次部署、功能测试、低频使用</td>
-                  <td>长期运行、固定工作流、高频调用</td>
-                </tr>
-                <tr>
-                  <td>开通速度</td>
-                  <td>通常更快</td>
-                  <td>通常需要先购买套餐或额度</td>
-                </tr>
-                <tr>
-                  <td>成本方式</td>
-                  <td>按量消耗</td>
-                  <td>更适合稳定规划成本</td>
-                </tr>
-                <tr>
-                  <td>首次部署建议</td>
-                  <td>优先使用</td>
-                  <td>主流程跑通后再考虑</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="grid-2" style="margin-top:18px;">
-            <div class="card accent-card">
-              <h3>第一次部署</h3>
-              <p>建议先使用 API Key，把安装、onboarding 和 Dashboard 验收完整走通。</p>
-            </div>
-            <div class="card">
-              <h3>长期运行</h3>
-              <p>当本地 Gateway、渠道接入和自动化任务都进入稳定使用阶段，再评估 Token Plan 是否更合适。</p>
-            </div>
-          </div>
+        <div class="item"><b>4</b>
+          <p><strong>Provider 是否可用：</strong>检查 API Key、余额、模型名和地区访问限制。</p>
         </div>
-      </section>
+      </div>
+    </div>
+    <div class="card teal-card">
+      <h3>常见现象与定位</h3>
+      <ul class="list-clean">
+        <li><strong>命令都不存在：</strong>先回到安装环节，不要继续往后配。</li>
+        <li><strong>Gateway 没启动：</strong>先解决服务问题，不要急着看飞书和 Skills。</li>
+        <li><strong>页面打开但不能回复：</strong>优先查 Provider 凭证和模型配置。</li>
+        <li><strong>本地可用、飞书不可用：</strong>说明核心安装已过关，问题已经缩小到渠道接入层。</li>
+      </ul>
+      <div class="callout">排查完成后，应能明确判断问题属于哪一层，再进入对应模块继续处理。</div>
+    </div>
+  </div>
+</section>

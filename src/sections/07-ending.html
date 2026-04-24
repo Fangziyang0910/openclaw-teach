@@ -36,3 +36,72 @@
           </div>
         </div>
       </section>
+
+<section class="slide" data-module="结束" data-title="附录 A：手动安装" style="display:flex; flex-direction:column;">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">附录 A</p>
+            <h2>手动安装</h2>
+            <p>如果一键安装脚本失败，就按这里的操作系统分支逐步确认依赖、权限和终端环境。</p>
+          </div>
+        </div>
+        <div class="slide-body" style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain;">
+          <div class="manual-install-layout" data-segmented>
+            <div class="manual-install-top">
+              <p>手动安装的好处在于每一步都能自己确认，环境里缺了什么、卡在什么地方，会看得更清楚。</p>
+              <div class="segmented-nav" role="tablist" aria-label="操作系统切换">
+                <button class="segmented-btn active" type="button" role="tab" aria-selected="true" data-segment-btn="mac" data-default>macOS</button>
+                <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="windows">Windows</button>
+              </div>
+            </div>
+
+            <section class="segmented-panel" data-segment-panel="mac" role="tabpanel">
+              <div class="manual-install-stage">
+                <aside class="manual-route">
+                  <h3>macOS 路线</h3>
+                  <ol class="manual-step-list">
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 下载 Node.js 安装包</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 打开终端并安装 Homebrew</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 执行 `brew install git`</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 执行 `git --version` 验证</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="4">5. 安装并验证 OpenClaw</button></li>
+                  </ol>
+                </aside>
+                <div class="gallery manual-gallery" data-gallery>
+                  <div class="gallery-stage">
+                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                    <figure class="gallery-panel">
+                      <img src="images/2.png" alt="下载 Node.js 安装包" />
+                      <figcaption>先下载 macOS 版 Node.js 安装包。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/3.png" alt="打开终端并准备安装 Homebrew" />
+                      <figcaption>先打开终端安装 Homebrew，后面要用它执行 `brew install git` 来安装和管理 Git。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/3.png" alt="在终端执行 brew install git" />
+                      <figcaption>安装完 Homebrew 后，在终端执行 `brew install git`，正式安装 Git。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/4.png" alt="验证 git 安装" />
+                      <figcaption>再通过 `git --version` 验证 Git 安装成功。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/13.png" alt="安装并验证 OpenClaw 版本" />
+                      <figcaption>接着执行 `npm install -g openclaw@latest`，再用 `openclaw --version` 验证 OpenClaw 安装成功。</figcaption>
+                    </figure>
+                    <button class="gallery-nav next" type="button" aria-label="上一张截图">&#10095;</button>
+                  </div>
+                  <div class="gallery-dots">
+                    <button class="gallery-dot" type="button">1 Node.js</button>
+                    <button class="gallery-dot" type="button">2 安装 Homebrew</button>
+                    <button class="gallery-dot" type="button">3 安装 Git</button>
+                    <button class="gallery-dot" type="button">4 验证 Git</button>
+                    <button class="gallery-dot" type="button">5 安装 OpenClaw</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
