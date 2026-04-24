@@ -1,9 +1,9 @@
-<section class="slide compact-center cover-slide" data-module="开场" data-title="封面">
+<section class="slide compact-center cover-slide" data-module="模块一：认识 OpenClaw" data-title="封面">
         <div class="slide-body cover">
           <div>
             <p class="eyebrow">教育培训</p>
             <h2>OpenClaw 从入门到案例实践</h2>
-            <p class="lead">从零开始理解开源 AI Agent —— 部署、接入、个性化配置与实战案例全覆盖。</p>
+            <p class="lead">从零开始理解开源 AI Agent：部署、飞书接入、Skills 配置与真实案例实践。</p>
             <div class="deck-meta">
               <span class="pill demo-cue"><i data-lucide="monitor" style="width:13px;height:13px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i>边讲边演示</span>
               <span class="pill"><i data-lucide="signal" style="width:13px;height:13px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i>办公小白友好</span>
@@ -18,20 +18,15 @@
           </div>
           <div class="cover-side">
             <div class="cover-panel">
-              <h3><i data-lucide="list-checks" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;"></i>今天的学习路线</h3>
-              <div class="key-points">
-                <div class="key-point"><b>1</b>
-                  <div><strong>认识 OpenClaw</strong> — 它从哪来、核心架构、能做什么、为什么值得关注。</div>
-                </div>
-                <div class="key-point"><b>2</b>
-                  <div><strong>安装与配置</strong> — 环境准备、本地部署、模型接入、Dashboard 使用。</div>
-                </div>
-                <div class="key-point"><b>3</b>
-                  <div><strong>飞书接入与个性化</strong> — 接入飞书机器人、安装 Skills、SOUL/USER/AGENTS 配置。</div>
-                </div>
-                <div class="key-point"><b>4</b>
-                  <div><strong>实战案例</strong> — 日报生成、深度调研、个人知识库搭建，形成完整实践路径。</div>
-                </div>
+              <h3><i data-lucide="list-checks" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;"></i>七个授课模块</h3>
+              <div class="key-points course-route-mini">
+                <div class="key-point"><b>1</b><div><strong>认识 OpenClaw</strong> — 是什么，能解决哪些真实问题。</div></div>
+                <div class="key-point muted-point"><b>2</b><div><strong>基本原理</strong> — 核心架构与运行逻辑，待补。</div></div>
+                <div class="key-point muted-point"><b>3</b><div><strong>部署思路</strong> — 多种部署路线，待补。</div></div>
+                <div class="key-point"><b>4</b><div><strong>现场部署</strong> — 手把手在学员电脑上跑起来。</div></div>
+                <div class="key-point"><b>5</b><div><strong>飞书接入</strong> — 成为日常使用的助手入口。</div></div>
+                <div class="key-point"><b>6</b><div><strong>Skills 配置</strong> — 扩展 OpenClaw 的可用能力。</div></div>
+                <div class="key-point"><b>7</b><div><strong>案例实战</strong> — 三个案例落地到工作流。</div></div>
               </div>
               <div class="prereq-list">
                 <div class="prereq-item"><i data-lucide="laptop"></i>请确保笔记本电脑已充电并联网</div>
@@ -41,510 +36,393 @@
         </div>
       </section>
 
-<section class="slide" data-module="开场" data-title="学习目标与课程导航">
+<section class="slide" data-module="模块一：认识 OpenClaw" data-title="七个模块总览">
         <div class="slide-header">
           <div class="title-stack">
-            <p class="eyebrow">开场</p>
-            <h2>学习目标与课程导航</h2>
+            <p class="eyebrow">课程总览</p>
+            <h2>七个模块总览</h2>
           </div>
         </div>
         <div class="slide-body split-tight">
           <div class="card accent-card">
             <h3><i data-lucide="target" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;"></i>学完这套课后，你能做到</h3>
-            <div class="goal-list">
-              <div class="item"><b>1</b>
-                <p>说清楚 OpenClaw 是什么、不是什么，以及它的三层架构如何运作。</p>
-              </div>
-              <div class="item"><b>2</b>
-                <p>在自己的电脑上完成安装、onboard 配置，打开 Web Dashboard 进行交互。</p>
-              </div>
-              <div class="item"><b>3</b>
-                <p>创建飞书应用、配置 Gateway 插件、跑通「发消息 → AI 回复」的完整链路。</p>
-              </div>
-              <div class="item"><b>4</b>
-                <p>安装至少 2 个社区 Skills，编写一份 SOUL 角色说明，让 AI 助手"有人格"。</p>
-              </div>
-              <div class="item"><b>5</b>
-                <p>参照三个实战案例，搭建自己的日报生成、深度调研或个人知识库工作流。</p>
-              </div>
+            <div class="goal-list compact-list">
+              <div class="item"><b>1</b><p>说清楚 OpenClaw 是什么，以及它能解决哪些真实问题。</p></div>
+              <div class="item"><b>2</b><p>理解后续要补充的核心架构、运行逻辑和部署路线。</p></div>
+              <div class="item"><b>3</b><p>在自己的电脑上完成部署，并接入飞书作为日常助手入口。</p></div>
+              <div class="item"><b>4</b><p>完成 Skills 配置，并通过三个案例看到真实工作流价值。</p></div>
             </div>
           </div>
           <div class="card teal-card">
-            <h3><i data-lucide="map" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;"></i>课程导航</h3>
-            <div class="number-list">
-              <div class="item"><b>1</b>
-                <div><strong>认识 OpenClaw</strong>
-                  <p>起源故事、核心定位、架构概览、四大能力、爆发增长。</p>
-                </div>
-              </div>
-              <div class="item"><b>2</b>
-                <div><strong>安装与配置</strong>
-                  <p>硬件/软件要求、模型接入、系统安装、Gateway 初始化、Dashboard 使用。</p>
-                </div>
-              </div>
-              <div class="item"><b>3</b>
-                <div><strong>接入飞书</strong>
-                  <p>创建应用、插件配置、渠道注册、事件/权限/发布、连通测试。</p>
-                </div>
-              </div>
-              <div class="item"><b>4</b>
-                <div><strong>Skills 与三件套</strong>
-                  <p>Skills 安装、SOUL/USER/AGENTS 配置、偏好与 Prompt 定制。</p>
-                </div>
-              </div>
-              <div class="item"><b>5</b>
-                <div><strong>实战案例与 FAQ</strong>
-                  <p>日报生成、深度调研、知识库搭建、常见问题，以及围绕 OpenClaw 的后续演化方向。</p>
-                </div>
-              </div>
+            <h3><i data-lucide="map" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;"></i>授课模块</h3>
+            <div class="number-list compact-list">
+              <div class="item"><b>1</b><p><strong>认识 OpenClaw：</strong>是什么，能解决哪些真实问题。</p></div>
+              <div class="item muted-item"><b>2</b><p><strong>基本原理：</strong>核心架构和运行逻辑，暂待补充。</p></div>
+              <div class="item muted-item"><b>3</b><p><strong>部署思路：</strong>多种部署路线，暂待补充。</p></div>
+              <div class="item"><b>4</b><p><strong>现场部署：</strong>手把手带学员在电脑上部署。</p></div>
+              <div class="item"><b>5</b><p><strong>飞书接入：</strong>成为可日常使用的助手入口。</p></div>
+              <div class="item"><b>6</b><p><strong>Skills 配置：</strong>让 OpenClaw 具备可扩展能力。</p></div>
+              <div class="item"><b>7</b><p><strong>案例实战：</strong>三个案例落地到真实工作流。</p></div>
             </div>
           </div>
         </div>
       </section>
 
-<section class="slide compact-center opening-module-intro" data-module="开场" data-title="模块一：认识 OpenClaw">
+<section class="slide compact-center opening-module-intro" data-module="模块一：认识 OpenClaw" data-title="模块一：认识 OpenClaw">
         <div class="slide-body module-intro">
           <div class="module-intro-copy">
             <p class="eyebrow">模块一</p>
             <h2>认识 OpenClaw</h2>
-            <p>在动手部署之前，先搞清楚三个问题：它从哪来？它到底是什么？它能帮你做什么？</p>
+            <p>在动手部署之前，先把问题讲清楚：为什么我们已经有了聊天 AI，还需要一个能接入飞书、读取文件、调用工具、持续处理任务的 Agent 系统。</p>
           </div>
           <div class="module-intro-side">
             <div class="modules-grid">
-              <div class="module-box">
-                <span><i data-lucide="history" style="width:13px;height:13px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>起源与历史</span>
-                <p style="margin:0;font-size:15px;color:var(--muted);line-height:1.7;">创始人故事、爆发增长、改名风波、加入 OpenAI。</p>
-              </div>
-              <div class="module-box">
-                <span><i data-lucide="cpu" style="width:13px;height:13px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>核心定位与架构</span>
-                <p style="margin:0;font-size:15px;color:var(--muted);line-height:1.7;">自托管 AI 网关、三层架构（Channel → Gateway → Runtime）。</p>
-              </div>
-              <div class="module-box">
-                <span><i data-lucide="zap" style="width:13px;height:13px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>四大能力特征</span>
-                <p style="margin:0;font-size:15px;color:var(--muted);line-height:1.7;">任务拆解执行、后台常驻、Skills 扩展、多端嵌入。</p>
-              </div>
-              <div class="module-box">
-                <span><i data-lucide="trending-up" style="width:13px;height:13px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>爆发增长与生态</span>
-                <p style="margin:0;font-size:15px;color:var(--muted);line-height:1.7;">GitHub 历史第一、养虾文化、Moltbook、InStreet。</p>
-              </div>
+              <div class="module-box"><span><i data-lucide="messages-square" style="width:13px;height:13px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>从聊天窗口开始</span><p>AI 能写、能总结、能解释，但真实工作还卡在材料搬运和结果落地上。</p></div>
+              <div class="module-box"><span><i data-lucide="route" style="width:13px;height:13px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>Agent 推进任务</span><p>Agent 会围绕目标拆步骤、选工具、继续行动，把结果交付到指定位置。</p></div>
+              <div class="module-box"><span><i data-lucide="workflow" style="width:13px;height:13px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>OpenClaw 适合工作流</span><p>它把消息入口、模型、Agent、Skills、文件和外部系统连起来。</p></div>
+              <div class="module-box"><span><i data-lucide="users-round" style="width:13px;height:13px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>社区为何关注</span><p>自托管、多入口、可扩展和“养虾”文化，让它在中文社区里持续发酵。</p></div>
             </div>
           </div>
         </div>
       </section>
 
-<section class="slide history-clean-visual" data-module="开场" data-title="起源与发展历史">
+<section class="slide" data-module="模块一：认识 OpenClaw" data-title="从聊天窗口到真实工作流">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块一 · 认识 OpenClaw</p>
-            <h2>起源与发展历史</h2>
-            <p>从一个人的"周末项目"到 GitHub 历史第一，只用了不到 100 天。</p>
+            <h2>从聊天窗口到真实工作流</h2>
+            <p>大多数人第一次使用 AI，都是从一个聊天窗口开始的。</p>
           </div>
         </div>
-        <div class="slide-body grid-2">
-          <div>
-            <div class="timeline timeline-3">
-              <div class="step">
-                创始人背景
-                <small>Peter Steinberger，奥地利人。创办 PSPDFKit 以 1.19 亿美元被收购。此前 18 个月已发布 30+ 开源项目，积累深厚。</small>
-              </div>
-              <div class="step">
-                周末原型
-                <small>2025 年底，用一个周末写出了第一个原型——通过 WhatsApp 控制 Claude Code 的 Wrapper。</small>
-              </div>
-              <div class="step">
-                爆发增长
-                <small>发布后 72 小时 6 万 Star，24 小时 9000 Star，创下 GitHub 历史增速纪录。</small>
-              </div>
-            </div>
-            <div class="key-points" style="margin-top:10px;">
-              <div class="key-point"><b style="font-size:11px;">改名</b>
-                <div style="font-size:12px;">Clawdbot → Moltbot → OpenClaw，经历律师函、账号抢注风波。</div>
-              </div>
-              <div class="key-point"><b style="font-size:11px;">加盟</b>
-                <div style="font-size:12px;">2026 年初 Peter 被 OpenAI 挖走，2 月做客 Lex Fridman 播客（3 小时）。</div>
-              </div>
-            </div>
-            <div class="analysis-box" style="margin-top:10px;">
-              <div class="analysis-box-icon"><i data-lucide="lightbulb" style="width:18px;height:18px;"></i></div>
-              <div>
-                <h4>为什么能爆发？</h4>
-                <p>三大因素叠加：<strong>时机</strong>（AI Agent 概念爆发期）+ <strong>痛点</strong>（开发者苦于没有好用的本地 Agent 框架）+ <strong>基因</strong>（创始人连续创业者+开源老兵，产品直觉一流）。</p>
-              </div>
+        <div class="slide-body ai-window-layout">
+          <div class="chat-window-card">
+            <div class="chat-window-top"><span></span><span></span><span></span></div>
+            <div class="chat-bubble user">帮我把这段会议内容整理成纪要。</div>
+            <div class="chat-bubble assistant">可以，我会提炼会议结论、待办事项、负责人和截止时间。</div>
+            <div class="chat-tool-row">
+              <span>写作</span><span>总结</span><span>翻译</span><span>学习</span><span>办公</span><span>代码辅助</span>
             </div>
           </div>
-          <figure class="tall">
-            <img src="images/1.png" alt="OpenClaw 官网示意图" />
-            <figcaption>官网直达：openclaw.ai — 开源、自托管、多平台 AI Agent 框架</figcaption>
-          </figure>
+          <div class="card">
+            <h3>对话型 AI 已经很有用</h3>
+            <ul class="list-clean">
+              <li>写通知、改文案、生成日报周报。</li>
+              <li>总结文章、提炼会议纪要、解释复杂概念。</li>
+              <li>头脑风暴、整理方案、比较不同选择。</li>
+              <li>修改代码、生成脚本、解释报错。</li>
+            </ul>
+          </div>
         </div>
       </section>
 
-<section class="slide" data-module="开场" data-title="OpenClaw 是什么，它能做哪些事">
+<section class="slide" data-module="模块一：认识 OpenClaw" data-title="真实工作里的五个断点">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块一 · 认识 OpenClaw</p>
-            <h2>OpenClaw 是什么，它能做哪些事</h2>
-            <p>OpenClaw 在真实工作场景里，通常承担的是消息入口、模型能力和执行动作之间的连接角色。</p>
+            <h2>真实工作里的五个断点</h2>
+            <p>聊天窗口很擅长生成内容，但真实任务经常发生在窗口之外。</p>
+          </div>
+        </div>
+        <div class="slide-body pain-grid">
+          <div class="pain-card"><i data-lucide="copy"></i><strong>上下文搬运</strong><p>文件、聊天记录、项目背景、历史决策，需要人先整理再复制给 AI。</p></div>
+          <div class="pain-card"><i data-lucide="clipboard-paste"></i><strong>结果转移</strong><p>AI 生成内容后，还要复制回飞书、文档、表格或任务系统。</p></div>
+          <div class="pain-card"><i data-lucide="repeat-2"></i><strong>任务持续性弱</strong><p>多数对话是一次性的，很难持续关注新消息或定时处理任务。</p></div>
+          <div class="pain-card"><i data-lucide="layout-dashboard"></i><strong>工作现场分散</strong><p>真实工作分布在消息、文件、浏览器、内部系统、代码仓库和脚本之间。</p></div>
+          <div class="pain-card accent-card"><i data-lucide="plug-zap"></i><strong>工具使用受限</strong><p>读取文件、连接外部服务、运行自动化操作，往往仍要人工完成。</p></div>
+        </div>
+      </section>
+
+<section class="slide" data-module="模块一：认识 OpenClaw" data-title="真实工作流对 AI 的新要求">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">模块一 · 认识 OpenClaw</p>
+            <h2>真实工作流对 AI 的新要求</h2>
+          </div>
+        </div>
+        <div class="slide-body requirement-lane">
+          <div class="requirement-item"><span>01</span><strong>入口</strong><p>AI 要出现在用户原本使用的地方：飞书、Telegram、Slack、网页控制台。</p></div>
+          <div class="requirement-item"><span>02</span><strong>上下文</strong><p>AI 要理解文件、消息、历史资料、项目背景和用户偏好。</p></div>
+          <div class="requirement-item"><span>03</span><strong>工具</strong><p>AI 要能连接 API、脚本、数据库、网页服务和业务系统。</p></div>
+          <div class="requirement-item"><span>04</span><strong>执行</strong><p>AI 要围绕目标完成多步骤任务，而不是只返回一段文本。</p></div>
+          <div class="requirement-item"><span>05</span><strong>交付</strong><p>AI 要把结果放回文档、表格、消息入口或业务流程中。</p></div>
+        </div>
+        <div class="callout">我们今天讲 OpenClaw，就是从这个变化开始：AI 从“回答问题”走向“推进任务”。</div>
+      </section>
+
+<section class="slide" data-module="模块一：认识 OpenClaw" data-title="Agent：从回答问题到推进任务">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">模块一 · 认识 OpenClaw</p>
+            <h2>Agent：从回答问题到推进任务</h2>
+            <p>Agent 可以理解为“会使用工具并能推进任务的 AI 助手”。</p>
           </div>
         </div>
         <div class="slide-body split-tight">
-          <div class="card accent-card">
-            <h3>把它放在整个流程里看</h3>
+          <div class="agent-statement">
+            <div class="agent-mark"><i data-lucide="bot"></i></div>
+            <h3>Agent 围绕目标行动</h3>
+            <p>普通聊天助手更偏向生成回答；Agent 会根据用户目标组织步骤、选择工具、执行动作，再把结果交付到指定位置。</p>
+          </div>
+          <div class="capability-grid">
+            <div><strong>目标理解</strong><span>识别用户真正想完成的任务</span></div>
+            <div><strong>任务拆解</strong><span>把复杂任务拆成可执行步骤</span></div>
+            <div><strong>工具选择</strong><span>判断要读文件、查网页还是调用接口</span></div>
+            <div><strong>过程执行</strong><span>根据中间结果继续行动</span></div>
+            <div><strong>上下文利用</strong><span>结合历史信息、偏好和项目背景</span></div>
+            <div><strong>结果交付</strong><span>发送到消息、文档、表格或系统</span></div>
+          </div>
+        </div>
+      </section>
+
+<section class="slide" data-module="模块一：认识 OpenClaw" data-title="会议纪要：两种流程对比">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">模块一 · 认识 OpenClaw</p>
+            <h2>会议纪要：两种流程对比</h2>
+            <p>同一个任务，聊天 AI 和 Agent 的工作方式不一样。</p>
+          </div>
+        </div>
+        <div class="slide-body journey-compare">
+          <div class="journey-card">
+            <h3><i data-lucide="message-square-text" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;"></i>对话型 AI</h3>
+            <ol>
+              <li>用户复制会议内容</li>
+              <li>AI 生成纪要文本</li>
+              <li>用户检查修改</li>
+              <li>用户复制回飞书或文档</li>
+            </ol>
+          </div>
+          <div class="journey-card agent">
+            <h3><i data-lucide="workflow" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;"></i>Agent 流程</h3>
+            <ol>
+              <li>从飞书或指定入口接收任务</li>
+              <li>获取会议内容和相关背景</li>
+              <li>整理结论、行动项、负责人和截止时间</li>
+              <li>将结果返回飞书或写入文档</li>
+            </ol>
+          </div>
+        </div>
+        <div class="callout">关键差异：Agent 把一次文本生成扩展为“获取材料、整理结构、形成待办、交付结果”的完整流程。</div>
+      </section>
+
+<section class="slide" data-module="模块一：认识 OpenClaw" data-title="OpenClaw 是什么">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">模块一 · 认识 OpenClaw</p>
+            <h2>OpenClaw 是什么</h2>
+            <p>它可以运行在自己的电脑或服务器上，把 AI 助手接进真实工作环境。</p>
+          </div>
+        </div>
+        <div class="slide-body openclaw-position">
+          <div class="position-card accent-card">
+            <h3>自托管的个人 AI 助手系统</h3>
+            <p>OpenClaw 负责连接消息入口、模型能力、Agent、Skills 和自动化工具，让助手持续可用、可配置、可扩展。</p>
+          </div>
+          <div class="position-card">
+            <h3>Agent Gateway</h3>
+            <p>Gateway 可以先理解为中转和调度服务：消息从飞书等入口进来，OpenClaw 接住任务，再交给后面的 AI 助手处理。</p>
+          </div>
+          <div class="position-card teal-card">
+            <h3>多入口助手</h3>
+            <p>用户可以通过飞书、Telegram、Slack、Web UI 等入口使用同一套助手能力。</p>
+          </div>
+        </div>
+      </section>
+
+<section class="slide" data-module="模块一：认识 OpenClaw" data-title="把 OpenClaw 放进一张图">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">模块一 · 认识 OpenClaw</p>
+            <h2>把 OpenClaw 放进一张图</h2>
+          </div>
+        </div>
+        <div class="slide-body system-map">
+          <div class="map-node model"><i data-lucide="brain"></i><strong>大模型</strong><span>理解、推理、生成</span></div>
+          <div class="map-node gateway"><i data-lucide="router"></i><strong>OpenClaw</strong><span>接收消息、组织任务、连接能力</span></div>
+          <div class="map-node channel"><i data-lucide="send"></i><strong>消息入口</strong><span>飞书 / Telegram / Slack / Web UI</span></div>
+          <div class="map-node skills"><i data-lucide="puzzle"></i><strong>Skills</strong><span>教 Agent 使用某种能力的说明书</span></div>
+          <div class="map-node workspace"><i data-lucide="folder-cog"></i><strong>工作空间</strong><span>文件、脚本、API、自动化任务</span></div>
+        </div>
+        <div class="callout">OpenClaw 的价值，是把这些部分组织成一个可以长期使用的个人 AI 助手系统。</div>
+      </section>
+
+<section class="slide" data-module="模块一：认识 OpenClaw" data-title="OpenClaw 为什么适合真实工作流">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">模块一 · 认识 OpenClaw</p>
+            <h2>OpenClaw 为什么适合真实工作流</h2>
+            <p>可以从三个角度理解：入口价值、能力价值、持续价值。</p>
+          </div>
+        </div>
+        <div class="slide-body workstream-grid">
+          <div class="workstream-card">
+            <i data-lucide="message-circle"></i>
+            <h3>入口价值</h3>
+            <p>在飞书、Telegram、Slack、Web UI 等原本的工作入口里使用 AI，减少切换和材料搬运。</p>
+            <span>提问、总结、纪要、团队同步</span>
+          </div>
+          <div class="workstream-card teal-card">
+            <i data-lucide="wrench"></i>
+            <h3>能力价值</h3>
+            <p>在配置权限、API、脚本或 Skills 后，把模型能力连接到文件、工具和业务系统。</p>
+            <span>读资料、调服务、写结果</span>
+          </div>
+          <div class="workstream-card accent-card">
+            <i data-lucide="calendar-clock"></i>
+            <h3>持续价值</h3>
+            <p>把一次性问答沉淀成长期助手，围绕目标持续处理、积累上下文和复用流程。</p>
+            <span>资讯摘要、项目周报、长期知识</span>
+          </div>
+        </div>
+      </section>
+
+<section class="slide" data-module="模块一：认识 OpenClaw" data-title="入口价值：在原本的地方使用 AI">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">模块一 · 认识 OpenClaw</p>
+            <h2>入口价值：在原本的地方使用 AI</h2>
+            <p>这门课选择飞书作为主要实操入口，因为它同时承载消息、文档、表格、日历和任务。</p>
+          </div>
+        </div>
+        <div class="slide-body feishu-scene">
+          <div class="feishu-phone">
+            <div class="phone-bar"></div>
+            <div class="message-row left">今天会议信息太散，谁来整理一下？</div>
+            <div class="message-row right">@AI助手 帮我提炼结论和行动项</div>
+            <div class="message-row left assistant">已整理：3 条结论、5 个待办，按负责人和截止时间列出。</div>
+          </div>
+          <div class="card">
+            <h3>入口带来的变化</h3>
             <ul class="list-clean">
-              <li>它是运行在你电脑或服务器上的 <strong>本地 AI 网关</strong>，把聊天工具和模型能力连接起来。</li>
-              <li>你在飞书或其他渠道把需求交给它，它会自己拆解任务、调用能力，再把结果送回来。</li>
-              <li>优势是 <strong>一次部署，多端可用，数据更可控</strong>。</li>
+              <li>材料本来就在消息入口里，AI 也在同一个入口里。</li>
+              <li>任务从一句自然语言开始，不需要反复打开其他 AI 网站。</li>
+              <li>结果可以回到私聊、群聊、文档或其他团队协作位置。</li>
+              <li>适合现场演示，也适合学员课后复用到日常工作中。</li>
             </ul>
-            <div class="callout" style="margin-top: 14px;">它的价值不只在于“能聊天”，而在于把消息、工具和任务都接到同一套链路里，让原本分散的动作能连续地跑起来。</div>
           </div>
+        </div>
+      </section>
+
+<section class="slide" data-module="模块一：认识 OpenClaw" data-title="能力价值：连接文件、工具和系统">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">模块一 · 认识 OpenClaw</p>
+            <h2>能力价值：连接文件、工具和系统</h2>
+            <p>在配置相应权限、工具和 Skills 后，OpenClaw 才能把模型能力接到具体工作资源上。</p>
+          </div>
+        </div>
+        <div class="slide-body skills-board">
+          <div class="skill-tile"><i data-lucide="file-search"></i><strong>本地资料</strong><span>围绕文件、目录、项目材料和个人知识进行处理</span></div>
+          <div class="skill-tile"><i data-lucide="plug"></i><strong>外部服务</strong><span>连接 API、脚本、网页服务、数据库和自动化平台</span></div>
+          <div class="skill-tile"><i data-lucide="workflow"></i><strong>业务流程</strong><span>参与资料整理、内容生成、消息推送和后续跟进</span></div>
+          <div class="skill-tile"><i data-lucide="puzzle"></i><strong>Skills 扩展</strong><span>把通用助手扩展成文件、飞书、网页监控等专属能力</span></div>
+          <div class="skill-tile"><i data-lucide="book-open-text"></i><strong>能力说明书</strong><span>Skill 告诉 Agent 什么时候用、怎么用、输入和输出是什么</span></div>
+          <div class="skill-tile"><i data-lucide="shield-check"></i><strong>权限边界</strong><span>能使用什么资源，取决于用户开放了哪些权限和工具</span></div>
+        </div>
+      </section>
+
+<section class="slide" data-module="模块一：认识 OpenClaw" data-title="OpenClaw 能用来干什么">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">模块一 · 认识 OpenClaw</p>
+            <h2>OpenClaw 能用来干什么</h2>
+            <p>这次把场景收束成四类：消息协作、资料整理、本地知识、自动化长期助手。</p>
+          </div>
+        </div>
+        <div class="slide-body usecase-grid usecase-grid-4">
+          <div><i data-lucide="message-square"></i><strong>消息与协作助手</strong><span>即时问答、群聊总结、会议纪要、项目同步、通知生成和行动项整理。</span></div>
+          <div><i data-lucide="files"></i><strong>资料整理与内容生成</strong><span>在提供资料或配置访问权限后，整理大纲、报告、清单、表格和课程材料。</span></div>
+          <div><i data-lucide="folder-open"></i><strong>本地文件与个人知识助手</strong><span>在配置本地权限后，定位文件、阅读目录、维护课程、研究和项目资料。</span></div>
+          <div><i data-lucide="timer-reset"></i><strong>自动化与长期助手</strong><span>在配置相应工具后，定时收集、自动整理、推送结果，并积累长期上下文。</span></div>
+        </div>
+      </section>
+
+<section class="slide" data-module="模块一：认识 OpenClaw" data-title="自动化与长期助手的边界">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">模块一 · 认识 OpenClaw</p>
+            <h2>自动化与长期助手的边界</h2>
+            <p>OpenClaw 越贴近真实工作，越要重视授权范围和使用边界。</p>
+          </div>
+        </div>
+        <div class="slide-body split-tight">
           <div class="card teal-card">
-            <h3>它能解决什么问题</h3>
-            <div class="number-list">
-              <div class="item"><b>1</b>
-                <p><strong>信息汇总太耗时：</strong>自动抓取和整合多源信息，输出结构化摘要与日报。</p>
-              </div>
-              <div class="item"><b>2</b>
-                <p><strong>调研检索门槛高：</strong>把研究主题交给它后，它会自己去搜集资料、补充缺口、整理成可以直接阅读的内容。</p>
-              </div>
-              <div class="item"><b>3</b>
-                <p><strong>重复操作太多：</strong>批量通知、定时任务、跨平台同步可自动执行，减少手工反复劳动。</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-<section class="slide" data-module="开场" data-title="三层架构概览">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">模块一 · 认识 OpenClaw</p>
-            <h2>三层架构概览</h2>
-          </div>
-        </div>
-        <div class="slide-body arch-diagram">
-          <div class="arch-layer arch-layer--user">
-            <div class="arch-layer-label"><i data-lucide="users" style="width:13px;height:13px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i>第一层 · 用户接入层（Channel）</div>
-            <div class="arch-channels">
-              <span class="arch-channel-tag"><i data-lucide="message-circle"></i>WhatsApp</span>
-              <span class="arch-channel-tag"><i data-lucide="send"></i>飞书</span>
-              <span class="arch-channel-tag"><i data-lucide="plane"></i>Telegram</span>
-              <span class="arch-channel-tag"><i data-lucide="gamepad-2"></i>Discord</span>
-              <span class="arch-channel-tag"><i data-lucide="globe"></i>Web</span>
-            </div>
-          </div>
-          <div class="arch-flow-arrow">▼</div>
-          <div class="arch-layer arch-layer--gateway">
-            <div class="arch-layer-label"><i data-lucide="shield" style="width:13px;height:13px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i>第二层 · 网关层（Gateway）</div>
-            <div class="arch-layer-desc">监听所有 Channel 消息 → 管理会话（Session）→ 认证鉴权 → 路由到对应 Agent。一台机器一个 Gateway 实例。</div>
-          </div>
-          <div class="arch-flow-arrow">▼</div>
-          <div class="arch-layer arch-layer--runtime">
-            <div class="arch-layer-label"><i data-lucide="brain" style="width:13px;height:13px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i>第三层 · 执行层（Agent Runtime）</div>
-            <div class="arch-layer-desc">组装上下文 → 调用 LLM → 执行工具调用 → 生成回复。支持多 Agent 并行协作、记忆系统、定时任务。</div>
-          </div>
-        </div>
-        <div class="callout">类比：Channel 是"前台"，Gateway 是"调度中心"，Runtime 是"干活的员工"。三层协作，缺一不可。</div>
-      </section>
-
-<section class="slide" data-module="开场" data-title="一次完整对话的旅程">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">模块一 · 认识 OpenClaw</p>
-            <h2>一次完整对话的旅程</h2>
-            <p>你在飞书群发一句"帮我整理今天的会议纪要"，背后发生了什么？</p>
-          </div>
-        </div>
-        <div class="slide-body">
-          <div class="flow-steps">
-            <div class="flow-step">
-              <span class="flow-step-layer">Channel</span>
-              <div class="flow-step-num">1</div>
-              <div class="flow-step-icon"><i data-lucide="send" style="width:36px;height:36px;"></i></div>
-              <h5>消息到达</h5>
-              <p>飞书群消息被 Channel 插件捕获，转为标准格式</p>
-            </div>
-            <div class="flow-step">
-              <span class="flow-step-layer">Gateway</span>
-              <div class="flow-step-num">2</div>
-              <div class="flow-step-icon"><i data-lucide="shield-check" style="width:36px;height:36px;"></i></div>
-              <h5>鉴权 + 路由</h5>
-              <p>Gateway 验证身份、管理会话，将消息路由到对应 Agent</p>
-            </div>
-            <div class="flow-step">
-              <span class="flow-step-layer">Runtime</span>
-              <div class="flow-step-num">3</div>
-              <div class="flow-step-icon"><i data-lucide="brain" style="width:36px;height:36px;"></i></div>
-              <h5>上下文组装</h5>
-              <p>Agent 拉取历史记忆、用户偏好、SOUL 角色设定，组装完整 Prompt</p>
-            </div>
-            <div class="flow-step">
-              <span class="flow-step-layer">Runtime</span>
-              <div class="flow-step-num">4</div>
-              <div class="flow-step-icon"><i data-lucide="sparkles" style="width:36px;height:36px;"></i></div>
-              <h5>LLM 推理</h5>
-              <p>调用 AI 模型（如 Claude、GPT），决定需要调用哪些工具</p>
-            </div>
-            <div class="flow-step">
-              <span class="flow-step-layer">Runtime</span>
-              <div class="flow-step-num">5</div>
-              <div class="flow-step-icon"><i data-lucide="wrench" style="width:36px;height:36px;"></i></div>
-              <h5>工具执行</h5>
-              <p>自动调用 Skills（搜索网页、读文档、发消息...）完成任务</p>
-            </div>
-            <div class="flow-step">
-              <span class="flow-step-layer">Channel</span>
-              <div class="flow-step-num">6</div>
-              <div class="flow-step-icon"><i data-lucide="message-square" style="width:36px;height:36px;"></i></div>
-              <h5>结果交付</h5>
-              <p>结构化结果通过原 Channel 回传到飞书群，用户直接看到</p>
-            </div>
-          </div>
-          <div class="callout" style="margin-top:clamp(8px,1.5vw,14px);">大多数情况下，从消息发出到结果返回，也就是几秒到十几秒的事。对使用的人来说，感觉上还是在原来的飞书群里工作，只是背后多了一套会自己处理事情的系统。</div>
-        </div>
-      </section>
-
-<section class="slide layout-contrast-dense" data-module="开场" data-title="四大能力特征">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">模块一 · 认识 OpenClaw</p>
-            <h2>四大能力特征</h2>
-          </div>
-        </div>
-        <div class="slide-body grid-4">
-          <div class="card accent-card">
-            <h3><i data-lucide="rocket" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;"></i>把需求交给它，它会自己往下做</h3>
-            <p>你用自然语言把事情说清楚，OpenClaw 会把任务拆成多个步骤，按顺序处理，再把结果交回来。</p>
-            <ul>
-              <li>"整理会议记录，提炼 Action Items，发到项目群"</li>
+            <h3>长期助手的价值</h3>
+            <ul class="list-clean">
+              <li>承担定时收集、自动整理、结果推送等重复流程。</li>
+              <li>通过记忆、资料和规则逐渐贴近用户工作习惯。</li>
+              <li>把常见处理过程沉淀成 Skills、规则和自动化任务。</li>
             </ul>
-            <div class="mini-flow-tag">输入指令 <span class="mini-flow-arrow">&#10140;</span> 拆解任务 <span class="mini-flow-arrow">&#10140;</span> 逐步执行 <span class="mini-flow-arrow">&#10140;</span> 交付结果</div>
           </div>
-          <div class="card">
-            <h3><i data-lucide="alarm-clock" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;"></i>可以一直在后台运行</h3>
-            <p>它可以常驻监听消息，也可以按设定时间执行任务。你不用每次都先把它打开，它会自己在后台等着。</p>
-            <ul>
-              <li>每天 8 点自动抓取新闻，生成摘要推送</li>
+          <div class="card warning-card">
+            <h3>现场实操的边界</h3>
+            <ul class="list-clean">
+              <li>先用私聊跑通，再扩展到群聊。</li>
+              <li>先开必要权限，再逐步增加高级能力。</li>
+              <li>不要把敏感数据、生产系统权限一次性交给助手。</li>
             </ul>
-            <div class="mini-flow-tag">设定定时 <span class="mini-flow-arrow">&#10140;</span> 触发执行 <span class="mini-flow-arrow">&#10140;</span> 结果推送 <span class="mini-flow-arrow">&#10140;</span> 全自动</div>
-          </div>
-          <div class="card teal-card">
-            <h3><i data-lucide="puzzle" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;"></i>需要什么能力，就往里加什么能力</h3>
-            <p>ClawHub 里已经有很多社区 Skills；如果现成的还不够，也可以继续补自己的私有 Skill。</p>
-            <ul>
-              <li>装一个"股票查询"Skill，之后它就能查实时行情</li>
-            </ul>
-            <div class="mini-flow-tag">浏览 ClawHub <span class="mini-flow-arrow">&#10140;</span> 一键安装 <span class="mini-flow-arrow">&#10140;</span> 即刻使用</div>
-          </div>
-          <div class="card">
-            <h3><i data-lucide="plug" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;"></i>可以直接接进你平时在用的工具</h3>
-            <p>借助网关架构，它能接进飞书、Telegram、Discord 等环境里。你平时在哪沟通，它就能在哪跟着一起工作。</p>
-            <ul>
-              <li>同事在飞书群 @AI 助手，它直接在群里回复</li>
-            </ul>
-            <div class="mini-flow-tag">飞书/TG/Discord <span class="mini-flow-arrow">&#10140;</span> Gateway 桥接 <span class="mini-flow-arrow">&#10140;</span> 原地回复</div>
           </div>
         </div>
-        <div class="quote">Andrej Karpathy（前 Tesla AI 总监、OpenAI 联合创始人）："这很接近科幻里'起飞'的场景。"</div>
+        <div class="callout warning">这类能力通常依赖入口接入、权限配置、工具配置和安全边界，不是装完 OpenClaw 就自动拥有全部能力。</div>
       </section>
 
-<section class="slide" data-module="开场" data-title="与传统 AI 方案对比">
+<section class="slide" data-module="模块一：认识 OpenClaw" data-title="为什么社区关注 OpenClaw">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块一 · 认识 OpenClaw</p>
-            <h2>与传统 AI 方案对比</h2>
-            <p>为什么不用 ChatGPT、Coze 或自己开发？一张表看清差异。</p>
+            <h2>为什么社区关注 OpenClaw</h2>
+            <p>它踩中了个人 AI Agent、自托管、多入口和 Skills 扩展这几个需求。</p>
           </div>
         </div>
-        <div class="slide-body">
-          <div class="compare-table-wrap">
-            <table class="compare-table">
-              <thead>
-                <tr>
-                  <th style="width:18%;">维度</th>
-                  <th style="width:18%;">ChatGPT / Claude</th>
-                  <th style="width:18%;">Coze / 扣子</th>
-                  <th style="width:18%;" class="highlight">OpenClaw</th>
-                  <th style="width:18%;">LangChain 自建</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><i data-lucide="lock" style="width:12px;height:12px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>数据隐私</td>
-                  <td><span class="compare-no">数据上传云端</span></td>
-                  <td><span class="compare-no">依赖平台服务器</span></td>
-                  <td><span class="compare-yes">本地自托管</span></td>
-                  <td><span class="compare-yes">本地自托管</span></td>
-                </tr>
-                <tr>
-                  <td><i data-lucide="zap" style="width:12px;height:12px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>上手难度</td>
-                  <td><span class="compare-badge compare-badge--free">零门槛</span></td>
-                  <td><span class="compare-badge compare-badge--free">低门槛</span></td>
-                  <td><span class="compare-badge compare-badge--free-mid">中等</span></td>
-                  <td><span class="compare-badge compare-badge--free-low">高</span></td>
-                </tr>
-                <tr>
-                  <td><i data-lucide="puzzle" style="width:12px;height:12px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>可扩展性</td>
-                  <td><span class="compare-no">仅限插件市场</span></td>
-                  <td><span class="compare-partial">受限于平台能力</span></td>
-                  <td><span class="compare-yes">Skills 5000+</span></td>
-                  <td><span class="compare-yes">完全自定义</span></td>
-                </tr>
-                <tr>
-                  <td><i data-lucide="message-circle" style="width:12px;height:12px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>多平台接入</td>
-                  <td><span class="compare-no">仅网页/App</span></td>
-                  <td><span class="compare-partial">限定平台</span></td>
-                  <td><span class="compare-yes">飞书/WhatsApp/TG...</span></td>
-                  <td><span class="compare-yes">需自行开发</span></td>
-                </tr>
-                <tr>
-                  <td><i data-lucide="timer" style="width:12px;height:12px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>7x24 驻守</td>
-                  <td><span class="compare-no">需手动打开</span></td>
-                  <td><span class="compare-yes">平台托管</span></td>
-                  <td><span class="compare-yes">本地常驻进程</span></td>
-                  <td><span class="compare-yes">需自行部署</span></td>
-                </tr>
-                <tr>
-                  <td><i data-lucide="coins" style="width:12px;height:12px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>成本</td>
-                  <td><span class="compare-badge compare-badge--paid">$20/月+</span></td>
-                  <td><span class="compare-badge compare-badge--free">免费额度</span></td>
-                  <td><span class="compare-badge compare-badge--free-high">开源免费</span></td>
-                  <td><span class="compare-badge compare-badge--free-high">开源免费</span></td>
-                </tr>
-              </tbody>
-            </table>
+        <div class="slide-body community-layout">
+          <div class="timeline timeline-5">
+            <div class="step">个人原型<small>从“让 AI 进入消息入口”的想法开始</small></div>
+            <div class="step">Clawdbot<small>早期围绕消息机器人和 Agent 接入展开</small></div>
+            <div class="step">Moltbot<small>社区参与命名和传播，实验属性增强</small></div>
+            <div class="step">OpenClaw<small>以更开放的名称传播，教程和案例增多</small></div>
+            <div class="step">相关实验<small>Moltbook 等项目继续带动个人 AI 助手讨论</small></div>
           </div>
-          <div class="callout" style="margin-top:clamp(8px,1.2vw,14px);">OpenClaw 更强调本地部署、多平台接入和后续扩展；Coze 更偏向快速试验想法；LangChain 更适合从底层把整套能力自己搭起来。</div>
-        </div>
-      </section>
-
-<section class="slide" data-module="开场" data-title="典型使用场景">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">模块一 · 认识 OpenClaw</p>
-            <h2>典型使用场景</h2>
-            <p>四个真实场景，看 OpenClaw 如何改变你的工作方式。</p>
-          </div>
-        </div>
-        <div class="slide-body">
-          <div class="scenario-grid">
-            <div class="scenario-card">
-              <div class="scenario-before">
-                <div class="scenario-label scenario-label--before"><i data-lucide="x-circle" style="width:12px;height:12px;"></i> 以前</div>
-                <h5>每日新闻简报</h5>
-                <p>手动浏览 5+ 网站，复制粘贴，整理成邮件，每天 40 分钟。</p>
-              </div>
-              <div class="scenario-after">
-                <div class="scenario-label scenario-label--after"><i data-lucide="check-circle" style="width:12px;height:12px;"></i> 现在</div>
-                <h5>自动整理并推送简报</h5>
-                <p>每天 8 点自动抓取、提炼、推送到飞书群，不需要再手工整理。</p>
-              </div>
-            </div>
-            <div class="scenario-card">
-              <div class="scenario-before">
-                <div class="scenario-label scenario-label--before"><i data-lucide="x-circle" style="width:12px;height:12px;"></i> 以前</div>
-                <h5>竞品分析报告</h5>
-                <p>花 2 天搜索、阅读、对比，最终写成一份 10 页 PPT。</p>
-              </div>
-              <div class="scenario-after">
-                <div class="scenario-label scenario-label--after"><i data-lucide="check-circle" style="width:12px;height:12px;"></i> 现在</div>
-                <h5>多轮迭代调研</h5>
-                <p>把调研主题交给它后，Agent 会自动搜索、交叉验证，半小时左右整理出一份结构化报告。</p>
-              </div>
-            </div>
-            <div class="scenario-card">
-              <div class="scenario-before">
-                <div class="scenario-label scenario-label--before"><i data-lucide="x-circle" style="width:12px;height:12px;"></i> 以前</div>
-                <h5>团队知识沉淀</h5>
-                <p>文档散落各处，新员工问一遍老员工答一遍，重复低效。</p>
-              </div>
-              <div class="scenario-after">
-                <div class="scenario-label scenario-label--after"><i data-lucide="check-circle" style="width:12px;height:12px;"></i> 现在</div>
-                <h5>RAG 智能知识库</h5>
-                <p>导入文档 → AI 理解 → 飞书群里直接提问，秒级精准回答。</p>
-              </div>
-            </div>
-            <div class="scenario-card">
-              <div class="scenario-before">
-                <div class="scenario-label scenario-label--before"><i data-lucide="x-circle" style="width:12px;height:12px;"></i> 以前</div>
-                <h5>多平台同步通知</h5>
-                <p>手动在飞书/微信/邮件间转发关键信息，容易遗漏。</p>
-              </div>
-              <div class="scenario-after">
-                <div class="scenario-label scenario-label--after"><i data-lucide="check-circle" style="width:12px;height:12px;"></i> 现在</div>
-                <h5>一次发布多端送达</h5>
-                <p>Agent 自动同步到所有 Channel，一个消息入口，覆盖全平台。</p>
-              </div>
-            </div>
+          <div class="community-reasons">
+            <span>个人 AI Agent 需求</span>
+            <span>自托管与可控性</span>
+            <span>多入口接入</span>
+            <span>开源与可扩展</span>
+            <span>真实任务落地</span>
           </div>
         </div>
       </section>
 
-<section class="slide" data-module="开场" data-title="爆发增长与养虾文化">
+<section class="slide" data-module="模块一：认识 OpenClaw" data-title="社区数据与中文关注方向">
         <div class="slide-header">
           <div class="title-stack">
             <p class="eyebrow">模块一 · 认识 OpenClaw</p>
-            <h2>爆发增长与养虾文化</h2>
-            <p>OpenClaw 在很短时间里迅速走红，背后既有产品能力本身的原因，也有社区文化和生态扩张的推动。</p>
+            <h2>社区数据与中文关注方向</h2>
+            <p>数据会变，正式授课前要再次核实；更重要的是理解社区为什么围绕它展开实践。</p>
           </div>
         </div>
-        <div class="slide-body">
-          <div class="stats-showcase">
-            <div class="stat-big">
-              <span class="stat-number">100</span>
-              <span class="stat-unit">天</span>
-              <span class="stat-label">从零到登顶 GitHub 历史第一<br/>React 用了 13 年，Linux 用了 17 年</span>
-            </div>
-            <div class="stat-big">
-              <span class="stat-number">72</span>
-              <span class="stat-unit">小时</span>
-              <span class="stat-label">发布后 3 天即获 6 万 Star<br/>创下 GitHub 历史增速纪录</span>
-            </div>
-            <div class="stat-big">
-              <span class="stat-number">34</span>
-              <span class="stat-unit">万+</span>
-              <span class="stat-label">GitHub Star 总数<br/>超越 React、Linux、Vue</span>
-            </div>
-            <div class="stat-big">
-              <span class="stat-number">10</span>
-              <span class="stat-unit">秒</span>
-              <span class="stat-label">巅峰期平均每 10 秒<br/>就有一位开发者点 Star</span>
+        <div class="slide-body community-data">
+          <div class="stats-showcase compact-stats">
+            <div class="stat-big"><span class="stat-number">363k</span><span class="stat-unit">Stars</span><span class="stat-label">GitHub 仓库显示</span></div>
+            <div class="stat-big"><span class="stat-number">74.2k</span><span class="stat-unit">Forks</span><span class="stat-label">GitHub 仓库显示</span></div>
+            <div class="stat-big"><span class="stat-number">1,758</span><span class="stat-unit">Contributors</span><span class="stat-label">GitHub 仓库显示</span></div>
+            <div class="stat-big"><span class="stat-number">103</span><span class="stat-unit">Releases</span><span class="stat-label">最新：2026.4.22</span></div>
+          </div>
+          <div class="community-reasons focus-tags">
+            <span>部署实践</span><span>飞书接入</span><span>Skills 分享</span><span>养虾文化</span><span>落地案例扩散</span>
+          </div>
+          <div class="source-note">备课核验：GitHub openclaw/openclaw 页面，2026-04-24。</div>
+        </div>
+      </section>
+
+<section class="slide compact-center" data-module="模块一：认识 OpenClaw" data-title="第一部分小结">
+        <div class="slide-body section-center">
+          <div>
+            <p class="eyebrow">模块一 · 小结</p>
+            <h2>理解 OpenClaw，要抓住一条线</h2>
+            <p>AI 不只是停留在聊天窗口里生成答案。OpenClaw 试图把消息入口、模型、Agent、Skills、文件和自动化工具组织起来，让 AI 更适合真实工作流。</p>
+            <div class="summary-line">
+              <span>聊天窗口</span><i data-lucide="arrow-right"></i><span>Agent</span><i data-lucide="arrow-right"></i><span>Gateway</span><i data-lucide="arrow-right"></i><span>工作流</span>
             </div>
           </div>
-          <div class="timeline timeline-4" style="margin-top:16px;">
-            <div class="step">
-              2025 年底
-              <small>周末项目，从 0 起步</small>
-            </div>
-            <div class="step">
-              2026 年 1 月
-              <small>创始人 Peter 被 OpenAI 挖走</small>
-            </div>
-            <div class="step">
-              2026 年 2 月
-              <small>做客 Lex Fridman 播客，对话 3 小时</small>
-            </div>
-            <div class="step">
-              2026 年 3 月
-              <small>登顶 GitHub Star 历史第一</small>
-            </div>
-          </div>
-          <div class="grid-3" style="margin-top:16px;">
-            <div class="eco-card accent-card">
-              <h4><i data-lucide="shell" style="width:16px;height:16px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i>"养虾"运动</h4>
-              <p>因龙虾图标，开发者把调教 AI Agent 称为"养虾"——一场全民参与的 AI 社会化实验。</p>
-              <div class="eco-stat"><i data-lucide="users" style="width:12px;height:12px;display:inline-block;vertical-align:-1px;"></i>从 9 岁到 70 岁都能参与</div>
-            </div>
-            <div class="eco-card">
-              <h4><i data-lucide="book-open" style="width:16px;height:16px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i>Agent 社交平台</h4>
-              <p>Moltbook：3 天聚集 150 万 AI Agent。InStreet（字节扣子）：800 只龙虾举办"AI 吐槽大会"。</p>
-              <div class="eco-stat"><i data-lucide="bot" style="width:12px;height:12px;display:inline-block;vertical-align:-1px;"></i>150 万+ AI Agent 在线社交</div>
-            </div>
-            <div class="eco-card teal-card">
-              <h4><i data-lucide="landmark" style="width:16px;height:16px;display:inline-block;vertical-align:-2px;margin-right:4px;"></i>政策与产业</h4>
-              <p>深圳"龙虾十条"、腾讯/字节入局、ClawHub 5000+ Skills。</p>
-              <div class="eco-stat"><i data-lucide="package" style="width:12px;height:12px;display:inline-block;vertical-align:-1px;"></i>5000+ 社区 Skills</div>
-            </div>
-          </div>
-          <div class="callout" style="margin-top:12px;">为什么这对你重要？生态越大、可复用能力越多，上手 OpenClaw 的实际收益就越明显。</div>
         </div>
       </section>

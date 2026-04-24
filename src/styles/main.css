@@ -41,13 +41,11 @@
     }
 
     /* === MODULE COLOR SYSTEM === */
-    [data-module="开场"]    { --module: #b45309; --module-soft: #fbbf24; --module-deep: #7c2d12; }
-    [data-module="本地部署"] { --module: #0f766e; --module-soft: #2dd4bf; --module-deep: #064e3b; }
-    [data-module="安装与配置"] { --module: #4338ca; --module-soft: #818cf8; --module-deep: #312e81; }
-    [data-module="飞书接入"] { --module: #7c3aed; --module-soft: #a78bfa; --module-deep: #5b21b6; }
-    [data-module="Skills 与个性化"] { --module: #047857; --module-soft: #34d399; --module-deep: #064e3b; }
-    [data-module="案例与 FAQ"] { --module: #dc2626; --module-soft: #f87171; --module-deep: #991b1b; }
-    [data-module="结束"]    { --module: #b45309; --module-soft: #fbbf24; --module-deep: #7c2d12; }
+    [data-module="模块一：认识 OpenClaw"] { --module: #b45309; --module-soft: #fbbf24; --module-deep: #7c2d12; }
+    [data-module="模块四：现场部署"] { --module: #0f766e; --module-soft: #2dd4bf; --module-deep: #064e3b; }
+    [data-module="模块五：飞书接入"] { --module: #7c3aed; --module-soft: #a78bfa; --module-deep: #5b21b6; }
+    [data-module="模块六：Skills 配置"] { --module: #047857; --module-soft: #34d399; --module-deep: #064e3b; }
+    [data-module="模块七：案例实战"] { --module: #dc2626; --module-soft: #f87171; --module-deep: #991b1b; }
 
     /* Module-colored eyebrow */
     .slide[data-module] .eyebrow {
@@ -2728,6 +2726,596 @@
     .mini-flow-arrow {
       font-size: 11px;
       opacity: 0.5;
+    }
+
+    /* === MODULE ONE REFRESHED SLIDES === */
+    .compact-list {
+      gap: clamp(7px, 0.9vw, 10px);
+    }
+
+    .compact-list .item {
+      padding: clamp(9px, 1.1vw, 13px) clamp(10px, 1.3vw, 15px);
+    }
+
+    .compact-list .item b {
+      width: clamp(30px, 3vw, 36px);
+      height: clamp(30px, 3vw, 36px);
+      border-radius: 12px;
+    }
+
+    .ai-window-layout,
+    .feishu-scene {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: clamp(16px, 2vw, 24px);
+      align-items: stretch;
+    }
+
+    .chat-window-card,
+    .feishu-phone {
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(31, 41, 55, 0.94), rgba(15, 23, 42, 0.96));
+      color: #fff;
+      padding: clamp(18px, 2.2vw, 28px);
+      box-shadow: 0 18px 42px rgba(15, 23, 42, 0.2);
+      display: grid;
+      align-content: center;
+      gap: clamp(10px, 1.2vw, 14px);
+      min-height: clamp(310px, 46vh, 460px);
+    }
+
+    .chat-window-top {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .chat-window-top span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #f59e0b;
+      opacity: 0.8;
+    }
+
+    .chat-window-top span:nth-child(2) {
+      background: #2dd4bf;
+    }
+
+    .chat-window-top span:nth-child(3) {
+      background: #93c5fd;
+    }
+
+    .chat-bubble,
+    .message-row {
+      max-width: 88%;
+      padding: clamp(10px, 1.2vw, 14px) clamp(12px, 1.4vw, 16px);
+      border-radius: 18px;
+      font-size: clamp(13px, 1.35vw, 16px);
+      line-height: 1.65;
+    }
+
+    .chat-bubble.user,
+    .message-row.right {
+      justify-self: end;
+      background: linear-gradient(135deg, #f59e0b, #b45309);
+      color: #fff;
+    }
+
+    .chat-bubble.assistant,
+    .message-row.left {
+      justify-self: start;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .message-row.assistant {
+      background: rgba(20, 184, 166, 0.18);
+      border-color: rgba(45, 212, 191, 0.24);
+    }
+
+    .chat-tool-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .chat-tool-row span,
+    .community-reasons span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      font-size: clamp(11px, 1.1vw, 13px);
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .pain-card > i,
+    .workstream-card > i,
+    .skill-tile > i,
+    .usecase-grid i {
+      width: clamp(26px, 3vw, 36px);
+      height: clamp(26px, 3vw, 36px);
+      color: var(--module, var(--accent));
+      margin-bottom: clamp(8px, 1vw, 12px);
+    }
+
+    .pain-card > strong {
+      font-size: clamp(15px, 1.7vw, 20px);
+      line-height: 1.35;
+    }
+
+    .pain-card > p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: clamp(12px, 1.25vw, 15px);
+      line-height: 1.65;
+    }
+
+    .requirement-lane {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: clamp(10px, 1.2vw, 15px);
+    }
+
+    .requirement-item,
+    .position-card,
+    .workstream-card,
+    .skill-tile,
+    .usecase-grid > div,
+    .journey-card {
+      padding: clamp(16px, 1.8vw, 22px);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(124, 45, 18, 0.1);
+      box-shadow: 0 12px 28px rgba(72, 45, 16, 0.06);
+    }
+
+    .requirement-item {
+      display: grid;
+      gap: 8px;
+      align-content: start;
+      min-height: clamp(190px, 28vh, 250px);
+    }
+
+    .requirement-item span {
+      color: var(--module-deep, var(--accent-deep));
+      font-size: clamp(18px, 2.2vw, 30px);
+      font-weight: 900;
+      font-family: var(--font-heading);
+      line-height: 1;
+    }
+
+    .requirement-item strong,
+    .position-card h3,
+    .workstream-card h3,
+    .journey-card h3 {
+      font-size: clamp(16px, 1.8vw, 22px);
+      line-height: 1.35;
+    }
+
+    .requirement-item p,
+    .position-card p,
+    .workstream-card p,
+    .journey-card li {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(12px, 1.25vw, 15px);
+      line-height: 1.65;
+    }
+
+    .agent-statement {
+      border-radius: 28px;
+      padding: clamp(22px, 2.6vw, 34px);
+      background: linear-gradient(135deg, color-mix(in srgb, var(--module, #b45309) 14%, #fff), rgba(255, 255, 255, 0.9));
+      border: 1px solid color-mix(in srgb, var(--module, #b45309) 18%, transparent);
+      box-shadow: 0 18px 40px rgba(72, 45, 16, 0.09);
+      display: grid;
+      align-content: center;
+      gap: 14px;
+    }
+
+    .agent-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(50px, 5vw, 68px);
+      height: clamp(50px, 5vw, 68px);
+      border-radius: 22px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--module, var(--accent)), var(--module-soft, var(--accent-soft)));
+      box-shadow: 0 16px 34px color-mix(in srgb, var(--module, #b45309) 22%, transparent);
+    }
+
+    .agent-mark i {
+      width: 32px;
+      height: 32px;
+    }
+
+    .capability-grid,
+    .skills-board,
+    .usecase-grid,
+    .openclaw-position,
+    .workstream-grid {
+      display: grid;
+      gap: clamp(12px, 1.5vw, 18px);
+    }
+
+    .capability-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .capability-grid > div {
+      padding: clamp(12px, 1.4vw, 18px);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(124, 45, 18, 0.1);
+    }
+
+    .capability-grid strong,
+    .skill-tile strong,
+    .usecase-grid strong {
+      display: block;
+      font-size: clamp(14px, 1.45vw, 17px);
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+
+    .capability-grid span,
+    .skill-tile span,
+    .usecase-grid span {
+      color: var(--muted);
+      font-size: clamp(12px, 1.2vw, 14px);
+      line-height: 1.6;
+    }
+
+    .journey-compare,
+    .openclaw-position,
+    .workstream-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .openclaw-position,
+    .workstream-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .journey-card ol {
+      margin: 14px 0 0;
+      padding-left: 22px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .journey-card.agent {
+      background: linear-gradient(180deg, rgba(240, 253, 250, 0.96), rgba(255, 255, 255, 0.92));
+      border-color: rgba(15, 118, 110, 0.18);
+    }
+
+    .system-map {
+      min-height: clamp(300px, 48vh, 470px);
+      display: grid;
+      grid-template-columns: 1fr 1.15fr 1fr;
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      gap: clamp(12px, 1.5vw, 18px);
+      align-items: stretch;
+    }
+
+    .map-node {
+      border-radius: 24px;
+      padding: clamp(16px, 1.8vw, 24px);
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(124, 45, 18, 0.1);
+      box-shadow: 0 12px 28px rgba(72, 45, 16, 0.06);
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      text-align: center;
+      gap: 8px;
+    }
+
+    .map-node.gateway {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--module, #b45309) 18%, #fff), rgba(255, 255, 255, 0.92));
+      border-color: color-mix(in srgb, var(--module, #b45309) 24%, transparent);
+    }
+
+    .map-node i {
+      width: clamp(30px, 4vw, 50px);
+      height: clamp(30px, 4vw, 50px);
+      color: var(--module, var(--accent));
+    }
+
+    .map-node.gateway i {
+      width: clamp(44px, 5vw, 70px);
+      height: clamp(44px, 5vw, 70px);
+    }
+
+    .map-node strong {
+      font-size: clamp(16px, 1.9vw, 24px);
+    }
+
+    .map-node span {
+      color: var(--muted);
+      font-size: clamp(12px, 1.25vw, 15px);
+      line-height: 1.6;
+    }
+
+    .workstream-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .workstream-card span {
+      margin-top: auto;
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--module, #b45309) 8%, transparent);
+      color: var(--module-deep, var(--accent-deep));
+      font-size: clamp(11px, 1.1vw, 13px);
+      font-weight: 800;
+    }
+
+    .phone-bar {
+      width: 54px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.32);
+      justify-self: center;
+      margin-bottom: 6px;
+    }
+
+    .skills-board,
+    .usecase-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .usecase-grid-4 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .skill-tile,
+    .usecase-grid > div {
+      min-height: clamp(140px, 21vh, 190px);
+    }
+
+    .usecase-grid-4 > div {
+      min-height: clamp(170px, 25vh, 220px);
+    }
+
+    .warning-card {
+      background: linear-gradient(180deg, rgba(255, 247, 237, 0.96), rgba(255, 255, 255, 0.92));
+      border-color: rgba(180, 83, 9, 0.2);
+    }
+
+    .community-layout,
+    .community-data {
+      display: grid;
+      gap: clamp(14px, 1.8vw, 20px);
+    }
+
+    .community-reasons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .community-reasons span {
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(124, 45, 18, 0.12);
+      color: var(--module-deep, var(--accent-deep));
+    }
+
+    .compact-stats {
+      margin-top: 0;
+    }
+
+    .compact-stats .stat-big {
+      padding: clamp(16px, 1.8vw, 22px) clamp(12px, 1.3vw, 16px);
+    }
+
+    .focus-tags {
+      justify-content: flex-start;
+    }
+
+    .source-note {
+      color: var(--muted);
+      font-size: var(--size-sm);
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .summary-line {
+      margin-top: clamp(22px, 3vw, 34px);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(10px, 1.6vw, 18px);
+      flex-wrap: wrap;
+      padding: clamp(12px, 1.5vw, 18px);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(124, 45, 18, 0.12);
+      box-shadow: 0 14px 34px rgba(72, 45, 16, 0.08);
+    }
+
+    .summary-line span {
+      font-weight: 900;
+      color: var(--module-deep, var(--accent-deep));
+      font-size: clamp(14px, 1.6vw, 18px);
+    }
+
+    .summary-line i {
+      width: 18px;
+      height: 18px;
+      color: var(--module, var(--accent));
+    }
+
+    .course-route-mini {
+      gap: clamp(6px, 0.7vw, 9px);
+    }
+
+    .course-route-mini .key-point {
+      padding: clamp(8px, 0.8vw, 10px) clamp(9px, 1vw, 12px);
+      border-radius: 16px;
+      gap: 10px;
+    }
+
+    .course-route-mini .key-point b {
+      width: 24px;
+      height: 24px;
+      font-size: 12px;
+    }
+
+    .course-route-mini .key-point div {
+      font-size: clamp(11px, 1vw, 13px);
+      line-height: 1.45;
+    }
+
+    .muted-point,
+    .muted-item {
+      opacity: 0.66;
+    }
+
+    .slide[data-title="七个模块总览"] .slide-header,
+    .slide[data-title="会议纪要：两种流程对比"] .slide-header,
+    .slide[data-title="Agent：从回答问题到推进任务"] .slide-header,
+    .slide[data-title="把 OpenClaw 放进一张图"] .slide-header,
+    .slide[data-title="真实工作里的五个断点"] .slide-header {
+      margin-bottom: clamp(8px, 1vw, 12px);
+    }
+
+    .slide[data-title="七个模块总览"] .card {
+      padding: clamp(12px, 1.3vw, 16px);
+      border-radius: 20px;
+    }
+
+    .slide[data-title="七个模块总览"] .card h3 {
+      font-size: clamp(15px, 1.55vw, 18px);
+    }
+
+    .slide[data-title="七个模块总览"] .goal-list,
+    .slide[data-title="七个模块总览"] .number-list {
+      margin-top: clamp(7px, 0.8vw, 9px);
+      gap: clamp(6px, 0.7vw, 8px);
+    }
+
+    .slide[data-title="七个模块总览"] .compact-list .item {
+      grid-template-columns: clamp(28px, 2.6vw, 32px) 1fr;
+      gap: 10px;
+      padding: clamp(6px, 0.72vw, 9px) clamp(8px, 1vw, 12px);
+      border-radius: 16px;
+    }
+
+    .slide[data-title="七个模块总览"] .compact-list .item b {
+      width: clamp(28px, 2.6vw, 32px);
+      height: clamp(28px, 2.6vw, 32px);
+      font-size: 13px;
+    }
+
+    .slide[data-title="七个模块总览"] .compact-list .item p {
+      font-size: clamp(11px, 1.05vw, 13px);
+      line-height: 1.42;
+    }
+
+    .slide[data-title="真实工作里的五个断点"] .pain-grid {
+      gap: clamp(8px, 1vw, 12px);
+    }
+
+    .slide[data-title="真实工作里的五个断点"] .pain-card {
+      padding: clamp(12px, 1.25vw, 16px);
+      border-radius: 18px;
+    }
+
+    .slide[data-title="真实工作里的五个断点"] .pain-card > p {
+      font-size: clamp(11px, 1.1vw, 13px);
+      line-height: 1.55;
+    }
+
+    .slide[data-title="Agent：从回答问题到推进任务"] .agent-statement {
+      padding: clamp(16px, 1.8vw, 22px);
+      gap: 10px;
+    }
+
+    .slide[data-title="Agent：从回答问题到推进任务"] .capability-grid {
+      gap: clamp(8px, 1vw, 12px);
+    }
+
+    .slide[data-title="Agent：从回答问题到推进任务"] .capability-grid > div {
+      padding: clamp(10px, 1.1vw, 13px);
+      border-radius: 16px;
+    }
+
+    .slide[data-title="Agent：从回答问题到推进任务"] .capability-grid span {
+      font-size: clamp(11px, 1.05vw, 13px);
+      line-height: 1.5;
+    }
+
+    .slide[data-title="会议纪要：两种流程对比"] .journey-compare {
+      gap: clamp(10px, 1.2vw, 14px);
+    }
+
+    .slide[data-title="会议纪要：两种流程对比"] .journey-card {
+      padding: clamp(12px, 1.3vw, 16px);
+      border-radius: 18px;
+    }
+
+    .slide[data-title="会议纪要：两种流程对比"] .journey-card ol {
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .slide[data-title="会议纪要：两种流程对比"] .journey-card li {
+      font-size: clamp(11px, 1.08vw, 13px);
+      line-height: 1.45;
+    }
+
+    .slide[data-title="会议纪要：两种流程对比"] .journey-card h3 {
+      font-size: clamp(14px, 1.45vw, 17px);
+    }
+
+    .slide[data-title="会议纪要：两种流程对比"] .callout,
+    .slide[data-title="把 OpenClaw 放进一张图"] .callout {
+      margin-top: clamp(8px, 1vw, 12px);
+      padding-top: clamp(10px, 1.1vw, 13px);
+      padding-bottom: clamp(10px, 1.1vw, 13px);
+      font-size: clamp(12px, 1.1vw, 14px);
+      line-height: 1.55;
+    }
+
+    .slide[data-title="会议纪要：两种流程对比"] .callout {
+      margin-top: 6px;
+      padding-left: 38px;
+      font-size: clamp(11px, 1vw, 13px);
+      line-height: 1.42;
+    }
+
+    .slide[data-title="会议纪要：两种流程对比"] .callout::before {
+      top: 10px;
+    }
+
+    .slide[data-title="把 OpenClaw 放进一张图"] .system-map {
+      min-height: clamp(250px, 40vh, 360px);
+      gap: clamp(8px, 1vw, 12px);
+    }
+
+    .slide[data-title="把 OpenClaw 放进一张图"] .map-node {
+      padding: clamp(12px, 1.3vw, 16px);
+      border-radius: 18px;
+    }
+
+    .slide[data-title="把 OpenClaw 放进一张图"] .map-node span {
+      font-size: clamp(11px, 1.05vw, 13px);
+      line-height: 1.45;
     }
 
     /* === ANIMATIONS FOR NEW ELEMENTS === */
