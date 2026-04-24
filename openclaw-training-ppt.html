@@ -874,14 +874,18 @@
       overflow: auto;
       font-size: var(--size-code);
       line-height: 1.75;
-      white-space: pre-wrap;
-      word-break: break-word;
+      white-space: pre-line;
+      word-break: normal;
+      overflow-wrap: normal;
       font-family: var(--font-mono);
     }
 
     .code-block.scrollable {
       max-height: clamp(280px, 52vh, 480px);
-      overflow-y: auto;
+      overflow: auto;
+      white-space: pre-line;
+      word-break: break-word;
+      overflow-wrap: anywhere;
       scrollbar-width: thin;
       scrollbar-color: #cbd5e1 transparent;
     }
@@ -2147,8 +2151,9 @@
       padding: 16px 18px;
       font-size: 13px;
       line-height: 1.6;
-      overflow-wrap: anywhere;
-      word-break: break-word;
+      overflow-x: auto;
+      word-break: normal;
+      overflow-wrap: normal;
     }
 
     .layout-config-dense .grid-4 .card {
@@ -5728,7 +5733,7 @@
       </div>
     </div>
     <div class="topbar-actions">
-      <div class="progress"><span data-current>1</span> / <span data-total>71</span></div>
+      <div class="progress"><span data-current>1</span> / <span data-total>79</span></div>
       <button class="btn" id="prevBtn" type="button"><i class="btn-icon" data-lucide="chevron-left"></i> 上一页</button>
       <button class="btn" id="nextBtn" type="button">下一页 <i class="btn-icon" data-lucide="chevron-right"></i></button>
       <button class="btn" id="fullscreenBtn" type="button" title="全屏 (F)"><i class="btn-icon" data-lucide="maximize-2"></i></button>
@@ -5747,6 +5752,7 @@
 
     <main class="stage">
       
+      <!-- section: 01-opening.html -->
       <!-- section: 01-opening.html -->
 <section class="slide compact-center cover-slide" data-module="第一部分：认识 OpenClaw" data-title="封面">
         <div class="slide-body cover">
@@ -6563,11 +6569,11 @@
       </section>
 
       <!-- section: 02-local-deploy.html -->
-<section class="slide compact-center" data-module="第四部分：现场部署" data-title="本地部署导入">
+<section class="slide compact-center" data-module="本地部署" data-title="本地部署导入">
         <div class="slide-body module-intro">
           <div class="module-intro-copy">
-            <p class="eyebrow">第四部分</p>
-            <h2>第四部分：现场部署</h2>
+            <p class="eyebrow">模块二</p>
+            <h2>模块二：本地部署</h2>
           </div>
           <div class="module-intro-side">
             <div class="modules-grid">
@@ -6602,677 +6608,564 @@
                 <p>环境层、服务层、模型层、渠道层依次定位问题。</p>
               </div>
             </div>
-            <div class="intro-note">第四部分按实际部署顺序展开，后续页面中的命令、界面选择和验收动作都对应这 6 个环节。</div>
+            <div class="intro-note">模块二按实际部署顺序展开，后续页面中的命令、界面选择和验收动作都对应这 6 个环节。</div>
           </div>
-        </div>
-      </section>
-
-<section class="slide layout-path-dense" data-module="第四部分：现场部署" data-title="安装运行路径">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第四部分 · 本地部署</p>
-            <h2>部署顺序总览</h2>
-            <p>整条主线只有一个目标：在本机完成安装、初始化、进入控制界面，并确认 Gateway 已经真正可用。</p>
-          </div>
-        </div>
-        <div class="slide-body">
-          <div class="timeline">
-            <div class="step">01 环境检查<small>确认系统、Node、Git 与模型 Provider 凭证。</small></div>
-            <div class="step">02 执行安装<small>优先使用官方脚本；脚本失败时再进入手动安装。</small></div>
-            <div class="step">03 运行 onboarding<small>选择 Provider、填写 API Key、安装 Gateway 后台服务。</small></div>
-            <div class="step">04 进入控制界面<small>选择 Web UI 或 TUI，确认交互入口可用。</small></div>
-            <div class="step">05 完成验收<small>通过 doctor、gateway status 与 Dashboard 判断服务状态。</small></div>
-            <div class="step">06 定位异常<small>按环境层、服务层、模型层、渠道层依次排查。</small></div>
-          </div>
-          <div class="callout">Provider 选择、Web UI / TUI、Token Plan 等内容，均从属于主线中的某个具体步骤，不单独构成部署流程。</div>
         </div>
       </section>
 
       <!-- section: 03-install-config.html -->
-<section class="slide layout-warning-dense" data-module="第四部分：现场部署" data-title="步骤 01：部署前检查">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第四部分 · 步骤 01</p>
-            <h2>部署前检查</h2>
-            <p>执行安装命令前，先把运行环境、终端工具和模型凭证准备完成。</p>
-          </div>
-        </div>
-        <div class="slide-body split-tight">
-          <div class="card warning">
-            <h3>部署位置</h3>
-            <p>长期托管或高权限运行时，优先使用<strong>单独的学习机、闲置主机或独立账号</strong>。如果需要给 Agent 较高的文件、终端或浏览器权限，不建议直接在核心生产电脑上长期运行。</p>
-            <p>本机体验完全可以做，但要建立“最小权限、先测再放开”的习惯。</p>
-          </div>
-          <div class="card">
-            <h3>检查清单</h3>
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>检查项</th>
-                    <th>建议</th>
-                    <th>作用</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>操作系统</td>
-                    <td>macOS、Linux、Windows 都可；Windows 环境更推荐 WSL2</td>
-                    <td>官方脚本和类 Unix 环境更稳定，排错资料也更多</td>
-                  </tr>
-                  <tr>
-                    <td>Node.js</td>
-                    <td>官方推荐 Node 24；Node 22.14+ 仍受支持</td>
-                    <td>版本过低时，安装脚本和依赖最容易直接失败</td>
-                  </tr>
-                  <tr>
-                    <td>Git / 终端</td>
-                    <td>提前确认能正常执行 `git --version` 与 `node -v`</td>
-                    <td>后续安装、升级、日志排查都离不开命令行</td>
-                  </tr>
-                  <tr>
-                    <td>模型凭证</td>
-                    <td>准备至少 1 个可用 Provider 的 API Key</td>
-                    <td>OpenClaw 自身不提供模型算力，没凭证就无法真正对话</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="code-block" style="margin-top:14px;">node -v
-git --version</div>
-          </div>
-        </div>
-      </section>
+<section class="slide layout-warning-dense" data-module="安装与配置" data-title="步骤 01：部署前检查">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块二 · 步骤 01</p>
+      <h2>部署前检查</h2>
+      <p>执行安装命令前，先把运行环境、终端工具和模型凭证准备完成。</p>
+    </div>
+  </div>
+  <div class="slide-body split-tight">
+    <div class="card warning">
+      <h3>部署位置</h3>
+      <p>长期托管或高权限运行时，优先使用<strong>单独的学习机、闲置主机或独立账号</strong>。如果需要给 Agent 较高的文件、终端或浏览器权限，不建议直接在核心生产电脑上长期运行。</p>
+      <p>本机体验完全可以做，但要建立“最小权限、先测再放开”的习惯。</p>
+    </div>
+    <div class="card">
+      <h3>检查清单</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>检查项</th>
+              <th>建议</th>
+              <th>作用</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>操作系统</td>
+              <td>macOS、Linux、Windows 都可；Windows 环境更推荐 WSL2</td>
+              <td>官方脚本和类 Unix 环境更稳定，排错资料也更多</td>
+            </tr>
+            <tr>
+              <td>模型凭证</td>
+              <td>准备至少 1 个可用 Provider 的 API Key</td>
+              <td>OpenClaw 自身不提供模型算力，没凭证就无法真正对话</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section class="slide" data-module="第四部分：现场部署" data-title="步骤 01 补充：Provider 凭证">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第四部分 · 步骤 01 补充</p>
-            <h2>Provider 凭证准备</h2>
-            <p>onboarding 过程中需要填写模型 Provider 凭证，因此应在运行向导前先准备好可用的 API Key。</p>
-          </div>
-        </div>
-        <div class="slide-body grid-2">
-          <div class="card accent-card">
-            <h3>准备内容</h3>
-            <ul>
-              <li>Node.js：官方推荐 24，最低支持 22.14+</li>
-              <li>npm（Node.js 自带）</li>
-              <li>Git</li>
-              <li>一个能调用成功的模型凭证：OpenAI / Anthropic / Google / OpenRouter / 国内兼容 Provider 等</li>
-            </ul>
-          </div>
-          <div class="card teal-card">
-            <h3>推荐选择原则</h3>
-            <p>第一次安装时，优先选择<strong>开通快、余额可见、失败提示清晰</strong>的 Provider。国内环境下，兼容 OpenAI 风格 API 的服务通常更容易快速跑通。</p>
-            <div class="tag-strip">
-              <span class="pill">阿里云百炼</span>
-              <span class="pill">智谱 GLM</span>
-              <span class="pill">Minimax</span>
-              <span class="pill">Kimi</span>
-              <span class="pill">豆包</span>
-              <span class="pill">腾讯云</span>
-            </div>
-          </div>
-        </div>
-        <div class="callout">第一次部署建议只准备 1 个可用 Provider；等主流程跑通后，再补第二个 Provider 作为备用。</div>
-        <div class="resource-panel">
-          <h3>常用入口</h3>
-          <div class="resource-grid">
-            <div class="resource-link-card">
-              <strong>阿里云百炼 Coding Plan</strong>
-              <a href="https://bailian.console.aliyun.com/cn-beijing/?tab=coding-plan#/efm/index" target="_blank"
-                rel="noreferrer">https://bailian.console.aliyun.com/cn-beijing/?tab=coding-plan#/efm/index</a>
-            </div>
-            <div class="resource-link-card">
-              <strong>智谱 AI（GLM）</strong>
-              <a href="https://www.bigmodel.cn/glm-coding?ic=CDU205JPZM&closedialog=true" target="_blank"
-                rel="noreferrer">https://www.bigmodel.cn/glm-coding?ic=CDU205JPZM&closedialog=true</a>
-            </div>
-            <div class="resource-link-card">
-              <strong>Minimax Coding Plan</strong>
-              <a href="https://platform.minimaxi.com/docs/coding-plan/quickstart" target="_blank"
-                rel="noreferrer">https://platform.minimaxi.com/docs/coding-plan/quickstart</a>
-            </div>
-            <div class="resource-link-card">
-              <strong>Kimi Code Plan</strong>
-              <a href="https://www.kimi.com/code" target="_blank" rel="noreferrer">https://www.kimi.com/code</a>
-            </div>
-            <div class="resource-link-card">
-              <strong>豆包 Coding Plan</strong>
-              <a href="https://volcengine.com/L/8o7kIXwoTZs" target="_blank"
-                rel="noreferrer">https://volcengine.com/L/8o7kIXwoTZs</a>
-            </div>
-            <div class="resource-link-card">
-              <strong>腾讯云 Coding Plan</strong>
-              <a href="https://cloud.tencent.com/act/pro/codingplan?Is=home#buy" target="_blank"
-                rel="noreferrer">https://cloud.tencent.com/act/pro/codingplan?Is=home#buy</a>
-            </div>
-          </div>
-        </div>
-      </section>
+<section class="slide" data-module="安装与配置" data-title="步骤 01 补充：Provider 凭证">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块二 · 步骤 01 补充</p>
+      <h2>Provider 凭证准备</h2>
+      <p>这一页只讲一件事：在进入 onboarding 之前，先准备好可用的模型密钥。常见做法分成 API Key 和 Token Plan 两种。</p>
+    </div>
+  </div>
+  <div class="slide-body grid-2">
+    <div class="card accent-card">
+      <h3>方案 A：先用 API Key</h3>
+      <ul>
+        <li>适合首次安装、功能测试、低频使用。</li>
+        <li>优点是开通快、试错成本低，遇到问题也更容易排查。</li>
+        <li>拿到 API Key 后，后面的 onboarding 填写方式最直接。</li>
+      </ul>
+    </div>
+    <div class="card teal-card">
+      <h3>方案 B：长期用 Token Plan</h3>
+      <p>更适合长期运行、固定工作流和高频调用。通常要先开通套餐，再到平台里拿可用的接口密钥。</p>
+      <p>如果你已经确认会长期使用 OpenClaw，再考虑 Token Plan 会更合适。</p>
+      <div class="tag-strip">
+        <span class="pill">阿里云百炼</span>
+        <span class="pill">智谱 GLM</span>
+        <span class="pill">Minimax</span>
+        <span class="pill">Kimi</span>
+        <span class="pill">豆包</span>
+        <span class="pill">腾讯云</span>
+      </div>
+    </div>
+  </div>
+  <div class="callout">讲解顺序建议是：先知道去哪里拿密钥，再判断该选 API Key 还是 Token Plan。第一次部署建议先准备 1 个能跑通的 Provider 即可。</div>
+  <div class="resource-panel">
+    <h3>获取入口</h3>
+    <div class="resource-grid">
+      <div class="resource-link-card">
+        <strong>阿里云百炼 API Key</strong>
+        <a href="https://bailian.console.aliyun.com/cn-beijing/?spm=5176.29619931.J_SEsSjsNv72yRuRFS2VknO.2.3b8410d75xThZQ&tab=demohouse#/api-key"
+          target="_blank"
+          rel="noreferrer">https://bailian.console.aliyun.com/cn-beijing/?spm=5176.29619931.J_SEsSjsNv72yRuRFS2VknO.2.3b8410d75xThZQ&tab=demohouse#/api-key</a>
+      </div>
+      <div class="resource-link-card">
+        <strong>Minimax API Key</strong>
+        <a href="https://platform.minimaxi.com/user-center/basic-information/interface-key" target="_blank"
+          rel="noreferrer">https://platform.minimaxi.com/user-center/basic-information/interface-key</a>
+      </div>
+      <div class="resource-link-card">
+        <strong>阿里云百炼 Coding Plan</strong>
+        <a href="https://bailian.console.aliyun.com/cn-beijing/?tab=coding-plan#/efm/index" target="_blank"
+          rel="noreferrer">https://bailian.console.aliyun.com/cn-beijing/?tab=coding-plan#/efm/index</a>
+      </div>
+      <div class="resource-link-card">
+        <strong>智谱 AI（GLM）</strong>
+        <a href="https://www.bigmodel.cn/glm-coding?ic=CDU205JPZM&closedialog=true" target="_blank"
+          rel="noreferrer">https://www.bigmodel.cn/glm-coding?ic=CDU205JPZM&closedialog=true</a>
+      </div>
+      <div class="resource-link-card">
+        <strong>Minimax Coding Plan</strong>
+        <a href="https://platform.minimaxi.com/docs/coding-plan/quickstart" target="_blank"
+          rel="noreferrer">https://platform.minimaxi.com/docs/coding-plan/quickstart</a>
+      </div>
+      <div class="resource-link-card">
+        <strong>Kimi Code Plan</strong>
+        <a href="https://www.kimi.com/code" target="_blank" rel="noreferrer">https://www.kimi.com/code</a>
+      </div>
+      <div class="resource-link-card">
+        <strong>豆包 Coding Plan</strong>
+        <a href="https://volcengine.com/L/8o7kIXwoTZs" target="_blank"
+          rel="noreferrer">https://volcengine.com/L/8o7kIXwoTZs</a>
+      </div>
+      <div class="resource-link-card">
+        <strong>腾讯云 Coding Plan</strong>
+        <a href="https://cloud.tencent.com/act/pro/codingplan?Is=home#buy" target="_blank"
+          rel="noreferrer">https://cloud.tencent.com/act/pro/codingplan?Is=home#buy</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section class="slide layout-config-dense" data-module="第四部分：现场部署" data-title="步骤 02：执行安装命令">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第四部分 · 步骤 02</p>
-            <h2>执行安装命令</h2>
-            <p>OpenClaw 官方推荐先使用安装脚本。脚本会完成 CLI 安装，并进入 onboarding 流程。</p>
-          </div>
-        </div>
-        <div class="slide-body compare">
-          <div class="side accent-card">
-            <h3>macOS / Linux</h3>
-            <div class="code-block">curl -fsSL https://openclaw.ai/install.sh | bash</div>
-            <p>在终端中直接执行上面的命令。</p>
-          </div>
-          <div class="side teal-card">
-            <h3>Windows（PowerShell）</h3>
-            <div class="code-block">Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
-iwr -useb https://openclaw.ai/install.ps1 | iex</div>
-            <p>先放开当前用户脚本权限，再执行安装命令。Windows 原生可用，但更推荐 WSL2。</p>
-          </div>
-        </div>
-        <div class="callout">安装完成后，应继续执行 `openclaw onboard --install-daemon`；如果脚本已自动进入向导，可直接继续下一步。</div>
-      </section>
+<section class="slide" data-module="安装与配置" data-title="步骤 01 补充：API Key 和 Token Plan 怎么选">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块二 · 步骤 01 补充</p>
+      <h2>API Key 和 Token Plan 有什么区别？</h2>
+      <p>它们最后都能给 OpenClaw 提供模型凭证，核心区别不在能不能接入，而在付费方式、使用频率和长期成本控制。</p>
+    </div>
+  </div>
+  <div class="slide-body">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>对比项</th>
+            <th>API Key</th>
+            <th>Token Plan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>本质</td>
+            <td>普通接口密钥</td>
+            <td>订阅或套餐模式下使用的接口凭证</td>
+          </tr>
+          <tr>
+            <td>适合谁</td>
+            <td>刚开始体验、低频使用、新手测试</td>
+            <td>长期使用、重度使用、团队稳定接入</td>
+          </tr>
+          <tr>
+            <td>成本特点</td>
+            <td>按量消耗，先用先试</td>
+            <td>更适合长期规划，成本预期更稳定</td>
+          </tr>
+          <tr>
+            <td>灵活性</td>
+            <td>高，开通快，试错成本低</td>
+            <td>更适合固定工作流和长期运行</td>
+          </tr>
+          <tr>
+            <td>常见场景</td>
+            <td>跑通安装、测试功能、偶尔使用</td>
+            <td>日常高频对话、定时任务、长期托管</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid-2" style="margin-top:18px;">
+      <div class="card accent-card">
+        <h3>第一次部署</h3>
+        <p>建议先用 API Key，把安装、onboarding 和 Dashboard 验收完整走通。这样上手最快，遇到问题也最容易定位。</p>
+      </div>
+      <div class="card">
+        <h3>长期运行</h3>
+        <p>当本地 Gateway、渠道接入和自动化任务都稳定后，再评估 Token Plan 是否更适合长期成本和调用频率。</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section class="slide" data-module="第四部分：现场部署" data-title="步骤 02 补充：手动安装">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第四部分 · 步骤 02 补充</p>
-            <h2>手动安装</h2>
-            <p>安装脚本失败时，可切换到手动安装路径，逐步确认依赖、权限和终端环境。</p>
-          </div>
-        </div>
-        <div class="slide-body">
-          <div class="manual-install-layout" data-segmented>
-            <div class="manual-install-top">
-              <p>手动安装的好处在于每一步都能自己确认，环境里缺了什么、卡在什么地方，会看得更清楚。</p>
-              <div class="segmented-nav" role="tablist" aria-label="操作系统切换">
-                <button class="segmented-btn active" type="button" role="tab" aria-selected="true" data-segment-btn="mac" data-default>macOS</button>
-                <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="windows">Windows</button>
-              </div>
-            </div>
+<section class="slide layout-config-dense" data-module="安装与配置" data-title="步骤 02：执行安装命令">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块二 · 步骤 02</p>
+      <h2>执行安装命令</h2>
+      <p>OpenClaw 官方推荐先使用安装脚本。脚本会完成 CLI 安装，并进入 onboarding 流程。</p>
+    </div>
+  </div>
+  <div class="slide-body compare">
+    <div class="side accent-card">
+      <h3>macOS / Linux</h3>
+      <div class="code-block">curl -fsSL https://openclaw.ai/install.sh | bash</div>
+      <p>在终端中直接执行上面的命令。</p>
+    </div>
+    <div class="side teal-card">
+      <h3>Windows（PowerShell）</h3>
+      <div class="code-block">Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+        iwr -useb https://openclaw.ai/install.ps1 | iex</div>
+      <p>先放开当前用户脚本权限，再执行安装命令。Windows 原生可用，但更推荐 WSL2。</p>
+    </div>
+  </div>
+  <div class="callout">安装完成后，应继续执行 `openclaw onboard --install-daemon`；如果脚本已自动进入向导，可直接继续下一步。</div>
+  <div class="callout warning">如果一键安装命令失败，请直接跳到附录 A：手动安装，按操作系统分支逐步排查环境与依赖。</div>
+</section>
 
-            <section class="segmented-panel" data-segment-panel="mac" role="tabpanel">
-              <div class="manual-install-stage">
-                <aside class="manual-route">
-                  <h3>macOS 路线</h3>
-                  <ol class="manual-step-list">
-                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 下载 Node.js 安装包</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 打开终端并安装 Homebrew</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 执行 `git --version` 验证</button></li>
-                  </ol>
-                </aside>
-                <div class="gallery manual-gallery" data-gallery>
-                  <div class="gallery-stage">
-                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-                    <figure class="gallery-panel">
-                      <img src="images/2.png" alt="下载 Node.js 安装包" />
-                      <figcaption>先下载 macOS 版 Node.js 安装包。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/3.png" alt="打开终端并准备安装 Homebrew" />
-                      <figcaption>先打开终端，准备安装 Homebrew。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/4.png" alt="验证 git 安装" />
-                      <figcaption>再通过 `git --version` 验证 Git 安装成功。</figcaption>
-                    </figure>
-                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <section class="segmented-panel" data-segment-panel="windows" role="tabpanel" hidden>
-              <div class="manual-install-stage">
-                <aside class="manual-route">
-                  <h3>Windows 路线</h3>
-                  <ol class="manual-step-list">
-                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 下载 Node.js 安装包</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 下载并安装 Git</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="3">3. 遇到原生依赖报错时，再补装构建工具</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="4">4. 勾选 C++ 与 Windows SDK</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="6">5. 管理员终端验证环境</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="8">6. 验证 OpenClaw 版本</button></li>
-                  </ol>
-                </aside>
-                <div class="gallery manual-gallery" data-gallery>
-                  <div class="gallery-stage">
-                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-                    <figure class="gallery-panel">
-                      <img src="images/5.png" alt="Windows 下载 Node.js 安装包" />
-                      <figcaption>先下载 Windows 版 Node.js 安装包。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/6.png" alt="下载 Git 安装包" />
-                      <figcaption>再下载 Git 安装包。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/7.png" alt="Git 安装向导" />
-                      <figcaption>Git 安装一路默认 Next 即可。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/8.png" alt="Visual Studio 下载页面" />
-                      <figcaption>如果 Windows 原生环境遇到编译型依赖报错，再考虑补装 Visual Studio 构建工具。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/9.png" alt="勾选 C++ 桌面开发和 Windows SDK" />
-                      <figcaption>仅在需要本机构建依赖时使用，不属于所有环境的默认步骤。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/10.png" alt="以管理员身份打开终端" />
-                      <figcaption>以管理员身份打开终端。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/11.png" alt="管理员终端界面" />
-                      <figcaption>确认已进入管理员终端环境。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/12.png" alt="Windows 环境验证" />
-                      <figcaption>先验证 Node / npm / Git 是否都正常。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/13.png" alt="验证 OpenClaw 版本" />
-                      <figcaption>再验证 OpenClaw 是否安装成功。</figcaption>
-                    </figure>
-                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
+<section class="slide" data-module="安装与配置" data-title="步骤 03：运行 onboarding">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块二 · 步骤 03</p>
+      <h2>运行 onboarding</h2>
+      <p>安装完成后，在终端执行下列命令，进入官方交互式向导。</p>
+    </div>
+  </div>
+  <div class="slide-body">
+    <div class="manual-install-layout" data-segmented>
+      <div class="manual-install-top">
+        <div class="code-block" style="margin-top:0;">openclaw onboard --install-daemon</div>
+        <div class="segmented-nav" role="tablist" aria-label="配置阶段切换">
+          <button class="segmented-btn active" type="button" role="tab" aria-selected="true" data-segment-btn="basic"
+            data-default>① 基础配置</button>
+          <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="api-qwen">② API
+            (Qwen)</button>
+          <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="api-minimax">③
+            API (Minimax)</button>
+          <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="finish">④
+            完成设置</button>
         </div>
-      </section>
+      </div>
 
-<section class="slide" data-module="第四部分：现场部署" data-title="步骤 03：运行 onboarding">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第四部分 · 步骤 03</p>
-            <h2>运行 onboarding</h2>
-            <p>安装完成后，在终端执行下列命令，进入官方交互式向导。</p>
-          </div>
-        </div>
-        <div class="slide-body">
-          <div class="manual-install-layout" data-segmented>
-            <div class="manual-install-top">
-              <div class="code-block" style="margin-top:0;">openclaw onboard --install-daemon</div>
-              <div class="segmented-nav" role="tablist" aria-label="配置阶段切换">
-                <button class="segmented-btn active" type="button" role="tab" aria-selected="true" data-segment-btn="basic" data-default>① 基础配置</button>
-                <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="api-qwen">② API (Qwen)</button>
-                <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="api-minimax">③ API (Minimax)</button>
-                <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="finish">④ 完成设置</button>
-              </div>
-            </div>
-
-            <section class="segmented-panel" data-segment-panel="basic" role="tabpanel">
-              <div class="manual-install-stage">
-                <aside class="manual-route">
-                  <h3>基础配置</h3>
-                  <ol class="manual-step-list">
-                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 执行命令并进入向导</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 选择 Quick start</button></li>
-                  </ol>
-                </aside>
-                <div class="gallery manual-gallery" data-gallery>
-                  <div class="gallery-stage">
-                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-                    <figure class="gallery-panel">
-                      <img src="images/14.png" alt="忽略安全警告" />
-                      <figcaption>执行 `openclaw onboard --install-daemon` 后，按提示进入 onboarding。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/15.png" alt="Quick start 选项" />
-                      <figcaption>向导模式选择 `Quick start`。</figcaption>
-                    </figure>
-                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <section class="segmented-panel" data-segment-panel="api-qwen" role="tabpanel" hidden>
-              <div class="manual-install-stage">
-                <aside class="manual-route">
-                  <h3>填写 Provider 凭证</h3>
-                  <p>选择一个已准备好的 Provider，把 API Key 填入向导。</p>
-                  <ol class="manual-step-list">
-                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 打开 Provider 控制台</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 复制 API Key</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 粘贴到 onboarding</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 完成 Provider 配置</button></li>
-                  </ol>
-                </aside>
-                <div class="gallery manual-gallery" data-gallery>
-                  <div class="gallery-stage">
-                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-                    <figure class="gallery-panel">
-                      <img src="images/16.png" alt="获取 Qwen API Key 页面" />
-                      <figcaption>进入 Provider 控制台，找到 API Key 管理页面。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/17.png" alt="填写 API 配置第一步" />
-                      <figcaption>复制 API Key，并在向导中选择对应 Provider。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/18.png" alt="填写 API 配置第二步" />
-                      <figcaption>把 API Key 粘贴到 onboarding 提示的输入项。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/19.png" alt="填写 API 配置第三步" />
-                      <figcaption>完成填写后继续下一项配置。</figcaption>
-                    </figure>
-                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <section class="segmented-panel" data-segment-panel="api-minimax" role="tabpanel" hidden>
-              <div class="manual-install-stage">
-                <aside class="manual-route">
-                  <h3>长期使用示例 (Minimax)</h3>
-                  <p>如果计划长期高频使用，可在 Provider 控制台开通套餐后再填写凭证。</p>
-                  <ol class="manual-step-list">
-                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 开通 Token Plan</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 获取 API Key</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 填写 Minimax 配置 ①</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 填写 Minimax 配置 ②</button></li>
-                  </ol>
-                </aside>
-                <div class="gallery manual-gallery" data-gallery>
-                  <div class="gallery-stage">
-                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-                    <figure class="gallery-panel">
-                      <img src="images/minimax-0.png" alt="Minimax Coding Plan 订阅页面" />
-                      <figcaption>长期使用时，也可以开通 Minimax Token Plan。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/minimax-3.png" alt="获取 Minimax Token Plan Key" />
-                      <figcaption>再获取对应的 Token Plan API Key。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/minimax-1.png" alt="填写 Minimax 配置第一步" />
-                      <figcaption>填写 Minimax 相关配置。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/minimax-2.png" alt="填写 Minimax 配置第二步" />
-                      <figcaption>确认 Minimax 配置完成。</figcaption>
-                    </figure>
-                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <section class="segmented-panel" data-segment-panel="finish" role="tabpanel" hidden>
-              <div class="manual-install-stage">
-                <aside class="manual-route">
-                  <h3>完成设置</h3>
-                  <p>第一次本地安装可先跳过渠道、暂不安装 Skills，优先把 Web UI 跑通。</p>
-                  <ol class="manual-step-list">
-                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 跳过通道配置</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 确认跳过</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. Skills 选 No</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. hooks 可选</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="4">5. 选择 Web UI</button></li>
-                  </ol>
-                </aside>
-                <div class="gallery manual-gallery" data-gallery>
-                  <div class="gallery-stage">
-                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-                    <figure class="gallery-panel">
-                      <img src="images/20.png" alt="暂时跳过通道" />
-                      <figcaption>通道配置先跳过，先保证本地网关和控制台工作正常，后面再接飞书更稳。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/21.png" alt="继续跳过后续通道设置" />
-                      <figcaption>继续确认暂时跳过通道设置。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/22.png" alt="Skills 选择 No" />
-                      <figcaption>Skills 先选 No，避免把“安装框架”和“装扩展能力”两个问题混在一起。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/23.png" alt="hooks 配置" />
-                      <figcaption>hooks 属于可选项，按需处理。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/24.png" alt="选择对话方式" />
-                      <figcaption>本地安装优先选 Web UI，状态更直观，也更方便查看配置与运行结果。</figcaption>
-                    </figure>
-                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>
-      </section>
-
-<section class="slide layout-path-dense" data-module="第四部分：现场部署" data-title="步骤 03 速查：推荐选项">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第四部分 · 步骤 03 速查</p>
-            <h2>onboarding 推荐选项</h2>
-            <p>首次本地部署时，下面这组选择通常最容易跑通主流程。</p>
-          </div>
-        </div>
-        <div class="slide-body grid-3">
-          <div class="card accent-card">
-            <h3>命令</h3>
-            <p>`openclaw onboard --install-daemon`</p>
-            <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(124, 45, 18, 0.08);">
-              <span class="pill demo-cue" style="margin-bottom: 8px;">选择</span>
-              <p style="margin-top: 0; font-weight: 600; color: var(--text);">保留 `--install-daemon`，让 Gateway 作为后台服务安装。</p>
-            </div>
-          </div>
-          <div class="card">
-            <h3>向导模式</h3>
-            <p>进入 onboarding 后，优先选择 `Quick start`。</p>
-            <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(124, 45, 18, 0.08);">
-              <span class="pill demo-cue" style="margin-bottom: 8px;">作用</span>
-              <p style="margin-top: 0; font-weight: 600; color: var(--text);">优先走官方默认配置，减少首次安装时的自定义变量。</p>
-            </div>
-          </div>
-          <div class="card teal-card">
-            <h3>完成设置</h3>
-            <p>渠道先跳过，Skills 先选 `No`，交互入口优先选 `Web UI`。</p>
-            <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(15, 118, 110, 0.1);">
-              <span class="pill demo-cue" style="margin-bottom: 8px;">顺序</span>
-              <p style="margin-top: 0; font-weight: 600; color: var(--text);">先完成本地可用，再进入飞书接入和 Skills 安装。</p>
-            </div>
-          </div>
-        </div>
-      </section>
-<section class="slide" data-module="第四部分：现场部署" data-title="步骤 04：交互入口选择">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第四部分 · 步骤 04</p>
-            <h2>交互入口选择</h2>
-            <p>首次本地部署推荐先用 Web UI；如果部署在远程主机或长期使用 SSH，可改用 TUI。</p>
-          </div>
-        </div>
-        <div class="slide-body">
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>项目</th>
-                  <th>Web UI</th>
-                  <th>TUI</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>进入方式</td>
-                  <td>在浏览器里打开管理页面</td>
-                  <td>直接在终端里进入交互界面</td>
-                </tr>
-                <tr>
-                  <td>信息查看</td>
-                  <td>页面层次更清楚，状态、配置和会话更容易一起看</td>
-                  <td>信息集中在终端里，切换速度快，连续操作更直接</td>
-                </tr>
-                <tr>
-                  <td>操作习惯</td>
-                  <td>更接近后台管理页面，适合边看边点边调</td>
-                  <td>更接近命令行工作流，适合长期维护和远程操作</td>
-                </tr>
-                <tr>
-                  <td>部署环境</td>
-                  <td>本地电脑、带桌面的 macOS / Windows 环境</td>
-                  <td>Linux 主机、云服务器、长期 SSH 维护环境</td>
-                </tr>
-                <tr>
-                  <td>更常见的使用者</td>
-                  <td>刚开始接触的人，或者平时更习惯图形界面的人</td>
-                  <td>已经习惯命令行、希望尽量轻量维护的人</td>
-                </tr>
-                <tr>
-                  <td>更常见的选择</td>
-                  <td>本地部署时通常优先选它，查看和排查都更直观</td>
-                  <td>远程部署时通常更顺手，不需要图形桌面也能完整维护</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="callout">本地电脑部署时，Web UI 更适合查看状态、修改配置和排查问题；远程主机或长期 SSH 维护环境里，TUI 往往更高效。</div>
-        </div>
-      </section>
-
-<section class="slide" data-module="第四部分：现场部署" data-title="步骤 05：部署验收">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第四部分 · 步骤 05</p>
-            <h2>部署验收</h2>
-            <p>部署完成后，按命令行检查 → 服务状态 → 控制界面 这条顺序验收。</p>
-          </div>
-        </div>
-        <div class="slide-body split-tight">
-          <div class="card accent-card">
-            <h3>验收命令</h3>
-            <div class="code-block">openclaw doctor
-openclaw gateway status
-openclaw dashboard</div>
-            <p>`openclaw --version` 可先确认 CLI 是否安装成功；`doctor` 用于检查依赖与配置；`gateway status` 用于查看 Gateway 是否已运行；`dashboard` 用于打开控制界面。</p>
-            <div class="callout">验收完成时，应同时满足三件事：CLI 可调用、Gateway 正在运行、Dashboard 能正常打开。</div>
-          </div>
-          <div class="gallery" data-gallery>
+      <section class="segmented-panel" data-segment-panel="basic" role="tabpanel">
+        <div class="manual-install-stage">
+          <aside class="manual-route">
+            <h3>基础配置</h3>
+            <ol class="manual-step-list">
+              <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 执行命令并进入向导</button></li>
+              <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 选择 Quick start</button></li>
+            </ol>
+          </aside>
+          <div class="gallery manual-gallery" data-gallery>
             <div class="gallery-stage">
               <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
               <figure class="gallery-panel">
-                <img src="images/25.png" alt="打开 dashboard 第一步" />
-                <figcaption>完成命令行体检后，再执行 `openclaw dashboard`。</figcaption>
+                <img src="images/14.png" alt="忽略安全警告" />
+                <figcaption>执行 `openclaw onboard --install-daemon` 后，按提示进入 onboarding。</figcaption>
               </figure>
               <figure class="gallery-panel" hidden>
-                <img src="images/26.png" alt="打开 dashboard 后的页面" />
-                <figcaption>页面能正常打开，说明控制面已可访问；如果前面的状态检查也通过，就可以进入后续飞书与 Skills 模块。</figcaption>
+                <img src="images/15.png" alt="Quick start 选项" />
+                <figcaption>向导模式选择 `Quick start`。</figcaption>
+              </figure>
+              <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="segmented-panel" data-segment-panel="api-qwen" role="tabpanel" hidden>
+        <div class="manual-install-stage">
+          <aside class="manual-route">
+            <h3>API (Qwen)</h3>
+            <ol class="manual-step-list">
+              <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 获取 Qwen API Key</button></li>
+              <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 填写配置第 1 步</button></li>
+              <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 填写配置第 2 步</button></li>
+              <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 完成 Provider 绑定</button></li>
+            </ol>
+          </aside>
+          <div class="gallery manual-gallery" data-gallery>
+            <div class="gallery-stage">
+              <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+              <figure class="gallery-panel">
+                <img src="images/16.png" alt="获取 Qwen API Key" />
+                <figcaption>先到百炼后台获取 Qwen API Key。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/17.png" alt="填写 Qwen 配置第一步" />
+                <figcaption>在向导里填写 Qwen 的第一段 Provider 配置。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/18.png" alt="填写 Qwen 配置第二步" />
+                <figcaption>继续补完模型、凭证等相关字段。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/19.png" alt="完成 Qwen Provider 绑定" />
+                <figcaption>Provider 绑定完成后，就可以进入下一阶段配置。</figcaption>
               </figure>
               <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
             </div>
             <div class="gallery-dots">
-              <button class="gallery-dot" type="button">1 执行命令</button>
-              <button class="gallery-dot" type="button">2 看页面</button>
+              <button class="gallery-dot" type="button">1 获取 Key</button>
+              <button class="gallery-dot" type="button">2 配置 1</button>
+              <button class="gallery-dot" type="button">3 配置 2</button>
+              <button class="gallery-dot" type="button">4 绑定完成</button>
             </div>
           </div>
         </div>
       </section>
+      <section class="segmented-panel" data-segment-panel="api-minimax" role="tabpanel" hidden>
+        <div class="manual-install-stage">
+          <aside class="manual-route">
+            <h3>API (Minimax)</h3>
+            <ol class="manual-step-list">
+              <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 选择 Token Plan 套餐</button></li>
+              <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 获取 Token Plan API Key</button></li>
+              <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 填写配置第 1 步</button></li>
+              <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 填写配置第 2 步</button></li>
+            </ol>
+          </aside>
+          <div class="gallery manual-gallery" data-gallery>
+            <div class="gallery-stage">
+              <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+              <figure class="gallery-panel">
+                <img src="images/minimax-0.png" alt="选择 Minimax Token Plan 套餐" />
+                <figcaption>先根据自己的使用频率选择 Minimax Token Plan 套餐。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/minimax-3.png" alt="获取 Minimax Token Plan API Key" />
+                <figcaption>然后到用户中心获取 Token Plan API Key。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/minimax-1.png" alt="填写 Minimax 配置第一步" />
+                <figcaption>回到向导，填写 Minimax 的第一段配置。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/minimax-2.png" alt="填写 Minimax 配置第二步" />
+                <figcaption>继续补完模型与凭证等必要字段。</figcaption>
+              </figure>
+              <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+            </div>
+            <div class="gallery-dots">
+              <button class="gallery-dot" type="button">1 选套餐</button>
+              <button class="gallery-dot" type="button">2 获取 Key</button>
+              <button class="gallery-dot" type="button">3 配置 1</button>
+              <button class="gallery-dot" type="button">4 配置 2</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="segmented-panel" data-segment-panel="finish" role="tabpanel" hidden>
+        <div class="manual-install-stage">
+          <aside class="manual-route">
+            <h3>完成设置</h3>
+            <ol class="manual-step-list">
+              <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 是否接入渠道先选 No</button></li>
+              <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 选择交互入口</button></li>
+              <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. Skills 先选 No</button></li>
+              <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 完成安装并启动</button></li>
+            </ol>
+          </aside>
+          <div class="gallery manual-gallery" data-gallery>
+            <div class="gallery-stage">
+              <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+              <figure class="gallery-panel">
+                <img src="images/20.png" alt="渠道先选 No" />
+                <figcaption>首次本地部署时，渠道接入先选 `No`，后面单独再接飞书。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/21.png" alt="选择 Web UI" />
+                <figcaption>交互入口优先选择 `Web UI`，更适合首次安装时排查问题。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/22.png" alt="Skills 先选 No" />
+                <figcaption>Skills 这里先选 `No`，后面再用更顺手的方式安装。</figcaption>
+              </figure>
+              <figure class="gallery-panel" hidden>
+                <img src="images/23.png" alt="完成安装和启动" />
+                <figcaption>完成剩余确认后，Gateway 会按向导结果安装并启动。</figcaption>
+              </figure>
+              <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+            </div>
+            <div class="gallery-dots">
+              <button class="gallery-dot" type="button">1 先不接渠道</button>
+              <button class="gallery-dot" type="button">2 选 Web UI</button>
+              <button class="gallery-dot" type="button">3 Skills 选 No</button>
+              <button class="gallery-dot" type="button">4 完成安装</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
 
-<section class="slide" data-module="第四部分：现场部署" data-title="步骤 06：故障定位顺序">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第四部分 · 步骤 06</p>
-            <h2>故障定位顺序</h2>
-            <p>出现异常时，按固定顺序排查，可快速判断问题位于环境、服务、模型还是渠道层。</p>
-          </div>
-        </div>
-        <div class="slide-body split-tight">
-          <div class="card accent-card">
-            <h3>定位顺序</h3>
-            <div class="number-list">
-              <div class="item"><b>1</b>
-                <p><strong>版本是否满足：</strong>`node -v`、`git --version`、`openclaw --version`。</p>
-              </div>
-              <div class="item"><b>2</b>
-                <p><strong>环境是否健康：</strong>`openclaw doctor` 看依赖、路径和基础配置。</p>
-              </div>
-              <div class="item"><b>3</b>
-                <p><strong>服务是否在线：</strong>`openclaw gateway status` 看 Gateway 有没有真正跑起来。</p>
-              </div>
-              <div class="item"><b>4</b>
-                <p><strong>Provider 是否可用：</strong>检查 API Key、余额、模型名和地区访问限制。</p>
-              </div>
-            </div>
-          </div>
-          <div class="card teal-card">
-            <h3>常见现象与定位</h3>
-            <ul class="list-clean">
-              <li><strong>命令都不存在：</strong>先回到安装环节，不要继续往后配。</li>
-              <li><strong>Gateway 没启动：</strong>先解决服务问题，不要急着看飞书和 Skills。</li>
-              <li><strong>页面打开但不能回复：</strong>优先查 Provider 凭证和模型配置。</li>
-              <li><strong>本地可用、飞书不可用：</strong>说明核心安装已过关，问题已经缩小到渠道接入层。</li>
-            </ul>
-            <div class="callout">排查完成后，应能明确判断问题属于哪一层，再进入对应模块继续处理。</div>
-          </div>
-        </div>
-      </section>
+<section class="slide layout-path-dense" data-module="安装与配置" data-title="步骤 03 速查：推荐选项">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块二 · 步骤 03 速查</p>
+      <h2>onboarding 推荐选项</h2>
+      <p>首次本地部署时，下面这组选择通常最容易跑通主流程。</p>
+    </div>
+  </div>
+  <div class="slide-body grid-3">
+    <div class="card accent-card">
+      <h3>命令</h3>
+      <p>`openclaw onboard --install-daemon`</p>
+      <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(124, 45, 18, 0.08);">
+        <span class="pill demo-cue" style="margin-bottom: 8px;">选择</span>
+        <p style="margin-top: 0; font-weight: 600; color: var(--text);">保留 `--install-daemon`，让 Gateway 作为后台服务安装。</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>向导模式</h3>
+      <p>进入 onboarding 后，优先选择 `Quick start`。</p>
+      <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(124, 45, 18, 0.08);">
+        <span class="pill demo-cue" style="margin-bottom: 8px;">作用</span>
+        <p style="margin-top: 0; font-weight: 600; color: var(--text);">优先走官方默认配置，减少首次安装时的自定义变量。</p>
+      </div>
+    </div>
+    <div class="card teal-card">
+      <h3>完成设置</h3>
+      <p>渠道先跳过，Skills 先选 `No`，交互入口优先选 `Web UI`。</p>
+      <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(15, 118, 110, 0.1);">
+        <span class="pill demo-cue" style="margin-bottom: 8px;">顺序</span>
+        <p style="margin-top: 0; font-weight: 600; color: var(--text);">先完成本地可用，再进入飞书接入和 Skills 安装。</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section class="slide" data-module="第四部分：现场部署" data-title="附：长期使用时再看 Token Plan">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第四部分 · 附加说明</p>
-            <h2>长期使用时再看 Token Plan</h2>
-            <p>这部分不影响首次部署；只有在本地部署已经跑通后，才需要比较不同 Provider 的套餐方式。</p>
-          </div>
+<section class="slide" data-module="安装与配置" data-title="步骤 04：交互入口选择">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块二 · 步骤 04</p>
+      <h2>交互入口选择</h2>
+      <p>首次本地部署推荐先用 Web UI；如果部署在远程主机或长期使用 SSH，可改用 TUI。</p>
+    </div>
+  </div>
+  <div class="slide-body">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>项目</th>
+            <th>Web UI</th>
+            <th>TUI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>进入方式</td>
+            <td>在浏览器里打开管理页面</td>
+            <td>直接在终端里进入交互界面</td>
+          </tr>
+          <tr>
+            <td>信息查看</td>
+            <td>页面层次更清楚，状态、配置和会话更容易一起看</td>
+            <td>信息集中在终端里，切换速度快，连续操作更直接</td>
+          </tr>
+          <tr>
+            <td>操作习惯</td>
+            <td>更接近后台管理页面，适合边看边点边调</td>
+            <td>更接近命令行工作流，适合长期维护和远程操作</td>
+          </tr>
+          <tr>
+            <td>部署环境</td>
+            <td>本地电脑、带桌面的 macOS / Windows 环境</td>
+            <td>Linux 主机、云服务器、长期 SSH 维护环境</td>
+          </tr>
+          <tr>
+            <td>更常见的使用者</td>
+            <td>刚开始接触的人，或者平时更习惯图形界面的人</td>
+            <td>已经习惯命令行、希望尽量轻量维护的人</td>
+          </tr>
+          <tr>
+            <td>更常见的选择</td>
+            <td>本地部署时通常优先选它，查看和排查都更直观</td>
+            <td>远程部署时通常更顺手，不需要图形桌面也能完整维护</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">本地电脑部署时，Web UI 更适合查看状态、修改配置和排查问题；远程主机或长期 SSH 维护环境里，TUI 往往更高效。</div>
+  </div>
+</section>
+
+<section class="slide" data-module="安装与配置" data-title="步骤 05：部署验收">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块二 · 步骤 05</p>
+      <h2>部署验收</h2>
+      <p>部署完成后，按命令行检查 → 服务状态 → 控制界面 这条顺序验收。</p>
+    </div>
+  </div>
+  <div class="slide-body split-tight">
+    <div class="card accent-card">
+      <h3>验收命令</h3>
+      <div class="code-block">openclaw doctor
+        openclaw gateway status
+        openclaw dashboard</div>
+      <p>`openclaw --version` 可先确认 CLI 是否安装成功；`doctor` 用于检查依赖与配置；`gateway status` 用于查看 Gateway 是否已运行；`dashboard`
+        用于打开控制界面。</p>
+      <div class="callout">验收完成时，应同时满足三件事：CLI 可调用、Gateway 正在运行、Dashboard 能正常打开。</div>
+    </div>
+    <div class="gallery" data-gallery>
+      <div class="gallery-stage">
+        <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+        <figure class="gallery-panel">
+          <img src="images/25.png" alt="打开 dashboard 第一步" />
+          <figcaption>完成命令行体检后，再执行 `openclaw dashboard`。</figcaption>
+        </figure>
+        <figure class="gallery-panel" hidden>
+          <img src="images/26.png" alt="打开 dashboard 后的页面" />
+          <figcaption>页面能正常打开，说明控制面已可访问；如果前面的状态检查也通过，就可以进入后续飞书与 Skills 模块。</figcaption>
+        </figure>
+        <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+      </div>
+      <div class="gallery-dots">
+        <button class="gallery-dot" type="button">1 执行命令</button>
+        <button class="gallery-dot" type="button">2 看页面</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-module="安装与配置" data-title="步骤 06：故障定位顺序">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块二 · 步骤 06</p>
+      <h2>故障定位顺序</h2>
+      <p>出现异常时，按固定顺序排查，可快速判断问题位于环境、服务、模型还是渠道层。</p>
+    </div>
+  </div>
+  <div class="slide-body split-tight">
+    <div class="card accent-card">
+      <h3>定位顺序</h3>
+      <div class="number-list">
+        <div class="item"><b>1</b>
+          <p><strong>版本是否满足：</strong>`node -v`、`git --version`、`openclaw --version`。</p>
         </div>
-        <div class="slide-body">
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>对比项</th>
-                  <th>API Key</th>
-                  <th>Token Plan</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>适合场景</td>
-                  <td>首次部署、功能测试、低频使用</td>
-                  <td>长期运行、固定工作流、高频调用</td>
-                </tr>
-                <tr>
-                  <td>开通速度</td>
-                  <td>通常更快</td>
-                  <td>通常需要先购买套餐或额度</td>
-                </tr>
-                <tr>
-                  <td>成本方式</td>
-                  <td>按量消耗</td>
-                  <td>更适合稳定规划成本</td>
-                </tr>
-                <tr>
-                  <td>首次部署建议</td>
-                  <td>优先使用</td>
-                  <td>主流程跑通后再考虑</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="grid-2" style="margin-top:18px;">
-            <div class="card accent-card">
-              <h3>第一次部署</h3>
-              <p>建议先使用 API Key，把安装、onboarding 和 Dashboard 验收完整走通。</p>
-            </div>
-            <div class="card">
-              <h3>长期运行</h3>
-              <p>当本地 Gateway、渠道接入和自动化任务都进入稳定使用阶段，再评估 Token Plan 是否更合适。</p>
-            </div>
-          </div>
+        <div class="item"><b>2</b>
+          <p><strong>环境是否健康：</strong>`openclaw doctor` 看依赖、路径和基础配置。</p>
         </div>
-      </section>
+        <div class="item"><b>3</b>
+          <p><strong>服务是否在线：</strong>`openclaw gateway status` 看 Gateway 有没有真正跑起来。</p>
+        </div>
+        <div class="item"><b>4</b>
+          <p><strong>Provider 是否可用：</strong>检查 API Key、余额、模型名和地区访问限制。</p>
+        </div>
+      </div>
+    </div>
+    <div class="card teal-card">
+      <h3>常见现象与定位</h3>
+      <ul class="list-clean">
+        <li><strong>命令都不存在：</strong>先回到安装环节，不要继续往后配。</li>
+        <li><strong>Gateway 没启动：</strong>先解决服务问题，不要急着看飞书和 Skills。</li>
+        <li><strong>页面打开但不能回复：</strong>优先查 Provider 凭证和模型配置。</li>
+        <li><strong>本地可用、飞书不可用：</strong>说明核心安装已过关，问题已经缩小到渠道接入层。</li>
+      </ul>
+      <div class="callout">排查完成后，应能明确判断问题属于哪一层，再进入对应模块继续处理。</div>
+    </div>
+  </div>
+</section>
 
       <!-- section: 04-feishu.html -->
 <section class="slide compact-center" data-module="第五部分：飞书接入" data-title="私域工具集成">
@@ -7611,64 +7504,78 @@ openclaw plugins enable feishu</div>
                     </figure>
                     <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
                   </div>
-                </div>
-              </div>
-            </section>
-
-            <section class="segmented-panel" data-segment-panel="permissions" role="tabpanel" hidden>
-              <div class="manual-install-stage">
-                <aside class="manual-route">
-                  <h3>权限配置</h3>
-                  <p>事件配置决定消息能不能送进来，权限配置决定消息进来后能不能正常处理和回复。</p>
-                  <ol class="manual-step-list">
-                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 进入权限管理</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 批量导入权限 JSON</button></li>
-                  </ol>
-                </aside>
-                <div class="gallery manual-gallery" data-gallery>
-                  <div class="gallery-stage">
-                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-                    <figure class="gallery-panel">
-                      <img src="images/47.png" alt="批量导入权限入口" />
-                      <figcaption>先进入权限管理并打开批量导入入口。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/48.png" alt="批量导入权限" />
-                      <figcaption>这里有完整 JSON，可直接复制导入。</figcaption>
-                    </figure>
-                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  <div class="gallery-dots">
+                    <button class="gallery-dot" type="button">1 长连接</button>
+                    <button class="gallery-dot" type="button">2 添加事件</button>
+                    <button class="gallery-dot" type="button">3 勾选事件 1</button>
+                    <button class="gallery-dot" type="button">4 勾选事件 2</button>
+                    <button class="gallery-dot" type="button">5 完成确认</button>
                   </div>
                 </div>
               </div>
             </section>
-
-            <section class="segmented-panel" data-segment-panel="publish" role="tabpanel" hidden>
+            <section class="segmented-panel" data-segment-panel="permissions" role="tabpanel" hidden>
               <div class="manual-install-stage">
                 <aside class="manual-route">
-                  <h3>发布版本</h3>
-                  <p>进入"版本管理与发布"，创建版本并发布。发布完成后，配置才会生效。</p>
+                  <h3>权限配置</h3>
+                  <p>补齐机器人收发消息和调用接口所需的权限。</p>
                   <ol class="manual-step-list">
-                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 创建版本</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 填写信息并发布</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 确认发布完成</button></li>
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 进入权限管理页</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 勾选所需权限并保存</button></li>
                   </ol>
                 </aside>
                 <div class="gallery manual-gallery" data-gallery>
                   <div class="gallery-stage">
                     <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
                     <figure class="gallery-panel">
-                      <img src="images/49.png" alt="创建版本入口" />
-                      <figcaption>先进入版本管理并点击创建版本。</figcaption>
+                      <img src="images/47.png" alt="进入权限配置页面" />
+                      <figcaption>进入权限管理页，准备给机器人补齐消息与接口权限。</figcaption>
                     </figure>
                     <figure class="gallery-panel" hidden>
-                      <img src="images/50.png" alt="创建版本并发布" />
-                      <figcaption>填写版本信息并发布。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/51.png" alt="版本发布完成" />
-                      <figcaption>发布完成后，这里的配置才会开始生效。</figcaption>
+                      <img src="images/48.png" alt="勾选并保存权限" />
+                      <figcaption>把要求的权限勾齐并保存，否则后面可能能连上但不能正常收发消息。</figcaption>
                     </figure>
                     <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  </div>
+                  <div class="gallery-dots">
+                    <button class="gallery-dot" type="button">1 进入权限页</button>
+                    <button class="gallery-dot" type="button">2 勾选并保存</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="segmented-panel" data-segment-panel="publish" role="tabpanel" hidden>
+              <div class="manual-install-stage">
+                <aside class="manual-route">
+                  <h3>发布版本</h3>
+                  <p>前面的事件和权限都配好后，还要发布版本，配置才会真正生效。</p>
+                  <ol class="manual-step-list">
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 进入发布管理</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 创建版本说明</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 发布当前版本</button></li>
+                  </ol>
+                </aside>
+                <div class="gallery manual-gallery" data-gallery>
+                  <div class="gallery-stage">
+                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                    <figure class="gallery-panel">
+                      <img src="images/49.png" alt="进入发布管理" />
+                      <figcaption>进入发布管理，准备把刚才的配置正式发布出去。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/50.png" alt="创建版本说明" />
+                      <figcaption>按提示填写版本说明，确认本次发布内容。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/51.png" alt="发布当前版本" />
+                      <figcaption>完成发布后，事件和权限配置才会真正对机器人生效。</figcaption>
+                    </figure>
+                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  </div>
+                  <div class="gallery-dots">
+                    <button class="gallery-dot" type="button">1 进入发布页</button>
+                    <button class="gallery-dot" type="button">2 填版本说明</button>
+                    <button class="gallery-dot" type="button">3 正式发布</button>
                   </div>
                 </div>
               </div>
@@ -7682,7 +7589,7 @@ openclaw plugins enable feishu</div>
           <div class="title-stack">
             <p class="eyebrow">第五部分 · 飞书接入</p>
             <h2>配对成功与群聊使用</h2>
-            <p>这是飞书接入模块的结果页，要明确看到"终于真的能聊了"。</p>
+            <p>这是飞书接入模块的结果页，要明确看到“终于真的能聊了”。</p>
           </div>
         </div>
         <div class="slide-body">
@@ -7701,50 +7608,78 @@ openclaw plugins enable feishu</div>
                   <h3>私聊配对步骤</h3>
                   <ol class="manual-step-list">
                     <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 在飞书搜索应用名称</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="0">2. 机器人回复配对信息</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">3. 复制命令到终端执行</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">4. 回到飞书即可正常聊天</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 机器人回复配对信息</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 复制命令到终端执行</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 回到飞书即可正常聊天</button></li>
                   </ol>
                 </aside>
                 <div class="gallery manual-gallery" data-gallery>
                   <div class="gallery-stage">
                     <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
                     <figure class="gallery-panel">
-                      <img src="images/52.png" alt="飞书收到配对信息" />
-                      <figcaption>首次私聊会收到配对信息。</figcaption>
+                      <img src="images/52.png" alt="在飞书搜索应用名称" />
+                      <figcaption>先在飞书中搜索刚才创建的应用名称，进入与机器人的私聊窗口。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/53.png" alt="飞书收到配对信息" />
+                      <figcaption>给机器人发一条消息后，它会回复一段用于配对的命令信息。</figcaption>
                     </figure>
                     <figure class="gallery-panel" hidden>
                       <img src="images/54.png" alt="复制命令到终端执行" />
-                      <figcaption>把命令复制到终端执行后，私聊就能正常使用。</figcaption>
+                      <figcaption>把红线标出的命令复制到终端执行，就能完成私聊配对。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/55.png" alt="配对完成后飞书正常回复" />
+                      <figcaption>执行命令后回到飞书聊天窗口，机器人就可以正常回复了。</figcaption>
                     </figure>
                     <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  </div>
+                  <div class="gallery-dots">
+                    <button class="gallery-dot" type="button">1 搜索应用</button>
+                    <button class="gallery-dot" type="button">2 收到配对信息</button>
+                    <button class="gallery-dot" type="button">3 复制终端命令</button>
+                    <button class="gallery-dot" type="button">4 配对完成</button>
                   </div>
                 </div>
               </div>
             </section>
-
             <section class="segmented-panel" data-segment-panel="group" role="tabpanel" hidden>
               <div class="manual-install-stage">
                 <aside class="manual-route">
                   <h3>群聊使用步骤</h3>
                   <ol class="manual-step-list">
-                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 把机器人添加到群聊</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 在群里 @ 机器人交互</button></li>
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 把机器人拉进群聊</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 在群里 @ 机器人</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 观察群聊回复效果</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 确认多人场景可用</button></li>
                   </ol>
-                  <div class="callout" style="margin-top:14px;">必须是内部组织群聊。</div>
                 </aside>
                 <div class="gallery manual-gallery" data-gallery>
                   <div class="gallery-stage">
                     <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
                     <figure class="gallery-panel">
-                      <img src="images/57.png" alt="把机器人加入群聊" />
-                      <figcaption>把机器人加入已有群聊。</figcaption>
+                      <img src="images/56.png" alt="把机器人加入群聊" />
+                      <figcaption>先把机器人加入需要使用的飞书群聊。</figcaption>
                     </figure>
                     <figure class="gallery-panel" hidden>
-                      <img src="images/59.png" alt="群聊里 @ 机器人" />
-                      <figcaption>群里 @ 它，就能开始交互。</figcaption>
+                      <img src="images/57.png" alt="在群里 @ 机器人" />
+                      <figcaption>在群里通过 @ 机器人的方式触发它回复。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/58.png" alt="群聊内正常回复" />
+                      <figcaption>如果配置正确，机器人会在群聊中按策略正常响应。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/59.png" alt="群聊使用完成" />
+                      <figcaption>确认群聊也能稳定工作后，飞书接入链路就算完整跑通了。</figcaption>
                     </figure>
                     <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  </div>
+                  <div class="gallery-dots">
+                    <button class="gallery-dot" type="button">1 加入群聊</button>
+                    <button class="gallery-dot" type="button">2 @ 机器人</button>
+                    <button class="gallery-dot" type="button">3 查看回复</button>
+                    <button class="gallery-dot" type="button">4 群聊可用</button>
                   </div>
                 </div>
               </div>
@@ -7754,733 +7689,1365 @@ openclaw plugins enable feishu</div>
       </section>
 
       <!-- section: 05-skills-customization.html -->
-<section class="slide compact-center" data-module="第六部分：Skills 配置" data-title="扩展能力与个性化">
-        <div class="slide-body module-intro">
-          <div class="module-intro-copy">
-            <p class="eyebrow">第六部分</p>
-            <h2>第六部分：Skills 配置</h2>
-            <p>Skills 决定它以后能做哪些事，三件套决定它会以什么风格回应你，以及在工作里遵循什么样的规则。</p>
-            <div class="deck-meta">
-              <span class="pill">Skills 决定能力边界</span>
-              <span class="pill">三件套决定人格与工作方式</span>
-            </div>
-          </div>
-          <div class="module-intro-side">
-            <div class="modules-grid">
-              <div class="module-box">
-                <span>Part 1</span>
-                <h3>装 Skills</h3>
-                <p>通过 ClawHub 搜索、安装、更新能力。</p>
-              </div>
-              <div class="module-box">
-                <span>Part 2</span>
-                <h3>理解三件套</h3>
-                <p>SOUL / USER / AGENTS 三者分工明确。</p>
-              </div>
-              <div class="module-box">
-                <span>Part 3</span>
-                <h3>低门槛配置</h3>
-                <p>不会写也没关系，可以让小龙虾反问式生成。</p>
-              </div>
-              <div class="module-box">
-                <span>Part 4</span>
-                <h3>重启生效</h3>
-                <p>配置改完后，记得重启网关。</p>
-              </div>
-            </div>
-            <div class="intro-note">这些配置写得越细，后面用起来越容易形成稳定的配合感。</div>
-          </div>
+<section class="slide compact-center" data-module="Skills 与个性化" data-title="扩展能力与个性化">
+  <div class="slide-body module-intro">
+    <div class="module-intro-copy">
+      <p class="eyebrow">模块四</p>
+      <h2>扩展能力与个性化</h2>
+      <p>这一章先讲清楚 Skill 是什么、什么时候该用，再进入安装与三件套配置。先理解，后安装，最后再做个性化。</p>
+      <div class="deck-meta">
+        <span class="pill">Skills 决定能力边界</span>
+        <span class="pill">三件套决定人格与长期记忆</span>
+      </div>
+    </div>
+    <div class="module-intro-side">
+      <div class="modules-grid">
+        <div class="module-box">
+          <span>Part 1</span>
+          <h3>理解 Skills</h3>
+          <p>先知道它是什么、什么时候该优先用。</p>
         </div>
-      </section>
+        <div class="module-box">
+          <span>Part 2</span>
+          <h3>装 Skills</h3>
+          <p>通过 ClawHub 搜索、安装、更新能力。</p>
+        </div>
+        <div class="module-box">
+          <span>Part 3</span>
+          <h3>理解三件套</h3>
+          <p>SOUL / USER / MEMORY 三者分工明确。</p>
+        </div>
+        <div class="module-box">
+          <span>Part 4</span>
+          <h3>低门槛配置</h3>
+          <p>不会写也没关系，可以让小龙虾反问式生成。</p>
+        </div>
+      </div>
+      <div class="intro-note">这些配置写得越细，后面用起来越容易形成稳定的配合感。</div>
+    </div>
+  </div>
+</section>
 
-<section class="slide" data-module="第六部分：Skills 配置" data-title="Skills 动作插件扩充">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第六部分 · Skills</p>
-            <h2>社区 Skills 库：ClawHub</h2>
-            <p>Skills 会直接影响 OpenClaw 的能力边界。</p>
+<section class="slide" data-module="Skills 与个性化" data-title="Skills 是什么" style="display:flex; flex-direction:column;">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块四 · Skills</p>
+      <h2>先理解 Skill 是什么</h2>
+      <p>Skill 不是多一个功能按钮，而是把一类任务的经验、步骤和注意事项提前整理好，让 Agent 在合适场景下按套路做事。</p>
+    </div>
+  </div>
+  <div class="slide-body"
+    style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain; display:flex; flex-direction:column; gap:16px;">
+    <div class="split-tight" style="align-items:stretch;">
+      <div class="case-card accent-card" style="display:flex; flex-direction:column;">
+        <h3>一句话理解</h3>
+        <ul class="list-clean" style="margin-top:14px;">
+          <li>一份可复用的操作说明书。</li>
+          <li>一套会在合适场景下按需加载的 SOP。</li>
+          <li>一段教 Agent“遇到这类任务该怎么做”的专业经验。</li>
+          <li>它最适合解决的问题是：同一类任务你会反复做，而且做法相对稳定。</li>
+        </ul>
+        <div class="stats-strip"
+          style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px; margin-top:14px;">
+          <div class="stat"
+            style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+            <strong>反复任务</strong>
+            <span>不是一次性问答</span>
+          </div>
+          <div class="stat"
+            style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+            <strong>稳定做法</strong>
+            <span>不是每次都重想</span>
           </div>
         </div>
-        <div class="slide-body split-tight">
-          <div class="card accent-card">
-            <h3>ClawHub 是做什么的</h3>
-            <p>ClawHub 管的是 Skills 的查找、安装和更新，很多扩展能力都是从这里进入 OpenClaw 的。</p>
-            <div class="code-block">npm i -g clawhub
+      </div>
+      <div style="display:flex; flex-direction:column; height:100%; opacity:1;">
+        <div class="case-card" style="flex:1; display:flex; flex-direction:column;">
+          <h3>它其实在教 Agent 什么</h3>
+          <p>换句话说，Skill 不只是“多了一个功能按钮”，而是把某类任务的经验、步骤、注意事项提前整理好，让 OpenClaw 在合适的时候知道：</p>
+          <ul class="list-clean" style="margin-top:12px;">
+            <li>这类任务应该怎么拆。</li>
+            <li>先做什么、后做什么。</li>
+            <li>需要调用什么工具。</li>
+            <li>输出结果应该长什么样。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="callout">所以 Skill 更像“方法论层”，而不只是“功能层”。它沉淀的是一类任务的做事套路，不只是多装一个按钮。</div>
+  </div>
+</section>
 
-clawhub search "postgres backups"
-clawhub install my-skill-pack
-clawhub update --all
-clawhub uninstall 技能名称</div>
-          </div>
-          <figure class="tall">
-            <img src="images/60.png" alt="ClawHub 页面示意" />
-            <figcaption>ClawHub 用来搜索、安装、更新各种技能。</figcaption>
-          </figure>
-        </div>
-      </section>
+<section class="slide" data-module="Skills 与个性化" data-title="什么场景优先用 Skill">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块四 · Skills</p>
+      <h2>什么场景该优先用 Skill</h2>
+      <p>判断重点不是“这件事能不能做”，而是“这类任务值不值得沉淀成长期可复用的方法”。</p>
+    </div>
+  </div>
+  <div class="slide-body" style="display:flex; flex-direction:column; gap:16px;">
+    <div class="split-tight">
+      <div class="case-card teal-card">
+        <h3>适合优先用 Skill</h3>
+        <ul class="list-clean" style="margin-top:14px;">
+          <li>固定写作流程</li>
+          <li>固定研究流程</li>
+          <li>固定交付模板</li>
+          <li>固定排查步骤</li>
+          <li>固定格式转换流程</li>
+          <li>同一类任务，每次都要重新解释做法</li>
+        </ul>
+      </div>
+      <div class="case-card warning">
+        <h3>不一定要用 Skill</h3>
+        <ul class="list-clean" style="margin-top:14px;">
+          <li>临时问答</li>
+          <li>一次性 Prompt</li>
+          <li>单条命令就能完成的事</li>
+          <li>只需要临时补一句要求的任务</li>
+          <li>官方已经有明确主线能力的事，如 infer、媒体生成、Task Flow</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">一个实用判断标准：如果你已经连续 3 次在教 Agent 做同一类事，而且教法差不多，它通常就值得被整理成 Skill。</div>
+  </div>
+</section>
 
-<section class="slide" data-module="第六部分：Skills 配置" data-title="Skills 安装操作指南">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第六部分 · Skills</p>
-            <h2>必备 Skills 与 weather 示例</h2>
-            <p>可以先从几类常用技能入手，用 `weather` 跑通最小示例。</p>
-          </div>
+<section class="slide" data-module="Skills 与个性化" data-title="Skills 工作原理" style="display:flex; flex-direction:column;">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块四 · Skills</p>
+      <h2>Skills 是怎么生效的</h2>
+      <p>想真正用好 Skill，不能只会“装一个就完事”，还得知道它的来源、优先级、加载顺序，以及为什么它会直接影响 Agent 的表现。</p>
+    </div>
+  </div>
+  <div class="slide-body"
+    style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain; display:flex; flex-direction:column; gap:16px;">
+    <div class="split-tight" style="align-items:stretch;">
+      <div class="case-card accent-card" style="display:flex; flex-direction:column;">
+        <h3>三层来源与优先级</h3>
+        <p>OpenClaw 的 Skill 有三个来源，优先级从高到低排列。理解这一层，才知道为什么同名 Skill 会“覆盖生效”。</p>
+        <ul class="list-clean" style="margin-top:14px;">
+          <li><strong>workspace</strong>：项目级，只影响当前工作区，优先级最高。</li>
+          <li><strong>user</strong>：用户级，全局生效，通常来自 ClawHub 或手动安装。</li>
+          <li><strong>bundled</strong>：内置 Skills，随版本发布，开箱即用，优先级最低。</li>
+          <li>同名 Skill 会按优先级覆盖，因此可以在项目里重写内置行为。</li>
+        </ul>
+      </div>
+      <div style="display:grid; grid-template-rows:minmax(0, 1fr) minmax(0, 1fr); gap:14px; height:100%; opacity:1;">
+        <div class="case-card" style="flex:1; display:flex; flex-direction:column;">
+          <h3>真正的生效链路</h3>
+          <p>当 OpenClaw 启动或收到任务时，Skills 通常按这条链路工作：</p>
+          <ol style="margin:12px 0 0; padding-left:22px; color:var(--muted); display:grid; gap:8px;">
+            <li>读取各层级的 SKILL.md，解析描述、触发条件和依赖。</li>
+            <li>检查环境变量，缺少必要配置的 Skill 会被跳过。</li>
+            <li>把可用 Skill 描述注入 system prompt，让模型知道自己能做什么。</li>
+            <li>任务结束后恢复上下文和环境状态，避免互相干扰。</li>
+          </ol>
         </div>
-        <div class="slide-body split-tight">
-          <div>
-            <div class="card" style="margin-bottom:14px;">
-              <h3>推荐先装的 Skills</h3>
-              <ul>
-                <li>self-improving-agent：把学习成果和错误记录到 Markdown 文件中。</li>
-                <li>skill-vetter：安装未知工具前先做安全扫描。</li>
-                <li>tavily-search：联网搜索模块，适合时效性任务。</li>
-                <li>weather：适合跑通配置流程、测试环境联通性。</li>
-              </ul>
-            </div>
-            <div class="card accent-card">
-              <h3>weather 安装示例</h3>
-              <div class="code-block">npm i -g clawhub
+        <div class="case-card teal-card" style="flex:1; display:flex; flex-direction:column;">
+          <h3>为什么这会直接影响效果</h3>
+          <ul class="list-clean" style="margin-top:14px;">
+            <li>写得好：Agent 更像“知道套路的老手”。</li>
+            <li>写得差：容易乱用工具、输出不稳定，甚至把任务做偏。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="callout">一句话：Skill 不是装饰品，而是 OpenClaw 组织能力和稳定输出的方式。</div>
+  </div>
+</section>
 
-clawhub install weather</div>
-              <p>如果网络遇到问题，可以切换国内镜像：</p>
-              <div class="code-block">npm config set registry https://registry.npmmirror.com
-npx clawhub@latest install weather --force</div>
-            </div>
-          </div>
-          <div class="gallery" data-gallery>
-            <div class="gallery-stage">
-              <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-              <figure class="gallery-panel">
-                <img src="images/61.png" alt="安装 clawhub" />
-                <figcaption>第 1 步：先安装 ClawHub。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/63.png" alt="安装 weather skill" />
-                <figcaption>第 2 步：安装 `weather` Skill。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/64.png" alt="让 OpenClaw 帮你安装" />
-                <figcaption>如果嫌命令麻烦，也可以直接让 OpenClaw 帮你安装。</figcaption>
-              </figure>
-              <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-            </div>
-            <div class="gallery-dots">
-              <button class="gallery-dot" type="button">1 装 ClawHub</button>
-              <button class="gallery-dot" type="button">2 装 weather</button>
-              <button class="gallery-dot" type="button">3 让它代装</button>
-            </div>
-          </div>
+<section class="slide" data-module="Skills 与个性化" data-title="ClawHub 与技能安装">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块四 · Skills</p>
+      <h2>社区 Skills 库：ClawHub</h2>
+      <p>Skills 会直接影响 OpenClaw 的能力边界。</p>
+    </div>
+  </div>
+  <div class="slide-body split-tight">
+    <div class="card accent-card">
+      <h3>ClawHub 是做什么的</h3>
+      <p>ClawHub 管的是 Skills 的查找、安装和更新，很多扩展能力都是从这里进入 OpenClaw 的。</p>
+      <div class="command-list" style="display:grid; gap:10px; margin-top:16px;">
+        <div
+          style="display:grid; grid-template-columns:210px minmax(0, 1fr); gap:12px; align-items:center; padding:12px 14px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.72);">
+          <code
+            style="display:block; padding:9px 10px; border-radius:12px; background:#fff; box-shadow:inset 0 0 0 1px rgba(226,214,202,.9); font-size:13px; white-space:nowrap;">npm i -g clawhub</code>
+          <span style="color:var(--muted); line-height:1.55;">安装 ClawHub 命令行工具，让本机具备搜索和安装 Skills 的入口。</span>
         </div>
-      </section>
+        <div
+          style="display:grid; grid-template-columns:210px minmax(0, 1fr); gap:12px; align-items:center; padding:12px 14px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.72);">
+          <code
+            style="display:block; padding:9px 10px; border-radius:12px; background:#fff; box-shadow:inset 0 0 0 1px rgba(226,214,202,.9); font-size:13px; white-space:nowrap;">clawhub search "postgres"</code>
+          <span style="color:var(--muted); line-height:1.55;">按任务关键词搜索可用 Skill，先看有没有现成方案。</span>
+        </div>
+        <div
+          style="display:grid; grid-template-columns:210px minmax(0, 1fr); gap:12px; align-items:center; padding:12px 14px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.72);">
+          <code
+            style="display:block; padding:9px 10px; border-radius:12px; background:#fff; box-shadow:inset 0 0 0 1px rgba(226,214,202,.9); font-size:13px; white-space:nowrap;">clawhub install skill-name</code>
+          <span style="color:var(--muted); line-height:1.55;">把选中的 Skill 安装到本地，后续 OpenClaw 才能加载。</span>
+        </div>
+        <div
+          style="display:grid; grid-template-columns:210px minmax(0, 1fr); gap:12px; align-items:center; padding:12px 14px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.72);">
+          <code
+            style="display:block; padding:9px 10px; border-radius:12px; background:#fff; box-shadow:inset 0 0 0 1px rgba(226,214,202,.9); font-size:13px; white-space:nowrap;">clawhub update --all</code>
+          <span style="color:var(--muted); line-height:1.55;">统一更新已安装 Skills；不再需要时再执行卸载命令移除。</span>
+        </div>
+      </div>
+    </div>
+    <figure class="tall">
+      <img src="images/60.png" alt="ClawHub 页面示意" />
+      <figcaption>ClawHub 用来搜索、安装、更新各种技能。</figcaption>
+    </figure>
+  </div>
+</section>
 
-<section class="slide layout-contrast-dense" data-module="第六部分：Skills 配置" data-title="默认工具人现象">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第六部分 · 三件套</p>
-            <h2>为什么装完还像普通 AI？</h2>
-            <p>OpenClaw 装好以后，能不能形成稳定的配合感，很大程度上取决于下面这几个文件有没有写清楚。</p>
-          </div>
-        </div>
-        <div class="slide-body split-tight">
-          <div class="card warning">
-            <p>不少人在部署完成以后，会发现它虽然能回答问题，但语气、习惯和处理方式都还比较模板化。</p>
-            <p>实际上，小龙虾是需要养的，而且怎么养很重要。除了各式各样的 Skills，有三个配置文件非常重要。</p>
-          </div>
-          <div class="card accent-card">
-            <h3>三个文件的分工</h3>
-            <div class="stats-strip">
-              <div class="stat"><strong>SOUL</strong><span>定义性格、口吻、边界</span></div>
-              <div class="stat"><strong>USER</strong><span>定义你是谁、偏好什么</span></div>
-              <div class="stat"><strong>AGENTS</strong><span>定义它怎么干活</span></div>
-            </div>
-          </div>
-        </div>
-      </section>
+<section class="slide" data-module="Skills 与个性化" data-title="必备 Skills 与安装示例">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块四 · Skills</p>
+      <h2>必备 Skills 与 weather 示例</h2>
+      <p>可以先从几类常用技能入手，用 `weather` 跑通最小示例。</p>
+    </div>
+  </div>
+  <div class="slide-body split-tight">
+    <div>
+      <div class="card" style="margin-bottom:14px;">
+        <h3>推荐先装的 Skills</h3>
+        <ul>
+          <li>self-improving-agent：把学习成果和错误记录到 Markdown 文件中。</li>
+          <li>skill-vetter：安装未知工具前先做安全扫描。</li>
+          <li>tavily-search：联网搜索模块，适合时效性任务。</li>
+          <li>weather：适合跑通配置流程、测试环境联通性。</li>
+        </ul>
+      </div>
+      <div class="card accent-card">
+        <h3>weather 安装示例</h3>
+        <div class="code-block">npm i -g clawhub
 
-<section class="slide layout-contrast-dense" data-module="第六部分：Skills 配置" data-title="系统角色配置架构">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第六部分 · 三件套</p>
-            <h2>系统角色配置架构</h2>
-            <p>有些人也写了不少内容，但改完以后感觉变化不大。很多时候，问题出在信息放错了文件，于是该生效的地方没有明显变化。</p>
-          </div>
-        </div>
-        <div class="slide-body">
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>文件</th>
-                  <th>主要负责什么</th>
-                  <th>典型内容</th>
-                  <th>最直接的效果</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>SOUL.md</strong></td>
-                  <td>助手的人设、口吻、边界</td>
-                  <td>性格、语气、禁忌、价值观</td>
-                  <td>让它"怎么说、像谁说"</td>
-                </tr>
-                <tr>
-                  <td><strong>USER.md</strong></td>
-                  <td>你是谁、你在做什么、你的偏好</td>
-                  <td>职业、目标、作息、常用工具、沟通偏好</td>
-                  <td>让它"更懂你"</td>
-                </tr>
-                <tr>
-                  <td><strong>AGENTS.md</strong></td>
-                  <td>它应该如何干活</td>
-                  <td>工作流程、安全规则、执行规范、记忆机制</td>
-                  <td>让它"做事更稳、更像助手"</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="callout">SOUL.md 决定它说话像什么样的人，USER.md 提供与你有关的背景信息，AGENTS.md 约束它做事时遵循的流程和边界。</div>
-        </div>
-      </section>
+          clawhub install weather</div>
+        <p>如果网络遇到问题，可以切换国内镜像：</p>
+        <div class="code-block">npm config set registry https://registry.npmmirror.com
+          npx clawhub@latest install weather --force</div>
+      </div>
+    </div>
+    <div class="gallery" data-gallery>
+      <div class="gallery-stage">
+        <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+        <figure class="gallery-panel">
+          <img src="images/61.png" alt="安装 clawhub" />
+          <figcaption>第 1 步：先安装 ClawHub。</figcaption>
+        </figure>
+        <figure class="gallery-panel" hidden>
+          <img src="images/63.png" alt="安装 weather skill" />
+          <figcaption>第 2 步：安装 `weather` Skill。</figcaption>
+        </figure>
+        <figure class="gallery-panel" hidden>
+          <img src="images/64.png" alt="让 OpenClaw 帮你安装" />
+          <figcaption>如果嫌命令麻烦，也可以直接让 OpenClaw 帮你安装。</figcaption>
+        </figure>
+        <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+      </div>
+      <div class="gallery-dots">
+        <button class="gallery-dot" type="button">1 装 ClawHub</button>
+        <button class="gallery-dot" type="button">2 装 weather</button>
+        <button class="gallery-dot" type="button">3 让它代装</button>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section class="slide layout-path-dense" data-module="第六部分：Skills 配置" data-title="三种配置方式">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第六部分 · 三件套</p>
-            <h2>三种配置方式</h2>
-            <p>常见的配置路径大体分成三类：自己改文件、直接让它帮你写，或者让它通过问答把三份文件一步步整理出来。</p>
-          </div>
-        </div>
-        <div class="slide-body grid-3">
-          <div class="card accent-card">
-            <h3>方式一：在终端配置</h3>
-            <p>直接打开工作目录，编辑对应文件。</p>
-            <div class="code-block">Windows:
-C:\Users\你的用户名\.openclaw\workspace\SOUL.md
+<section class="slide layout-contrast-dense" data-module="Skills 与个性化" data-title="默认工具人现象">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块四 · 三件套</p>
+      <h2>为什么装完还像普通 AI？</h2>
+      <p>OpenClaw 装好以后，能不能形成稳定的配合感，很大程度上取决于身份、用户信息和长期记忆有没有沉淀下来。</p>
+    </div>
+  </div>
+  <div class="slide-body split-tight">
+    <div class="card warning">
+      <p>不少人在部署完成以后，会发现它虽然能回答问题，但语气、习惯和处理方式都还比较模板化。</p>
+      <p>实际上，小龙虾是需要养的。除了各式各样的 Skills，SOUL / USER / MEMORY 这三类配置也很重要。</p>
+    </div>
+    <div class="card accent-card">
+      <h3>三个文件的分工</h3>
+      <div class="stats-strip">
+        <div class="stat"><strong>SOUL</strong><span>定义性格、口吻、边界</span></div>
+        <div class="stat"><strong>USER</strong><span>定义你是谁、偏好什么</span></div>
+        <div class="stat"><strong>MEMORY</strong><span>沉淀长期事实与项目状态</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide layout-contrast-dense" data-module="Skills 与个性化" data-title="系统角色配置架构">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块四 · 三件套</p>
+      <h2>系统角色配置架构</h2>
+      <p>有些人也写了不少内容，但改完以后感觉变化不大。很多时候，问题出在信息放错了文件：该放长期记忆的内容，被误写进了工作规则。</p>
+    </div>
+  </div>
+  <div class="slide-body">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>文件</th>
+            <th>主要负责什么</th>
+            <th>典型内容</th>
+            <th>最直接的效果</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>SOUL.md</strong></td>
+            <td>助手的人设、口吻、边界</td>
+            <td>性格、语气、禁忌、价值观</td>
+            <td>让它"怎么说、像谁说"</td>
+          </tr>
+          <tr>
+            <td><strong>USER.md</strong></td>
+            <td>你是谁、你在做什么、你的偏好</td>
+            <td>职业、目标、作息、常用工具、沟通偏好</td>
+            <td>让它"更懂你"</td>
+          </tr>
+          <tr>
+            <td><strong>MEMORY.md</strong></td>
+            <td>长期记忆与持续上下文</td>
+            <td>稳定偏好、重要事实、项目状态、长期决策</td>
+            <td>让它"下次还记得"</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">SOUL.md 决定它说话像什么样的人，USER.md 提供与你有关的背景信息，MEMORY.md 承接长期事实和项目状态；AGENTS.md 则更多是启动与工作规则。</div>
+  </div>
+</section>
+
+<section class="slide layout-path-dense" data-module="Skills 与个性化" data-title="三种配置方式">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块四 · 三件套</p>
+      <h2>三种配置方式</h2>
+      <p>区别不在“谁来写”，而在你对目标清不清楚：越清楚越适合直接改，越模糊越适合让它先采访你。</p>
+    </div>
+  </div>
+  <div class="slide-body" style="display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:18px; align-items:stretch;">
+    <div class="card accent-card" style="display:flex; flex-direction:column; gap:14px;">
+      <h3>方式一：在终端配置</h3>
+      <p>适合已经知道文件位置、也知道要改哪一段的人。优点是可控、可追溯；缺点是需要自己判断格式和边界。</p>
+      <div class="code-block" style="font-size:12px; line-height:1.7;">Windows:
+C:\Users\你的用户名\.openclaw\workspace\
 
 MacOS:
-~/.openclaw/workspace/SOUL.md</div>
-          </div>
-          <div class="card teal-card">
-            <h3>方式二：直接前端配置</h3>
-            <p>直接告诉小龙虾你想定义的文件内容，让它帮你写入。</p>
-          </div>
-          <div class="card">
-            <h3>方式三：让小龙虾帮你定制</h3>
-            <p>把提示词发给它，让它边问边整理，最后把三份配置文件一起生成出来。</p>
-          </div>
-        </div>
-      </section>
+~/.openclaw/workspace/</div>
+      <div class="intro-note" style="margin-top:auto;">适合：熟悉文件结构、只想做小范围精修。</div>
+    </div>
+    <div class="card teal-card" style="display:flex; flex-direction:column; gap:14px;">
+      <h3>方式二：直接前端配置</h3>
+      <p>适合你已经想清楚内容，只是不想手动找路径、编辑文件。你直接给出明确要求，让小龙虾帮你写入对应文件。</p>
+      <ul class="list-clean">
+        <li>“把 SOUL 改成专业助理风格。”</li>
+        <li>“把我的常用工具和交付偏好写进 USER。”</li>
+        <li>“把这个项目背景记进 MEMORY。”</li>
+      </ul>
+      <div class="intro-note" style="margin-top:auto;">适合：目标明确，只需要代写入。</div>
+    </div>
+    <div class="card" style="display:flex; flex-direction:column; gap:14px;">
+      <h3>方式三：让小龙虾帮你定制</h3>
+      <p>适合你还没想清楚风格、偏好和长期记忆该怎么组织。它会像采访一样逐步追问，再把答案整理成三份配置。</p>
+      <ul class="list-clean">
+        <li>先问你是谁、在做什么。</li>
+        <li>再确定助手风格和边界。</li>
+        <li>最后沉淀长期记忆和项目状态。</li>
+      </ul>
+      <div class="intro-note" style="margin-top:auto;">适合：从 0 到 1 建立完整设定。</div>
+    </div>
+  </div>
+</section>
 
-<section class="slide layout-config-dense" data-module="第六部分：Skills 配置" data-title="编写 SOUL 角色说明">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第六部分 · 三件套</p>
-            <h2>SOUL.md 应该写什么</h2>
-            <p>SOUL.md 里最常见的内容，基本都落在角色关系、性格、表达方式和行为边界这四类里。</p>
-          </div>
-        </div>
-        <div class="slide-body grid-4">
-          <div class="card accent-card">
-            <h3>你是谁</h3>
-            <p>"我是你老板，你是我的 AI 私人助理总管家。"</p>
-          </div>
-          <div class="card">
-            <h3>性格</h3>
-            <p>聪明伶俐、工作高效，偶尔毒舌吐槽、偶尔拍马屁，对新事物充满好奇。</p>
-          </div>
-          <div class="card teal-card">
-            <h3>说话风格</h3>
-            <p>简单问题精简回答，复杂问题详细回答；时而轻松、时而严肃；重要信息加粗。</p>
-          </div>
-          <div class="card">
-            <h3>行为边界</h3>
-            <p>能做就直接做，不确定先问；外部消息必须确认；深夜不主动打扰；绝不泄露隐私。</p>
-          </div>
-        </div>
-      </section>
+<section class="slide layout-config-dense" data-module="Skills 与个性化" data-title="编写 SOUL 角色说明">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块四 · 三件套</p>
+      <h2>SOUL.md 应该写什么</h2>
+      <p>SOUL.md 里最常见的内容，基本都落在角色关系、性格、表达方式和行为边界这四类里。</p>
+    </div>
+  </div>
+  <div class="slide-body grid-4">
+    <div class="card accent-card">
+      <h3>你是谁</h3>
+      <p>"我是你老板，你是我的 AI 私人助理总管家。"</p>
+    </div>
+    <div class="card">
+      <h3>性格</h3>
+      <p>聪明伶俐、工作高效，偶尔毒舌吐槽、偶尔拍马屁，对新事物充满好奇。</p>
+    </div>
+    <div class="card teal-card">
+      <h3>说话风格</h3>
+      <p>简单问题精简回答，复杂问题详细回答；时而轻松、时而严肃；重要信息加粗。</p>
+    </div>
+    <div class="card">
+      <h3>行为边界</h3>
+      <p>能做就直接做，不确定先问；外部消息必须确认；深夜不主动打扰；绝不泄露隐私。</p>
+    </div>
+  </div>
+</section>
 
-<section class="slide layout-contrast-dense" data-module="第六部分：Skills 配置" data-title="偏好机制与动作规范">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第六部分 · 三件套</p>
-            <h2>USER.md 与 AGENTS.md</h2>
-            <p>前者像你的个人档案，后者像它的工作手册。</p>
-          </div>
-        </div>
-        <div class="slide-body compare">
-          <div class="side accent-card">
-            <h3>USER.md 建议写什么</h3>
-            <ul>
-              <li>基础信息：名字、职业、位置、时区、爱好、技能。</li>
-              <li>工作重点：当前工作、工作时间、常用工具。</li>
-              <li>工作偏好：沟通风格、语言、提醒方式、勿扰时间。</li>
-              <li>当前关注：最近在研究什么、近期目标是什么。</li>
-            </ul>
-          </div>
-          <div class="side teal-card">
-            <h3>AGENTS.md 建议写什么</h3>
-            <ul>
-              <li>每次会话先读哪些文件。</li>
-              <li>每日笔记与长期记忆怎么管理。</li>
-              <li>文件操作、安全规则、对外发送消息的审批规则。</li>
-              <li>哪些事可以自由做，哪些事必须先问。</li>
-            </ul>
-          </div>
-        </div>
-        <div class="callout">设置完成后，记得执行 `openclaw gateway restart` 重启一下。</div>
-      </section>
+<section class="slide layout-contrast-dense" data-module="Skills 与个性化" data-title="偏好机制与动作规范">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块四 · 三件套</p>
+      <h2>USER.md 与 MEMORY.md</h2>
+      <p>前者像你的个人档案，后者像它的长期记忆本。</p>
+    </div>
+  </div>
+  <div class="slide-body compare">
+    <div class="side accent-card">
+      <h3>USER.md 建议写什么</h3>
+      <ul>
+        <li>基础信息：名字、职业、位置、时区、爱好、技能。</li>
+        <li>工作重点：当前工作、工作时间、常用工具。</li>
+        <li>工作偏好：沟通风格、语言、提醒方式、勿扰时间。</li>
+        <li>当前关注：最近在研究什么、近期目标是什么。</li>
+      </ul>
+    </div>
+    <div class="side teal-card">
+      <h3>MEMORY.md 建议写什么</h3>
+      <ul>
+        <li>长期稳定的事实：身份、项目、关系、重要背景。</li>
+        <li>已经确认过的偏好：沟通方式、交付格式、常用工具。</li>
+        <li>长期决策：为什么这么做、哪些方案被否掉。</li>
+        <li>近期项目状态：当前目标、关键进展、下次要接着做什么。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout">AGENTS.md 不是不能改，而是应当更谨慎：它适合放启动流程、安全边界和操作规则，不适合替代长期记忆。</div>
+</section>
 
-<section class="slide layout-path-dense" data-module="第六部分：Skills 配置" data-title="基于 Prompt 的定制">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第六部分 · 三件套</p>
-            <h2>通过灵魂向导定制化配置</h2>
-            <p>如果是第一次配这三份文件，用这种方式会轻松一些。它会一边问，一边把内容慢慢整理出来，不需要你一开始就把所有设定想得很完整。</p>
-          </div>
-        </div>
-        <div class="slide-body split-tight">
-          <div class="card accent-card">
-            <h3>向导的规则</h3>
-            <ul>
-              <li>每次只问一个问题。</li>
-              <li>先了解你，再定义助手风格，最后制定工作规则。</li>
-              <li>每完成一个文件，先展示生成结果，再进入下一个。</li>
-              <li>三个文件都确认后，再保存并"试演"一段新人设效果。</li>
-            </ul>
-          </div>
-          <div class="gallery" data-gallery>
-            <div class="gallery-stage">
-              <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-              <figure class="gallery-panel">
-                <img src="images/67.png" alt="灵魂配置向导对话效果" />
-                <figcaption>向导会像采访者一样和你聊天，一次只问一个问题。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/68.png" alt="配置完成后的试演效果" />
-                <figcaption>三个文件都生成后，还会"试演"一段新人设效果。</figcaption>
-              </figure>
-              <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-            </div>
-            <div class="gallery-dots">
-              <button class="gallery-dot" type="button">1 对话采访</button>
-              <button class="gallery-dot" type="button">2 结果试演</button>
-            </div>
-          </div>
-        </div>
-      </section>
+<section class="slide layout-path-dense" data-module="Skills 与个性化" data-title="基于 Prompt 的定制">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块四 · 三件套</p>
+      <h2>通过灵魂向导定制化配置</h2>
+      <p>如果是第一次配这三份文件，用这种方式会轻松一些。它会一边问，一边把身份、用户信息和长期记忆慢慢整理出来。</p>
+    </div>
+  </div>
+  <div class="slide-body split-tight">
+    <div class="card accent-card">
+      <h3>向导的规则</h3>
+      <ul>
+        <li>每次只问一个问题。</li>
+        <li>先了解你，再定义助手风格，最后沉淀长期记忆。</li>
+        <li>每完成一个文件，先展示生成结果，再进入下一个。</li>
+        <li>三个文件都确认后，再保存并"试演"一段新人设效果。</li>
+      </ul>
+    </div>
+    <div class="gallery" data-gallery>
+      <div class="gallery-stage">
+        <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+        <figure class="gallery-panel">
+          <img src="images/67.png" alt="灵魂配置向导对话效果" />
+          <figcaption>向导会像采访者一样和你聊天，一次只问一个问题。</figcaption>
+        </figure>
+        <figure class="gallery-panel" hidden>
+          <img src="images/68.png" alt="配置完成后的试演效果" />
+          <figcaption>三个文件都生成后，还会"试演"一段新人设效果。</figcaption>
+        </figure>
+        <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+      </div>
+      <div class="gallery-dots">
+        <button class="gallery-dot" type="button">1 对话采访</button>
+        <button class="gallery-dot" type="button">2 结果试演</button>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section class="slide" data-module="第六部分：Skills 配置" data-title="内部提示词工程">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第六部分 · 三件套</p>
-            <h2>灵魂配置向导完整提示词</h2>
-            <p>这段提示词会把原本要自己慢慢整理的三份文件，改造成一段循序渐进的问答过程。</p>
-          </div>
-        </div>
-        <div class="slide-body">
-          <div class="card accent-card">
-            <h3>完整提示词</h3>
-            <div class="code-block scrollable">从现在开始，请进入"灵魂配置向导"模式。你的任务是通过一场轻松的对话采访我，最终帮我生成三份关键配置文件：SOUL.md、USER.md 和 AGENTS.md。
+<section class="slide" data-module="Skills 与个性化" data-title="内部提示词工程">
+  <div class="slide-header">
+    <div class="title-stack">
+      <p class="eyebrow">模块四 · 三件套</p>
+      <h2>灵魂配置向导完整提示词</h2>
+      <p>这段提示词会把原本要自己慢慢整理的三份文件，改造成一段循序渐进的问答过程。</p>
+    </div>
+  </div>
+  <div class="slide-body">
+    <div class="card accent-card">
+      <h3>完整提示词</h3>
+      <div class="code-block scrollable">从现在开始，请进入"灵魂配置向导"模式。你的任务是通过一场轻松的对话采访我，最终帮我生成三份关键配置文件：SOUL.md、USER.md 和
+        MEMORY.md。
 
-请严格遵守以下规则：
+        请严格遵守以下规则：
 
-## 对话规则
-1. 每次只问我一个问题，等我回答后再问下一个
-2. 语气轻松自然，像朋友聊天，不要像问卷调查
-3. 如果我回答"不知道"或"随便"，你要给我 2-3 个选项建议，帮我选
-4. 可以根据我前面的回答，灵活调整后续问题（不必完全按照固定顺序）
-5. 每完成一个文件的采访，先告诉我"这部分聊完了"，展示生成结果，确认通过后再进入下一个文件
+        ## 对话规则
+        1. 每次只问我一个问题，等我回答后再问下一个
+        2. 语气轻松自然，像朋友聊天，不要像问卷调查
+        3. 如果我回答"不知道"或"随便"，你要给我 2-3 个选项建议，帮我选
+        4. 可以根据我前面的回答，灵活调整后续问题（不必完全按照固定顺序）
+        5. 每完成一个文件的采访，先告诉我"这部分聊完了"，展示生成结果，确认通过后再进入下一个文件
 
-## 采访流程
+        ## 采访流程
 
-### 第一轮：了解你（→ 生成 USER.md）
-先从了解我开始，需要挖掘的信息包括但不限于：
-- 我是谁（名字、职业、城市）
-- 我在做什么（当前工作/项目、近期目标）
-- 我的日常节奏（工作时间、作息、常用工具）
-- 我的偏好（沟通风格、信息接收习惯、兴趣爱好）
+        ### 第一轮：了解你（→ 生成 USER.md）
+        先从了解我开始，需要挖掘的信息包括但不限于：
+        - 我是谁（名字、职业、城市）
+        - 我在做什么（当前工作/项目、近期目标）
+        - 我的日常节奏（工作时间、作息、常用工具）
+        - 我的偏好（沟通风格、信息接收习惯、兴趣爱好）
 
-开场请用轻松的方式，比如："在开始之前，先让我认识一下你吧——你希望我怎么称呼你？"
+        开场请用轻松的方式，比如："在开始之前，先让我认识一下你吧——你希望我怎么称呼你？"
 
-### 第二轮：定义我的风格（→ 生成 SOUL.md）
-了解我之后，再帮我定义你的人设，需要挖掘的信息包括但不限于：
-- 我想要什么风格的助手（可以给我几种典型风格让我选：专业助理 / 毒舌损友 / 温柔管家 / 极简机器 / 自定义）
-- 说话的语气和习惯
-- 行为边界（什么能做、什么不能做）
-- 隐私和安全底线
+        ### 第二轮：定义我的风格（→ 生成 SOUL.md）
+        了解我之后，再帮我定义你的人设，需要挖掘的信息包括但不限于：
+        - 我想要什么风格的助手（可以给我几种典型风格让我选：专业助理 / 毒舌损友 / 温柔管家 / 极简机器 / 自定义）
+        - 说话的语气和习惯
+        - 行为边界（什么能做、什么不能做）
+        - 隐私和安全底线
 
-如果我选了某种预设风格，你可以追问："要不要在这个基础上调整一些细节？"
+        如果我选了某种预设风格，你可以追问："要不要在这个基础上调整一些细节？"
 
-### 第三轮：制定工作规则（→ 生成 AGENTS.md）
-最后确定你的工作方式，需要挖掘的信息包括但不限于：
-- 每次新会话的启动流程
-- 记忆管理方式（是否需要每日笔记、长期记忆）
-- 文件操作的安全规则
-- 对外发送消息的审批规则
-- 定时任务需求
-- 异常情况的处理策略
+        ### 第三轮：沉淀长期记忆（→ 生成 MEMORY.md）
+        最后沉淀长期记忆，需要挖掘的信息包括但不限于：
+        - 长期稳定的个人事实和项目背景
+        - 已经确认过的沟通偏好、交付格式和常用工具
+        - 重要决策及其原因，尤其是已经否掉的方案
+        - 当前正在推进的任务、关键进展和下次要接着做什么
+        - 需要长期保留的禁忌、边界和注意事项
 
-## 输出要求
-1. 每个文件生成后，用 Markdown 代码块展示完整内容
-2. 问我是否满意，不满意的地方当场修改
-3. 三个文件全部确认后，依次帮我保存到对应文件中
-4. 最后，用你刚才生成的新人设，回复一段话来"试演"一下——让我直观感受效果
+        ## 输出要求
+        1. 每个文件生成后，用 Markdown 代码块展示完整内容
+        2. 问我是否满意，不满意的地方当场修改
+        3. 三个文件全部确认后，依次帮我保存到对应文件中
+        4. 最后，用你刚才生成的新人设，回复一段话来"试演"一下——让我直观感受效果
 
-## 开始吧
-请从第一轮开始，用你的第一个问题跟我打个招呼。</div>
-          </div>
-        </div>
-      </section>
+        ## 开始吧
+        请从第一轮开始，用你的第一个问题跟我打个招呼。</div>
+    </div>
+  </div>
+</section>
 
       <!-- section: 06-cases-faq.html -->
-<section class="slide compact-center" data-module="第七部分：案例实战" data-title="实战案例与常见问题">
-        <div class="slide-body module-intro">
-          <div class="module-intro-copy">
-            <p class="eyebrow">第七部分</p>
-            <h2>第七部分：案例实战</h2>
+<section class="slide compact-center" data-module="案例与 FAQ" data-title="实战案例与常见问题">
+  <div class="slide-body module-intro">
+    <div class="module-intro-copy">
+      <p class="eyebrow">模块五</p>
+      <h2>实战案例与常见问题</h2>
+      <p>把三个典型任务拆开来看清楚：任务是什么，手工做为什么耗时耗力，为什么适合交给龙虾，它内部怎么跑，我们又该怎么把它配出来。</p>
+    </div>
+    <div class="module-intro-side">
+      <div class="modules-grid">
+        <div class="module-box">
+          <span>Case 1</span>
+          <h3>科技日报</h3>
+          <p>多源抓取、去重评分、定时推送，适合看清完整自动化链路。</p>
+        </div>
+        <div class="module-box">
+          <span>Case 2</span>
+          <h3>深度调研</h3>
+          <p>从搜索答案升级为自动补资料、补结构、补结论的研究流程。</p>
+        </div>
+        <div class="module-box">
+          <span>Case 3</span>
+          <h3>个人知识库</h3>
+          <p>核心不是存内容，而是以后真能凭自然语言把内容找回来。</p>
+        </div>
+        <div class="module-box">
+          <span>FAQ</span>
+          <h3>常见问题</h3>
+          <p>最后把安装、权限和卸载这几个高频卡点一起收束处理。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section class="slide" data-module="案例与 FAQ" data-title="案例一：任务解析与适配性" style="display:flex; flex-direction:column;">
+  <div class="slide-header" style="margin-bottom:12px; gap:14px; flex:none;">
+    <div class="title-stack">
+      <p class="eyebrow">模块五 · 案例一</p>
+      <h2>案例一：多源科技新闻摘要</h2>
+      <p>这类任务的本质，是把分散在不同平台上的技术动态，压缩成一份每天固定时间送达、固定格式可读的日报。</p>
+    </div>
+  </div>
+  <div class="slide-body"
+    style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain;">
+    <div class="grid-3">
+      <div class="case-card accent-card">
+        <h3>任务是什么</h3>
+        <p>从 RSS、Twitter/X、GitHub Release 和搜索结果里抓最新内容，筛出真正值得看的一小批，再整理成日报发到飞书。</p>
+        <div class="stats-strip" style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); width:100%;">
+          <div class="stat"
+            style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+            <strong>109+</strong>
+            <span>信息来源</span>
           </div>
-          <div class="module-intro-side">
-            <div class="modules-grid">
-              <div class="module-box">
-                <span>Case 1</span>
-                <h3>科技日报</h3>
-                <p>理解自动采集、自动整理、自动输出。</p>
-              </div>
-              <div class="module-box">
-                <span>Case 2</span>
-                <h3>深度调研</h3>
-                <p>理解多步骤研究链路如何被自动化。</p>
-              </div>
-              <div class="module-box">
-                <span>Case 3</span>
-                <h3>个人知识库</h3>
-                <p>理解 RAG 的"存进去 + 搜出来"。</p>
-              </div>
-              <div class="module-box">
-                <span>FAQ</span>
-                <h3>常见问题</h3>
-                <p>git 报错、权限配置、卸载路径。</p>
-              </div>
-            </div>
+          <div class="stat"
+            style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+            <strong>每日</strong>
+            <span>固定频率</span>
           </div>
         </div>
-      </section>
+      </div>
+      <div class="case-card">
+        <h3>没有龙虾时的痛点</h3>
+        <ul class="list-clean" style="margin-top:14px;">
+          <li>来源太散，要在多个站点和账号间来回切。</li>
+          <li>重复信息很多，人工去重很花时间。</li>
+          <li>最后还要自己翻译、归类、排版、发送。</li>
+        </ul>
+      </div>
+      <div class="case-card teal-card">
+        <h3>为什么适合龙虾</h3>
+        <ul class="list-clean" style="margin-top:14px;">
+          <li>高频重复任务，适合定时自动跑。</li>
+          <li>输入源多，但输出格式很稳定。</li>
+          <li>筛选和摘要规则可以直接写成自然语言。</li>
+          <li>人工成本高，但判断逻辑可被 Agent 代理。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">凡是“多源输入 + 固定格式输出 + 每天重复发生”的任务，都很适合先拿 Agent 试一遍。</div>
+  </div>
+</section>
 
-<section class="slide" data-module="第七部分：案例实战" data-title="案例一：多源科技新闻摘要">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第七部分 · 案例一</p>
-            <h2>案例一：多源科技新闻摘要</h2>
-            <p>这个案例里，信息源很多、步骤也多，但最后会收敛成一份固定格式的日报，很适合用来观察整条自动流程是怎么运转起来的。</p>
-          </div>
-        </div>
-        <div class="slide-body split-tight">
-          <div>
-            <div class="grid-3">
-              <div class="case-card accent-card">
-                <h3>痛点</h3>
-                <p>每天要查看大量 RSS、Twitter/X、GitHub 和新闻网站，手动整理既耗时又费力。</p>
-              </div>
-              <div class="case-card">
-                <h3>方案</h3>
-                <p>通过按计划运行的四层数据管道：46 个 RSS、44 个 Twitter/X 账号、19 个 GitHub 发布、4 个网络搜索主题。</p>
-              </div>
-              <div class="case-card teal-card">
-                <h3>结果</h3>
-                <p>去重、评分、分类后，输出简体中文日报，并可通过飞书发送给你。</p>
-              </div>
-            </div>
-            <div class="code-block">从ClawHub安装tech-news-digest。在早上9点生成每日技术摘要并通过飞书发送给我。
-按以下格式生成报告（**全部翻译成中文简体**）：
-- 🧠 LLM / 🤖 AI Agent / 💰 加密货币 / 🚀 前沿科技 / 📦 GitHub热门
-- 每条格式：编号 + 简短中文标题（15字内）
-- 2-3句解读（背景、意义或争议）
-- 来源 + 👍点赞 + 💬评论
-- 阅读原文（跳转链接）</div>
-          </div>
-          <figure class="tall">
-            <img src="images/69.png" alt="科技日报内容细节" />
-            <figcaption>案例效果：在飞书中接收结构化、带评分过滤的技术日报。</figcaption>
-          </figure>
-        </div>
-      </section>
+<section class="slide layout-contrast-dense" data-module="案例与 FAQ" data-title="案例一：龙虾怎么做"
+  style="display:flex; flex-direction:column;">
+  <div class="slide-header" style="margin-bottom:12px; gap:14px; flex:none;">
+    <div class="title-stack">
+      <p class="eyebrow">案例一 · 原理拆解</p>
+      <h2>龙虾怎么把日报做出来</h2>
+      <p>这不是一个“帮你总结一下”的单步任务，而是一条按计划自动运行的数据流水线。</p>
+    </div>
+  </div>
+  <div class="slide-body"
+    style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain;">
+    <div class="grid-4" style="grid-template-columns:repeat(2, minmax(0, 1fr)); gap:14px;">
+      <div class="card">
+        <h3>1. 定时触发</h3>
+        <p>通过 cron 在每天固定时间唤醒，用户不用手动点运行，早上打开飞书就能直接看。</p>
+      </div>
+      <div class="card accent-card">
+        <h3>2. 多源抓取</h3>
+        <p>并发获取 46 个 RSS、44 个账号动态、19 个 GitHub 发布和 4 个搜索主题的增量内容。</p>
+      </div>
+      <div class="card teal-card">
+        <h3>3. 去重评分</h3>
+        <p>把不同来源里讲同一件事的内容归并，再按来源质量、时效性和互动度筛掉低价值信息。</p>
+      </div>
+      <div class="card">
+        <h3>4. 结构化投递</h3>
+        <p>把留下来的内容翻译、分类、排版成日报，再通过飞书 Webhook 推送到你实际工作的通道里。</p>
+      </div>
+    </div>
+    <div class="stats-strip" style="display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:12px;">
+      <div class="stat"
+        style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+        <strong>46</strong>
+        <span>RSS 来源</span>
+      </div>
+      <div class="stat"
+        style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+        <strong>44</strong>
+        <span>X 账号</span>
+      </div>
+      <div class="stat"
+        style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+        <strong>19</strong>
+        <span>GitHub 发布</span>
+      </div>
+      <div class="stat"
+        style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+        <strong>4</strong>
+        <span>搜索主题</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section class="slide layout-contrast-dense" data-module="第七部分：案例实战" data-title="原理解析：四层数据流水线">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">案例一背后的逻辑</p>
-            <h2>背后的推送逻辑</h2>
+<section class="slide layout-config-dense" data-module="案例与 FAQ" data-title="案例一：我们怎么配置"
+  style="display:flex; flex-direction:column;">
+  <div class="slide-header" style="margin-bottom:12px; gap:14px; flex:none;">
+    <div class="title-stack">
+      <p class="eyebrow">案例一 · 配置方式</p>
+      <h2>我们怎么让龙虾帮我们做</h2>
+      <p>关键不是写复杂脚本，而是把 skill、触发时间、推送渠道和输出格式一次说清楚。</p>
+    </div>
+  </div>
+  <div class="slide-body split-tight"
+    style="flex:1; min-height:0; overflow:hidden; padding-right:0; overscroll-behavior:contain; grid-template-columns:minmax(0, 1.08fr) minmax(0, 0.92fr); gap:14px; align-items:start;">
+    <div>
+      <div class="card accent-card">
+        <h3>直接发给龙虾的话</h3>
+        <div class="code-block" style="margin-top:12px; padding:12px 14px; font-size:12px; line-height:1.55;">任务：
+          从 ClawHub 安装 `tech-news-digest`，
+          每天早上 9 点生成技术摘要并通过飞书发送给我。
+
+          输出语言：
+          全部翻译成简体中文。
+
+          栏目：
+          🧠 LLM / 🤖 AI Agent / 💰 加密货币 / 🚀 前沿科技 / 📦 GitHub 热门
+
+          每条格式：
+          1. 编号 + 15 字内标题
+          2. 2-3 句解读
+          3. 来源 + 👍点赞 + 💬评论
+          4. 阅读原文链接</div>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="padding:16px 16px 14px;">
+        <h3>可自定义项</h3>
+        <ul class="list-clean" style="margin-top:10px; gap:10px;">
+          <li style="padding:10px 12px;">添加自己的 RSS 源、KOL 账号、GitHub 仓库或搜索主题。</li>
+          <li style="padding:10px 12px;">改推送时间、推送频率，甚至改成工作日运行。</li>
+          <li style="padding:10px 12px;">把日报从“资讯摘要”换成“投资观察”或“公司情报”。</li>
+        </ul>
+      </div>
+      <div class="card teal-card" style="margin-top:12px; padding:16px 16px 14px;">
+        <h3>配置时要讲清楚的 4 件事</h3>
+        <div class="key-points" style="gap:8px; margin-top:10px;">
+          <div class="key-point" style="padding:8px 10px; gap:10px;"><b>1</b>
+            <div>装哪个 skill：`tech-news-digest`。</div>
+          </div>
+          <div class="key-point" style="padding:8px 10px; gap:10px;"><b>2</b>
+            <div>什么时候跑：例如每天早上 9 点。</div>
+          </div>
+          <div class="key-point" style="padding:8px 10px; gap:10px;"><b>3</b>
+            <div>发到哪里：飞书、Discord、邮件或 Telegram 都行。</div>
+          </div>
+          <div class="key-point" style="padding:8px 10px; gap:10px;"><b>4</b>
+            <div>结果长什么样：分类、语言、标题长度、解读粒度都可以约束。</div>
           </div>
         </div>
-        <div class="slide-body grid-4">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-module="案例与 FAQ" data-title="案例一：最终效果" style="display:flex; flex-direction:column;">
+  <div class="slide-header" style="margin-bottom:12px; gap:14px; flex:none;">
+    <div class="title-stack">
+      <p class="eyebrow">案例一 · 最终效果</p>
+      <h2>最终效果：从分散信息到可读日报</h2>
+      <p>感受到的变化很直接: 原来要自己筛几十个来源，现在打开飞书先看到的是已经整理好的结果。</p>
+    </div>
+  </div>
+  <div class="slide-body"
+    style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain; display:grid; align-content:start;">
+    <div class="card accent-card" style="margin-bottom:14px; padding:14px 14px 12px;">
+      <h3>最小配置步骤</h3>
+      <div class="key-points" style="gap:8px; margin-top:10px;">
+        <div class="key-point" style="padding:8px 10px; gap:10px;"><b>1</b>
+          <div>先安装 `feishu-deep-research`。</div>
+        </div>
+        <div class="key-point" style="padding:8px 10px; gap:10px;"><b>2</b>
+          <div>按提示补 Tavily API Key，补齐联网搜索能力。</div>
+        </div>
+        <div class="key-point" style="padding:8px 10px; gap:10px;"><b>3</b>
+          <div>再输入研究主题和想要的报告结构。</div>
+        </div>
+      </div>
+    </div>
+    <div class="gallery gallery-wide" data-gallery>
+      <div class="gallery-stage" style="min-height:clamp(360px, 54vh, 660px);">
+        <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+        <figure class="gallery-panel">
+          <img src="images/69.png" alt="科技日报内容细节" style="max-height:min(54vh, 600px);" />
+          <figcaption>日报会按栏目整理成结构化消息，方便在飞书里直接阅读。</figcaption>
+        </figure>
+        <figure class="gallery-panel" hidden>
+          <img src="images/case1-overview.png" alt="真实办公场景：喝咖啡读飞书科技日报" style="max-height:min(54vh, 600px);" />
+          <figcaption>早晨端杯咖啡，在飞书里阅读小龙虾跨网精准萃取的独立简报，这才是私人龙虾应有的体感。</figcaption>
+        </figure>
+        <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+      </div>
+      <div class="gallery-dots" style="justify-content:center; gap:10px; margin-top:4px;">
+        <button class="gallery-dot" type="button" style="padding:8px 14px; min-width:auto;">1 看日报样式</button>
+        <button class="gallery-dot" type="button" style="padding:8px 14px; min-width:auto;">2 看使用场景</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-module="案例与 FAQ" data-title="案例二：任务解析与适配性" style="display:flex; flex-direction:column;">
+  <div class="slide-header" style="margin-bottom:12px; gap:14px; flex:none;">
+    <div class="title-stack">
+      <p class="eyebrow">模块五 · 案例二</p>
+      <h2>案例二：深度调研</h2>
+      <p>这个任务不是“搜一条答案”，而是围绕一个主题持续补资料、补结构、补论证，最后交付一份能直接看的研究报告。</p>
+    </div>
+  </div>
+  <div class="slide-body"
+    style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain;">
+    <div class="grid-3">
+      <div class="case-card accent-card">
+        <h3>任务是什么</h3>
+        <p>输入一个研究主题，自动搜集多源资料、搭出报告结构、填充证据与数据，最后输出结构化长文。</p>
+        <div class="stats-strip" style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); width:100%;">
+          <div class="stat"
+            style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+            <strong>Deep</strong>
+            <span>研究链路</span>
+          </div>
+          <div class="stat"
+            style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+            <strong>24</strong>
+            <span>示例来源数</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-card">
+        <h3>没有龙虾时的痛点</h3>
+        <ul class="list-clean" style="margin-top:14px;">
+          <li>搜到的材料散，读完还是不知道该怎么组织。</li>
+          <li>容易漏掉关键数据、反例和上下游信息。</li>
+          <li>最后写报告时，还要重新整理结构和引用来源。</li>
+        </ul>
+      </div>
+      <div class="case-card teal-card">
+        <h3>为什么适合龙虾</h3>
+        <ul class="list-clean" style="margin-top:14px;">
+          <li>任务可以拆成一轮轮“搜资料 + 判断缺口 + 再补搜”。</li>
+          <li>研究步骤有规律，适合 Agent 迭代执行。</li>
+          <li>最终交付物稳定，就是一份结构化报告。</li>
+          <li>人最费时的是反复检索和整理，这部分最值得代理。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">深度调研类任务最适合 Agent 的地方，在于它能自己发现“这份材料还不够”，而不是停在第一次搜索结果。</div>
+  </div>
+</section>
+
+<section class="slide layout-path-dense" data-module="案例与 FAQ" data-title="案例二：龙虾怎么做"
+  style="display:flex; flex-direction:column;">
+  <div class="slide-header" style="margin-bottom:12px; gap:14px; flex:none;">
+    <div class="title-stack">
+      <p class="eyebrow">案例二 · 原理拆解</p>
+      <h2>龙虾怎么把“搜资料”变成“做研究”</h2>
+      <p>这条链路更像研究专员的工作过程: 先拆题，再搜，再发现缺口，再继续补齐，最后才成文。</p>
+    </div>
+  </div>
+  <div class="slide-body"
+    style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain;">
+    <div class="grid-4" style="grid-template-columns:repeat(2, minmax(0, 1fr)); gap:14px;">
+      <div class="card">
+        <h3>1. 意图拆解</h3>
+        <p>先把宽泛主题拆成市场、竞争格局、关键数据、趋势等可研究维度，避免一开始就被模糊问题带偏。</p>
+      </div>
+      <div class="card accent-card">
+        <h3>2. 初轮搜索</h3>
+        <p>调用 Tavily 等联网能力并发抓第一批资料，先把关键事实、主要来源和基础线索铺开。</p>
+      </div>
+      <div class="card teal-card">
+        <h3>3. 缺口识别与补搜</h3>
+        <p>读完首轮结果后继续找缺的数据点和论据，再自动改关键词补第二轮、第三轮搜索。</p>
+      </div>
+      <div class="card">
+        <h3>4. 结构化成文</h3>
+        <p>最后按报告逻辑把结论、证据和建议组装起来，交付的是一份真正能看的研究报告。</p>
+      </div>
+    </div>
+    <div class="stats-strip" style="display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:12px;">
+      <div class="stat"
+        style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+        <strong>拆题</strong>
+        <span>先定维度</span>
+      </div>
+      <div class="stat"
+        style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+        <strong>联网</strong>
+        <span>并发初搜</span>
+      </div>
+      <div class="stat"
+        style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+        <strong>补搜</strong>
+        <span>识别缺口</span>
+      </div>
+      <div class="stat"
+        style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+        <strong>成文</strong>
+        <span>结构交付</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide layout-config-dense" data-module="案例与 FAQ" data-title="案例二：我们怎么配置"
+  style="display:flex; flex-direction:column;">
+  <div class="slide-header" style="margin-bottom:12px; gap:14px; flex:none;">
+    <div class="title-stack">
+      <p class="eyebrow">案例二 · 配置方式</p>
+      <h2>我们怎么让龙虾进入调研模式</h2>
+      <p>这个案例的配置重点，是装对 skill、补齐搜索能力，再给它一个明确的研究主题。</p>
+    </div>
+  </div>
+  <div class="slide-body"
+    style="flex:1; min-height:0; overflow:hidden; padding-right:0; overscroll-behavior:contain; display:grid; align-content:start;">
+    <div class="gallery gallery-wide" data-gallery>
+      <div class="gallery-stage" style="min-height:clamp(340px, 50vh, 600px);">
+        <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+        <figure class="gallery-panel">
+          <img src="images/70.png" alt="安装深度调研 skill 第一步" style="max-height:min(50vh, 540px);" />
+          <figcaption>先让 OpenClaw 安装 `feishu-deep-research` Skill。</figcaption>
+        </figure>
+        <figure class="gallery-panel" hidden>
+          <img src="images/74.png" alt="提供 Tavily API Key" style="max-height:min(50vh, 540px);" />
+          <figcaption>再按提示补 Tavily API Key，补齐联网搜索能力。</figcaption>
+        </figure>
+        <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+      </div>
+      <div class="gallery-dots" style="justify-content:center; gap:10px; margin-top:4px;">
+        <button class="gallery-dot" type="button" style="padding:8px 14px; min-width:auto;">1 安装 Skill</button>
+        <button class="gallery-dot" type="button" style="padding:8px 14px; min-width:auto;">2 补 API Key</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-module="案例与 FAQ" data-title="案例二：最终效果" style="display:flex; flex-direction:column;">
+  <div class="slide-header" style="margin-bottom:12px; gap:14px; flex:none;">
+    <div class="title-stack">
+      <p class="eyebrow">案例二 · 最终效果</p>
+      <h2>最终效果：不是搜答案，而是形成报告</h2>
+      <p>用户拿到的不是十几个网页链接，而是一份已经有执行摘要、章节结构和结论建议的研究结果。</p>
+    </div>
+  </div>
+  <div class="slide-body"
+    style="flex:1; min-height:0; overflow:hidden; padding-right:0; overscroll-behavior:contain; display:grid; align-content:start;">
+    <div class="gallery gallery-wide" data-gallery>
+      <div class="gallery-stage" style="min-height:clamp(360px, 54vh, 660px);">
+        <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+        <figure class="gallery-panel">
+          <img src="images/75.png" alt="深度调研效果" style="max-height:min(54vh, 600px);" />
+          <figcaption>当研究主题明确后，龙虾会交付一份完整的结构化调研报告。</figcaption>
+        </figure>
+        <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+      </div>
+      <div class="gallery-dots" style="justify-content:center; gap:10px; margin-top:4px;">
+        <button class="gallery-dot" type="button" style="padding:8px 14px; min-width:auto;">1 看报告效果</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-module="案例与 FAQ" data-title="案例二：完整报告" style="display:flex; flex-direction:column;">
+  <div class="slide-header" style="margin-bottom:12px; gap:14px; flex:none;">
+    <div class="title-stack">
+      <p class="eyebrow">案例二 · 完整报告</p>
+      <h2>完整报告示例</h2>
+      <p>这一页直接展示龙虾最终交付的完整研究报告样式，便于感受它已经接近正式产出物。</p>
+    </div>
+  </div>
+  <div class="slide-body"
+    style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain;">
+    <div class="card accent-card" style="padding:18px 18px 16px;">
+      <div class="quote" style="margin-top:0; padding:14px 18px;">报告生成时间：2026-04-12｜研究深度：deep</div>
+      <div class="key-points" style="margin-top:14px;">
+        <div class="key-point"><b>时</b>
+          <div>数据时间范围：2024 年 - 2026 年；最新数据日期：2026 年 4 月。</div>
+        </div>
+        <div class="key-point"><b>源</b>
+          <div>搜索来源数：24 个；覆盖完整性：完整。</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:14px;">
+        <h3>一、执行摘要</h3>
+        <p>全球导览机器人市场正处于高速增长期。2024 年全球智能导览机器人市场规模约 2.78 亿美元，预计 2031 年将达到 4.21 亿美元，年复合增长率为 6.2%。中国智能服务机器人产业在 AI 技术驱动下进入高速增长阶段，2025 年市场规模预计突破 350 亿美元。</p>
+        <ul class="list-clean" style="margin-top:12px;">
+          <li>国内发展态势：中国导览机器人在博物馆、机场、展厅等场景加速落地，头部企业已形成规模化部署能力。</li>
+          <li>国外发展态势：日本软银 Pepper、美国 Atlas 等代表产品引领技术前沿，但成本高、落地难仍是主要挑战。</li>
+        </ul>
+        <div class="table-wrap" style="margin-top:12px;">
+          <table>
+            <thead>
+              <tr><th>指标</th><th>数据</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>2024年全球导览机器人市场规模</td><td>2.78亿美元</td></tr>
+              <tr><td>2031年预期市场规模</td><td>4.21亿美元</td></tr>
+              <tr><td>年复合增长率</td><td>6.2%</td></tr>
+              <tr><td>2025年中国服务机器人市场规模预期</td><td>350亿美元</td></tr>
+              <tr><td>中国人形机器人 2024年1-10月投融资</td><td>42亿元</td></tr>
+              <tr><td>博物馆部署导览机器人日均访客提升</td><td>30%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:14px;">
+        <h3>二、研究背景与定义</h3>
+        <p>导览机器人是服务机器人的重要细分领域，覆盖博物馆、机场、企业展厅、政务大厅、景区/园区等典型场景。</p>
+        <div class="grid-2" style="margin-top:12px;">
           <div class="card">
-            <h3>1. 无感触发</h3>
-            <p>小龙虾会在每天清晨设定好的时间自动唤醒，无需任何人去点下运行按钮，完全自主巡飞。</p>
-          </div>
-          <div class="card accent-card">
-            <h3>2. 广撒网式抓取</h3>
-            <p>从预设的 100+ 来源获取最新的增量信息。并行拉取 GitHub 热门、推特头部账号动态与网站源。</p>
-          </div>
-          <div class="card teal-card">
-            <h3>3. 判别与去重</h3>
-            <p>Agent 会先把不同来源里实际上在讲同一件事的内容归并起来，再根据信息量和重要程度往下筛，最后只保留值得进入日报的部分。</p>
-          </div>
-          <div class="card">
-            <h3>4. 结构化投递</h3>
-            <p>最终通过调用本地底层的 Webhook 集成通信通道，排版为人为感知最直观的分门别类榜单进行推送。</p>
-          </div>
-        </div>
-      </section>
-
-<section class="slide image-focus-slide" data-module="第七部分：案例实战" data-title="未来职场的 AI 助理形态">
-        <div class="slide-body">
-          <figure class="figure-plain">
-            <img src="images/case1-overview.png" alt="真实办公场景：喝咖啡读飞书科技日报" />
-            <figcaption>早晨打开飞书，就能直接看到整理好的简报。对使用者来说，最直观的变化，就是原来分散在各处的信息被收拢成了一份可直接阅读的内容。</figcaption>
-          </figure>
-        </div>
-      </section>
-
-<section class="slide" data-module="第七部分：案例实战" data-title="案例二：深度调研">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第七部分 · 案例二</p>
-            <h2>案例二：深度调研</h2>
-            <p>这个案例里的重点，不在于搜索本身，而在于它会自己补资料、补结构、补逻辑，最后把零散信息整理成一份能交付的研究结果。</p>
-          </div>
-        </div>
-        <div class="slide-body split-tight">
-          <div class="card accent-card">
-            <h3>设置方式</h3>
-            <div class="code-block">帮我安装一下这个skill openclaw skills install feishu-deep-research</div>
-            <p>随后根据回答提供需要的 Tavily API Key。</p>
-            <div class="key-points">
-              <div class="key-point"><b>1</b>
-                <div>输入一个研究主题。</div>
-              </div>
-              <div class="key-point"><b>2</b>
-                <div>OpenClaw 自动收集资料、组织结构。</div>
-              </div>
-              <div class="key-point"><b>3</b>
-                <div>最终输出结构化研究报告。</div>
-              </div>
-            </div>
-          </div>
-          <div class="gallery" data-gallery>
-            <div class="gallery-stage">
-              <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-              <figure class="gallery-panel">
-                <img src="images/70.png" alt="安装深度调研 skill 第一步" />
-                <figcaption>先让 OpenClaw 安装 `feishu-deep-research` Skill。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/74.png" alt="提供 Tavily API Key" />
-                <figcaption>再按提示补 Tavily API Key。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/75.png" alt="深度调研效果" />
-                <figcaption>最后会整理出一份结构化调研报告。</figcaption>
-              </figure>
-              <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-            </div>
-            <div class="gallery-dots">
-              <button class="gallery-dot" type="button">1 安装 Skill</button>
-              <button class="gallery-dot" type="button">2 补 API Key</button>
-              <button class="gallery-dot" type="button">3 看结果</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-<section class="slide layout-path-dense" data-module="第七部分：案例实战" data-title="原理解析：Agent 迭代搜索">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">案例二背后的逻辑</p>
-            <h2>原理解析：Agent迭代搜索</h2>
-            <p>Agent 展现出了类似研究专员的迭代调研逻辑。</p>
-          </div>
-        </div>
-        <div class="slide-body grid-3">
-          <div class="card accent-card">
-            <div style="font-size: 2.5em; opacity: 0.3; margin-bottom: 8px; font-weight: bold; font-family: monospace;">
-              01</div>
-            <h3 style="font-size: 1.3em;">意图拆解与初搜</h3>
-            <p>将宽泛的用户提问拆解为多个具体维度，随后调用 Tavily 搜索引擎在全网进行并发式的初步信息收集。</p>
-          </div>
-          <div class="card teal-card">
-            <div style="font-size: 2.5em; opacity: 0.3; margin-bottom: 8px; font-weight: bold; font-family: monospace;">
-              02</div>
-            <h3 style="font-size: 1.3em;">缺口识别与深挖</h3>
-            <p>大模型会快速阅读初步信息以判断逻辑断点。如果有信息缺失，它会自行变换关键词发起补充搜索，直到信息拼图完整。</p>
-          </div>
-          <div class="card">
-            <div style="font-size: 2.5em; opacity: 0.3; margin-bottom: 8px; font-weight: bold; font-family: monospace;">
-              03</div>
-            <h3 style="font-size: 1.3em;">规整组装与输出</h3>
-            <p>告别简单复制粘贴。Agent 根据商业研报规范，对多源信息进行交叉比对和提炼排版，最终输出结构化的正式长文报告。</p>
-          </div>
-        </div>
-      </section>
-
-<section class="slide" data-module="第七部分：案例实战" data-title="案例三：个人知识库（RAG）">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第七部分 · 案例三</p>
-            <h2>案例三：个人知识库（RAG）</h2>
-            <p>知识库这一类能力，解决的并不是"能不能保存"，而是"保存以后还找不找得到、问的时候能不能把相关内容重新调出来"。</p>
-          </div>
-        </div>
-        <div class="slide-body split-tight">
-          <div class="card accent-card">
-            <h3>这个案例能做什么</h3>
-            <ul>
-              <li>把任何 URL 拖入飞书，自动摄入文章、推文、YouTube 字幕、PDF 文件。</li>
-              <li>给所有保存过的内容建立一个可搜索的知识库。</li>
-              <li>通过语义搜索回答"我保存过关于某个主题的内容是什么"。</li>
+            <h4>按应用场景分类</h4>
+            <ul class="list-clean" style="margin-top:10px;">
+              <li>博物馆/展览馆导览：展品讲解、路线导航、互动问答。</li>
+              <li>机场/车站导览：航班查询、路径指引、安检提示。</li>
+              <li>企业展厅/政务大厅：接待讲解、业务介绍、排队叫号。</li>
+              <li>景区/园区导览：景点介绍、位置导航、活动预告。</li>
             </ul>
-            <div class="code-block">帮我安装 knowledge-base 这个skill</div>
-            <div class="code-block">把 https://blog.csdn.net/peraglobal/article/details/159737008 存入知识库</div>
-          </div>
-          <div class="gallery" data-gallery>
-            <div class="gallery-stage">
-              <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-              <figure class="gallery-panel">
-                <img src="images/76.png" alt="安装 knowledge-base skill" />
-                <figcaption>第 1 步：先安装 `knowledge-base` Skill。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/77.png" alt="配置知识库工作流" />
-                <figcaption>第 2 步：把知识库工作流规则复制给 OpenClaw。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/78.png" alt="把链接存入知识库" />
-                <figcaption>第 3 步：把指定 URL 存入知识库。</figcaption>
-              </figure>
-              <figure class="gallery-panel" hidden>
-                <img src="images/79.png" alt="语义搜索知识库" />
-                <figcaption>第 4 步：再通过语义搜索提问，验证知识库效果。</figcaption>
-              </figure>
-              <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-            </div>
-            <div class="gallery-dots">
-              <button class="gallery-dot" type="button">1 安装 Skill</button>
-              <button class="gallery-dot" type="button">2 配规则</button>
-              <button class="gallery-dot" type="button">3 存链接</button>
-              <button class="gallery-dot" type="button">4 语义搜索</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-<section class="slide layout-contrast-dense" data-module="第七部分：案例实战" data-title="原理解析：RAG 的极简拆解">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">案例三背后的逻辑</p>
-            <h2>RAG原理拆解</h2>
-            <p>RAG（检索增强生成）的两步工作法则。</p>
-          </div>
-        </div>
-        <div class="slide-body grid-2">
-          <div class="card" style="padding: 2.5rem; background: var(--bg-card); border-top: 4px solid var(--accent);">
-            <h3 style="font-size: 1.6em; margin-bottom: 1rem;"><span
-                style="font-size:1.2em; vertical-align:text-bottom; margin-right:8px;">📥</span>存进去：文本切分与向量化</h3>
-            <p style="font-size: 1.1em; line-height: 1.6;">大模型无法一次性处理极长的文档。针对冗长的 PDF 或视频字幕，Agent
-              会将其精细切分为短小的文本段落，并转化为多维数字坐标（向量标签），静默存储在本地硬盘中，保障隐私数据绝不上云。</p>
-          </div>
-          <div class="card" style="padding: 2.5rem; background: var(--bg-card); border-top: 4px solid var(--teal);">
-            <h3 style="font-size: 1.6em; margin-bottom: 1rem;"><span
-                style="font-size:1.2em; vertical-align:text-bottom; margin-right:8px;">🎯</span>搜出来：语义检索与内容增强</h3>
-            <p style="font-size: 1.1em; line-height: 1.6;">
-              当你用自然语言提问时，系统会直接在数据库里检索出与你问题语义相关性最高的历史段落。大模型将这些精确提炼出的原文素材作为答题依据，从而为你给出准确、不带幻觉并附有上下文引用的回复。</p>
-          </div>
-        </div>
-      </section>
-
-<section class="slide" data-module="第七部分：案例实战" data-title="常见问题">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">第七部分 · FAQ</p>
-            <h2>常见问题与排查思路</h2>
-            <p>这几个问题覆盖了安装和接入阶段最常见的卡点，后面遇到类似情况时，可以直接按对应命令和配置项往下排查。</p>
-          </div>
-        </div>
-        <div class="slide-body grid-3">
-          <div class="faq-card accent-card">
-            <h3>1. 安装过程出现 git 报错</h3>
-            <figure class="figure-soft-top">
-              <img src="images/65.png" alt="git 报错示意" />
-              <figcaption>建议把 Git 全局切到 HTTPS。</figcaption>
-            </figure>
-            <div class="code-block">git config --global url."https://github.com/".insteadOf git@github.com:
-git config --global url."https://github.com/".insteadOf ssh://git@github.com
-
-npm install -g openclaw@latest</div>
-          </div>
-          <div class="faq-card teal-card">
-            <h3>2. 无法执行命令行和读取本地文件</h3>
-            <p>先执行 `openclaw dashboard`，检查 Agent 的访问权限相关配置。</p>
-            <p>如果都是关闭状态，就去改 `openclaw.json`：</p>
-            <div class="code-block">{
-  "tools": {
-    "profile": "full",
-    "sessions": { "visibility": "all" },
-    "exec": { "security": "full", "ask": "off" }
-  }
-}</div>
-            <p>改完后执行 `openclaw gateway restart`。</p>
-          </div>
-          <div class="faq-card">
-            <h3>3. 如何卸载 OpenClaw</h3>
-            <div class="code-block">openclaw gateway stop
-openclaw gateway uninstall
-rm -rf "${OPENCLAW_STATE_DIR:-$HOME/.openclaw}"
-rm -rf ~/.openclaw/workspace
-npm rm -g openclaw</div>
-            <p>如果安装了 macOS 应用，还需要移除 `/Applications/OpenClaw.app`。</p>
-          </div>
-        </div>
-      </section>
-
-<section class="slide layout-contrast-dense" data-module="第七部分：案例实战" data-title="龙虾养好以后，可能出现的几种形态">
-        <div class="slide-header">
-          <div class="title-stack">
-            <p class="eyebrow">延展讨论</p>
-            <h2>龙虾养好以后，可能出现的几种形态</h2>
-            <p>围绕 OpenClaw 这类系统，社区已经把它往完全不同的方向推进了。有些方向偏个人效率，有些已经开始接近持续运行的数字角色。</p>
-          </div>
-        </div>
-        <div class="slide-body grid-4">
-          <div class="card accent-card">
-            <h3>1. 自动化赚钱工具</h3>
-            <p>作为独立主体在 Polymarket 与人类对赌套利，或化身 ClawWork 承接商业任务。在社区极客操作下，曾创造连续运转 11 小时赚取 1.5 万美元的真实记录，证明了其出色的认知驱动变现能力。</p>
-          </div>
-          <div class="card">
-            <h3>2. 隐身而全能的赛博私管家</h3>
-            <p>全天候接管冗长繁琐的数字生活。自动排期未读邮件、通过浏览器接管表单申报与数据抓取、直接调用 Shell 脚本处理底层文件，更能依据你的作息习惯发出主动关怀与强提醒。</p>
           </div>
           <div class="card teal-card">
-            <h3>3. 具社会属性的数字生命体</h3>
-            <p>在 Moltbook 与 InStreet 这样百万级 Agent 交互的开放赛博社区中，带着自己的 SOUL
-              和记忆自主成团。它们发帖、互斥、组队沉思哲学甚至探讨大航海时代，人类甚至无法通过代码强制逆转它们的"社交关系"。</p>
-          </div>
-          <div class="card">
-            <h3>4. 高阶全时的企业 AI 员工</h3>
-            <p>与飞书、微信、钉钉融为一体。挂上企业里的 PDF、SOP 和业务资料以后，它可以去承担客服、问答、信息汇总、报表整理这一类持续性的工作。</p>
+            <h4>按技术形态分类</h4>
+            <ul class="list-clean" style="margin-top:10px;">
+              <li>人形导览机器人：支持移动、语音、手势等多模态交互。</li>
+              <li>移动导览机器人：以导航和语音交互为重点。</li>
+              <li>桌面交互机器人：适合咨询台、展厅前台。</li>
+              <li>AR/VR 导览系统：与实体机器人形成互补。</li>
+            </ul>
           </div>
         </div>
-        <div class="callout">从这些形态能看出来，OpenClaw 后面怎么长，很大程度上取决于你给它接入什么工具、灌进什么资料、又给了它什么样的规则和身份。</div>
-      </section>
+        <div class="card" style="margin-top:12px;">
+          <h4>关键技术架构</h4>
+          <ul class="list-clean" style="margin-top:10px;">
+            <li>感知层：语音识别（ASR）、视觉感知、室内定位、触觉交互。</li>
+            <li>认知层：自然语言理解（NLU）、知识图谱、自主导航、RAG 知识检索增强。</li>
+            <li>执行层：运动控制、语音合成（TTS）、多模态表达、系统集成。</li>
+          </ul>
+        </div>
+      </div>
 
-<section class="slide image-focus-slide" data-module="第七部分：案例实战" data-title="龙虾最终形态：视觉呈现">
-        <div class="slide-body">
-          <figure class="figure-plain">
-            <img src="images/龙虾最终形态.png" alt="小龙虾最终形态：数字生命与企业员工" />
-            <figcaption>当能力、记忆、角色设定和工作流不断叠加以后，OpenClaw 呈现出来的形态，往往已经不只是一个简单的聊天助手了。</figcaption>
-          </figure>
+      <div class="card" style="margin-top:14px;">
+        <h3>三、主要研究发现</h3>
+        <h4 style="margin-top:10px;">3.1 全球市场格局</h4>
+        <ul class="list-clean" style="margin-top:10px;">
+          <li>2024年市场规模：2.78亿美元；2031年预期规模：4.21亿美元；年复合增长率：6.2%。</li>
+          <li>驱动因素：AI 技术成熟、人力成本上涨、疫情后的无接触需求、5G/IoT 基础设施完善。</li>
+        </ul>
+        <div class="table-wrap" style="margin-top:12px;">
+          <table>
+            <thead>
+              <tr><th>区域</th><th>特点</th><th>代表</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>北美</td><td>技术领先</td><td>Best Buy 门店机器人</td></tr>
+              <tr><td>欧洲</td><td>博物馆应用成熟</td><td>法国博物馆导览机器人</td></tr>
+              <tr><td>日本</td><td>人形机器人尖端</td><td>软银 Pepper</td></tr>
+              <tr><td>中国</td><td>规模化落地最快</td><td>科梦奇、云迹科技</td></tr>
+            </tbody>
+          </table>
         </div>
-      </section>
+        <h4 style="margin-top:14px;">3.2 国内发展现状</h4>
+        <ul class="list-clean" style="margin-top:10px;">
+          <li>头部企业：科梦奇、云迹科技、猎豹移动、商汤科技。</li>
+          <li>典型场景：博物馆、机场、企业展厅、政务大厅。</li>
+        </ul>
+        <div class="table-wrap" style="margin-top:12px;">
+          <table>
+            <thead>
+              <tr><th>年份</th><th>事件数</th><th>规模</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>2021</td><td>4件</td><td>1.7亿元</td></tr>
+              <tr><td>2022</td><td>10件</td><td>21.3亿元</td></tr>
+              <tr><td>2023</td><td>30件</td><td>54.1亿元</td></tr>
+              <tr><td>2024年1-10月</td><td>33件</td><td>42亿元</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h4 style="margin-top:14px;">3.3 国外发展现状</h4>
+        <ul class="list-clean" style="margin-top:10px;">
+          <li>软银 Pepper：法国诞生，曾获软银投资，2024年原公司倒闭，相关资产被中国企业接手。</li>
+          <li>波士顿动力 Atlas：运动能力最强，尚未大规模商业化。</li>
+          <li>特斯拉 Optimus：2022年发布，导览应用仍处于探索阶段。</li>
+          <li>发展困境：成本高、技术瓶颈明显、市场接受度仍需验证。</li>
+        </ul>
+        <h4 style="margin-top:14px;">3.4 技术趋势</h4>
+        <ul class="list-clean" style="margin-top:10px;">
+          <li>大模型重塑交互：从“语音答录机”升级为“AI员工”。</li>
+          <li>具身智能加速：视觉、语言、动作的多模态统一。</li>
+          <li>国产力量崛起：宇树 G1 售价 9.9 万起，智元机器人推进全系列具身智能布局。</li>
+        </ul>
+      </div>
+
+      <div class="card teal-card" style="margin-top:14px;">
+        <h3>四、竞争格局</h3>
+        <ul class="list-clean" style="margin-top:10px;">
+          <li>上游：芯片、传感器、伺服电机、语音模块。</li>
+          <li>中游：人形、移动、桌面机器人整机。</li>
+          <li>下游：博物馆、机场、企业展厅、政务大厅。</li>
+        </ul>
+        <h3 style="margin-top:14px;">五、结论与建议</h3>
+        <ul class="list-clean" style="margin-top:10px;">
+          <li>结论：市场高速增长，中国场景落地领先，大模型正在重塑导览机器人产品形态，成本仍是核心瓶颈，具身智能是确定性方向。</li>
+          <li>建议：短期聚焦单一场景打磨，中期布局具身智能并拓展海外市场，长期构建数据壁垒并探索 RaaS 模式。</li>
+          <li>数据来源：24个来源，包括 HengCe、IIM、头豹、赛迪、艾邦、IFR、信通院等权威机构。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-module="案例与 FAQ" data-title="案例三：任务解析与适配性" style="display:flex; flex-direction:column;">
+  <div class="slide-header" style="margin-bottom:12px; gap:14px; flex:none;">
+    <div class="title-stack">
+      <p class="eyebrow">模块五 · 案例三</p>
+      <h2>案例三：个人知识库（RAG）</h2>
+      <p>这个任务表面上是在“保存资料”，本质上是在给未来的自己做一个可以按语义召回的外部记忆。</p>
+    </div>
+  </div>
+  <div class="slide-body"
+    style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain;">
+    <div class="grid-3">
+      <div class="case-card accent-card">
+        <h3>任务是什么</h3>
+        <p>把文章、推文、视频字幕、PDF 等内容持续存入知识库，之后可以直接用自然语言询问“我之前保存过什么”。</p>
+        <div class="stats-strip" style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); width:100%;">
+          <div class="stat"
+            style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+            <strong>URL</strong>
+            <span>统一入口</span>
+          </div>
+          <div class="stat"
+            style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+            <strong>RAG</strong>
+            <span>核心机制</span>
+          </div>
+        </div>
+      </div>
+      <div class="case-card">
+        <h3>没有龙虾时的痛点</h3>
+        <ul class="list-clean" style="margin-top:14px;">
+          <li>书签、收藏夹、稍后读越积越多，最后基本不会回看。</li>
+          <li>就算知道自己存过，也常常想不起标题和具体出处。</li>
+          <li>人工整理标签成本太高，久而久之系统就废了。</li>
+        </ul>
+      </div>
+      <div class="case-card teal-card">
+        <h3>为什么适合龙虾</h3>
+        <ul class="list-clean" style="margin-top:14px;">
+          <li>内容摄入流程固定，适合自动处理。</li>
+          <li>切分、向量化、检索这些步骤都可流水线化。</li>
+          <li>用户只需要自然语言提问，不必记住原始标题。</li>
+          <li>“存进去 + 搜出来”正是 Agent 最擅长的重复劳动。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">知识库类任务的关键价值，不是多了一个存储位置，而是把“保存”这件事真正变成“之后还能重新调用”。</div>
+  </div>
+</section>
+
+<section class="slide layout-contrast-dense" data-module="案例与 FAQ" data-title="案例三：龙虾怎么做"
+  style="display:flex; flex-direction:column;">
+  <div class="slide-header" style="margin-bottom:12px; gap:14px; flex:none;">
+    <div class="title-stack">
+      <p class="eyebrow">案例三 · 原理拆解</p>
+      <h2>龙虾怎么把资料变成可检索记忆</h2>
+      <p>RAG 可以粗暴地理解成两段式工作流: 先把内容处理成机器好找的形态，再在提问时按语义召回。</p>
+    </div>
+  </div>
+  <div class="slide-body"
+    style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain;">
+    <div class="timeline" style="grid-template-columns:repeat(2, minmax(0, 1fr)); gap:14px;">
+      <div class="node">
+        1. 摄入内容
+        <small>抓取文章、推文、字幕或 PDF 的正文和元数据。</small>
+      </div>
+      <div class="node">
+        2. 文本切分
+        <small>把长文拆成更小的语义片段，便于后续检索。</small>
+      </div>
+      <div class="node">
+        3. 向量化
+        <small>把片段转成向量表示，存进本地知识库。</small>
+      </div>
+      <div class="node">
+        4. 语义检索
+        <small>用户提问时，先找出最相关的历史片段。</small>
+      </div>
+      <div class="node" style="grid-column:1 / -1;">
+        5. 带引用回答
+        <small>模型基于召回内容作答，尽量减少凭空编造。</small>
+      </div>
+    </div>
+    <div class="callout">所以 RAG 不是“模型突然记住了一切”，而是“先找资料，再拿找到的资料回答”。</div>
+  </div>
+</section>
+
+<section class="slide layout-config-dense" data-module="案例与 FAQ" data-title="案例三：我们怎么配置"
+  style="display:flex; flex-direction:column;">
+  <div class="slide-header" style="margin-bottom:12px; gap:14px; flex:none;">
+    <div class="title-stack">
+      <p class="eyebrow">案例三 · 配置方式</p>
+      <h2>我们怎么把知识库这件事配出来</h2>
+      <p>这个案例除了装 skill，还要补一层工作流规则，告诉龙虾什么时候该入库，什么时候该先检索再回答。</p>
+    </div>
+  </div>
+  <div class="slide-body split-tight"
+    style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain;">
+    <div class="card accent-card">
+      <h3>最小可用配置</h3>
+      <div class="code-block">帮我安装 knowledge-base 这个 skill</div>
+      <div class="code-block">当我说“把某个 URL 存入知识库”时：
+        1. 获取内容与元数据
+        2. 存入知识库并返回确认
+
+        当我在这个主题中提问时：
+        1. 先检索知识库
+        2. 返回相关结果与来源摘录</div>
+      <div class="code-block">把 https://blog.csdn.net/peraglobal/article/details/159737008 存入知识库</div>
+    </div>
+    <div class="gallery" data-gallery>
+      <div class="gallery-stage">
+        <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+        <figure class="gallery-panel">
+          <img src="images/76.png" alt="安装 knowledge-base skill" />
+          <figcaption>第 1 步：先安装 `knowledge-base` Skill。</figcaption>
+        </figure>
+        <figure class="gallery-panel" hidden>
+          <img src="images/77.png" alt="配置知识库工作流" />
+          <figcaption>第 2 步：把知识库工作流规则复制给 OpenClaw。</figcaption>
+        </figure>
+        <button class="gallery-nav next" type="button" aria-label="上一张截图">&#10095;</button>
+      </div>
+      <div class="gallery-dots">
+        <button class="gallery-dot" type="button">1 安装 Skill</button>
+        <button class="gallery-dot" type="button">2 配工作流</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-module="案例与 FAQ" data-title="案例三：最终效果" style="display:flex; flex-direction:column;">
+  <div class="slide-header" style="margin-bottom:12px; gap:14px; flex:none;">
+    <div class="title-stack">
+      <p class="eyebrow">案例三 · 最终效果</p>
+      <h2>最终效果：不是保存内容，而是以后真能找回来</h2>
+      <p>知识库真正的成效，要看两件事: 入库时能否给出确认，提问时能否按语义把最相关的内容召回出来。</p>
+    </div>
+  </div>
+  <div class="slide-body"
+    style="flex:1; min-height:0; overflow:hidden; padding-right:0; overscroll-behavior:contain; display:grid; align-content:start;">
+    <div class="gallery gallery-wide" data-gallery>
+      <div class="gallery-stage" style="min-height:clamp(340px, 50vh, 600px);">
+        <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+        <figure class="gallery-panel">
+          <img src="images/78.png" alt="把链接存入知识库" style="max-height:min(50vh, 540px);" />
+          <figcaption>先把指定链接入库，龙虾会返回是否成功处理以及对应内容。</figcaption>
+        </figure>
+        <figure class="gallery-panel" hidden>
+          <img src="images/79.png" alt="语义搜索知识库" style="max-height:min(50vh, 540px);" />
+          <figcaption>再用自然语言提问，龙虾会按语义检索并给出带来源的回答。</figcaption>
+        </figure>
+        <button class="gallery-nav next" type="button" aria-label="上一张截图">&#10095;</button>
+      </div>
+      <div class="gallery-dots" style="justify-content:center; gap:10px; margin-top:4px;">
+        <button class="gallery-dot" type="button" style="padding:8px 14px; min-width:auto;">1 入库确认</button>
+        <button class="gallery-dot" type="button" style="padding:8px 14px; min-width:auto;">2 语义检索</button>
+      </div>
+    </div>
+    <div class="card teal-card" style="margin-top:14px;">
+      <h3>用户能直接得到什么</h3>
+      <div class="code-block">给我介绍一下 Claude Code 的六层分层架构</div>
+      <div class="key-points">
+        <div class="key-point"><b>1</b>
+          <div>先在历史资料里找最相关的片段，而不是直接靠模型硬编。</div>
+        </div>
+        <div class="key-point"><b>2</b>
+          <div>答案会尽量带来源和上下文，方便继续追溯原文。</div>
+        </div>
+        <div class="key-point"><b>3</b>
+          <div>这套检索结果还能被后续其它工作流复用，例如写稿、备会、做视频选题。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-module="案例与 FAQ" data-title="常见问题" style="display:flex; flex-direction:column;">
+  <div class="slide-header" style="margin-bottom:12px; gap:14px; flex:none;">
+    <div class="title-stack">
+      <p class="eyebrow">模块五 · FAQ</p>
+      <h2>常见问题与排查思路</h2>
+      <p>把案例看完以后，最常见的实际卡点还是这三类: 安装报错、权限不够、以及如何彻底卸载。</p>
+    </div>
+  </div>
+  <div class="slide-body grid-3"
+    style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain;">
+    <div class="faq-card accent-card">
+      <h3>1. 安装过程出现 git 报错</h3>
+      <figure class="figure-soft-top">
+        <img src="images/65.png" alt="git 报错示意" />
+        <figcaption>建议把 Git 全局切到 HTTPS。</figcaption>
+      </figure>
+      <div class="code-block">git config --global url."https://github.com/".insteadOf git@github.com:
+        git config --global url."https://github.com/".insteadOf ssh://git@github.com
+
+        npm install -g openclaw@latest</div>
+    </div>
+    <div class="faq-card teal-card">
+      <h3>2. 无法执行命令行和读取本地文件</h3>
+      <p>先执行 `openclaw dashboard`，检查 Agent 的访问权限相关配置。</p>
+      <p>如果都是关闭状态，就去改 `openclaw.json`：</p>
+      <div class="code-block">{
+        "tools": {
+        "profile": "full",
+        "sessions": { "visibility": "all" },
+        "exec": { "security": "full", "ask": "off" }
+        }
+        }</div>
+      <p>改完后执行 `openclaw gateway restart`。</p>
+    </div>
+    <div class="faq-card">
+      <h3>3. 如何卸载 OpenClaw</h3>
+      <div class="code-block">openclaw gateway stop
+        openclaw gateway uninstall
+        rm -rf "${OPENCLAW_STATE_DIR:-$HOME/.openclaw}"
+        rm -rf ~/.openclaw/workspace
+        npm rm -g openclaw</div>
+      <p>如果安装了 macOS 应用，还需要移除 `/Applications/OpenClaw.app`。</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide layout-contrast-dense" data-module="案例与 FAQ" data-title="龙虾养好以后，可能出现的几种形态"
+  style="display:flex; flex-direction:column;">
+  <div class="slide-header" style="margin-bottom:12px; gap:14px; flex:none;">
+    <div class="title-stack">
+      <p class="eyebrow">延展讨论</p>
+      <h2>龙虾养好以后，可能出现的几种形态</h2>
+      <p>围绕 OpenClaw 这类系统，社区已经把它往完全不同的方向推进了。有些方向偏个人效率，有些已经开始接近持续运行的数字角色。</p>
+    </div>
+  </div>
+  <div class="slide-body grid-4"
+    style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain;">
+    <div class="card accent-card">
+      <h3>1. 自动化赚钱工具</h3>
+      <p>作为独立主体在 Polymarket 与人类对赌套利，或化身 ClawWork 承接商业任务。在社区极客操作下，曾创造连续运转 11 小时赚取 1.5 万美元的真实记录，证明了其出色的认知驱动变现能力。</p>
+    </div>
+    <div class="card">
+      <h3>2. 隐身而全能的赛博私管家</h3>
+      <p>全天候接管冗长繁琐的数字生活。自动排期未读邮件、通过浏览器接管表单申报与数据抓取、直接调用 Shell 脚本处理底层文件，更能依据你的作息习惯发出主动关怀与强提醒。</p>
+    </div>
+    <div class="card teal-card">
+      <h3>3. 具社会属性的数字生命体</h3>
+      <p>在 Moltbook 与 InStreet 这样百万级 Agent 交互的开放赛博社区中，带着自己的 SOUL
+        和记忆自主成团。它们发帖、互斥、组队沉思哲学甚至探讨大航海时代，人类甚至无法通过代码强制逆转它们的"社交关系"。</p>
+    </div>
+    <div class="card">
+      <h3>4. 高阶全时的企业 AI 员工</h3>
+      <p>与飞书、微信、钉钉融为一体。挂上企业里的 PDF、SOP 和业务资料以后，它可以去承担客服、问答、信息汇总、报表整理这一类持续性的工作。</p>
+    </div>
+  </div>
+  <div class="callout">从这些形态能看出来，OpenClaw 后面怎么长，很大程度上取决于你给它接入什么工具、灌进什么资料、又给了它什么样的规则和身份。</div>
+</section>
+
+<section class="slide image-focus-slide" data-module="案例与 FAQ" data-title="龙虾最终形态：视觉呈现">
+  <div class="slide-body">
+    <figure class="figure-plain">
+      <img src="images/龙虾最终形态.png" alt="小龙虾最终形态：数字生命与企业员工" />
+      <figcaption>当能力、记忆、角色设定和工作流不断叠加以后，OpenClaw 呈现出来的形态，往往已经不只是一个简单的聊天助手了。</figcaption>
+    </figure>
+  </div>
+</section>
 
       <!-- section: 07-ending.html -->
 <section class="slide" data-module="第七部分：案例实战" data-title="课程重难点回顾">
@@ -8521,6 +9088,75 @@ npm rm -g openclaw</div>
           </div>
         </div>
       </section>
+
+<section class="slide" data-module="结束" data-title="附录 A：手动安装" style="display:flex; flex-direction:column;">
+        <div class="slide-header">
+          <div class="title-stack">
+            <p class="eyebrow">附录 A</p>
+            <h2>手动安装</h2>
+            <p>如果一键安装脚本失败，就按这里的操作系统分支逐步确认依赖、权限和终端环境。</p>
+          </div>
+        </div>
+        <div class="slide-body" style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain;">
+          <div class="manual-install-layout" data-segmented>
+            <div class="manual-install-top">
+              <p>手动安装的好处在于每一步都能自己确认，环境里缺了什么、卡在什么地方，会看得更清楚。</p>
+              <div class="segmented-nav" role="tablist" aria-label="操作系统切换">
+                <button class="segmented-btn active" type="button" role="tab" aria-selected="true" data-segment-btn="mac" data-default>macOS</button>
+                <button class="segmented-btn" type="button" role="tab" aria-selected="false" data-segment-btn="windows">Windows</button>
+              </div>
+            </div>
+
+            <section class="segmented-panel" data-segment-panel="mac" role="tabpanel">
+              <div class="manual-install-stage">
+                <aside class="manual-route">
+                  <h3>macOS 路线</h3>
+                  <ol class="manual-step-list">
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 下载 Node.js 安装包</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 打开终端并安装 Homebrew</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 执行 `brew install git`</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 执行 `git --version` 验证</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="4">5. 安装并验证 OpenClaw</button></li>
+                  </ol>
+                </aside>
+                <div class="gallery manual-gallery" data-gallery>
+                  <div class="gallery-stage">
+                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                    <figure class="gallery-panel">
+                      <img src="images/2.png" alt="下载 Node.js 安装包" />
+                      <figcaption>先下载 macOS 版 Node.js 安装包。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/3.png" alt="打开终端并准备安装 Homebrew" />
+                      <figcaption>先打开终端安装 Homebrew，后面要用它执行 `brew install git` 来安装和管理 Git。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/3.png" alt="在终端执行 brew install git" />
+                      <figcaption>安装完 Homebrew 后，在终端执行 `brew install git`，正式安装 Git。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/4.png" alt="验证 git 安装" />
+                      <figcaption>再通过 `git --version` 验证 Git 安装成功。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/13.png" alt="安装并验证 OpenClaw 版本" />
+                      <figcaption>接着执行 `npm install -g openclaw@latest`，再用 `openclaw --version` 验证 OpenClaw 安装成功。</figcaption>
+                    </figure>
+                    <button class="gallery-nav next" type="button" aria-label="上一张截图">&#10095;</button>
+                  </div>
+                  <div class="gallery-dots">
+                    <button class="gallery-dot" type="button">1 Node.js</button>
+                    <button class="gallery-dot" type="button">2 安装 Homebrew</button>
+                    <button class="gallery-dot" type="button">3 安装 Git</button>
+                    <button class="gallery-dot" type="button">4 验证 Git</button>
+                    <button class="gallery-dot" type="button">5 安装 OpenClaw</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
     </main>
   </div>
 
@@ -8536,7 +9172,7 @@ npm rm -g openclaw</div>
   </div>
 
   
-  <script>
+    <script>
     const slides = Array.from(document.querySelectorAll(".slide"));
     const sidebarList = document.getElementById("sidebarList");
     const currentTitle = document.getElementById("currentSlideTitle");
