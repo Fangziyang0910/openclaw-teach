@@ -1,7 +1,7 @@
-<section class="slide layout-warning-dense" data-module="第四部分：现场部署" data-title="步骤 01：部署前检查">
+<section class="slide layout-warning-dense" data-module="安装与配置" data-title="步骤 01：部署前检查">
         <div class="slide-header">
           <div class="title-stack">
-            <p class="eyebrow">第四部分 · 步骤 01</p>
+            <p class="eyebrow">模块二 · 步骤 01</p>
             <h2>部署前检查</h2>
             <p>执行安装命令前，先把运行环境、终端工具和模型凭证准备完成。</p>
           </div>
@@ -53,10 +53,10 @@ git --version</div>
         </div>
       </section>
 
-<section class="slide" data-module="第四部分：现场部署" data-title="步骤 01 补充：Provider 凭证">
+<section class="slide" data-module="安装与配置" data-title="步骤 01 补充：Provider 凭证">
         <div class="slide-header">
           <div class="title-stack">
-            <p class="eyebrow">第四部分 · 步骤 01 补充</p>
+            <p class="eyebrow">模块二 · 步骤 01 补充</p>
             <h2>Provider 凭证准备</h2>
             <p>onboarding 过程中需要填写模型 Provider 凭证，因此应在运行向导前先准备好可用的 API Key。</p>
           </div>
@@ -121,10 +121,10 @@ git --version</div>
         </div>
       </section>
 
-<section class="slide layout-config-dense" data-module="第四部分：现场部署" data-title="步骤 02：执行安装命令">
+<section class="slide layout-config-dense" data-module="安装与配置" data-title="步骤 02：执行安装命令">
         <div class="slide-header">
           <div class="title-stack">
-            <p class="eyebrow">第四部分 · 步骤 02</p>
+            <p class="eyebrow">模块二 · 步骤 02</p>
             <h2>执行安装命令</h2>
             <p>OpenClaw 官方推荐先使用安装脚本。脚本会完成 CLI 安装，并进入 onboarding 流程。</p>
           </div>
@@ -145,10 +145,10 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
         <div class="callout">安装完成后，应继续执行 `openclaw onboard --install-daemon`；如果脚本已自动进入向导，可直接继续下一步。</div>
       </section>
 
-<section class="slide" data-module="第四部分：现场部署" data-title="步骤 02 补充：手动安装">
+<section class="slide" data-module="安装与配置" data-title="步骤 02 补充：手动安装">
         <div class="slide-header">
           <div class="title-stack">
-            <p class="eyebrow">第四部分 · 步骤 02 补充</p>
+            <p class="eyebrow">模块二 · 步骤 02 补充</p>
             <h2>手动安装</h2>
             <p>安装脚本失败时，可切换到手动安装路径，逐步确认依赖、权限和终端环境。</p>
           </div>
@@ -193,72 +193,14 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
                 </div>
               </div>
             </section>
-
-            <section class="segmented-panel" data-segment-panel="windows" role="tabpanel" hidden>
-              <div class="manual-install-stage">
-                <aside class="manual-route">
-                  <h3>Windows 路线</h3>
-                  <ol class="manual-step-list">
-                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 下载 Node.js 安装包</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 下载并安装 Git</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="3">3. 遇到原生依赖报错时，再补装构建工具</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="4">4. 勾选 C++ 与 Windows SDK</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="6">5. 管理员终端验证环境</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="8">6. 验证 OpenClaw 版本</button></li>
-                  </ol>
-                </aside>
-                <div class="gallery manual-gallery" data-gallery>
-                  <div class="gallery-stage">
-                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-                    <figure class="gallery-panel">
-                      <img src="images/5.png" alt="Windows 下载 Node.js 安装包" />
-                      <figcaption>先下载 Windows 版 Node.js 安装包。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/6.png" alt="下载 Git 安装包" />
-                      <figcaption>再下载 Git 安装包。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/7.png" alt="Git 安装向导" />
-                      <figcaption>Git 安装一路默认 Next 即可。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/8.png" alt="Visual Studio 下载页面" />
-                      <figcaption>如果 Windows 原生环境遇到编译型依赖报错，再考虑补装 Visual Studio 构建工具。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/9.png" alt="勾选 C++ 桌面开发和 Windows SDK" />
-                      <figcaption>仅在需要本机构建依赖时使用，不属于所有环境的默认步骤。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/10.png" alt="以管理员身份打开终端" />
-                      <figcaption>以管理员身份打开终端。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/11.png" alt="管理员终端界面" />
-                      <figcaption>确认已进入管理员终端环境。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/12.png" alt="Windows 环境验证" />
-                      <figcaption>先验证 Node / npm / Git 是否都正常。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/13.png" alt="验证 OpenClaw 版本" />
-                      <figcaption>再验证 OpenClaw 是否安装成功。</figcaption>
-                    </figure>
-                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-                  </div>
-                </div>
-              </div>
-            </section>
           </div>
         </div>
       </section>
 
-<section class="slide" data-module="第四部分：现场部署" data-title="步骤 03：运行 onboarding">
+<section class="slide" data-module="安装与配置" data-title="步骤 03：运行 onboarding">
         <div class="slide-header">
           <div class="title-stack">
-            <p class="eyebrow">第四部分 · 步骤 03</p>
+            <p class="eyebrow">模块二 · 步骤 03</p>
             <h2>运行 onboarding</h2>
             <p>安装完成后，在终端执行下列命令，进入官方交互式向导。</p>
           </div>
@@ -300,130 +242,14 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
                 </div>
               </div>
             </section>
-
-            <section class="segmented-panel" data-segment-panel="api-qwen" role="tabpanel" hidden>
-              <div class="manual-install-stage">
-                <aside class="manual-route">
-                  <h3>填写 Provider 凭证</h3>
-                  <p>选择一个已准备好的 Provider，把 API Key 填入向导。</p>
-                  <ol class="manual-step-list">
-                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 打开 Provider 控制台</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 复制 API Key</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 粘贴到 onboarding</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 完成 Provider 配置</button></li>
-                  </ol>
-                </aside>
-                <div class="gallery manual-gallery" data-gallery>
-                  <div class="gallery-stage">
-                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-                    <figure class="gallery-panel">
-                      <img src="images/16.png" alt="获取 Qwen API Key 页面" />
-                      <figcaption>进入 Provider 控制台，找到 API Key 管理页面。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/17.png" alt="填写 API 配置第一步" />
-                      <figcaption>复制 API Key，并在向导中选择对应 Provider。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/18.png" alt="填写 API 配置第二步" />
-                      <figcaption>把 API Key 粘贴到 onboarding 提示的输入项。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/19.png" alt="填写 API 配置第三步" />
-                      <figcaption>完成填写后继续下一项配置。</figcaption>
-                    </figure>
-                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <section class="segmented-panel" data-segment-panel="api-minimax" role="tabpanel" hidden>
-              <div class="manual-install-stage">
-                <aside class="manual-route">
-                  <h3>长期使用示例 (Minimax)</h3>
-                  <p>如果计划长期高频使用，可在 Provider 控制台开通套餐后再填写凭证。</p>
-                  <ol class="manual-step-list">
-                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 开通 Token Plan</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 获取 API Key</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 填写 Minimax 配置 ①</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 填写 Minimax 配置 ②</button></li>
-                  </ol>
-                </aside>
-                <div class="gallery manual-gallery" data-gallery>
-                  <div class="gallery-stage">
-                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-                    <figure class="gallery-panel">
-                      <img src="images/minimax-0.png" alt="Minimax Coding Plan 订阅页面" />
-                      <figcaption>长期使用时，也可以开通 Minimax Token Plan。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/minimax-3.png" alt="获取 Minimax Token Plan Key" />
-                      <figcaption>再获取对应的 Token Plan API Key。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/minimax-1.png" alt="填写 Minimax 配置第一步" />
-                      <figcaption>填写 Minimax 相关配置。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/minimax-2.png" alt="填写 Minimax 配置第二步" />
-                      <figcaption>确认 Minimax 配置完成。</figcaption>
-                    </figure>
-                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <section class="segmented-panel" data-segment-panel="finish" role="tabpanel" hidden>
-              <div class="manual-install-stage">
-                <aside class="manual-route">
-                  <h3>完成设置</h3>
-                  <p>第一次本地安装可先跳过渠道、暂不安装 Skills，优先把 Web UI 跑通。</p>
-                  <ol class="manual-step-list">
-                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 跳过通道配置</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 确认跳过</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. Skills 选 No</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. hooks 可选</button></li>
-                    <li><button class="manual-step-btn" type="button" data-gallery-jump="4">5. 选择 Web UI</button></li>
-                  </ol>
-                </aside>
-                <div class="gallery manual-gallery" data-gallery>
-                  <div class="gallery-stage">
-                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
-                    <figure class="gallery-panel">
-                      <img src="images/20.png" alt="暂时跳过通道" />
-                      <figcaption>通道配置先跳过，先保证本地网关和控制台工作正常，后面再接飞书更稳。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/21.png" alt="继续跳过后续通道设置" />
-                      <figcaption>继续确认暂时跳过通道设置。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/22.png" alt="Skills 选择 No" />
-                      <figcaption>Skills 先选 No，避免把“安装框架”和“装扩展能力”两个问题混在一起。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/23.png" alt="hooks 配置" />
-                      <figcaption>hooks 属于可选项，按需处理。</figcaption>
-                    </figure>
-                    <figure class="gallery-panel" hidden>
-                      <img src="images/24.png" alt="选择对话方式" />
-                      <figcaption>本地安装优先选 Web UI，状态更直观，也更方便查看配置与运行结果。</figcaption>
-                    </figure>
-                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
-                  </div>
-                </div>
-              </div>
-            </section>
           </div>
         </div>
       </section>
 
-<section class="slide layout-path-dense" data-module="第四部分：现场部署" data-title="步骤 03 速查：推荐选项">
+<section class="slide layout-path-dense" data-module="安装与配置" data-title="步骤 03 速查：推荐选项">
         <div class="slide-header">
           <div class="title-stack">
-            <p class="eyebrow">第四部分 · 步骤 03 速查</p>
+            <p class="eyebrow">模块二 · 步骤 03 速查</p>
             <h2>onboarding 推荐选项</h2>
             <p>首次本地部署时，下面这组选择通常最容易跑通主流程。</p>
           </div>
@@ -455,10 +281,11 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
           </div>
         </div>
       </section>
-<section class="slide" data-module="第四部分：现场部署" data-title="步骤 04：交互入口选择">
+
+<section class="slide" data-module="安装与配置" data-title="步骤 04：交互入口选择">
         <div class="slide-header">
           <div class="title-stack">
-            <p class="eyebrow">第四部分 · 步骤 04</p>
+            <p class="eyebrow">模块二 · 步骤 04</p>
             <h2>交互入口选择</h2>
             <p>首次本地部署推荐先用 Web UI；如果部署在远程主机或长期使用 SSH，可改用 TUI。</p>
           </div>
@@ -511,10 +338,10 @@ iwr -useb https://openclaw.ai/install.ps1 | iex</div>
         </div>
       </section>
 
-<section class="slide" data-module="第四部分：现场部署" data-title="步骤 05：部署验收">
+<section class="slide" data-module="安装与配置" data-title="步骤 05：部署验收">
         <div class="slide-header">
           <div class="title-stack">
-            <p class="eyebrow">第四部分 · 步骤 05</p>
+            <p class="eyebrow">模块二 · 步骤 05</p>
             <h2>部署验收</h2>
             <p>部署完成后，按命令行检查 → 服务状态 → 控制界面 这条顺序验收。</p>
           </div>
@@ -549,10 +376,10 @@ openclaw dashboard</div>
         </div>
       </section>
 
-<section class="slide" data-module="第四部分：现场部署" data-title="步骤 06：故障定位顺序">
+<section class="slide" data-module="安装与配置" data-title="步骤 06：故障定位顺序">
         <div class="slide-header">
           <div class="title-stack">
-            <p class="eyebrow">第四部分 · 步骤 06</p>
+            <p class="eyebrow">模块二 · 步骤 06</p>
             <h2>故障定位顺序</h2>
             <p>出现异常时，按固定顺序排查，可快速判断问题位于环境、服务、模型还是渠道层。</p>
           </div>
@@ -588,10 +415,10 @@ openclaw dashboard</div>
         </div>
       </section>
 
-<section class="slide" data-module="第四部分：现场部署" data-title="附：长期使用时再看 Token Plan">
+<section class="slide" data-module="安装与配置" data-title="附：长期使用时再看 Token Plan">
         <div class="slide-header">
           <div class="title-stack">
-            <p class="eyebrow">第四部分 · 附加说明</p>
+            <p class="eyebrow">模块二 · 附加说明</p>
             <h2>长期使用时再看 Token Plan</h2>
             <p>这部分不影响首次部署；只有在本地部署已经跑通后，才需要比较不同 Provider 的套餐方式。</p>
           </div>

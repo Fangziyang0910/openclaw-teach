@@ -1,45 +1,40 @@
 {
-  "generatedAt": "2026-04-23T09:18:17.275Z",
+  "generatedAt": "2026-04-24T03:36:08.179Z",
   "source": "openclaw-training-ppt.html",
   "sections": [
     {
       "file": "01-opening.html",
-      "module": "第一部分：认识 OpenClaw",
-      "slideCount": 16
-    },
-    {
-      "file": "02-deploy-strategy.html",
-      "module": "第三部分：部署思路",
-      "slideCount": 1
+      "module": "开场",
+      "slideCount": 11
     },
     {
       "file": "02-local-deploy.html",
-      "module": "第四部分：现场部署",
+      "module": "本地部署",
       "slideCount": 2
     },
     {
       "file": "03-install-config.html",
-      "module": "第四部分：现场部署",
+      "module": "安装与配置",
       "slideCount": 10
     },
     {
       "file": "04-feishu.html",
-      "module": "第五部分：飞书接入",
+      "module": "飞书接入",
       "slideCount": 8
     },
     {
       "file": "05-skills-customization.html",
-      "module": "第六部分：Skills 配置",
+      "module": "Skills 与个性化",
       "slideCount": 10
     },
     {
       "file": "06-cases-faq.html",
-      "module": "第七部分：案例实战",
-      "slideCount": 11
+      "module": "案例与 FAQ",
+      "slideCount": 16
     },
     {
       "file": "07-ending.html",
-      "module": "第七部分：案例实战",
+      "module": "结束",
       "slideCount": 2
     }
   ]
