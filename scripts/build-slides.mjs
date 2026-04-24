@@ -42,13 +42,16 @@ async function main() {
       return `      <!-- section: ${file} -->\n${content.trimEnd()}`;
     }),
   );
+  const slideCount = sectionContents.reduce((count, content) => {
+    return count + (content.match(/<section\s+class="slide/g) || []).length;
+  }, 0);
 
   const html = [
     head,
     "<style>\n",
     css.trimEnd(),
     "\n  </style>",
-    shellStart,
+    shellStart.replace("__TOTAL_SLIDES__", String(slideCount)),
     sectionContents.join("\n\n"),
     shellEnd,
     "  <script>\n",

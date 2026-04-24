@@ -219,6 +219,38 @@
       box-shadow: none;
     }
 
+    .btn-icon {
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      vertical-align: -2px;
+    }
+
+    .sidebar-icon {
+      width: 13px;
+      height: 13px;
+      display: inline-block;
+      vertical-align: -1px;
+      margin-right: 3px;
+      opacity: 0.6;
+    }
+
+    .heading-icon {
+      width: 18px;
+      height: 18px;
+      display: inline-block;
+      vertical-align: -3px;
+      margin-right: 6px;
+    }
+
+    .inline-icon-sm {
+      width: 13px;
+      height: 13px;
+      display: inline-block;
+      vertical-align: -1px;
+      margin-right: 4px;
+    }
+
     /* === MAIN LAYOUT (sidebar + stage) === */
     .shell {
       display: grid;
@@ -313,40 +345,7 @@
       font-weight: 700;
     }
 
-    .stage {
-      --fullscreen-scale: 1.08;
-      overflow: auto;
-      border-radius: 30px;
-      padding: 0 0 22px;
-      position: relative;
-    }
-
-    .stage:fullscreen {
-      width: 100vw;
-      height: 100vh;
-      padding: 0;
-      border-radius: 0;
-      overflow: auto;
-      background:
-        radial-gradient(circle at 12% 16%, rgba(245, 158, 11, 0.18), transparent 28%),
-        radial-gradient(circle at 88% 14%, rgba(15, 118, 110, 0.16), transparent 26%),
-        linear-gradient(180deg, #fbf6ee 0%, var(--bg) 48%, var(--bg-deep) 100%);
-    }
-
-    .stage:fullscreen .slide {
-      width: calc((100vw - 96px) / var(--fullscreen-scale));
-      min-height: calc((100vh - 96px) / var(--fullscreen-scale));
-      margin: 48px auto;
-      border-radius: 32px;
-      box-shadow: var(--shadow);
-      overflow: visible;
-      zoom: var(--fullscreen-scale);
-    }
-
     .slide {
-      width: min(1340px, 100%);
-      height: calc(100vh - 130px); height: calc(100dvh - 130px);
-      margin: 0 auto;
       padding: var(--slide-padding);
       border-radius: 32px;
       background:
@@ -364,6 +363,8 @@
       --slide-scale: 1;
       display: grid;
       place-items: center;
+      border-radius: 30px;
+      position: relative;
       min-width: 0;
       min-height: 0;
       overflow: hidden;
@@ -378,6 +379,10 @@
       padding: 0;
       overflow: hidden;
       border-radius: 0;
+      background:
+        radial-gradient(circle at 12% 16%, rgba(245, 158, 11, 0.18), transparent 28%),
+        radial-gradient(circle at 88% 14%, rgba(15, 118, 110, 0.16), transparent 26%),
+        linear-gradient(180deg, #fbf6ee 0%, var(--bg) 48%, var(--bg-deep) 100%);
     }
 
     .stage .slide,
@@ -391,7 +396,6 @@
       margin: 0;
       transform: scale(var(--slide-scale));
       transform-origin: center center;
-      zoom: 1;
       overflow: hidden;
     }
 
@@ -2334,8 +2338,6 @@
         gap: 14px;
       }
       .slide {
-        height: calc(100vh - 90px);
-        height: calc(100dvh - 90px);
         border-radius: 20px;
       }
       .gallery-stage {
@@ -2367,8 +2369,6 @@
         padding-right: 10px;
       }
       .slide {
-        height: calc(100vh - 70px);
-        height: calc(100dvh - 70px);
         border-radius: 14px;
       }
       .gallery-stage {
@@ -2408,17 +2408,6 @@
 
       .sidebar {
         order: 2;
-      }
-
-    /* === STAGE (slide viewport) === */
-    .stage {
-        order: 1;
-        overflow: visible;
-      }
-
-      .slide {
-        height: auto;
-        min-height: auto;
       }
 
       .resource-grid {
@@ -5469,10 +5458,10 @@
       </div>
     </div>
     <div class="topbar-actions">
-      <div class="progress"><span data-current>1</span> / <span data-total>61</span></div>
-      <button class="btn" id="prevBtn" type="button"><i data-lucide="chevron-left" style="width:16px;height:16px;display:inline-block;vertical-align:-2px;"></i> 上一页</button>
-      <button class="btn" id="nextBtn" type="button">下一页 <i data-lucide="chevron-right" style="width:16px;height:16px;display:inline-block;vertical-align:-2px;"></i></button>
-      <button class="btn" id="fullscreenBtn" type="button" title="全屏 (F)"><i data-lucide="maximize-2" style="width:16px;height:16px;display:inline-block;vertical-align:-2px;"></i></button>
+      <div class="progress"><span data-current>1</span> / <span data-total>60</span></div>
+      <button class="btn" id="prevBtn" type="button"><i class="btn-icon" data-lucide="chevron-left"></i> 上一页</button>
+      <button class="btn" id="nextBtn" type="button">下一页 <i class="btn-icon" data-lucide="chevron-right"></i></button>
+      <button class="btn" id="fullscreenBtn" type="button" title="全屏 (F)"><i class="btn-icon" data-lucide="maximize-2"></i></button>
     </div>
     <!-- Progress bar -->
     <div class="progress-bar" id="progressBar"></div>
@@ -5504,7 +5493,7 @@
           </div>
           <div class="cover-side">
             <div class="cover-panel">
-              <h3><i data-lucide="list-checks" style="width:18px;height:18px;display:inline-block;vertical-align:-3px;margin-right:6px;"></i>课程安排</h3>
+              <h3><i class="heading-icon" data-lucide="list-checks"></i>课程安排</h3>
               <div class="key-points course-route-mini">
                 <div class="key-point"><b>1</b><div><strong>认识 OpenClaw</strong> — 知道它适合处理哪些工作。</div></div>
                 <div class="key-point"><b>2</b><div><strong>基本原理</strong> — 看懂基本架构和运行过程。</div></div>
@@ -5531,10 +5520,10 @@
           </div>
           <div class="module-intro-side">
             <div class="modules-grid">
-              <div class="module-box"><span><i data-lucide="messages-square" style="width:13px;height:13px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>它是什么</span><p>把消息入口、大模型和工作资源接在一起。</p></div>
-              <div class="module-box"><span><i data-lucide="route" style="width:13px;height:13px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>它能做什么</span><p>读取资料、使用工具、整理结果、发回消息。</p></div>
-              <div class="module-box"><span><i data-lucide="workflow" style="width:13px;height:13px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>课堂会用到的场景</span><p>飞书协作、资料整理、文件处理和自动化任务。</p></div>
-              <div class="module-box"><span><i data-lucide="users-round" style="width:13px;height:13px;display:inline-block;vertical-align:-1px;margin-right:4px;"></i>使用边界和社区动态</span><p>权限设置、安全范围、长期任务和社区动态。</p></div>
+              <div class="module-box"><span><i class="inline-icon-sm" data-lucide="messages-square"></i>它是什么</span><p>把消息入口、大模型和工作资源接在一起。</p></div>
+              <div class="module-box"><span><i class="inline-icon-sm" data-lucide="route"></i>它能做什么</span><p>读取资料、使用工具、整理结果、发回消息。</p></div>
+              <div class="module-box"><span><i class="inline-icon-sm" data-lucide="workflow"></i>课堂会用到的场景</span><p>飞书协作、资料整理、文件处理和自动化任务。</p></div>
+              <div class="module-box"><span><i class="inline-icon-sm" data-lucide="users-round"></i>使用边界和社区动态</span><p>权限设置、安全范围、长期任务和社区动态。</p></div>
             </div>
           </div>
         </div>
@@ -7960,7 +7949,7 @@ npm rm -g openclaw</div>
       item.dataset.module = slide.dataset.module;
       const iconName = moduleIcons[slide.dataset.module] || "file";
       const isFirstInModule = index === 0 || slides[index - 1].dataset.module !== slide.dataset.module;
-      const iconHtml = isFirstInModule ? `<i data-lucide="${iconName}" style="width:13px;height:13px;display:inline-block;vertical-align:-1px;margin-right:3px;opacity:0.6;"></i>` : "";
+      const iconHtml = isFirstInModule ? `<i class="sidebar-icon" data-lucide="${iconName}"></i>` : "";
       item.innerHTML = `<span>${iconHtml}${slide.dataset.module}</span><strong>${index + 1}. ${slide.dataset.title}</strong>`;
       item.addEventListener("click", () => goToSlide(index));
       sidebarList.appendChild(item);

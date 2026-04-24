@@ -61,7 +61,7 @@
       item.dataset.module = slide.dataset.module;
       const iconName = moduleIcons[slide.dataset.module] || "file";
       const isFirstInModule = index === 0 || slides[index - 1].dataset.module !== slide.dataset.module;
-      const iconHtml = isFirstInModule ? `<i data-lucide="${iconName}" style="width:13px;height:13px;display:inline-block;vertical-align:-1px;margin-right:3px;opacity:0.6;"></i>` : "";
+      const iconHtml = isFirstInModule ? `<i class="sidebar-icon" data-lucide="${iconName}"></i>` : "";
       item.innerHTML = `<span>${iconHtml}${slide.dataset.module}</span><strong>${index + 1}. ${slide.dataset.title}</strong>`;
       item.addEventListener("click", () => goToSlide(index));
       sidebarList.appendChild(item);
