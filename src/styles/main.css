@@ -3230,6 +3230,66 @@
       min-height: clamp(310px, 46vh, 460px);
     }
 
+    .chat-to-workflow-layout {
+      display: grid;
+      grid-template-columns: 0.78fr 1.22fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .chat-to-workflow-copy {
+      display: grid;
+      grid-template-rows: 1fr auto;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .compact-chat-card {
+      min-height: 0;
+      align-content: center;
+      padding: 22px;
+    }
+
+    .scene-figure {
+      margin: 0;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(124, 45, 18, 0.1);
+      box-shadow: 0 16px 36px rgba(72, 45, 16, 0.09);
+    }
+
+    .scene-figure img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 430px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .value-chip-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .value-chip-row span {
+      display: flex;
+      align-items: center;
+      min-height: 42px;
+      padding: 9px 12px;
+      border-radius: 14px;
+      color: var(--module-deep, var(--accent-deep));
+      background: rgba(255, 247, 237, 0.9);
+      border: 1px solid rgba(180, 83, 9, 0.14);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
     .chat-window-top {
       display: flex;
       gap: 8px;
@@ -3652,7 +3712,7 @@
       opacity: 0.66;
     }
 
-    .slide[data-title="七个模块总览"] .slide-header,
+    .slide[data-title="课程内容总览"] .slide-header,
     .slide[data-title="会议纪要：两种流程对比"] .slide-header,
     .slide[data-title="Agent：从回答问题到推进任务"] .slide-header,
     .slide[data-title="把 OpenClaw 放进一张图"] .slide-header,
@@ -3660,35 +3720,35 @@
       margin-bottom: clamp(8px, 1vw, 12px);
     }
 
-    .slide[data-title="七个模块总览"] .card {
+    .slide[data-title="课程内容总览"] .card {
       padding: clamp(12px, 1.3vw, 16px);
       border-radius: 20px;
     }
 
-    .slide[data-title="七个模块总览"] .card h3 {
+    .slide[data-title="课程内容总览"] .card h3 {
       font-size: clamp(15px, 1.55vw, 18px);
     }
 
-    .slide[data-title="七个模块总览"] .goal-list,
-    .slide[data-title="七个模块总览"] .number-list {
+    .slide[data-title="课程内容总览"] .goal-list,
+    .slide[data-title="课程内容总览"] .number-list {
       margin-top: clamp(7px, 0.8vw, 9px);
       gap: clamp(6px, 0.7vw, 8px);
     }
 
-    .slide[data-title="七个模块总览"] .compact-list .item {
+    .slide[data-title="课程内容总览"] .compact-list .item {
       grid-template-columns: clamp(28px, 2.6vw, 32px) 1fr;
       gap: 10px;
       padding: clamp(6px, 0.72vw, 9px) clamp(8px, 1vw, 12px);
       border-radius: 16px;
     }
 
-    .slide[data-title="七个模块总览"] .compact-list .item b {
+    .slide[data-title="课程内容总览"] .compact-list .item b {
       width: clamp(28px, 2.6vw, 32px);
       height: clamp(28px, 2.6vw, 32px);
       font-size: 13px;
     }
 
-    .slide[data-title="七个模块总览"] .compact-list .item p {
+    .slide[data-title="课程内容总览"] .compact-list .item p {
       font-size: clamp(11px, 1.05vw, 13px);
       line-height: 1.42;
     }
@@ -3705,6 +3765,248 @@
     .slide[data-title="真实工作里的五个断点"] .pain-card > p {
       font-size: clamp(11px, 1.1vw, 13px);
       line-height: 1.55;
+    }
+
+    .slide.chat-ai-pain-visual {
+      padding: 24px 28px;
+    }
+
+    .slide.chat-ai-pain-visual .slide-header {
+      margin-bottom: 10px;
+    }
+
+    .chat-ai-pain-body {
+      display: grid;
+      gap: 10px;
+      justify-items: center;
+    }
+
+    .chat-ai-pain-figure {
+      width: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      overflow: visible;
+    }
+
+    .chat-ai-pain-figure img {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      max-height: 540px;
+      padding: 0;
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 18px 42px rgba(72, 45, 16, 0.12);
+    }
+
+    .chat-ai-pain-note {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      max-width: 980px;
+      padding: 9px 14px;
+      border-radius: 16px;
+      color: var(--accent-deep);
+      background: rgba(255, 247, 237, 0.9);
+      border: 1px solid rgba(180, 83, 9, 0.14);
+      font-size: clamp(13px, 1.15vw, 15px);
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .chat-ai-pain-note i {
+      width: 18px;
+      height: 18px;
+      flex: none;
+    }
+
+    .concept-visual-slide {
+      padding: 24px 28px;
+    }
+
+    .concept-visual-slide .slide-header {
+      margin-bottom: 10px;
+    }
+
+    .concept-visual-body {
+      display: grid;
+      gap: 10px;
+      justify-items: center;
+      align-content: start;
+    }
+
+    .concept-visual-figure {
+      width: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      overflow: visible;
+    }
+
+    .concept-visual-figure img {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      padding: 0;
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 18px 42px rgba(72, 45, 16, 0.12);
+    }
+
+    .agent-visual-figure img {
+      max-height: 468px;
+    }
+
+    .openclaw-visual-figure img {
+      max-height: 500px;
+    }
+
+    .meeting-compare-figure img {
+      max-height: 545px;
+    }
+
+    .requirement-visual-figure img {
+      max-height: 492px;
+    }
+
+    .skills-visual-figure img {
+      max-height: 420px;
+    }
+
+    .safety-visual-figure img {
+      max-height: 420px;
+    }
+
+    .community-visual-figure img {
+      max-height: 400px;
+    }
+
+    .openclaw-identity-slide {
+      padding: 24px 28px;
+    }
+
+    .openclaw-identity-slide .slide-header {
+      margin-bottom: 8px;
+    }
+
+    .openclaw-identity-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 245px;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .openclaw-identity-figure {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: visible;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+    }
+
+    .openclaw-identity-figure img {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      max-height: 450px;
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 18px 42px rgba(72, 45, 16, 0.12);
+    }
+
+    .identity-pill-grid {
+      display: grid;
+      gap: 10px;
+      align-content: center;
+    }
+
+    .identity-pill-grid div {
+      display: grid;
+      gap: 5px;
+      padding: 13px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(124, 45, 18, 0.12);
+      box-shadow: 0 12px 28px rgba(72, 45, 16, 0.06);
+    }
+
+    .identity-pill-grid i {
+      width: 24px;
+      height: 24px;
+      color: var(--module, var(--accent));
+    }
+
+    .identity-pill-grid strong {
+      font-size: 16px;
+      line-height: 1.25;
+    }
+
+    .identity-pill-grid span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .warning-note {
+      color: #7c2d12;
+      background: rgba(255, 247, 237, 0.94);
+      border-color: rgba(180, 83, 9, 0.18);
+    }
+
+    .community-context-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(124, 45, 18, 0.12);
+      box-shadow: 0 12px 28px rgba(72, 45, 16, 0.06);
+    }
+
+    .community-context-strip span {
+      color: var(--module-deep, var(--accent-deep));
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .community-context-strip i {
+      width: 15px;
+      height: 15px;
+      color: var(--module, var(--accent));
+    }
+
+    .concept-visual-note {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      max-width: 980px;
+      padding: 9px 14px;
+      border-radius: 16px;
+      color: var(--accent-deep);
+      background: rgba(255, 247, 237, 0.9);
+      border: 1px solid rgba(180, 83, 9, 0.14);
+      font-size: clamp(13px, 1.15vw, 15px);
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .concept-visual-note i {
+      width: 18px;
+      height: 18px;
+      flex: none;
     }
 
     .slide[data-title="Agent：从回答问题到推进任务"] .agent-statement {

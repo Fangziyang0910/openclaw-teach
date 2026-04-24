@@ -70,8 +70,9 @@
 3. `src/`：课程 Slide 的源码目录。后续修改 Slide 时必须优先修改 `src` 中的源码，而不是直接修改最终生成的 HTML。
 4. `openclaw-training-ppt.html`：由源码和脚本合成出来的最终课程 Slide HTML 文件，用于现场授课展示。
 5. `scripts/`：用于构建、合成或辅助生成最终 Slide HTML 的脚本目录。修改 Slide 源码后，应通过项目已有命令脚本重新生成最终 HTML。
-6. `OpenClaw橙皮书-从入门到精通-v1.4.0.pdf`：已有成体系资料，可作为内容参考。
-7. `awesome-openclaw-tutorial/`：从 GitHub 拉取并清理后的参考教程库，当前已只保留教学文档和图片。
+6. 修改 Slide 后，只需运行项目构建脚本重新生成最终 HTML；浏览器预览和页面检查由用户自行完成。
+7. `OpenClaw橙皮书-从入门到精通-v1.4.0.pdf`：已有成体系资料，可作为内容参考。
+8. `awesome-openclaw-tutorial/`：从 GitHub 拉取并清理后的参考教程库，当前已只保留教学文档和图片。
 
 ## 参考教程库说明
 
