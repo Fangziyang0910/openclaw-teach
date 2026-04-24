@@ -4,7 +4,7 @@
   "sections": [
     {
       "file": "01-opening.html",
-      "module": "开场",
+      "module": "第一部分：认识 OpenClaw",
       "slideCount": 11
     },
     {
@@ -19,32 +19,32 @@
     },
     {
       "file": "02-local-deploy.html",
-      "module": "本地部署",
+      "module": "第四部分：现场部署",
       "slideCount": 1
     },
     {
       "file": "03-install-config.html",
-      "module": "安装与配置",
+      "module": "第四部分：现场部署",
       "slideCount": 9
     },
     {
       "file": "04-feishu.html",
-      "module": "飞书接入",
+      "module": "第五部分：飞书接入",
       "slideCount": 8
     },
     {
       "file": "05-skills-customization.html",
-      "module": "Skills 与个性化",
+      "module": "第六部分：Skills 配置",
       "slideCount": 13
     },
     {
       "file": "06-cases-faq.html",
-      "module": "案例与 FAQ",
+      "module": "第七部分：案例实战",
       "slideCount": 17
     },
     {
       "file": "07-ending.html",
-      "module": "结束",
+      "module": "第七部分：案例实战",
       "slideCount": 3
     }
   ]

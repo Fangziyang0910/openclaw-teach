@@ -45,7 +45,7 @@
     /* Module icon map for sidebar */
     const moduleIcons = {
       "第一部分：认识 OpenClaw": "compass",
-      "第二部分：基本原理": "network",
+      "第二部分：核心原理": "network",
       "第三部分：部署思路": "route",
       "第四部分：现场部署": "server",
       "第五部分：飞书接入": "message-circle",
