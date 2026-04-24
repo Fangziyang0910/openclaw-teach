@@ -21,8 +21,26 @@
       items: [],
       index: 0,
     };
+    const slideViewport = {
+      width: 1280,
+      height: 720,
+      margin: 0.985,
+    };
 
     totalEl.textContent = String(slides.length);
+
+    function updateSlideScale() {
+      const stageWidth = stage.clientWidth;
+      const stageHeight = stage.clientHeight;
+      if (!stageWidth || !stageHeight) {
+        return;
+      }
+      const scale = Math.min(
+        stageWidth / slideViewport.width,
+        stageHeight / slideViewport.height,
+      ) * slideViewport.margin;
+      stage.style.setProperty("--slide-scale", String(Math.max(scale, 0.1)));
+    }
 
     /* Module icon map for sidebar */
     const moduleIcons = {
@@ -79,7 +97,7 @@
       if (activeItem) {
         activeItem.scrollIntoView({ block: "nearest" });
       }
-      stage.scrollTo({ top: 0, behavior: "smooth" });
+      updateSlideScale();
       updateHash(index);
     }
 
@@ -288,7 +306,13 @@
 
     document.addEventListener("fullscreenchange", () => {
       fullscreenBtn.textContent = document.fullscreenElement ? "退出全屏" : "全屏";
+      requestAnimationFrame(updateSlideScale);
     });
+
+    window.addEventListener("resize", updateSlideScale);
+    if ("ResizeObserver" in window) {
+      new ResizeObserver(updateSlideScale).observe(stage);
+    }
 
     document.addEventListener("keydown", (event) => {
       const blocked = ["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement?.tagName || "");
@@ -343,6 +367,7 @@
     lightboxClose.addEventListener("click", closeLightbox);
     lightboxPrev.addEventListener("click", () => stepLightbox(-1));
     lightboxNext.addEventListener("click", () => stepLightbox(1));
+    updateSlideScale();
     lightbox.addEventListener("click", (event) => {
       if (event.target === lightbox) {
         closeLightbox();

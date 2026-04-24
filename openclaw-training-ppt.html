@@ -356,6 +356,44 @@
       overflow: hidden;
     }
 
+    /* === FIXED 16:9 SLIDE CANVAS === */
+    .stage {
+      --slide-design-width: 1280px;
+      --slide-design-height: 720px;
+      --slide-scale: 1;
+      display: grid;
+      place-items: center;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .stage:fullscreen {
+      display: grid;
+      place-items: center;
+      width: 100vw;
+      height: 100vh;
+      padding: 0;
+      overflow: hidden;
+      border-radius: 0;
+    }
+
+    .stage .slide,
+    .stage:fullscreen .slide {
+      width: var(--slide-design-width);
+      height: var(--slide-design-height);
+      min-width: var(--slide-design-width);
+      min-height: var(--slide-design-height);
+      max-width: none;
+      max-height: none;
+      margin: 0;
+      transform: scale(var(--slide-scale));
+      transform-origin: center center;
+      zoom: 1;
+      overflow: hidden;
+    }
+
     .slide::before {
       content: "";
       position: absolute;
@@ -1377,6 +1415,410 @@
       margin-top: -4px;
     }
 
+    /* Fixed 16:9 canvas density guards for the later, screenshot-heavy modules. */
+    .stage .slide[data-module="模块四：现场部署"],
+    .stage .slide[data-module="模块五：飞书接入"],
+    .stage .slide[data-module="模块六：Skills 配置"],
+    .stage .slide[data-module="模块七：案例实战"] {
+      padding: 28px 32px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .slide-header,
+    .stage .slide[data-module="模块五：飞书接入"] .slide-header,
+    .stage .slide[data-module="模块六：Skills 配置"] .slide-header,
+    .stage .slide[data-module="模块七：案例实战"] .slide-header {
+      margin-bottom: 10px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] h2,
+    .stage .slide[data-module="模块五：飞书接入"] h2,
+    .stage .slide[data-module="模块六：Skills 配置"] h2,
+    .stage .slide[data-module="模块七：案例实战"] h2 {
+      font-size: 38px;
+      line-height: 1.08;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] h3,
+    .stage .slide[data-module="模块五：飞书接入"] h3,
+    .stage .slide[data-module="模块六：Skills 配置"] h3,
+    .stage .slide[data-module="模块七：案例实战"] h3 {
+      font-size: 18px;
+      line-height: 1.22;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .title-stack p,
+    .stage .slide[data-module="模块五：飞书接入"] .title-stack p,
+    .stage .slide[data-module="模块六：Skills 配置"] .title-stack p,
+    .stage .slide[data-module="模块七：案例实战"] .title-stack p {
+      margin-top: 7px;
+      line-height: 1.45;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .eyebrow,
+    .stage .slide[data-module="模块五：飞书接入"] .eyebrow,
+    .stage .slide[data-module="模块六：Skills 配置"] .eyebrow,
+    .stage .slide[data-module="模块七：案例实战"] .eyebrow {
+      margin-bottom: 7px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .grid-2,
+    .stage .slide[data-module="模块四：现场部署"] .grid-3,
+    .stage .slide[data-module="模块四：现场部署"] .grid-4,
+    .stage .slide[data-module="模块四：现场部署"] .split-tight,
+    .stage .slide[data-module="模块五：飞书接入"] .grid-2,
+    .stage .slide[data-module="模块五：飞书接入"] .grid-3,
+    .stage .slide[data-module="模块五：飞书接入"] .grid-4,
+    .stage .slide[data-module="模块五：飞书接入"] .split-tight,
+    .stage .slide[data-module="模块六：Skills 配置"] .grid-2,
+    .stage .slide[data-module="模块六：Skills 配置"] .grid-3,
+    .stage .slide[data-module="模块六：Skills 配置"] .grid-4,
+    .stage .slide[data-module="模块六：Skills 配置"] .split-tight,
+    .stage .slide[data-module="模块七：案例实战"] .grid-2,
+    .stage .slide[data-module="模块七：案例实战"] .grid-3,
+    .stage .slide[data-module="模块七：案例实战"] .grid-4,
+    .stage .slide[data-module="模块七：案例实战"] .split-tight {
+      gap: 12px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .card,
+    .stage .slide[data-module="模块四：现场部署"] .metric-card,
+    .stage .slide[data-module="模块四：现场部署"] .step-card,
+    .stage .slide[data-module="模块四：现场部署"] .case-card,
+    .stage .slide[data-module="模块四：现场部署"] .faq-card,
+    .stage .slide[data-module="模块五：飞书接入"] .card,
+    .stage .slide[data-module="模块五：飞书接入"] .metric-card,
+    .stage .slide[data-module="模块五：飞书接入"] .step-card,
+    .stage .slide[data-module="模块五：飞书接入"] .case-card,
+    .stage .slide[data-module="模块五：飞书接入"] .faq-card,
+    .stage .slide[data-module="模块六：Skills 配置"] .card,
+    .stage .slide[data-module="模块六：Skills 配置"] .metric-card,
+    .stage .slide[data-module="模块六：Skills 配置"] .step-card,
+    .stage .slide[data-module="模块六：Skills 配置"] .case-card,
+    .stage .slide[data-module="模块六：Skills 配置"] .faq-card,
+    .stage .slide[data-module="模块七：案例实战"] .card,
+    .stage .slide[data-module="模块七：案例实战"] .metric-card,
+    .stage .slide[data-module="模块七：案例实战"] .step-card,
+    .stage .slide[data-module="模块七：案例实战"] .case-card,
+    .stage .slide[data-module="模块七：案例实战"] .faq-card {
+      padding: 14px 15px;
+      border-radius: 18px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .card p,
+    .stage .slide[data-module="模块五：飞书接入"] .card p,
+    .stage .slide[data-module="模块六：Skills 配置"] .card p,
+    .stage .slide[data-module="模块七：案例实战"] .card p {
+      margin-top: 6px;
+      line-height: 1.45;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .code-block,
+    .stage .slide[data-module="模块五：飞书接入"] .code-block,
+    .stage .slide[data-module="模块六：Skills 配置"] .code-block,
+    .stage .slide[data-module="模块七：案例实战"] .code-block {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .callout,
+    .stage .slide[data-module="模块五：飞书接入"] .callout,
+    .stage .slide[data-module="模块六：Skills 配置"] .callout,
+    .stage .slide[data-module="模块七：案例实战"] .callout {
+      margin-top: 10px;
+      padding: 10px 14px 10px 38px;
+      border-radius: 16px;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .callout::before,
+    .stage .slide[data-module="模块五：飞书接入"] .callout::before,
+    .stage .slide[data-module="模块六：Skills 配置"] .callout::before,
+    .stage .slide[data-module="模块七：案例实战"] .callout::before {
+      left: 13px;
+      top: 11px;
+      font-size: 14px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .table-wrap,
+    .stage .slide[data-module="模块五：飞书接入"] .table-wrap,
+    .stage .slide[data-module="模块六：Skills 配置"] .table-wrap,
+    .stage .slide[data-module="模块七：案例实战"] .table-wrap {
+      margin-top: 10px;
+      border-radius: 18px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] th,
+    .stage .slide[data-module="模块四：现场部署"] td,
+    .stage .slide[data-module="模块五：飞书接入"] th,
+    .stage .slide[data-module="模块五：飞书接入"] td,
+    .stage .slide[data-module="模块六：Skills 配置"] th,
+    .stage .slide[data-module="模块六：Skills 配置"] td,
+    .stage .slide[data-module="模块七：案例实战"] th,
+    .stage .slide[data-module="模块七：案例实战"] td {
+      padding: 9px 11px;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .steps-list,
+    .stage .slide[data-module="模块五：飞书接入"] .steps-list,
+    .stage .slide[data-module="模块六：Skills 配置"] .steps-list,
+    .stage .slide[data-module="模块七：案例实战"] .steps-list,
+    .stage .slide[data-module="模块四：现场部署"] .number-list,
+    .stage .slide[data-module="模块五：飞书接入"] .number-list,
+    .stage .slide[data-module="模块六：Skills 配置"] .number-list,
+    .stage .slide[data-module="模块七：案例实战"] .number-list,
+    .stage .slide[data-module="模块四：现场部署"] .key-points,
+    .stage .slide[data-module="模块五：飞书接入"] .key-points,
+    .stage .slide[data-module="模块六：Skills 配置"] .key-points,
+    .stage .slide[data-module="模块七：案例实战"] .key-points,
+    .stage .slide[data-module="模块四：现场部署"] .list-clean,
+    .stage .slide[data-module="模块五：飞书接入"] .list-clean,
+    .stage .slide[data-module="模块六：Skills 配置"] .list-clean,
+    .stage .slide[data-module="模块七：案例实战"] .list-clean {
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .steps-list .step-row,
+    .stage .slide[data-module="模块五：飞书接入"] .steps-list .step-row,
+    .stage .slide[data-module="模块六：Skills 配置"] .steps-list .step-row,
+    .stage .slide[data-module="模块七：案例实战"] .steps-list .step-row,
+    .stage .slide[data-module="模块四：现场部署"] .number-list .item,
+    .stage .slide[data-module="模块五：飞书接入"] .number-list .item,
+    .stage .slide[data-module="模块六：Skills 配置"] .number-list .item,
+    .stage .slide[data-module="模块七：案例实战"] .number-list .item,
+    .stage .slide[data-module="模块四：现场部署"] .key-point,
+    .stage .slide[data-module="模块五：飞书接入"] .key-point,
+    .stage .slide[data-module="模块六：Skills 配置"] .key-point,
+    .stage .slide[data-module="模块七：案例实战"] .key-point,
+    .stage .slide[data-module="模块四：现场部署"] .list-clean li,
+    .stage .slide[data-module="模块五：飞书接入"] .list-clean li,
+    .stage .slide[data-module="模块六：Skills 配置"] .list-clean li,
+    .stage .slide[data-module="模块七：案例实战"] .list-clean li {
+      padding: 9px 11px;
+      border-radius: 14px;
+      line-height: 1.38;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .steps-list .step-row,
+    .stage .slide[data-module="模块五：飞书接入"] .steps-list .step-row,
+    .stage .slide[data-module="模块六：Skills 配置"] .steps-list .step-row,
+    .stage .slide[data-module="模块七：案例实战"] .steps-list .step-row {
+      grid-template-columns: 64px 1fr;
+      gap: 10px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .gallery,
+    .stage .slide[data-module="模块五：飞书接入"] .gallery,
+    .stage .slide[data-module="模块六：Skills 配置"] .gallery,
+    .stage .slide[data-module="模块七：案例实战"] .gallery {
+      --gallery-img-max-h: 285px;
+      gap: 8px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .gallery-stage,
+    .stage .slide[data-module="模块五：飞书接入"] .gallery-stage,
+    .stage .slide[data-module="模块六：Skills 配置"] .gallery-stage,
+    .stage .slide[data-module="模块七：案例实战"] .gallery-stage {
+      min-height: 318px;
+      padding: 8px 42px 10px;
+      border-radius: 20px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .gallery-panel,
+    .stage .slide[data-module="模块五：飞书接入"] .gallery-panel,
+    .stage .slide[data-module="模块六：Skills 配置"] .gallery-panel,
+    .stage .slide[data-module="模块七：案例实战"] .gallery-panel {
+      gap: 6px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .gallery-panel img,
+    .stage .slide[data-module="模块五：飞书接入"] .gallery-panel img,
+    .stage .slide[data-module="模块六：Skills 配置"] .gallery-panel img,
+    .stage .slide[data-module="模块七：案例实战"] .gallery-panel img {
+      border-radius: 16px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .gallery-panel figcaption,
+    .stage .slide[data-module="模块五：飞书接入"] .gallery-panel figcaption,
+    .stage .slide[data-module="模块六：Skills 配置"] .gallery-panel figcaption,
+    .stage .slide[data-module="模块七：案例实战"] .gallery-panel figcaption {
+      padding-top: 7px;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .gallery-dots,
+    .stage .slide[data-module="模块五：飞书接入"] .gallery-dots,
+    .stage .slide[data-module="模块六：Skills 配置"] .gallery-dots,
+    .stage .slide[data-module="模块七：案例实战"] .gallery-dots {
+      gap: 5px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .gallery-dot,
+    .stage .slide[data-module="模块五：飞书接入"] .gallery-dot,
+    .stage .slide[data-module="模块六：Skills 配置"] .gallery-dot,
+    .stage .slide[data-module="模块七：案例实战"] .gallery-dot {
+      padding: 6px 8px;
+      font-size: 11px;
+      line-height: 1.25;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .manual-install-layout,
+    .stage .slide[data-module="模块五：飞书接入"] .manual-install-layout {
+      gap: 9px;
+      padding: 11px 12px;
+      border-radius: 20px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .manual-install-top,
+    .stage .slide[data-module="模块五：飞书接入"] .manual-install-top {
+      gap: 8px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .manual-install-top p,
+    .stage .slide[data-module="模块五：飞书接入"] .manual-install-top p {
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .segmented-nav,
+    .stage .slide[data-module="模块五：飞书接入"] .segmented-nav {
+      gap: 5px;
+      padding: 4px;
+      flex-wrap: wrap;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .segmented-btn,
+    .stage .slide[data-module="模块五：飞书接入"] .segmented-btn {
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .manual-install-stage,
+    .stage .slide[data-module="模块五：飞书接入"] .manual-install-stage {
+      grid-template-columns: minmax(205px, 0.72fr) minmax(0, 1.62fr);
+      gap: 10px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .manual-route,
+    .stage .slide[data-module="模块五：飞书接入"] .manual-route {
+      padding: 10px;
+      border-radius: 16px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .manual-route h3,
+    .stage .slide[data-module="模块五：飞书接入"] .manual-route h3 {
+      margin-bottom: 6px;
+      font-size: 16px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .manual-route p,
+    .stage .slide[data-module="模块五：飞书接入"] .manual-route p {
+      margin: 0 0 7px;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .manual-step-list,
+    .stage .slide[data-module="模块五：飞书接入"] .manual-step-list {
+      gap: 6px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .manual-step-btn,
+    .stage .slide[data-module="模块五：飞书接入"] .manual-step-btn {
+      padding: 7px 9px;
+      border-radius: 11px;
+      font-size: 12px;
+      line-height: 1.25;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .manual-gallery .gallery-stage,
+    .stage .slide[data-module="模块五：飞书接入"] .manual-gallery .gallery-stage {
+      min-height: 288px;
+      --gallery-img-max-h: 252px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .resource-panel {
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 20px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .resource-panel h3 {
+      margin-bottom: 8px;
+      font-size: 17px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .resource-grid {
+      gap: 8px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .resource-link-card {
+      gap: 4px;
+      padding: 8px 9px;
+      border-radius: 13px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .resource-link-card strong {
+      font-size: 12px;
+    }
+
+    .stage .slide[data-module="模块四：现场部署"] .resource-link-card a {
+      font-size: 9px;
+      line-height: 1.25;
+    }
+
+    .stage .slide[data-title="步骤 01：部署前检查"] .split-tight {
+      grid-template-columns: 0.78fr 1.22fr;
+    }
+
+    .stage .slide[data-title="步骤 01：部署前检查"] .warning p {
+      padding: 10px 11px;
+      line-height: 1.42;
+    }
+
+    .stage .slide[data-title="步骤 01：部署前检查"] .warning p:first-of-type {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .stage .slide[data-title="交互边界划分"] .gallery-wide .gallery-stage {
+      min-height: 274px;
+      --gallery-img-max-h: 238px;
+    }
+
+    .stage .slide[data-title="交互边界划分"] .warning .callout {
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .stage .slide[data-title="常见问题"] .grid-3 {
+      gap: 10px;
+    }
+
+    .stage .slide[data-title="常见问题"] .faq-card .code-block {
+      font-size: 10px;
+      line-height: 1.3;
+    }
+
+    .stage .slide.image-focus-slide .figure-plain img {
+      max-height: 570px;
+    }
+
+    .stage .slide.image-focus-slide .figure-plain figcaption {
+      padding-top: 8px;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
     /* Single-image focus slides: remove nested frames and maximize visual area */
     .slide.image-focus-slide {
       padding-block: clamp(16px, 2vw, 28px);
@@ -2022,6 +2464,30 @@
       .slide {
         padding: 32px 24px;
       }
+    }
+
+    /* Keep presentation mode as a fixed 16:9 canvas after responsive overrides. */
+    .stage {
+      display: grid;
+      place-items: center;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .stage .slide,
+    .stage:fullscreen .slide {
+      width: var(--slide-design-width);
+      height: var(--slide-design-height);
+      min-width: var(--slide-design-width);
+      min-height: var(--slide-design-height);
+      max-width: none;
+      max-height: none;
+      margin: 0;
+      transform: scale(var(--slide-scale));
+      transform-origin: center center;
+      overflow: hidden;
     }
 
     /* === ANIMATION SYSTEM === */
@@ -5853,8 +6319,26 @@ npm rm -g openclaw</div>
       items: [],
       index: 0,
     };
+    const slideViewport = {
+      width: 1280,
+      height: 720,
+      margin: 0.985,
+    };
 
     totalEl.textContent = String(slides.length);
+
+    function updateSlideScale() {
+      const stageWidth = stage.clientWidth;
+      const stageHeight = stage.clientHeight;
+      if (!stageWidth || !stageHeight) {
+        return;
+      }
+      const scale = Math.min(
+        stageWidth / slideViewport.width,
+        stageHeight / slideViewport.height,
+      ) * slideViewport.margin;
+      stage.style.setProperty("--slide-scale", String(Math.max(scale, 0.1)));
+    }
 
     /* Module icon map for sidebar */
     const moduleIcons = {
@@ -5911,7 +6395,7 @@ npm rm -g openclaw</div>
       if (activeItem) {
         activeItem.scrollIntoView({ block: "nearest" });
       }
-      stage.scrollTo({ top: 0, behavior: "smooth" });
+      updateSlideScale();
       updateHash(index);
     }
 
@@ -6120,7 +6604,13 @@ npm rm -g openclaw</div>
 
     document.addEventListener("fullscreenchange", () => {
       fullscreenBtn.textContent = document.fullscreenElement ? "退出全屏" : "全屏";
+      requestAnimationFrame(updateSlideScale);
     });
+
+    window.addEventListener("resize", updateSlideScale);
+    if ("ResizeObserver" in window) {
+      new ResizeObserver(updateSlideScale).observe(stage);
+    }
 
     document.addEventListener("keydown", (event) => {
       const blocked = ["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement?.tagName || "");
@@ -6175,6 +6665,7 @@ npm rm -g openclaw</div>
     lightboxClose.addEventListener("click", closeLightbox);
     lightboxPrev.addEventListener("click", () => stepLightbox(-1));
     lightboxNext.addEventListener("click", () => stepLightbox(1));
+    updateSlideScale();
     lightbox.addEventListener("click", (event) => {
       if (event.target === lightbox) {
         closeLightbox();
