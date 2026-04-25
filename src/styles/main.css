@@ -1668,68 +1668,79 @@
     }
 
     .stage .slide[data-module="第四部分：现场部署"] .manual-install-layout,
-    .stage .slide[data-module="第五部分：飞书接入"] .manual-install-layout {
+    .stage .slide[data-module="第五部分：飞书接入"] .manual-install-layout,
+    .stage .slide[data-title="附录 A：手动安装"] .manual-install-layout {
       gap: 9px;
       padding: 11px 12px;
       border-radius: 20px;
     }
 
     .stage .slide[data-module="第四部分：现场部署"] .manual-install-top,
-    .stage .slide[data-module="第五部分：飞书接入"] .manual-install-top {
+    .stage .slide[data-module="第五部分：飞书接入"] .manual-install-top,
+    .stage .slide[data-title="附录 A：手动安装"] .manual-install-top {
       gap: 8px;
     }
 
     .stage .slide[data-module="第四部分：现场部署"] .manual-install-top p,
-    .stage .slide[data-module="第五部分：飞书接入"] .manual-install-top p {
+    .stage .slide[data-module="第五部分：飞书接入"] .manual-install-top p,
+    .stage .slide[data-title="附录 A：手动安装"] .manual-install-top p {
       font-size: 12px;
       line-height: 1.35;
     }
 
     .stage .slide[data-module="第四部分：现场部署"] .segmented-nav,
-    .stage .slide[data-module="第五部分：飞书接入"] .segmented-nav {
+    .stage .slide[data-module="第五部分：飞书接入"] .segmented-nav,
+    .stage .slide[data-title="附录 A：手动安装"] .segmented-nav {
       gap: 5px;
       padding: 4px;
       flex-wrap: wrap;
     }
 
     .stage .slide[data-module="第四部分：现场部署"] .segmented-btn,
-    .stage .slide[data-module="第五部分：飞书接入"] .segmented-btn {
+    .stage .slide[data-module="第五部分：飞书接入"] .segmented-btn,
+    .stage .slide[data-title="附录 A：手动安装"] .segmented-btn {
       padding: 6px 10px;
       font-size: 12px;
     }
 
     .stage .slide[data-module="第四部分：现场部署"] .manual-install-stage,
-    .stage .slide[data-module="第五部分：飞书接入"] .manual-install-stage {
+    .stage .slide[data-module="第五部分：飞书接入"] .manual-install-stage,
+    .stage .slide[data-title="附录 A：手动安装"] .manual-install-stage {
       grid-template-columns: minmax(205px, 0.72fr) minmax(0, 1.62fr);
       gap: 10px;
     }
 
     .stage .slide[data-module="第四部分：现场部署"] .manual-route,
-    .stage .slide[data-module="第五部分：飞书接入"] .manual-route {
+    .stage .slide[data-module="第五部分：飞书接入"] .manual-route,
+    .stage .slide[data-title="附录 A：手动安装"] .manual-route {
       padding: 10px;
       border-radius: 16px;
     }
 
     .stage .slide[data-module="第四部分：现场部署"] .manual-route h3,
-    .stage .slide[data-module="第五部分：飞书接入"] .manual-route h3 {
+    .stage .slide[data-module="第五部分：飞书接入"] .manual-route h3,
+    .stage .slide[data-title="附录 A：手动安装"] .manual-route h3 {
       margin-bottom: 6px;
       font-size: 16px;
     }
 
     .stage .slide[data-module="第四部分：现场部署"] .manual-route p,
-    .stage .slide[data-module="第五部分：飞书接入"] .manual-route p {
+    .stage .slide[data-module="第五部分：飞书接入"] .manual-route p,
+    .stage .slide[data-title="附录 A：手动安装"] .manual-route p {
       margin: 0 0 7px;
       font-size: 12px;
       line-height: 1.35;
     }
 
     .stage .slide[data-module="第四部分：现场部署"] .manual-step-list,
-    .stage .slide[data-module="第五部分：飞书接入"] .manual-step-list {
+    .stage .slide[data-module="第五部分：飞书接入"] .manual-step-list,
+    .stage .slide[data-title="附录 A：手动安装"] .manual-step-list {
       gap: 6px;
     }
 
     .stage .slide[data-module="第四部分：现场部署"] .manual-step-btn,
-    .stage .slide[data-module="第五部分：飞书接入"] .manual-step-btn {
+    .stage .slide[data-module="第五部分：飞书接入"] .manual-step-btn,
+    .stage .slide[data-title="附录 A：手动安装"] .manual-step-btn {
       padding: 7px 9px;
       border-radius: 11px;
       font-size: 12px;
@@ -1737,7 +1748,8 @@
     }
 
     .stage .slide[data-module="第四部分：现场部署"] .manual-gallery .gallery-stage,
-    .stage .slide[data-module="第五部分：飞书接入"] .manual-gallery .gallery-stage {
+    .stage .slide[data-module="第五部分：飞书接入"] .manual-gallery .gallery-stage,
+    .stage .slide[data-title="附录 A：手动安装"] .manual-gallery .gallery-stage {
       min-height: 288px;
       --gallery-img-max-h: 252px;
     }
@@ -1796,11 +1808,11 @@
       line-height: 1.35;
     }
 
-    .stage .slide[data-title="常见问题"] .grid-3 {
+    .stage .slide[data-title="附录 B：常见问题与排查"] .grid-3 {
       gap: 10px;
     }
 
-    .stage .slide[data-title="常见问题"] .faq-card .code-block {
+    .stage .slide[data-title="附录 B：常见问题与排查"] .faq-card .code-block {
       font-size: 10px;
       line-height: 1.3;
     }

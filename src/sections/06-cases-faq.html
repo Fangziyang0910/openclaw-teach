@@ -1,4 +1,4 @@
-<section class="slide compact-center" data-module="第七部分：案例实战" data-title="实战案例与常见问题">
+<section class="slide compact-center" data-module="第七部分：案例实战" data-title="实战案例">
   <div class="slide-body module-intro">
     <div class="module-intro-copy">
       <p class="eyebrow">第七部分</p>
@@ -21,11 +21,6 @@
           <span>Case 3</span>
           <h3>个人知识库</h3>
           <p>核心不是存内容，而是以后真能凭自然语言把内容找回来。</p>
-        </div>
-        <div class="module-box">
-          <span>FAQ</span>
-          <h3>常见问题</h3>
-          <p>最后把安装、权限和卸载这几个高频卡点一起收束处理。</p>
         </div>
       </div>
     </div>
@@ -85,53 +80,14 @@
   style="display:flex; flex-direction:column;">
   <div class="slide-header" style="margin-bottom:12px; gap:14px; flex:none;">
     <div class="title-stack">
-      <p class="eyebrow">案例一 · 原理拆解</p>
-      <h2>龙虾怎么把日报做出来</h2>
-      <p>这不是一个“帮你总结一下”的单步任务，而是一条按计划自动运行的数据流水线。</p>
+
     </div>
   </div>
-  <div class="slide-body"
-    style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain;">
-    <div class="grid-4" style="grid-template-columns:repeat(2, minmax(0, 1fr)); gap:14px;">
-      <div class="card">
-        <h3>1. 定时触发</h3>
-        <p>通过 cron 在每天固定时间唤醒，用户不用手动点运行，早上打开飞书就能直接看。</p>
-      </div>
-      <div class="card accent-card">
-        <h3>2. 多源抓取</h3>
-        <p>并发获取 46 个 RSS、44 个账号动态、19 个 GitHub 发布和 4 个搜索主题的增量内容。</p>
-      </div>
-      <div class="card teal-card">
-        <h3>3. 去重评分</h3>
-        <p>把不同来源里讲同一件事的内容归并，再按来源质量、时效性和互动度筛掉低价值信息。</p>
-      </div>
-      <div class="card">
-        <h3>4. 结构化投递</h3>
-        <p>把留下来的内容翻译、分类、排版成日报，再通过飞书 Webhook 推送到你实际工作的通道里。</p>
-      </div>
-    </div>
-    <div class="stats-strip" style="display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:12px;">
-      <div class="stat"
-        style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
-        <strong>46</strong>
-        <span>RSS 来源</span>
-      </div>
-      <div class="stat"
-        style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
-        <strong>44</strong>
-        <span>X 账号</span>
-      </div>
-      <div class="stat"
-        style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
-        <strong>19</strong>
-        <span>GitHub 发布</span>
-      </div>
-      <div class="stat"
-        style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
-        <strong>4</strong>
-        <span>搜索主题</span>
-      </div>
-    </div>
+  <div class="slide-body" style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center;">
+    <figure class="tall" style="margin:0; padding:0; width:100%; max-width:1120px;">
+      <img src="images/ChatGPT Image 2026年4月25日 14_28_19.png" alt="科技日报自动化流水线示意图"
+        style="max-height:min(66vh, 600px); width:100%; object-fit:contain;" />
+    </figure>
   </div>
 </section>
 
@@ -206,23 +162,8 @@
   </div>
   <div class="slide-body"
     style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain; display:grid; align-content:start;">
-    <div class="card accent-card" style="margin-bottom:14px; padding:14px 14px 12px;">
-      <h3>最小配置步骤</h3>
-      <div class="key-points" style="gap:8px; margin-top:10px;">
-        <div class="key-point" style="padding:8px 10px; gap:10px;"><b>1</b>
-          <div>先安装 `feishu-deep-research`。</div>
-        </div>
-        <div class="key-point" style="padding:8px 10px; gap:10px;"><b>2</b>
-          <div>按提示补 Tavily API Key，补齐联网搜索能力。</div>
-        </div>
-        <div class="key-point" style="padding:8px 10px; gap:10px;"><b>3</b>
-          <div>再输入研究主题和想要的报告结构。</div>
-        </div>
-      </div>
-    </div>
     <div class="gallery gallery-wide" data-gallery>
       <div class="gallery-stage" style="min-height:clamp(360px, 54vh, 660px);">
-        <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
         <figure class="gallery-panel">
           <img src="images/07-cases/69.png" alt="科技日报内容细节" style="max-height:min(54vh, 600px);" />
           <figcaption>日报会按栏目整理成结构化消息，方便在飞书里直接阅读。</figcaption>
@@ -238,6 +179,23 @@
         <button class="gallery-dot" type="button" style="padding:8px 14px; min-width:auto;">2 看使用场景</button>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="slide" data-module="第七部分：案例实战" data-title="案例一：使用场景" style="display:flex; flex-direction:column;">
+  <div class="slide-header" style="margin-bottom:12px; gap:14px; flex:none;">
+    <div class="title-stack">
+      <p class="eyebrow">案例一 · 使用场景</p>
+      <h2>早晨打开飞书，日报已经在那里</h2>
+    </div>
+  </div>
+  <div class="slide-body"
+    style="flex:1; min-height:0; display:flex; align-items:flex-start; justify-content:center; padding-top:12px;">
+    <figure class="tall" style="max-width:920px; width:100%;">
+      <img src="images/07-cases/case1-overview.png" alt="真实办公场景：喝咖啡读飞书科技日报"
+        style="max-height:min(56vh, 500px); width:100%; object-fit:contain;" />
+      <figcaption>早晨端杯咖啡，在飞书里阅读小龙虾跨网精准萃取的独立简报，这才是私人龙虾应有的体感。</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -294,53 +252,13 @@
   style="display:flex; flex-direction:column;">
   <div class="slide-header" style="margin-bottom:12px; gap:14px; flex:none;">
     <div class="title-stack">
-      <p class="eyebrow">案例二 · 原理拆解</p>
-      <h2>龙虾怎么把“搜资料”变成“做研究”</h2>
-      <p>这条链路更像研究专员的工作过程: 先拆题，再搜，再发现缺口，再继续补齐，最后才成文。</p>
     </div>
   </div>
-  <div class="slide-body"
-    style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain;">
-    <div class="grid-4" style="grid-template-columns:repeat(2, minmax(0, 1fr)); gap:14px;">
-      <div class="card">
-        <h3>1. 意图拆解</h3>
-        <p>先把宽泛主题拆成市场、竞争格局、关键数据、趋势等可研究维度，避免一开始就被模糊问题带偏。</p>
-      </div>
-      <div class="card accent-card">
-        <h3>2. 初轮搜索</h3>
-        <p>调用 Tavily 等联网能力并发抓第一批资料，先把关键事实、主要来源和基础线索铺开。</p>
-      </div>
-      <div class="card teal-card">
-        <h3>3. 缺口识别与补搜</h3>
-        <p>读完首轮结果后继续找缺的数据点和论据，再自动改关键词补第二轮、第三轮搜索。</p>
-      </div>
-      <div class="card">
-        <h3>4. 结构化成文</h3>
-        <p>最后按报告逻辑把结论、证据和建议组装起来，交付的是一份真正能看的研究报告。</p>
-      </div>
-    </div>
-    <div class="stats-strip" style="display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:12px;">
-      <div class="stat"
-        style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
-        <strong>拆题</strong>
-        <span>先定维度</span>
-      </div>
-      <div class="stat"
-        style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
-        <strong>联网</strong>
-        <span>并发初搜</span>
-      </div>
-      <div class="stat"
-        style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
-        <strong>补搜</strong>
-        <span>识别缺口</span>
-      </div>
-      <div class="stat"
-        style="min-width:0; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
-        <strong>成文</strong>
-        <span>结构交付</span>
-      </div>
-    </div>
+  <div class="slide-body" style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center;">
+    <figure class="tall" style="margin:0; padding:0; width:100%; max-width:1120px;">
+      <img src="images/报告如何生成.png" alt="深度研究报告生成流程示意图"
+        style="max-height:min(66vh, 600px); width:100%; object-fit:contain;" />
+    </figure>
   </div>
 </section>
 
@@ -425,7 +343,8 @@
 
       <div class="card" style="margin-top:14px;">
         <h3>一、执行摘要</h3>
-        <p>全球导览机器人市场正处于高速增长期。2024 年全球智能导览机器人市场规模约 2.78 亿美元，预计 2031 年将达到 4.21 亿美元，年复合增长率为 6.2%。中国智能服务机器人产业在 AI 技术驱动下进入高速增长阶段，2025 年市场规模预计突破 350 亿美元。</p>
+        <p>全球导览机器人市场正处于高速增长期。2024 年全球智能导览机器人市场规模约 2.78 亿美元，预计 2031 年将达到 4.21 亿美元，年复合增长率为 6.2%。中国智能服务机器人产业在 AI
+          技术驱动下进入高速增长阶段，2025 年市场规模预计突破 350 亿美元。</p>
         <ul class="list-clean" style="margin-top:12px;">
           <li>国内发展态势：中国导览机器人在博物馆、机场、展厅等场景加速落地，头部企业已形成规模化部署能力。</li>
           <li>国外发展态势：日本软银 Pepper、美国 Atlas 等代表产品引领技术前沿，但成本高、落地难仍是主要挑战。</li>
@@ -433,15 +352,36 @@
         <div class="table-wrap" style="margin-top:12px;">
           <table>
             <thead>
-              <tr><th>指标</th><th>数据</th></tr>
+              <tr>
+                <th>指标</th>
+                <th>数据</th>
+              </tr>
             </thead>
             <tbody>
-              <tr><td>2024年全球导览机器人市场规模</td><td>2.78亿美元</td></tr>
-              <tr><td>2031年预期市场规模</td><td>4.21亿美元</td></tr>
-              <tr><td>年复合增长率</td><td>6.2%</td></tr>
-              <tr><td>2025年中国服务机器人市场规模预期</td><td>350亿美元</td></tr>
-              <tr><td>中国人形机器人 2024年1-10月投融资</td><td>42亿元</td></tr>
-              <tr><td>博物馆部署导览机器人日均访客提升</td><td>30%</td></tr>
+              <tr>
+                <td>2024年全球导览机器人市场规模</td>
+                <td>2.78亿美元</td>
+              </tr>
+              <tr>
+                <td>2031年预期市场规模</td>
+                <td>4.21亿美元</td>
+              </tr>
+              <tr>
+                <td>年复合增长率</td>
+                <td>6.2%</td>
+              </tr>
+              <tr>
+                <td>2025年中国服务机器人市场规模预期</td>
+                <td>350亿美元</td>
+              </tr>
+              <tr>
+                <td>中国人形机器人 2024年1-10月投融资</td>
+                <td>42亿元</td>
+              </tr>
+              <tr>
+                <td>博物馆部署导览机器人日均访客提升</td>
+                <td>30%</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -490,13 +430,33 @@
         <div class="table-wrap" style="margin-top:12px;">
           <table>
             <thead>
-              <tr><th>区域</th><th>特点</th><th>代表</th></tr>
+              <tr>
+                <th>区域</th>
+                <th>特点</th>
+                <th>代表</th>
+              </tr>
             </thead>
             <tbody>
-              <tr><td>北美</td><td>技术领先</td><td>Best Buy 门店机器人</td></tr>
-              <tr><td>欧洲</td><td>博物馆应用成熟</td><td>法国博物馆导览机器人</td></tr>
-              <tr><td>日本</td><td>人形机器人尖端</td><td>软银 Pepper</td></tr>
-              <tr><td>中国</td><td>规模化落地最快</td><td>科梦奇、云迹科技</td></tr>
+              <tr>
+                <td>北美</td>
+                <td>技术领先</td>
+                <td>Best Buy 门店机器人</td>
+              </tr>
+              <tr>
+                <td>欧洲</td>
+                <td>博物馆应用成熟</td>
+                <td>法国博物馆导览机器人</td>
+              </tr>
+              <tr>
+                <td>日本</td>
+                <td>人形机器人尖端</td>
+                <td>软银 Pepper</td>
+              </tr>
+              <tr>
+                <td>中国</td>
+                <td>规模化落地最快</td>
+                <td>科梦奇、云迹科技</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -508,13 +468,33 @@
         <div class="table-wrap" style="margin-top:12px;">
           <table>
             <thead>
-              <tr><th>年份</th><th>事件数</th><th>规模</th></tr>
+              <tr>
+                <th>年份</th>
+                <th>事件数</th>
+                <th>规模</th>
+              </tr>
             </thead>
             <tbody>
-              <tr><td>2021</td><td>4件</td><td>1.7亿元</td></tr>
-              <tr><td>2022</td><td>10件</td><td>21.3亿元</td></tr>
-              <tr><td>2023</td><td>30件</td><td>54.1亿元</td></tr>
-              <tr><td>2024年1-10月</td><td>33件</td><td>42亿元</td></tr>
+              <tr>
+                <td>2021</td>
+                <td>4件</td>
+                <td>1.7亿元</td>
+              </tr>
+              <tr>
+                <td>2022</td>
+                <td>10件</td>
+                <td>21.3亿元</td>
+              </tr>
+              <tr>
+                <td>2023</td>
+                <td>30件</td>
+                <td>54.1亿元</td>
+              </tr>
+              <tr>
+                <td>2024年1-10月</td>
+                <td>33件</td>
+                <td>42亿元</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -605,35 +585,13 @@
   <div class="slide-header" style="margin-bottom:12px; gap:14px; flex:none;">
     <div class="title-stack">
       <p class="eyebrow">案例三 · 原理拆解</p>
-      <h2>龙虾怎么把资料变成可检索记忆</h2>
-      <p>RAG 可以粗暴地理解成两段式工作流: 先把内容处理成机器好找的形态，再在提问时按语义召回。</p>
     </div>
   </div>
-  <div class="slide-body"
-    style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain;">
-    <div class="timeline" style="grid-template-columns:repeat(2, minmax(0, 1fr)); gap:14px;">
-      <div class="node">
-        1. 摄入内容
-        <small>抓取文章、推文、字幕或 PDF 的正文和元数据。</small>
-      </div>
-      <div class="node">
-        2. 文本切分
-        <small>把长文拆成更小的语义片段，便于后续检索。</small>
-      </div>
-      <div class="node">
-        3. 向量化
-        <small>把片段转成向量表示，存进本地知识库。</small>
-      </div>
-      <div class="node">
-        4. 语义检索
-        <small>用户提问时，先找出最相关的历史片段。</small>
-      </div>
-      <div class="node" style="grid-column:1 / -1;">
-        5. 带引用回答
-        <small>模型基于召回内容作答，尽量减少凭空编造。</small>
-      </div>
-    </div>
-    <div class="callout">所以 RAG 不是“模型突然记住了一切”，而是“先找资料，再拿找到的资料回答”。</div>
+  <div class="slide-body" style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center;">
+    <figure class="tall" style="margin:0; padding:0; width:100%; max-width:1120px;">
+      <img src="images/案例三.png" alt="个人知识库 RAG 工作流程示意图"
+        style="max-height:min(66vh, 600px); width:100%; object-fit:contain;" />
+    </figure>
   </div>
 </section>
 
@@ -690,9 +648,9 @@
     </div>
   </div>
   <div class="slide-body"
-    style="flex:1; min-height:0; overflow:hidden; padding-right:0; overscroll-behavior:contain; display:grid; align-content:start;">
+    style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain; display:grid; align-content:start;">
     <div class="gallery gallery-wide" data-gallery>
-      <div class="gallery-stage" style="min-height:clamp(340px, 50vh, 600px);">
+      <div class="gallery-stage" style="min-height:clamp(300px, 44vh, 430px);">
         <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
         <figure class="gallery-panel">
           <img src="images/07-cases/78.png" alt="把链接存入知识库" style="max-height:min(50vh, 540px);" />

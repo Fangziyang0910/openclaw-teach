@@ -247,7 +247,7 @@
               </figure>
               <figure class="gallery-panel" hidden>
                 <img src="images/04-local-deploy/15.png" alt="Quick start 选项" />
-                <figcaption>向导模式选择 `Quick start`。</figcaption>
+                <figcaption>向导模式优先选择 `Quick start`，先走官方默认配置，减少首次安装时的自定义变量。</figcaption>
               </figure>
               <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
             </div>
@@ -259,7 +259,8 @@
           <aside class="manual-route">
             <h3>API (Qwen)</h3>
             <ol class="manual-step-list">
-              <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 获取 Qwen API Key</button></li>
+              <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 获取 Qwen API Key</button>
+              </li>
               <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 填写配置第 1 步</button></li>
               <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 填写配置第 2 步</button></li>
               <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 完成 Provider 绑定</button></li>
@@ -300,8 +301,10 @@
           <aside class="manual-route">
             <h3>API (Minimax)</h3>
             <ol class="manual-step-list">
-              <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 选择 Token Plan 套餐</button></li>
-              <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 获取 Token Plan API Key</button></li>
+              <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 选择 Token Plan
+                  套餐</button></li>
+              <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 获取 Token Plan API Key</button>
+              </li>
               <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 填写配置第 1 步</button></li>
               <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 填写配置第 2 步</button></li>
             </ol>
@@ -341,7 +344,8 @@
           <aside class="manual-route">
             <h3>完成设置</h3>
             <ol class="manual-step-list">
-              <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 是否接入渠道先选 No</button></li>
+              <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 是否接入渠道先选 No</button>
+              </li>
               <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 选择交互入口</button></li>
               <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. Skills 先选 No</button></li>
               <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 完成安装并启动</button></li>
@@ -352,7 +356,7 @@
               <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
               <figure class="gallery-panel">
                 <img src="images/04-local-deploy/20.png" alt="渠道先选 No" />
-                <figcaption>首次本地部署时，渠道接入先选 `No`，后面单独再接飞书。</figcaption>
+                <figcaption>首次本地部署时，渠道接入先选 `No`，先完成本地可用，后面单独再接飞书。</figcaption>
               </figure>
               <figure class="gallery-panel" hidden>
                 <img src="images/04-local-deploy/21.png" alt="选择 Web UI" />
@@ -360,7 +364,7 @@
               </figure>
               <figure class="gallery-panel" hidden>
                 <img src="images/04-local-deploy/22.png" alt="Skills 先选 No" />
-                <figcaption>Skills 这里先选 `No`，后面再用更顺手的方式安装。</figcaption>
+                <figcaption>Skills 这里先选 `No`，先把主流程跑通，后面再用 ClawHub 或配置页安装。</figcaption>
               </figure>
               <figure class="gallery-panel" hidden>
                 <img src="images/04-local-deploy/23.png" alt="完成安装和启动" />
@@ -377,42 +381,6 @@
           </div>
         </div>
       </section>
-    </div>
-  </div>
-</section>
-
-<section class="slide layout-path-dense" data-module="第四部分：现场部署" data-title="步骤 03 速查：推荐选项">
-  <div class="slide-header">
-    <div class="title-stack">
-      <p class="eyebrow">第四部分 · 步骤 03 速查</p>
-      <h2>onboarding 推荐选项</h2>
-      <p>首次本地部署时，下面这组选择通常最容易跑通主流程。</p>
-    </div>
-  </div>
-  <div class="slide-body grid-3">
-    <div class="card accent-card">
-      <h3>命令</h3>
-      <p>`openclaw onboard --install-daemon`</p>
-      <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(124, 45, 18, 0.08);">
-        <span class="pill demo-cue" style="margin-bottom: 8px;">选择</span>
-        <p style="margin-top: 0; font-weight: 600; color: var(--text);">保留 `--install-daemon`，让 Gateway 作为后台服务安装。</p>
-      </div>
-    </div>
-    <div class="card">
-      <h3>向导模式</h3>
-      <p>进入 onboarding 后，优先选择 `Quick start`。</p>
-      <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(124, 45, 18, 0.08);">
-        <span class="pill demo-cue" style="margin-bottom: 8px;">作用</span>
-        <p style="margin-top: 0; font-weight: 600; color: var(--text);">优先走官方默认配置，减少首次安装时的自定义变量。</p>
-      </div>
-    </div>
-    <div class="card teal-card">
-      <h3>完成设置</h3>
-      <p>渠道先跳过，Skills 先选 `No`，交互入口优先选 `Web UI`。</p>
-      <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(15, 118, 110, 0.1);">
-        <span class="pill demo-cue" style="margin-bottom: 8px;">顺序</span>
-        <p style="margin-top: 0; font-weight: 600; color: var(--text);">先完成本地可用，再进入飞书接入和 Skills 安装。</p>
-      </div>
     </div>
   </div>
 </section>
@@ -484,10 +452,10 @@
   <div class="slide-body split-tight">
     <div class="card accent-card">
       <h3>验收命令</h3>
-      <div class="code-block">openclaw doctor
+      <div class="code-block">openclaw --version
         openclaw gateway status
         openclaw dashboard</div>
-      <p>`openclaw --version` 可先确认 CLI 是否安装成功；`doctor` 用于检查依赖与配置；`gateway status` 用于查看 Gateway 是否已运行；`dashboard`
+      <p>`openclaw --version` 可先确认 CLI 是否安装成功；`gateway status` 用于查看 Gateway 是否已运行；`dashboard`
         用于打开控制界面。</p>
       <div class="callout">验收完成时，应同时满足三件事：CLI 可调用、Gateway 正在运行、Dashboard 能正常打开。</div>
     </div>

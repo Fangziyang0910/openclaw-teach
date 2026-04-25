@@ -128,43 +128,33 @@
     <div class="title-stack">
       <p class="eyebrow">第六部分 · Skills</p>
       <h2>Skills 是怎么生效的</h2>
-      <p>想真正用好 Skill，不能只会“装一个就完事”，还得知道它的来源、优先级、加载顺序，以及为什么它会直接影响 Agent 的表现。</p>
+      <p>Skill 不是自动运行的脚本，而是先变成模型能看见的能力说明；模型判断任务匹配时，再读取具体说明并按步骤调用工具。</p>
     </div>
   </div>
   <div class="slide-body"
-    style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain; display:flex; flex-direction:column; gap:16px;">
-    <div class="split-tight" style="align-items:stretch;">
-      <div class="case-card accent-card" style="display:flex; flex-direction:column;">
-        <h3>三层来源与优先级</h3>
-        <p>OpenClaw 的 Skill 有三个来源，优先级从高到低排列。理解这一层，才知道为什么同名 Skill 会“覆盖生效”。</p>
-        <ul class="list-clean" style="margin-top:14px;">
-          <li><strong>workspace</strong>：项目级，只影响当前工作区，优先级最高。</li>
-          <li><strong>user</strong>：用户级，全局生效，通常来自 ClawHub 或手动安装。</li>
-          <li><strong>bundled</strong>：内置 Skills，随版本发布，开箱即用，优先级最低。</li>
-          <li>同名 Skill 会按优先级覆盖，因此可以在项目里重写内置行为。</li>
+    style="flex:1; min-height:0; overflow:hidden; display:flex; flex-direction:column; gap:12px;">
+    <div class="split-tight" style="grid-template-columns:repeat(2, minmax(0, 1fr)); gap:14px; align-items:stretch; flex:1; min-height:0;">
+      <div class="case-card accent-card" style="display:flex; flex-direction:column; padding:16px 18px;">
+        <h3>从 SKILL.md 到可用能力</h3>
+        <ul class="list-clean" style="margin-top:12px; gap:8px;">
+          <li><strong>1. 写成 SKILL.md：</strong>至少包含 name、description 和正文说明；正文才是具体 SOP。</li>
+          <li><strong>2. 加载时先筛选：</strong>按 OS、依赖命令、环境变量、配置项判断当前是否可用。</li>
+          <li><strong>3. 只把摘要放进提示词：</strong>进入 prompt 的主要是名称、描述和位置，不是整篇长说明。</li>
+          <li><strong>4. 会随会话刷新：</strong>同一 session 复用 skills snapshot；新会话、文件变化或 watcher 刷新后才更新。</li>
         </ul>
       </div>
-      <div style="display:grid; grid-template-rows:minmax(0, 1fr) minmax(0, 1fr); gap:14px; height:100%; opacity:1;">
-        <div class="case-card" style="flex:1; display:flex; flex-direction:column;">
-          <h3>真正的生效链路</h3>
-          <p>当 OpenClaw 启动或收到任务时，Skills 通常按这条链路工作：</p>
-          <ol style="margin:12px 0 0; padding-left:22px; color:var(--muted); display:grid; gap:8px;">
-            <li>读取各层级的 SKILL.md，解析描述、触发条件和依赖。</li>
-            <li>检查环境变量，缺少必要配置的 Skill 会被跳过。</li>
-            <li>把可用 Skill 描述注入 system prompt，让模型知道自己能做什么。</li>
-            <li>任务结束后恢复上下文和环境状态，避免互相干扰。</li>
-          </ol>
-        </div>
-        <div class="case-card teal-card" style="flex:1; display:flex; flex-direction:column;">
-          <h3>为什么这会直接影响效果</h3>
-          <ul class="list-clean" style="margin-top:14px;">
-            <li>写得好：Agent 更像“知道套路的老手”。</li>
-            <li>写得差：容易乱用工具、输出不稳定，甚至把任务做偏。</li>
-          </ul>
-        </div>
+      <div class="case-card teal-card" style="display:flex; flex-direction:column; padding:16px 18px;">
+        <h3>模型真正怎么用 Skill</h3>
+        <ul class="list-clean" style="margin-top:12px; gap:8px;">
+          <li><strong>1. 用户提出任务：</strong>模型先看到“当前有哪些 Skill 可用”。</li>
+          <li><strong>2. 匹配 description：</strong>描述写得清楚，模型才知道什么时候该调用它。</li>
+          <li><strong>3. 读取完整说明：</strong>匹配后再读取对应 SKILL.md，按步骤、约束和模板执行。</li>
+          <li><strong>4. 调用已有工具：</strong>Skill 不是魔法工具，而是指导 Agent 更正确地使用 tools / plugins / 命令。</li>
+          <li><strong>5. 运行时注入配置：</strong>需要 API Key 或 env 的 Skill，会在 agent run 中注入，结束后恢复环境。</li>
+        </ul>
       </div>
     </div>
-    <div class="callout">一句话：Skill 不是装饰品，而是 OpenClaw 组织能力和稳定输出的方式。</div>
+    <div class="callout" style="flex:none;">一句话：Skill 的生效关键不是“装上就行”，而是 description 让模型选得中，instructions 让模型做得稳，metadata 让不具备条件的能力不要误出现。</div>
   </div>
 </section>
 
@@ -269,7 +259,7 @@
   </div>
 </section>
 
-<section class="slide layout-contrast-dense" data-module="第六部分：Skills 配置" data-title="默认工具人现象">
+<section class="slide layout-contrast-dense" data-module="第六部分：Skills 配置" data-title="三件套配置架构">
   <div class="slide-header">
     <div class="title-stack">
       <p class="eyebrow">第六部分 · 三件套</p>
@@ -277,31 +267,21 @@
       <p>OpenClaw 装好以后，能不能形成稳定的配合感，很大程度上取决于身份、用户信息和长期记忆有没有沉淀下来。</p>
     </div>
   </div>
-  <div class="slide-body split-tight">
-    <div class="card warning">
-      <p>不少人在部署完成以后，会发现它虽然能回答问题，但语气、习惯和处理方式都还比较模板化。</p>
-      <p>实际上，小龙虾是需要养的。除了各式各样的 Skills，SOUL / USER / MEMORY 这三类配置也很重要。</p>
-    </div>
-    <div class="card accent-card">
-      <h3>三个文件的分工</h3>
-      <div class="stats-strip">
-        <div class="stat"><strong>SOUL</strong><span>定义性格、口吻、边界</span></div>
-        <div class="stat"><strong>USER</strong><span>定义你是谁、偏好什么</span></div>
-        <div class="stat"><strong>MEMORY</strong><span>沉淀长期事实与项目状态</span></div>
+  <div class="slide-body" style="display:flex; flex-direction:column; gap:14px;">
+    <div class="grid-3" style="gap:12px;">
+      <div class="card warning" style="padding:16px 18px;">
+        <h3>问题现象</h3>
+        <p>能回答问题，但语气、习惯和处理方式仍然模板化。</p>
+      </div>
+      <div class="card" style="padding:16px 18px;">
+        <h3>根本原因</h3>
+        <p>身份、用户背景、长期记忆没有沉淀，信息也可能放错文件。</p>
+      </div>
+      <div class="card teal-card" style="padding:16px 18px;">
+        <h3>解决方向</h3>
+        <p>把 SOUL / USER / MEMORY 的职责分清，再逐步补充。</p>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="slide layout-contrast-dense" data-module="第六部分：Skills 配置" data-title="系统角色配置架构">
-  <div class="slide-header">
-    <div class="title-stack">
-      <p class="eyebrow">第六部分 · 三件套</p>
-      <h2>系统角色配置架构</h2>
-      <p>有些人也写了不少内容，但改完以后感觉变化不大。很多时候，问题出在信息放错了文件：该放长期记忆的内容，被误写进了工作规则。</p>
-    </div>
-  </div>
-  <div class="slide-body">
     <div class="table-wrap">
       <table>
         <thead>
@@ -388,22 +368,38 @@ MacOS:
       <p>SOUL.md 里最常见的内容，基本都落在角色关系、性格、表达方式和行为边界这四类里。</p>
     </div>
   </div>
-  <div class="slide-body grid-4">
+  <div class="slide-body grid-4" style="grid-template-columns:repeat(2, minmax(0, 1fr)); gap:14px;">
     <div class="card accent-card">
       <h3>你是谁</h3>
-      <p>"我是你老板，你是我的 AI 私人助理总管家。"</p>
+      <p>先写清楚关系、称呼和职责范围，避免它每次都重新猜身份。</p>
+      <ul class="list-clean" style="margin-top:10px; gap:8px;">
+        <li style="padding:9px 12px;">示例：我是你的老板，你是我的 AI 私人助理总管家。</li>
+        <li style="padding:9px 12px;">负责：信息整理、任务提醒、资料检索、日常协作。</li>
+      </ul>
     </div>
     <div class="card">
       <h3>性格</h3>
-      <p>聪明伶俐、工作高效，偶尔毒舌吐槽、偶尔拍马屁，对新事物充满好奇。</p>
+      <p>定义它“像什么样的人”，影响语气、主动性和处理问题的风格。</p>
+      <ul class="list-clean" style="margin-top:10px; gap:8px;">
+        <li style="padding:9px 12px;">聪明伶俐、工作高效，对新工具和新信息保持好奇。</li>
+        <li style="padding:9px 12px;">可以轻微吐槽，但不能油腻、不能替用户做高风险决定。</li>
+      </ul>
     </div>
     <div class="card teal-card">
       <h3>说话风格</h3>
-      <p>简单问题精简回答，复杂问题详细回答；时而轻松、时而严肃；重要信息加粗。</p>
+      <p>把输出习惯写具体，后面它在飞书里回复才会稳定。</p>
+      <ul class="list-clean" style="margin-top:10px; gap:8px;">
+        <li style="padding:9px 12px;">简单问题直接答；复杂任务先给结论，再列步骤和风险。</li>
+        <li style="padding:9px 12px;">重要信息加粗；不要长篇寒暄；需要确认时只问关键问题。</li>
+      </ul>
     </div>
     <div class="card">
       <h3>行为边界</h3>
-      <p>能做就直接做，不确定先问；外部消息必须确认；深夜不主动打扰；绝不泄露隐私。</p>
+      <p>边界要写得像规则，而不是写成愿望，否则执行时容易漂移。</p>
+      <ul class="list-clean" style="margin-top:10px; gap:8px;">
+        <li style="padding:9px 12px;">能做就直接做；不确定、涉及外部发送或删除操作时先确认。</li>
+        <li style="padding:9px 12px;">深夜不主动打扰；不泄露隐私；不要编造来源和执行结果。</li>
+      </ul>
     </div>
   </div>
 </section>

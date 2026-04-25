@@ -25,7 +25,7 @@
     {
       "file": "03-install-config.html",
       "module": "第四部分：现场部署",
-      "slideCount": 9
+      "slideCount": 8
     },
     {
       "file": "04-feishu.html",
@@ -35,7 +35,7 @@
     {
       "file": "05-skills-customization.html",
       "module": "第六部分：Skills 配置",
-      "slideCount": 13
+      "slideCount": 12
     },
     {
       "file": "06-cases-faq.html",
@@ -45,7 +45,7 @@
     {
       "file": "07-ending.html",
       "module": "第七部分：案例实战",
-      "slideCount": 3
+      "slideCount": 4
     }
   ]
 }

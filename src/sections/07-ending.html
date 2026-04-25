@@ -102,6 +102,100 @@
                 </div>
               </div>
             </section>
+
+            <section class="segmented-panel" data-segment-panel="windows" role="tabpanel" hidden>
+              <div class="manual-install-stage">
+                <aside class="manual-route">
+                  <h3>Windows 路线</h3>
+                  <ol class="manual-step-list">
+                    <li><button class="manual-step-btn active" type="button" data-gallery-jump="0">1. 下载 Node.js 安装包</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="1">2. 下载并安装 Git</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="2">3. 安装 Visual Studio</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="3">4. 勾选 C++ 与 Windows SDK</button></li>
+                    <li><button class="manual-step-btn" type="button" data-gallery-jump="4">5. 验证环境并安装 OpenClaw</button></li>
+                  </ol>
+                </aside>
+                <div class="gallery manual-gallery" data-gallery>
+                  <div class="gallery-stage">
+                    <button class="gallery-nav prev" type="button" aria-label="上一张截图">&#10094;</button>
+                    <figure class="gallery-panel">
+                      <img src="images/04-local-deploy/5.png" alt="下载 Windows Node.js 安装包" />
+                      <figcaption>先下载 Windows 版 Node.js LTS 安装包。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/04-local-deploy/6.png" alt="下载 Windows Git 安装包" />
+                      <figcaption>再下载 Git for Windows；安装时一路默认 Next 即可。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/04-local-deploy/8.png" alt="下载并安装 Visual Studio" />
+                      <figcaption>如果遇到构建依赖问题，就补装 Visual Studio。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/04-local-deploy/9.png" alt="勾选 C++ 桌面开发和 Windows SDK" />
+                      <figcaption>在 Visual Studio Installer 中勾选 C++ 桌面开发和 Windows SDK。</figcaption>
+                    </figure>
+                    <figure class="gallery-panel" hidden>
+                      <img src="images/04-local-deploy/12.png" alt="验证 Node npm git 环境" />
+                      <figcaption>用 `node -v`、`npm -v`、`git -v` 验证环境后，再执行 `npm install -g openclaw@latest`。</figcaption>
+                    </figure>
+                    <button class="gallery-nav next" type="button" aria-label="下一张截图">&#10095;</button>
+                  </div>
+                  <div class="gallery-dots">
+                    <button class="gallery-dot" type="button">1 Node.js</button>
+                    <button class="gallery-dot" type="button">2 Git</button>
+                    <button class="gallery-dot" type="button">3 Visual Studio</button>
+                    <button class="gallery-dot" type="button">4 C++ / SDK</button>
+                    <button class="gallery-dot" type="button">5 验证环境</button>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
         </div>
       </section>
+
+<section class="slide" data-module="第七部分：案例实战" data-title="附录 B：常见问题与排查" style="display:flex; flex-direction:column;">
+  <div class="slide-header" style="margin-bottom:12px; gap:14px; flex:none;">
+    <div class="title-stack">
+      <p class="eyebrow">附录 B</p>
+      <h2>常见问题与排查思路</h2>
+      <p>遇到安装报错、权限不够或需要彻底卸载时，可以回到这一页按类别排查。</p>
+    </div>
+  </div>
+  <div class="slide-body grid-3"
+    style="flex:1; min-height:0; overflow-y:auto; padding-right:10px; overscroll-behavior:contain;">
+    <div class="faq-card accent-card">
+      <h3>1. 安装过程出现 git 报错</h3>
+      <figure class="figure-soft-top">
+        <img src="images/07-cases/65.png" alt="git 报错示意" />
+        <figcaption>建议把 Git 全局切到 HTTPS。</figcaption>
+      </figure>
+      <div class="code-block">git config --global url."https://github.com/".insteadOf git@github.com:
+        git config --global url."https://github.com/".insteadOf ssh://git@github.com
+
+        npm install -g openclaw@latest</div>
+    </div>
+    <div class="faq-card teal-card">
+      <h3>2. 无法执行命令行和读取本地文件</h3>
+      <p>先执行 `openclaw dashboard`，检查 Agent 的访问权限相关配置。</p>
+      <p>如果都是关闭状态，就去改 `openclaw.json`：</p>
+      <div class="code-block">{
+        "tools": {
+        "profile": "full",
+        "sessions": { "visibility": "all" },
+        "exec": { "security": "full", "ask": "off" }
+        }
+        }</div>
+      <p>改完后执行 `openclaw gateway restart`。</p>
+    </div>
+    <div class="faq-card">
+      <h3>3. 如何卸载 OpenClaw</h3>
+      <div class="code-block">openclaw gateway stop
+        openclaw gateway uninstall
+        rm -rf "${OPENCLAW_STATE_DIR:-$HOME/.openclaw}"
+        rm -rf ~/.openclaw/workspace
+        npm rm -g openclaw</div>
+      <p>如果安装了 macOS 应用，还需要移除 `/Applications/OpenClaw.app`。</p>
+    </div>
+  </div>
+</section>

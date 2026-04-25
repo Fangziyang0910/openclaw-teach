@@ -1665,40 +1665,139 @@ openclaw dashboard
 
 设置完成后，记得执行 `openclaw gateway restart` 进行重启一下。
 
-### 3. 如何卸载OpenClaw
+### 3. 如何卸载 OpenClaw
 
-停止网关（Gateway）服务：
+卸载 OpenClaw 不能只删一个命令行工具。完整卸载通常要处理四类东西：
+
+1. 正在运行的 Gateway 服务
+2. OpenClaw 的状态目录和配置目录
+3. workspace 里的个性化文件、记忆、Skills 配置
+4. 全局安装的 OpenClaw CLI
+
+> 注意：如果你还想保留 `SOUL.md`、`USER.md`、`MEMORY.md`、Skills 配置或历史记忆，先备份 `~/.openclaw/workspace` 或 Windows 下的 `%USERPROFILE%\.openclaw\workspace`，再执行删除命令。
+
+#### 3.1 macOS / Linux 卸载
+
+先停止 Gateway：
 
 ```bash
 openclaw gateway stop
 ```
 
-卸载网关服务：
+再卸载 Gateway 后台服务：
 
 ```bash
 openclaw gateway uninstall
 ```
 
-删除状态与配置：
+删除 OpenClaw 状态目录和配置目录：
 
 ```bash
 rm -rf "${OPENCLAW_STATE_DIR:-$HOME/.openclaw}"
 ```
 
-删除你的工作区（Workspace）（可选，会移除智能体文件）：
+如果你只想清空智能体工作区，而不是删除整个 OpenClaw 状态目录，可以只删 workspace：
 
 ```bash
 rm -rf ~/.openclaw/workspace
 ```
 
-移除 CLI 安装：
+移除全局安装的 OpenClaw CLI：
 
 ```bash
 npm rm -g openclaw
 ```
 
-如果你安装了 macOS 应用，需要执行以下命令卸载应用：
+如果你安装过 macOS 桌面应用，还需要删除应用本体：
 
 ```bash
 rm -rf /Applications/OpenClaw.app
+```
+
+最后可以验证命令是否已经移除：
+
+```bash
+which openclaw
+openclaw --version
+```
+
+如果 `which openclaw` 找不到路径，或 `openclaw --version` 提示命令不存在，说明 CLI 已经移除。
+
+#### 3.2 Windows 卸载
+
+Windows 建议使用 PowerShell 执行。如果之前是以管理员身份安装 Gateway，卸载 Gateway 时也建议用管理员 PowerShell。
+
+先停止 Gateway：
+
+```powershell
+openclaw gateway stop
+```
+
+卸载 Gateway 后台服务：
+
+```powershell
+openclaw gateway uninstall
+```
+
+删除 OpenClaw 状态目录和配置目录。如果你配置过 `OPENCLAW_STATE_DIR`，优先删除这个目录；否则默认删除用户目录下的 `.openclaw`：
+
+```powershell
+if ($env:OPENCLAW_STATE_DIR) {
+  Remove-Item -Recurse -Force $env:OPENCLAW_STATE_DIR
+} else {
+  Remove-Item -Recurse -Force "$env:USERPROFILE\.openclaw"
+}
+```
+
+如果你只想清空智能体工作区，而不是删除全部状态目录，可以只删 workspace：
+
+```powershell
+Remove-Item -Recurse -Force "$env:USERPROFILE\.openclaw\workspace"
+```
+
+移除全局安装的 OpenClaw CLI：
+
+```powershell
+npm rm -g openclaw
+```
+
+最后验证命令是否已经移除：
+
+```powershell
+Get-Command openclaw
+openclaw --version
+```
+
+如果 PowerShell 提示找不到 `openclaw`，说明 CLI 已经移除。
+
+#### 3.3 卸载不干净时怎么排查
+
+如果卸载后仍然能执行 `openclaw`，通常是因为系统里还有另一个安装来源或 PATH 缓存。可以按下面顺序排查：
+
+macOS / Linux：
+
+```bash
+which -a openclaw
+npm root -g
+npm ls -g --depth=0 | grep openclaw
+```
+
+Windows PowerShell：
+
+```powershell
+Get-Command openclaw -All
+npm root -g
+npm ls -g --depth=0
+```
+
+如果 `npm ls -g --depth=0` 里还能看到 `openclaw`，再执行一次：
+
+```bash
+npm rm -g openclaw
+```
+
+Windows 中同样可以执行：
+
+```powershell
+npm rm -g openclaw
 ```
